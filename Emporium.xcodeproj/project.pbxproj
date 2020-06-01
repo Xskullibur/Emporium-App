@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EDA59904248492D400ADD228 /* CrowdTracking */ = {
+			isa = PBXGroup;
+			children = (
+				EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */,
+			);
+			path = CrowdTracking;
+			sourceTree = "<group>";
+		};
 		FE9023482473B9C700CE6B3A = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
 				FE9023562473B9C700CE6B3A /* SceneDelegate.swift */,
 				FE9023582473B9C700CE6B3A /* ViewController.swift */,
@@ -235,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
