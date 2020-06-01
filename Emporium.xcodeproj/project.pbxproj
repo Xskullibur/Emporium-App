@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F2037412484955600A19072 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F2037402484955600A19072 /* Shop.storyboard */; };
+		7F2037432484965C00A19072 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2037422484965C00A19072 /* ShopViewController.swift */; };
+		7F2037452484973A00A19072 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2037442484973A00A19072 /* CheckOutViewController.swift */; };
+		7F20374724849C1800A19072 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F20374624849C1800A19072 /* PickupViewController.swift */; };
+		7F20374924849C3800A19072 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F20374824849C3800A19072 /* ReceiptViewController.swift */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F2037402484955600A19072 /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
+		7F2037422484965C00A19072 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		7F2037442484973A00A19072 /* CheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		7F20374624849C1800A19072 /* PickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
+		7F20374824849C3800A19072 /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +88,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F20373F248494D700A19072 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				7F2037402484955600A19072 /* Shop.storyboard */,
+				7F2037422484965C00A19072 /* ShopViewController.swift */,
+				7F2037442484973A00A19072 /* CheckOutViewController.swift */,
+				7F20374624849C1800A19072 /* PickupViewController.swift */,
+				7F20374824849C3800A19072 /* ReceiptViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
 		FE9023482473B9C700CE6B3A = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +123,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				7F20373F248494D700A19072 /* Shop */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
 				FE9023562473B9C700CE6B3A /* SceneDelegate.swift */,
 				FE9023582473B9C700CE6B3A /* ViewController.swift */,
@@ -237,6 +260,7 @@
 			files = (
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
+				7F2037412484955600A19072 /* Shop.storyboard in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,8 +286,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F2037452484973A00A19072 /* CheckOutViewController.swift in Sources */,
+				7F20374924849C3800A19072 /* ReceiptViewController.swift in Sources */,
+				7F20374724849C1800A19072 /* PickupViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
+				7F2037432484965C00A19072 /* ShopViewController.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 			);
