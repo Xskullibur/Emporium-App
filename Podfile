@@ -7,6 +7,7 @@ target 'Emporium' do
 
   # Pods for Emporium
 	pod 'MapboxNavigation', '~> 0.39.0'
+  pod 'Firebase/Auth'
 
   target 'EmporiumTests' do
     inherit! :search_paths
