@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Mapbox
 
-class NearbyMartViewController: UIViewController {
+class NearbyMartViewController: UIViewController, MGLMapViewDelegate {
 
+    @IBOutlet weak var topView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

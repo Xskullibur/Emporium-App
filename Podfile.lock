@@ -59,36 +59,20 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
-  - Mapbox-iOS-SDK (5.5.1)
-  - MapboxCoreNavigation (0.39.1):
-    - MapboxDirections.swift (~> 0.30.0)
-    - MapboxMobileEvents (~> 0.9.5)
-    - MapboxNavigationNative (~> 6.2.1)
-    - Turf (~> 0.3.0)
-  - MapboxDirections.swift (0.30.0):
-    - Polyline (~> 4.2)
-  - MapboxMobileEvents (0.9.5)
-  - MapboxNavigation (0.39.1):
-    - Mapbox-iOS-SDK (= 5.5.1)
-    - MapboxCoreNavigation (= 0.39.1)
-    - MapboxSpeech (~> 0.1.0)
-    - Solar (~> 2.1)
-  - MapboxNavigationNative (6.2.1)
-  - MapboxSpeech (0.1.1)
+  - Mapbox-iOS-SDK (5.9.0):
+    - MapboxMobileEvents (= 0.10.2)
+  - MapboxMobileEvents (0.10.2)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
-  - Polyline (4.2.1)
   - PromisesObjC (1.2.8)
-  - Solar (2.1.0)
-  - Turf (0.3.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - GoogleSignIn
-  - MapboxNavigation (~> 0.39.0)
+  - Mapbox-iOS-SDK (~> 5.9)
 
 SPEC REPOS:
   trunk:
@@ -106,17 +90,9 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - Mapbox-iOS-SDK
-    - MapboxCoreNavigation
-    - MapboxDirections.swift
     - MapboxMobileEvents
-    - MapboxNavigation
-    - MapboxNavigationNative
-    - MapboxSpeech
     - nanopb
-    - Polyline
     - PromisesObjC
-    - Solar
-    - Turf
 
 SPEC CHECKSUMS:
   AppAuth: 8803ba1aec6d00d9afd30093f82e600307eaa6ea
@@ -132,19 +108,11 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
-  Mapbox-iOS-SDK: 051d78eb8beb4bd0601212a18ea3ba8608bae32f
-  MapboxCoreNavigation: cf6ec1b4d3920f9178f4b3557750327f76acdb1a
-  MapboxDirections.swift: 6be6f756176b2c16f308093cc4724fa82ce33b12
-  MapboxMobileEvents: f6c21b2e59066c5c7093585de7c15adae3b63da0
-  MapboxNavigation: 45fa17b2dfd023b0b8ea78990d872b7e50c3d78f
-  MapboxNavigationNative: 11dc22140f4698d3f26989f2b6379dc81ef0d4c1
-  MapboxSpeech: 59b3984d3f433a443d24acf53097f918c5cc70f9
+  Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
+  MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
-  Polyline: 0e9890790292741c8186201a536b6bb6a78d02dd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
-  Turf: c6bdf62d6a70c647874f295dd1cf4eefc0c3e9e6
 
-PODFILE CHECKSUM: 2618ba426bfaf39d40b6478b16259cfafd76e1d6
+PODFILE CHECKSUM: 4ae39ae5e71686f04e196e5459a16c5deb563c60
 
 COCOAPODS: 1.9.3

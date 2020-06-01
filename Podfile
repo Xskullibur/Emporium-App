@@ -6,7 +6,7 @@ target 'Emporium' do
   use_frameworks!
 
   # Pods for Emporium
-	pod 'MapboxNavigation', '~> 0.39.0'
+  pod 'Mapbox-iOS-SDK', '~> 5.9'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
 
