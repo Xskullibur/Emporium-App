@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>775456162764-nc8p4m96hd2j8jtrqtb9plvhjelc7iaq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.775456162764-nc8p4m96hd2j8jtrqtb9plvhjelc7iaq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBEwJB7g9TXsD5wp8fgqYAapj5xzxm6BSg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>775456162764</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nyp.Emporium</string>
+	<key>PROJECT_ID</key>
+	<string>emporium-e8b60</string>
+	<key>STORAGE_BUCKET</key>
+	<string>emporium-e8b60.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:775456162764:ios:ed52290eaebb12cd3bd369</string>
+	<key>DATABASE_URL</key>
+	<string>https://emporium-e8b60.firebaseio.com</string>
+</dict>
+</plist>

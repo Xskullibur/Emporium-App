@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
+		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
 		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
+		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 				813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */,
 				0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -152,6 +153,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
 				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
 				FE9023562473B9C700CE6B3A /* SceneDelegate.swift */,
@@ -195,6 +197,7 @@
 				FE90234E2473B9C700CE6B3A /* Frameworks */,
 				FE90234F2473B9C700CE6B3A /* Resources */,
 				8F9FF71E241323E9BA794080 /* [CP] Embed Pods Frameworks */,
+				A7962031846264BF16C7F108 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,6 +236,7 @@
 				FE9023722473B9C900CE6B3A /* Frameworks */,
 				FE9023732473B9C900CE6B3A /* Resources */,
 				F4D2F6DF7A890085128275DD /* [CP] Embed Pods Frameworks */,
+				FEE5E093AD31706446E6702C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,6 +298,7 @@
 			files = (
 				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
+				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 			);
@@ -377,6 +382,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7962031846264BF16C7F108 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D0B8A1A731D3ADF66AF322FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +436,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEE5E093AD31706446E6702C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
