@@ -7,9 +7,12 @@ target 'Emporium' do
 
   # Pods for Emporium
 	pod 'MapboxNavigation', '~> 0.39.0'
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
+  pod 'Firebase'
+  pod 'FirebaseUI'
+  pod 'FirebaseUI/Auth'
 
+  pod 'FirebaseUI/Google'
+  
   target 'EmporiumTests' do
     inherit! :search_paths
     # Pods for testing

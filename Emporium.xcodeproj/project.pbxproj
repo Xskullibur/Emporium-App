@@ -12,6 +12,7 @@
 		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
+		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
@@ -21,6 +22,9 @@
 		FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
+		FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */; };
+		FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
+		FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,7 @@
 		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
 		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,9 @@
 		FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumLoginViewController.xib; sourceTree = "<group>"; };
+		FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FUICustomAuthPickerViewController.xib; sourceTree = "<group>"; };
+		FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +161,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				FEA80CEF248DE293005D8F94 /* Login */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
 				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
@@ -163,6 +172,7 @@
 				FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */,
 				FE9023652473B9C900CE6B3A /* Info.plist */,
 				FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */,
+				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
 			);
 			path = Emporium;
 			sourceTree = "<group>";
@@ -183,6 +193,16 @@
 				FE90237B2473B9C900CE6B3A /* Info.plist */,
 			);
 			path = EmporiumUITests;
+			sourceTree = "<group>";
+		};
+		FEA80CEF248DE293005D8F94 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */,
+				FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */,
+				FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,11 +316,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
+				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +486,9 @@
 			files = (
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
+				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
+				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
