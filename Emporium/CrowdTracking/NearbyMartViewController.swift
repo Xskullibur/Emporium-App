@@ -7,11 +7,13 @@
 //
 
 import UIKit
-import Mapbox
+import CoreLocation
+import MapKit
 
-class NearbyMartViewController: UIViewController, MGLMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
 
     // MARK: - Variables
+    var locationManager: CLLocationManager?
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
     var storeList_moreThan2: [GroceryStore] = []
@@ -19,26 +21,88 @@ class NearbyMartViewController: UIViewController, MGLMapViewDelegate, UITableVie
     var tableSections = ["< 1 km", "< 2 km", "> 2 km"]
     
     // MARK: - Outlets
-    @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Delegate Map View
+        
+        // Map View
         self.mapView.delegate = self
         
-        // Map View User Tracking
-        mapView.userTrackingMode = .followWithHeading
-        mapView.showsUserLocation = true
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 0
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
         
         // Delegate TableView
         self.tableView.delegate = self
+    }
+    
+    // MARK: - MapView
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+        renderer.strokeColor = UIColor.blue.withAlphaComponent(0.75)
+        renderer.lineWidth = 5
+        return renderer
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // Get and show user location
+        let currentLocation = locations.last!
+        
+        let region = MKCoordinateRegion (
+            center: currentLocation.coordinate,
+            latitudinalMeters: 3000,
+            longitudinalMeters: 3000
+        )
+        
+        mapView.setRegion(region, animated: true)
+        
+        // Get Grocery Stores near User
+        getStores(lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
+        
+    }
+    
+    func showDirections(sourceCoords: CLLocationCoordinate2D, destinationCoords: CLLocationCoordinate2D, transportType: MKDirectionsTransportType) {
+        
+        // Clear Overlays
+        self.mapView.removeOverlays(mapView.overlays)
+        
+        // Create Direction Request
+        let directionRequest = MKDirections.Request()
+        
+        directionRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoords, addressDictionary: nil))
+        directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoords, addressDictionary: nil))
+        directionRequest.requestsAlternateRoutes = false
+        directionRequest.transportType = transportType
+        
+        // Request for Direction and Show on Map
+        let direction = MKDirections(request: directionRequest)
+        direction.calculate { (response, error) in
+            guard let unwrappedResponse = response else { return }
+            
+            let route = unwrappedResponse.routes[0]
+            self.mapView.addOverlay(route.polyline)
+            self.mapView.setVisibleMapRect(
+                route.polyline.boundingMapRect,
+                edgePadding: UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0),
+                animated: true
+            )
+            
+        }
+        
+    }
+    
+    func getStores(lat latitude: Double, long longitude: Double) {
         
         // Do any additional setup after loading the view.
         let placesAPI = PlacesAPI()
-        placesAPI.getNearbyGroceryStore(lat: 1.379907, long: 103.849077, radius: 2500, completionHandler: { (_storeList, error) in
+        placesAPI.getNearbyGroceryStore(lat: latitude, long: longitude, radius: 2500, completionHandler: { (_storeList, error) in
             
             // TODO: - Handle Errors
             switch error {
@@ -71,52 +135,53 @@ class NearbyMartViewController: UIViewController, MGLMapViewDelegate, UITableVie
             self.tableView.reloadData()
             self.addAnnotations()
         })
+        
     }
     
-    // MARK: - MapView
     func addAnnotations() {
         
         // < 1km Stores
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan1 {
-                let annotation = MGLPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                
+                let annotation = MKPointAnnotation()
                 annotation.title = store.name
                 annotation.subtitle = store.address
+                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
                 mapView.addAnnotation(annotation)
+                
             }
         }
         
         // < 2km Stores
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan2 {
-                let annotation = MGLPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                
+                let annotation = MKPointAnnotation()
                 annotation.title = store.name
                 annotation.subtitle = store.address
+                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
                 mapView.addAnnotation(annotation)
+                
             }
         }
         
         // > 2km Stores
         if !storeList_lessThan1.isEmpty {
             for store in storeList_moreThan2 {
-                let annotation = MGLPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                
+                let annotation = MKPointAnnotation()
                 annotation.title = store.name
                 annotation.subtitle = store.address
+                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
                 mapView.addAnnotation(annotation)
+                
             }
         }
         
     }
     
-    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        true
-    }
-    
     // MARK: - TableView
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableSections.count
     }
@@ -158,6 +223,7 @@ class NearbyMartViewController: UIViewController, MGLMapViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get Selected GroceryStore
         let store: GroceryStore
 
         switch (indexPath.section) {
@@ -169,9 +235,23 @@ class NearbyMartViewController: UIViewController, MGLMapViewDelegate, UITableVie
                 store = storeList_moreThan2[indexPath.row]
         }
         
-        let location = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
-        let camera = MGLMapCamera(lookingAtCenter: location, acrossDistance: 450, pitch: 15, heading: 180)
-        mapView.fly(to: camera, completionHandler: nil)
+        // Create Coordinates
+        let sourceCoords = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
+        let destinationCoords = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        
+        // Clear Annotations
+        mapView.removeAnnotations(mapView.annotations)
+        
+        // Create Destination Annotation
+        let annotation = MKPointAnnotation()
+        annotation.title = store.name
+        annotation.subtitle = store.address
+        annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        mapView.addAnnotation(annotation)
+        
+        // Show Directions
+        showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
+        
     }
 
     /*
