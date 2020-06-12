@@ -9,6 +9,7 @@ target 'Emporium' do
   pod 'Mapbox-iOS-SDK', '~> 5.9'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'FoursquareAPIClient'
 
   target 'EmporiumTests' do
     inherit! :search_paths
