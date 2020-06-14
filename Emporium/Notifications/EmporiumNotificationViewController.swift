@@ -76,6 +76,13 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
             view.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
             
             let notification = notifications[indexPath.row]
+            
+            view.setSeeMorePressed { [weak self] in
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+            
+            
             view.setNotification(notification: notification)
         }
         

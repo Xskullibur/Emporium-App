@@ -18,6 +18,8 @@ class NotificationTableView: UIView {
     
     private var isSeeMore = false
     
+    private var seeMoreHandler: (() -> Void)?
+    
     @IBAction func seeMorePressed(_ sender: Any) {
         isSeeMore.toggle()
         
@@ -31,6 +33,12 @@ class NotificationTableView: UIView {
         
         self.messageLabel.layoutIfNeeded()
         
+        self.seeMoreHandler?()
+        
+    }
+    
+    func setSeeMorePressed(_ handler: @escaping (() -> Void)) {
+        self.seeMoreHandler = handler
     }
     
     func setNotification(notification: EmporiumNotification){
