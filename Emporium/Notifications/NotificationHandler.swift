@@ -61,7 +61,7 @@ class NotificationHandler {
                 let sender = data["sender"] as? String ?? ""
                 let title = data["title"] as? String ?? ""
                 let message = data["message"] as? String ?? ""
-                let date = data["date"] as? Date ?? Date()
+                let date = (data["date"] as? String)?.isoToDate() ?? Date()
                 return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1)
             }
         }.mapError{
@@ -70,4 +70,11 @@ class NotificationHandler {
         }.eraseToAnyPublisher()
     }
     
+}
+
+extension String {
+    func isoToDate() -> Date?{
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: self)
+    }
 }
