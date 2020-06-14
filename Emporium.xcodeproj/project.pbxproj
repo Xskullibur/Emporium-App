@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
+		AC0A18F424932494009FFD93 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
+		AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
+		AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F7249336F3009FFD93 /* NotificationError.swift */; };
+		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
+		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
+		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
 		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
@@ -52,6 +58,12 @@
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0A18F324932494009FFD93 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		AC0A18F524932628009FFD93 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		AC0A18F7249336F3009FFD93 /* NotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError.swift; sourceTree = "<group>"; };
+		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
+		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
+		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
 		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +140,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AC0A18F124932216009FFD93 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		AC0A18F224932482009FFD93 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AC0A18F324932494009FFD93 /* Notification.swift */,
+				AC0A18F524932628009FFD93 /* NotificationHandler.swift */,
+				AC0A18F7249336F3009FFD93 /* NotificationError.swift */,
+				AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */,
+				AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */,
+				AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		EDA59904248492D400ADD228 /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +193,8 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				AC0A18F224932482009FFD93 /* Notifications */,
+				AC0A18F124932216009FFD93 /* Rewards */,
 				FEA80CEF248DE293005D8F94 /* Login */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
 				EDA59904248492D400ADD228 /* CrowdTracking */,
@@ -316,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
@@ -484,10 +519,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
+				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
+				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
+				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
+				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 			);
