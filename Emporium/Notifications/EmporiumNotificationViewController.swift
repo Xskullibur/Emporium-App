@@ -63,6 +63,7 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath)
         
+        let notification = notifications[indexPath.row]
         
         if cell.contentView.subviews.contains(where: {$0.tag == 999}) == false{
             let view = Bundle.main.loadNibNamed("NotificationTableView", owner: self, options: nil)?.first as! NotificationTableView
@@ -75,18 +76,19 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
             view.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
             view.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
             
-            let notification = notifications[indexPath.row]
-            
-            view.setSeeMorePressed { [weak self] in
+            view.setSeeMorePressed {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }
             
+            view.setNotification(notification: notification)
             
+        }else{
+            let view = cell.contentView.subviews.first(where: {$0.tag == 999}) as! NotificationTableView
             view.setNotification(notification: notification)
         }
         
-
+        
         
         return cell
     }

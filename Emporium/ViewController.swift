@@ -19,9 +19,6 @@ class ViewController: EmporiumNotificationViewController {
         // Do any additional setup after loading the view.
         
         self.tableView = notificationTableView
-        
-//        self.notificationTableView.dataSource = self
-//        self.notificationTableView.delegate = self
     }
     
     
