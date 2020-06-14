@@ -3,10 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
+		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
+		AC0A18F424932494009FFD93 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
+		AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
+		AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F7249336F3009FFD93 /* NotificationError.swift */; };
+		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
+		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
+		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
+		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
+		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
+		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
+		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
@@ -16,6 +28,9 @@
 		FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
+		FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */; };
+		FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
+		FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +51,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
+		10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
+		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
+		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0A18F324932494009FFD93 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		AC0A18F524932628009FFD93 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		AC0A18F7249336F3009FFD93 /* NotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError.swift; sourceTree = "<group>"; };
+		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
+		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
+		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
+		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
+		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
+		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +84,9 @@
 		FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumLoginViewController.xib; sourceTree = "<group>"; };
+		FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FUICustomAuthPickerViewController.xib; sourceTree = "<group>"; };
+		FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +110,64 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E559CF4FDE23DA288FF346B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */,
+				10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */,
+				B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */,
+				40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */,
+				813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */,
+				0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		95407E2A058CB1895904ED5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */,
+				70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */,
+				89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC0A18F124932216009FFD93 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		AC0A18F224932482009FFD93 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AC0A18F324932494009FFD93 /* Notification.swift */,
+				AC0A18F524932628009FFD93 /* NotificationHandler.swift */,
+				AC0A18F7249336F3009FFD93 /* NotificationError.swift */,
+				AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */,
+				AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */,
+				AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		EDA59904248492D400ADD228 /* CrowdTracking */ = {
+			isa = PBXGroup;
+			children = (
+				EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */,
+			);
+			path = CrowdTracking;
+			sourceTree = "<group>";
+		};
 		FE9023482473B9C700CE6B3A = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +175,8 @@
 				FE90236D2473B9C900CE6B3A /* EmporiumTests */,
 				FE9023782473B9C900CE6B3A /* EmporiumUITests */,
 				FE9023522473B9C700CE6B3A /* Products */,
+				3E559CF4FDE23DA288FF346B /* Pods */,
+				95407E2A058CB1895904ED5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +193,11 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				AC0A18F224932482009FFD93 /* Notifications */,
+				AC0A18F124932216009FFD93 /* Rewards */,
+				FEA80CEF248DE293005D8F94 /* Login */,
+				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
+				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
 				FE9023562473B9C700CE6B3A /* SceneDelegate.swift */,
 				FE9023582473B9C700CE6B3A /* ViewController.swift */,
@@ -109,6 +206,7 @@
 				FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */,
 				FE9023652473B9C900CE6B3A /* Info.plist */,
 				FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */,
+				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
 			);
 			path = Emporium;
 			sourceTree = "<group>";
@@ -131,6 +229,16 @@
 			path = EmporiumUITests;
 			sourceTree = "<group>";
 		};
+		FEA80CEF248DE293005D8F94 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */,
+				FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */,
+				FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +246,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE90237E2473B9C900CE6B3A /* Build configuration list for PBXNativeTarget "Emporium" */;
 			buildPhases = (
+				8D3028128B9432B6D0EB4C1C /* [CP] Check Pods Manifest.lock */,
 				FE90234D2473B9C700CE6B3A /* Sources */,
 				FE90234E2473B9C700CE6B3A /* Frameworks */,
 				FE90234F2473B9C700CE6B3A /* Resources */,
+				8F9FF71E241323E9BA794080 /* [CP] Embed Pods Frameworks */,
+				A7962031846264BF16C7F108 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE9023812473B9C900CE6B3A /* Build configuration list for PBXNativeTarget "EmporiumTests" */;
 			buildPhases = (
+				D0B8A1A731D3ADF66AF322FB /* [CP] Check Pods Manifest.lock */,
 				FE9023662473B9C900CE6B3A /* Sources */,
 				FE9023672473B9C900CE6B3A /* Frameworks */,
 				FE9023682473B9C900CE6B3A /* Resources */,
@@ -173,9 +285,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE9023842473B9C900CE6B3A /* Build configuration list for PBXNativeTarget "EmporiumUITests" */;
 			buildPhases = (
+				8FF7F2F94AA999CA404882A4 /* [CP] Check Pods Manifest.lock */,
 				FE9023712473B9C900CE6B3A /* Sources */,
 				FE9023722473B9C900CE6B3A /* Frameworks */,
 				FE9023732473B9C900CE6B3A /* Resources */,
+				F4D2F6DF7A890085128275DD /* [CP] Embed Pods Frameworks */,
+				FEE5E093AD31706446E6702C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,9 +350,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
+				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
+				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
+				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
+				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +377,158 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8D3028128B9432B6D0EB4C1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Emporium-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F9FF71E241323E9BA794080 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FF7F2F94AA999CA404882A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Emporium-EmporiumUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7962031846264BF16C7F108 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0B8A1A731D3ADF66AF322FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmporiumTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4D2F6DF7A890085128275DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEE5E093AD31706446E6702C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FE90234D2473B9C700CE6B3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
+				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
+				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
+				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
+				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
+				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
+				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +700,7 @@
 		};
 		FE90237F2473B9C900CE6B3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +719,7 @@
 		};
 		FE9023802473B9C900CE6B3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -472,6 +738,7 @@
 		};
 		FE9023822473B9C900CE6B3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -494,6 +761,7 @@
 		};
 		FE9023832473B9C900CE6B3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -516,6 +784,7 @@
 		};
 		FE9023852473B9C900CE6B3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +805,7 @@
 		};
 		FE9023862473B9C900CE6B3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

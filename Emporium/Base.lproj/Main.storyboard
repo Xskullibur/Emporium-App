@@ -1,24 +1,248 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Emporium-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mGo-5a-1yN">
+                                <rect key="frame" x="20" y="108.00000000000001" width="335" height="150.33333333333337"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="L5R-dR-Koo">
+                                        <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="150.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k79-X1-toU">
+                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="7WC-Ox-eaI"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" image="User">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crowd Tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5L-1Y-4Bz">
+                                                <rect key="frame" x="0.0" y="130" width="111.66666666666667" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="I58-Un-pwL">
+                                        <rect key="frame" x="111.66666666666666" y="0.0" width="111.66666666666666" height="150.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUD-cN-jHR">
+                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="iyO-hs-4Lz"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" image="Cart">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSI-YP-doF">
+                                                <rect key="frame" x="0.0" y="130" width="111.66666666666667" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7l-RO-bo1">
+                                        <rect key="frame" x="223.33333333333334" y="0.0" width="111.66666666666666" height="150.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUF-O1-EWy">
+                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="Xbc-28-V7b"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" image="Rewards">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rewards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycq-03-hKq">
+                                                <rect key="frame" x="0.0" y="130" width="111.66666666666667" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R2O-zY-6qV">
+                                <rect key="frame" x="20" y="339" width="335" height="439"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" id="vuo-oQ-ixi">
+                                        <rect key="frame" x="0.0" y="28" width="335" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vuo-oQ-ixi" id="yla-rq-XLn">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbL-zH-Ifh">
+                                <rect key="frame" x="20" y="288.33333333333331" width="335" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R2O-zY-6qV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4gI-aF-h8A"/>
+                            <constraint firstItem="R2O-zY-6qV" firstAttribute="leading" secondItem="DbL-zH-Ifh" secondAttribute="leading" id="AFe-KH-vdf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R2O-zY-6qV" secondAttribute="trailing" constant="20" id="C8y-ZG-Vck"/>
+                            <constraint firstItem="R2O-zY-6qV" firstAttribute="trailing" secondItem="DbL-zH-Ifh" secondAttribute="trailing" id="Duo-WV-KvK"/>
+                            <constraint firstItem="mGo-5a-1yN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="ShJ-Ny-meh"/>
+                            <constraint firstAttribute="trailing" secondItem="mGo-5a-1yN" secondAttribute="trailing" constant="20" id="Ufe-70-IC6"/>
+                            <constraint firstItem="R2O-zY-6qV" firstAttribute="top" secondItem="DbL-zH-Ifh" secondAttribute="bottom" constant="10" id="Xye-2x-fko"/>
+                            <constraint firstItem="R2O-zY-6qV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Z60-wS-5HT"/>
+                            <constraint firstItem="mGo-5a-1yN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZSX-qy-Dhv"/>
+                            <constraint firstItem="DbL-zH-Ifh" firstAttribute="top" secondItem="mGo-5a-1yN" secondAttribute="bottom" constant="30" id="g55-c2-LCI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Emporium" id="UBf-2v-9yg">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="6Hh-iw-Wdj">
+                            <connections>
+                                <segue destination="XF6-M6-Ype" kind="show" id="MTB-Tx-3Kz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="notificationTableView" destination="R2O-zY-6qV" id="XeE-pi-N7L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="516" y="62.807881773399018"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="mAD-OA-m5P">
+            <objects>
+                <viewController id="XF6-M6-Ype" customClass="LoginViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OUz-CU-2Kg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="lxJ-zQ-FAM">
+                                <rect key="frame" x="107.66666666666669" y="215.66666666666666" width="160" height="380.66666666666674"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-6d-8eU">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="150.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOb-80-khc">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="Cc9-E1-nhd"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" image="User">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginAction:" destination="XF6-M6-Ype" eventType="touchUpInside" id="iuy-Xe-IGz"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjZ-1b-erQ">
+                                                <rect key="frame" x="0.0" y="130.00000000000003" width="160" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ack-kE-HgM">
+                                        <rect key="frame" x="0.0" y="230.33333333333331" width="160" height="150.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzV-OU-HCh">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="sgp-Kt-IWH"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal" image="Shop">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merchant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwe-X3-L6z">
+                                                <rect key="frame" x="0.0" y="130" width="160" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="pCX-j8-TtX"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQp-Cb-w1f">
+                                <rect key="frame" x="17.666666666666657" y="137.66666666666666" width="249.99999999999997" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="trailing" secondItem="NQp-Cb-w1f" secondAttribute="trailing" id="f5k-bG-mSH"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerX" secondItem="OUz-CU-2Kg" secondAttribute="centerX" id="fER-SN-9f0"/>
+                            <constraint firstItem="NQp-Cb-w1f" firstAttribute="leading" secondItem="lxJ-zQ-FAM" secondAttribute="leading" constant="-90" id="h4H-Lt-rMV"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="top" secondItem="NQp-Cb-w1f" secondAttribute="bottom" constant="30" id="l4V-RN-eYu"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerY" secondItem="OUz-CU-2Kg" secondAttribute="centerY" id="tdz-ss-Bau"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8fD-aV-vHl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="9El-ce-wUi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7bH-rz-mjx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1360.8" y="62.807881773399018"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="h97-XE-Ren">
+            <objects>
+                <navigationController id="AmG-jC-8e8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QTa-k8-n0i">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="esS-NV-hU9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2F3-NO-LDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359" y="63"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Cart" width="512" height="512"/>
+        <image name="Rewards" width="512" height="512"/>
+        <image name="Shop" width="512" height="512"/>
+        <image name="User" width="512" height="512"/>
+    </resources>
 </document>
