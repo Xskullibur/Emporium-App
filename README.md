@@ -4,6 +4,11 @@ Welcome to the Emporium Project.
 ## What is Emporium
 Emporium is a volunteer-powered app and is useful for helping each other purchase daily essentials during a pandemic.
 
+## Firebase Functions
+Emporium uses serverless-functions for server logic.
+
+See https://gitlab.com/Riyfhx/emporium-firebase-functions
+
 ## Developers
 * Peh Zi Heng
 * Alson Sim Wei Jie
