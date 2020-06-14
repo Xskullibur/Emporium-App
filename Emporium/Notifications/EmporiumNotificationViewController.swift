@@ -47,6 +47,8 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
             .store(in: &cancellables)
         
         notificationHandler.start()
+        
+        self.tableView?.estimatedRowHeight = 233.0
     }
     
     
@@ -67,6 +69,11 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
             
             view.tag = 999
             cell.contentView.addSubview(view)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
+            view.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor).isActive = true
+            view.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
             
             let notification = notifications[indexPath.row]
             view.setNotification(notification: notification)
