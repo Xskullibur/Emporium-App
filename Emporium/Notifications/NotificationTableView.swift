@@ -52,8 +52,10 @@ class NotificationTableView: UIView {
 extension Date {
     func toBasicDateString() -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateFormat = "dd MMMM yyyy hh:mm:ss a"
         
         return dateFormatter.string(from: self)
     }
+    
+    
 }

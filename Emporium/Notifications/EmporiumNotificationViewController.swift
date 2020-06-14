@@ -41,7 +41,9 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
         }, receiveValue: {
             notifications in
             
-            self.notifications = notifications
+            self.notifications = notifications.sorted(by: {
+                $0.date > $1.date
+            })
             self.tableView?.reloadData()
         })
             .store(in: &cancellables)
@@ -55,6 +57,7 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
