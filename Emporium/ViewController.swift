@@ -26,8 +26,8 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         
         self.tableView = notificationTableView
         
-        setupUI()
-//        
+        mainButtonsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
         mainButtonsCollectionView.dataSource = self
         mainButtonsCollectionView.delegate = self
         
@@ -41,18 +41,15 @@ UICollectionViewDataSource, UICollectionViewDelegate {
 
         let cell = mainButtonsCollectionView.dequeueReusableCell(withReuseIdentifier: cells[indexPath.item], for: indexPath) as! MDCCardCollectionCell
 
-        cell.contentView.layer.cornerRadius = 8
+        cell.cornerRadius = 13
         cell.contentView.layer.masksToBounds = true
+        cell.clipsToBounds = true
+        cell.setBorderWidth(1, for: .normal)
+        cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
         cell.layer.masksToBounds = false
-        cell.setShadowElevation(ShadowElevation(2), for: .normal)
+        cell.setShadowElevation(ShadowElevation(6), for: .normal)
         
         return cell
-    }
-    
-    
-    func setupUI(){
-//        crowdTrackingBtn.isAccessibilityElement = true
-//        crowdTrackingBtn.accessibilityLabel = "Crowd Tracking"
     }
     
     
