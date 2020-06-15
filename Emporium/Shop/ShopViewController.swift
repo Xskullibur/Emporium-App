@@ -44,6 +44,11 @@ class ShopViewController: UIViewController {
         flow.minimumLineSpacing = CGFloat(self.cellMarginSize)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! CheckOutViewController
+        destVC.cartData = self.cartData
+    }
+    
     func showToast(_ message: String) {
         guard let window = UIApplication.shared.keyWindow else {
             return

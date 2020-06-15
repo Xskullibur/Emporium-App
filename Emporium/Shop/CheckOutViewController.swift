@@ -12,7 +12,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var cartData: [Cart] = [Cart(1, 3, "test1", 3.0), Cart(2, 4, "test2", 4.0), Cart(3, 1, "test3", 5.0)]
+    var cartData: [Cart] = []
     
     
     override func viewDidLoad() {
