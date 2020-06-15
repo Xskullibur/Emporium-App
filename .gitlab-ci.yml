@@ -1,0 +1,6 @@
+default:
+  before_script:
+    - echo "Empty .gitlab-ci.yml just to let the pipeline pass"
+  
+merge:
+    script: echo "Merge"
