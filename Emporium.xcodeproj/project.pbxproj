@@ -221,6 +221,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ACD2861F2497B83200497BD9 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		EDA59904248492D400ADD228 /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +295,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				ACD2861F2497B83200497BD9 /* New Group */,
 				AC0A18F224932482009FFD93 /* Notifications */,
 				AC0A18F124932216009FFD93 /* Rewards */,
 				FEA80CEF248DE293005D8F94 /* Login */,

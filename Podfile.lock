@@ -424,6 +424,42 @@ PODS:
     - Solar (~> 2.1)
   - MapboxNavigationNative (6.2.1)
   - MapboxSpeech (0.1.1)
+  - MaterialComponents/AnimationTiming (109.7.0)
+  - MaterialComponents/Availability (109.7.0)
+  - MaterialComponents/Cards (109.7.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+  - MaterialComponents/Elevation (109.7.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (109.7.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Color (109.7.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Icons/Base (109.7.0)
+  - MaterialComponents/private/Icons/ic_check_circle (109.7.0):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (109.7.0)
+  - MaterialComponents/Ripple (109.7.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (109.7.0)
+  - MaterialComponents/ShadowLayer (109.7.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Shapes (109.7.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -444,6 +480,7 @@ DEPENDENCIES:
   - FirebaseUI/Google
   - FoursquareAPIClient
   - MapboxNavigation (~> 0.39.0)
+  - MaterialComponents/Cards
 
 SPEC REPOS:
   trunk:
@@ -482,6 +519,7 @@ SPEC REPOS:
     - MapboxNavigation
     - MapboxNavigationNative
     - MapboxSpeech
+    - MaterialComponents
     - nanopb
     - Polyline
     - PromisesObjC
@@ -525,6 +563,7 @@ SPEC CHECKSUMS:
   MapboxNavigation: 45fa17b2dfd023b0b8ea78990d872b7e50c3d78f
   MapboxNavigationNative: 11dc22140f4698d3f26989f2b6379dc81ef0d4c1
   MapboxSpeech: 59b3984d3f433a443d24acf53097f918c5cc70f9
+  MaterialComponents: cc9571d99d14bb085893b43ea90161a7eb696a8f
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   Polyline: 0e9890790292741c8186201a536b6bb6a78d02dd
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
@@ -532,6 +571,6 @@ SPEC CHECKSUMS:
   Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
   Turf: c6bdf62d6a70c647874f295dd1cf4eefc0c3e9e6
 
-PODFILE CHECKSUM: 7a8a6526f3056ef219de727c919a2560ad2aa297
+PODFILE CHECKSUM: 128ed6029f776a68561ffbe941a22b2cf941ef11
 
 COCOAPODS: 1.9.3
