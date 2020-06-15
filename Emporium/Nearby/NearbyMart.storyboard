@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-352" y="151"/>
         </scene>
-        <!--Nearby Mart View Controller-->
+        <!--Nearby Grocery Stores-->
         <scene sceneID="608-gC-6NZ">
             <objects>
                 <viewController id="mVZ-me-4Oa" customClass="NearbyMartViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,8 +85,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VLh-lz-zJK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="reQ-cx-M7z"/>
+                    <navigationItem key="navigationItem" title="Nearby Grocery Stores" id="reQ-cx-M7z">
+                        <barButtonItem key="rightBarButtonItem" title="Continue" id="IuK-3Y-QIR">
+                            <connections>
+                                <segue destination="E40-C9-bK7" kind="show" identifier="ShowMartDetails" id="JKF-aq-B69"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="continueBtn" destination="IuK-3Y-QIR" id="rz7-v4-B3o"/>
                         <outlet property="mapView" destination="hjV-8r-iI8" id="eSs-0f-btI"/>
                         <outlet property="tableView" destination="mRc-8y-wqw" id="UzF-sS-YJO"/>
                     </connections>
@@ -94,6 +101,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgZ-bV-geW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="471" y="151"/>
+        </scene>
+        <!--CrowdTracking-->
+        <scene sceneID="q4h-Y7-sYm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CrowdTracking" id="E40-C9-bK7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NIf-sm-95S"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="peX-Ww-upK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="151"/>
         </scene>
     </scenes>
 </document>

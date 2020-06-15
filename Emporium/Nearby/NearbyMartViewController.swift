@@ -22,6 +22,7 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var continueBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - LifeCycle
@@ -40,9 +41,14 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         // Delegate TableView
         self.tableView.delegate = self
+        
+        // Hide Continue Button
+        continueBtn.isEnabled = false
     }
     
     // MARK: - MapView
+    
+    /// Direction Path Design
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blue.withAlphaComponent(0.75)
@@ -50,6 +56,7 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         return renderer
     }
     
+    /// Get User Location and Show Nearby Marts
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // Get and show user location
@@ -67,7 +74,9 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         getStores(lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
         
     }
+
     
+    // MARK: - Custom MapView Functions
     func showDirections(sourceCoords: CLLocationCoordinate2D, destinationCoords: CLLocationCoordinate2D, transportType: MKDirectionsTransportType) {
         
         // Clear Overlays
@@ -197,7 +206,7 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
                 return storeList_lessThan1.count
             case 1:
                 return storeList_lessThan2.count
-            default:
+            default:    // 2
                 return storeList_moreThan2.count
         }
 
@@ -212,7 +221,7 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
                 store = storeList_lessThan1[indexPath.row]
             case 1:
                 store = storeList_lessThan2[indexPath.row]
-            default:
+            default:    // 2
                 store = storeList_moreThan2[indexPath.row]
         }
         
@@ -231,7 +240,7 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
                 store = storeList_lessThan1[indexPath.row]
             case 1:
                 store = storeList_lessThan2[indexPath.row]
-            default:
+            default:    // 2
                 store = storeList_moreThan2[indexPath.row]
         }
         
@@ -252,16 +261,41 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         // Show Directions
         showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
         
+        // Enable Continue Button
+        continueBtn.isEnabled = true
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ShowMartDetails" {
+            
+            let martDetailsVC = segue.destination as! MartDetailsViewController
+            var selectedStore: GroceryStore? = nil
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                switch indexPath.section {
+                    case 0:
+                        selectedStore = storeList_lessThan1[indexPath.row]
+                        
+                    case 1:
+                        selectedStore = storeList_lessThan2[indexPath.row]
+                        
+                    default:    // 2
+                        selectedStore = storeList_moreThan2[indexPath.row]
+                }
+                
+                if selectedStore != nil {
+                    martDetailsVC.groceryStore = selectedStore
+                }
+            }
+            
+        }
+        
     }
-    */
-
+    
 }

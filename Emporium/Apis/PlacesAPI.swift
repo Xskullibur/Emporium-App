@@ -38,13 +38,13 @@ class PlacesAPI {
     // MARK: - Functions
     func getNearbyGroceryStore(lat: Double, long: Double, radius: Int, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
         
-        let GROCERY_STORE_ID = "4bf58dd8d48988d118951735"
+        let SUPERMARKET_ID = "52f2ab2ebcbc57f1066b8b46"
         var storeList: [GroceryStore] = []
         
         let parameter: [String: String] = [
             "ll": String(lat) + "," + String(long),
             "radius": String(radius),
-            "categoryId": GROCERY_STORE_ID
+            "categoryId": SUPERMARKET_ID
         ]
         
         client.request(path: "venues/search", parameter: parameter) { (result) in

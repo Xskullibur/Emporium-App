@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
-		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
+		EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* NearbyMart.storyboard */; };
 		EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
 		EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
+		EDB4683424975857000DE5F0 /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB4683324975857000DE5F0 /* CrowdTracking.storyboard */; };
+		EDB4683624975A16000DE5F0 /* MartDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4683524975A16000DE5F0 /* MartDetailsViewController.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
@@ -54,12 +56,14 @@
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
+		EDA599052484930400ADD228 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMartViewController.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
+		EDB4683324975857000DE5F0 /* CrowdTracking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
+		EDB4683524975A16000DE5F0 /* MartDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MartDetailsViewController.swift; sourceTree = "<group>"; };
 		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,8 +137,8 @@
 		EDA59904248492D400ADD228 /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
-				EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */,
-				EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */,
+				EDB4683324975857000DE5F0 /* CrowdTracking.storyboard */,
+				EDB4683524975A16000DE5F0 /* MartDetailsViewController.swift */,
 			);
 			path = CrowdTracking;
 			sourceTree = "<group>";
@@ -163,6 +167,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EDB4683224948BDF000DE5F0 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				EDA599052484930400ADD228 /* NearbyMart.storyboard */,
+				EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
 		FE9023482473B9C700CE6B3A = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +201,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				EDB4683224948BDF000DE5F0 /* Nearby */,
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
 				EDA599102484D1BC00ADD228 /* Models */,
 				EDA5990D2484D12000ADD228 /* Apis */,
@@ -336,8 +350,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
-				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
+				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
+				EDB4683424975857000DE5F0 /* CrowdTracking.storyboard in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
@@ -506,6 +521,7 @@
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
+				EDB4683624975A16000DE5F0 /* MartDetailsViewController.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
