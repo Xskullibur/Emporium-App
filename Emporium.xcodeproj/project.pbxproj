@@ -11,6 +11,7 @@
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		7FD0263724976EDC00BAA2F1 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263624976EDC00BAA2F1 /* CrowdTrackingStoryboard.storyboard */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
+		7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263A24979E7200BAA2F1 /* CartCell.swift */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CA249767630058EE50 /* CheckOutViewController.swift */; };
 		AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CB249767630058EE50 /* PickupViewController.swift */; };
@@ -56,6 +57,7 @@
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD0263624976EDC00BAA2F1 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		7FD0263A24979E7200BAA2F1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartCell.swift; path = Emporium/Shop/Model/CartCell.swift; sourceTree = SOURCE_ROOT; };
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +165,7 @@
 		AC21B9CC249767630058EE50 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7FD0263A24979E7200BAA2F1 /* CartCell.swift */,
 				AC21B9CD249767630058EE50 /* ProductViewCell.xib */,
 				AC21B9CE249767630058EE50 /* ProductViewCell.swift */,
 			);
@@ -522,6 +525,7 @@
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
+				7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */,
 				AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,

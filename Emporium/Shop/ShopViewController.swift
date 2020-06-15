@@ -21,6 +21,8 @@ class ShopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView.layer.cornerRadius = 10
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
@@ -84,7 +86,7 @@ extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
         cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-        cell.layer.cornerRadius = 5.0
+        cell.layer.cornerRadius = 10
         
         return cell
     }
@@ -100,6 +102,7 @@ extension ShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let id = self.productData[indexPath.row].id
         let name = self.productData[indexPath.row].productName
+        let price = self.productData[indexPath.row].price
         var newItem = true
         
         
@@ -113,7 +116,7 @@ extension ShopViewController: UICollectionViewDelegate {
         }
         
         if newItem == true {
-            cartData.append(Cart(id, 1, name))
+            cartData.append(Cart(id, 1, name, price))
             showToast(String(name) + " added")
         }
     }
