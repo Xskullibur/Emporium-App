@@ -12,7 +12,9 @@ class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var testData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, "")]
+    var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test6", 4.0, ""), Product(5, "test6", 5.0, ""), Product(6, "test6", 6.0, "")]
+    
+    var cartData: [Cart] = []
     
     var cellMarginSize = 16.0
     
@@ -44,12 +46,12 @@ class ShopViewController: UIViewController {
 
 extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.testData.count
+        return self.productData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-        cell.setCell(name: self.testData[indexPath.row].productName, price: String(self.testData[indexPath.row].price), image: "noImage")
+        cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
         cell.layer.cornerRadius = 5.0
         
         return cell
@@ -57,8 +59,22 @@ extension ShopViewController: UICollectionViewDataSource {
 }
 
 extension ShopViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 140, height: 200)
+    }
+}
+
+extension ShopViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let id = self.productData[indexPath.row].id
+        
+        for cartItem in cartData {
+            if cartItem.productID == id {
+                cartItem.quantity += 1
+                return
+            }else{
+                cartData.append(Cart(id, 1))
+            }
+        }
     }
 }
