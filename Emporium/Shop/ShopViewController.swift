@@ -12,7 +12,7 @@ class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test6", 4.0, ""), Product(5, "test6", 5.0, ""), Product(6, "test6", 6.0, "")]
+    var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test4", 4.0, ""), Product(5, "test5", 5.0, ""), Product(6, "test6", 6.0, "")]
     
     var cartData: [Cart] = []
     
@@ -42,6 +42,38 @@ class ShopViewController: UIViewController {
         flow.minimumLineSpacing = CGFloat(self.cellMarginSize)
     }
     
+    func showToast(_ message: String) {
+        guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        let toastLbl = UILabel()
+        toastLbl.text = message
+        toastLbl.textAlignment = .center
+        toastLbl.font = UIFont.systemFont(ofSize: 18)
+        toastLbl.textColor = UIColor.white
+        toastLbl.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLbl.numberOfLines = 0
+        
+        
+        let textSize = toastLbl.intrinsicContentSize
+        let labelHeight = ( textSize.width / window.frame.width ) * 30
+        let labelWidth = min(textSize.width, window.frame.width - 40)
+        let adjustedHeight = max(labelHeight, textSize.height + 20)
+        
+        toastLbl.frame = CGRect(x: 20, y: (window.frame.height - 90 ) - adjustedHeight, width: labelWidth + 20, height: adjustedHeight)
+        toastLbl.center.x = window.center.x
+        toastLbl.layer.cornerRadius = 10
+        toastLbl.layer.masksToBounds = true
+        
+        window.addSubview(toastLbl)
+        
+        UIView.animate(withDuration: 3.0, animations: {
+            toastLbl.alpha = 0
+        }) { (_) in
+            toastLbl.removeFromSuperview()
+        }
+    }
 }
 
 extension ShopViewController: UICollectionViewDataSource {
@@ -67,14 +99,25 @@ extension ShopViewController: UICollectionViewDelegateFlowLayout {
 extension ShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let id = self.productData[indexPath.row].id
+        let name = self.productData[indexPath.row].productName
+        var newItem = true
+        
         
         for cartItem in cartData {
             if cartItem.productID == id {
-                cartItem.quantity += 1
+                cartItem.quantity = cartItem.quantity + 1
+                showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
+                newItem = false
                 return
-            }else{
-                cartData.append(Cart(id, 1))
             }
+        }
+        
+        if newItem == true {
+            cartData.append(Cart(id, 1, name))
+            showToast(String(name) + " added")
         }
     }
 }
+
+
+
