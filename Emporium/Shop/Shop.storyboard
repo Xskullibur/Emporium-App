@@ -69,12 +69,21 @@
                                     <outlet property="delegate" destination="Eti-EX-wKZ" id="iAK-ql-Sbd"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: $0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akk-Cd-XB4">
+                                <rect key="frame" x="236" y="568" width="147" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="mvK-Q0-BBC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Order" id="w7X-Cf-Uh6"/>
                     <connections>
+                        <outlet property="priceLabel" destination="akk-Cd-XB4" id="bes-aS-2i0"/>
                         <outlet property="tableView" destination="nxk-FX-co3" id="wj0-he-o6T"/>
                     </connections>
                 </viewController>

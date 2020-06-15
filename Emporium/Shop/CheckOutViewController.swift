@@ -11,6 +11,7 @@ import UIKit
 class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var priceLabel: UILabel!
     
     var cartData: [Cart] = []
     
@@ -19,6 +20,17 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         tableView.layer.cornerRadius = 10
+        priceLabel.layer.cornerRadius = 10
+        
+        if cartData.count == 0 {
+            priceLabel.text = "Total: $0.00"
+        }else{
+            var total = 0.0
+            for item in cartData {
+                total = total + (item.price * Double(item.quantity))
+            }
+            priceLabel.text = "Total: $" + String(total)
+        }
 
     }
     
