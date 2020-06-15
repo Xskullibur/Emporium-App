@@ -15,6 +15,14 @@
 		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
 		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
 		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
+		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
+		AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CA249767630058EE50 /* CheckOutViewController.swift */; };
+		AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CB249767630058EE50 /* PickupViewController.swift */; };
+		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
+		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
+		AC21B9D8249767630058EE50 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D0249767630058EE50 /* Product.swift */; };
+		AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D1249767630058EE50 /* ReceiptViewController.swift */; };
+		AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D2249767630058EE50 /* ShopViewController.swift */; };
 		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
 		EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* NearbyMart.storyboard */; };
 		EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */; };
@@ -72,6 +80,14 @@
 		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
 		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
 		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
+		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
+		AC21B9CA249767630058EE50 /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		AC21B9CB249767630058EE50 /* PickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
+		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
+		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		AC21B9D1249767630058EE50 /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		AC21B9D2249767630058EE50 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDA599052484930400ADD228 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMartViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +191,37 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		AC21B9C8249767630058EE50 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				AC21B9C9249767630058EE50 /* Shop.storyboard */,
+				AC21B9CA249767630058EE50 /* CheckOutViewController.swift */,
+				AC21B9CB249767630058EE50 /* PickupViewController.swift */,
+				AC21B9CC249767630058EE50 /* Cell */,
+				AC21B9CF249767630058EE50 /* Model */,
+				AC21B9D1249767630058EE50 /* ReceiptViewController.swift */,
+				AC21B9D2249767630058EE50 /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		AC21B9CC249767630058EE50 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AC21B9CD249767630058EE50 /* ProductViewCell.xib */,
+				AC21B9CE249767630058EE50 /* ProductViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		AC21B9CF249767630058EE50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC21B9D0249767630058EE50 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EDA59904248492D400ADD228 /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +296,7 @@
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
 				EDA599102484D1BC00ADD228 /* Models */,
 				EDA5990D2484D12000ADD228 /* Apis */,
+				AC21B9C8249767630058EE50 /* Shop */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
 				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
@@ -408,7 +456,9 @@
 				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
+				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
 				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
+				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				EDB4683424975857000DE5F0 /* CrowdTracking.storyboard in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
@@ -578,8 +628,14 @@
 			files = (
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */,
+				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
+				AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */,
+				AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */,
+				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
+				AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
