@@ -14,6 +14,7 @@
 		7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263A24979E7200BAA2F1 /* CartCell.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
+		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CA249767630058EE50 /* CheckOutViewController.swift */; };
 		AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CB249767630058EE50 /* PickupViewController.swift */; };
@@ -62,6 +63,7 @@
 		7FD0263A24979E7200BAA2F1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartCell.swift; path = Emporium/Shop/Model/CartCell.swift; sourceTree = SOURCE_ROOT; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
+		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,14 @@
 			path = CrowdTracking;
 			sourceTree = "<group>";
 		};
+		7FD026402498EDB900BAA2F1 /* DataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */,
+			);
+			path = DataManagers;
+			sourceTree = "<group>";
+		};
 		95407E2A058CB1895904ED5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +165,7 @@
 		AC21B9C8249767630058EE50 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				7FD026402498EDB900BAA2F1 /* DataManagers */,
 				AC21B9CF249767630058EE50 /* Model */,
 				AC21B9CC249767630058EE50 /* Cell */,
 				AC21B9C9249767630058EE50 /* Shop.storyboard */,
@@ -530,6 +541,7 @@
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
 				AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */,
 				AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */,
+				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,

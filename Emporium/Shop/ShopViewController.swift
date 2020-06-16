@@ -12,13 +12,19 @@ class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cartCollectionView: UICollectionView!
+    @IBOutlet weak var searchTextField: UITextField!
     
-    var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test4", 4.0, ""), Product(5, "test5", 5.0, ""), Product(6, "test6", 6.0, "")]
+    var productData = [Product("1", "test1", 4.0, "", ""), Product("2", "test2", 5.0, "", ""), Product("3", "test3", 6.0, "", ""), Product("4", "test4", 4.0, "",""), Product("5", "test5", 5.0, "", ""), Product("6", "test6", 6.0, "", "")]
     
+    //var productData: [Product] = []
     var cartData: [Cart] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchTextField.placeholder = "Search Products"
+        
+        //loadProducts()
         
         self.collectionView.layer.cornerRadius = 10
         self.cartCollectionView.layer.cornerRadius = 10
@@ -31,6 +37,15 @@ class ShopViewController: UIViewController {
         
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
         self.cartCollectionView.register(UINib(nibName: "SideCartCell", bundle: nil), forCellWithReuseIdentifier: "SideCartCell")
+    }
+    
+    func loadProducts() {
+        ShopDataManager.loadProducts() {
+            productList in
+            
+            self.productData = productList
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
