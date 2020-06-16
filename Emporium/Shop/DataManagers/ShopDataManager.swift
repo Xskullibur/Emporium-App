@@ -16,7 +16,7 @@ class ShopDataManager
     
     static func loadProducts(onComplete: (([Product]) -> Void)?)
     {
-        db.collection("products").getDocuments()
+        db.collection("emporium").document("globals").collection("products").getDocuments()
             {
             (querySnapshot, err) in
             

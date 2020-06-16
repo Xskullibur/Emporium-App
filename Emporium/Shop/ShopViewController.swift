@@ -14,9 +14,9 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    var productData = [Product("1", "test1", 4.0, "", ""), Product("2", "test2", 5.0, "", ""), Product("3", "test3", 6.0, "", ""), Product("4", "test4", 4.0, "",""), Product("5", "test5", 5.0, "", ""), Product("6", "test6", 6.0, "", "")]
+    //var productData = [Product("1", "test1", 4.0, "", ""), Product("2", "test2", 5.0, "", ""), Product("3", "test3", 6.0, "", ""), Product("4", "test4", 4.0, "",""), Product("5", "test5", 5.0, "", ""), Product("6", "test6", 6.0, "", "")]
     
-    //var productData: [Product] = []
+    var productData: [Product] = []
     var cartData: [Cart] = []
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class ShopViewController: UIViewController {
         
         searchTextField.placeholder = "Search Products"
         
-        //loadProducts()
+        loadProducts()
         
         self.collectionView.layer.cornerRadius = 10
         self.cartCollectionView.layer.cornerRadius = 10
