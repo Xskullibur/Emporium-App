@@ -410,6 +410,18 @@ PODS:
   - leveldb-library (1.22)
   - MaterialComponents/AnimationTiming (109.7.0)
   - MaterialComponents/Availability (109.7.0)
+  - MaterialComponents/Buttons (109.7.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
   - MaterialComponents/Cards (109.7.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -426,6 +438,7 @@ PODS:
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (109.7.0)
   - MaterialComponents/private/Color (109.7.0):
     - MaterialComponents/Availability
   - MaterialComponents/private/Icons/Base (109.7.0)
@@ -440,10 +453,18 @@ PODS:
   - MaterialComponents/ShadowElevations (109.7.0)
   - MaterialComponents/ShadowLayer (109.7.0):
     - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (109.7.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
   - MaterialComponents/Shapes (109.7.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
+  - MaterialComponents/Typography (109.7.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -460,6 +481,7 @@ DEPENDENCIES:
   - FirebaseUI/Auth
   - FirebaseUI/Google
   - FoursquareAPIClient
+  - MaterialComponents/Buttons
   - MaterialComponents/Cards
 
 SPEC REPOS:
@@ -493,6 +515,8 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - nanopb
     - PromisesObjC
     - SDWebImage
@@ -527,10 +551,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MaterialComponents: cc9571d99d14bb085893b43ea90161a7eb696a8f
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
 
-PODFILE CHECKSUM: 5a8b090842d0a17a61b1ecfae76bb8d78a54b537
+PODFILE CHECKSUM: 8fe5ddd1691c75f813a06f13ef7b257a6587fa0e
 
 COCOAPODS: 1.9.3

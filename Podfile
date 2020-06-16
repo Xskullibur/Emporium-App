@@ -14,6 +14,7 @@ target 'Emporium' do
   pod 'FirebaseUI/Google'
   
   pod 'MaterialComponents/Cards'
+  pod 'MaterialComponents/Buttons'
 
   target 'EmporiumTests' do
     inherit! :search_paths

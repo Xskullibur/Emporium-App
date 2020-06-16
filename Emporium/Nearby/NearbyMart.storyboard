@@ -15,31 +15,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f0o-N9-W7o">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hw-Fv-Kvi">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Po-aP-bXv">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Marts list"/>
-                                        <connections>
-                                            <segue destination="WDR-84-m7x" kind="popoverPresentation" identifier="ShowNearbyList" popoverAnchorView="3Po-aP-bXv" id="zca-06-Coc">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </button>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hw-Fv-Kvi">
-                                        <rect key="frame" x="0.0" y="36" width="414" height="772"/>
-                                    </mapView>
-                                </subviews>
-                            </stackView>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Po-aP-bXv" customClass="MDCFloatingButton">
+                                <rect key="frame" x="132" y="103" width="150" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3Po-aP-bXv" secondAttribute="height" multiplier="75:16" id="U4J-zq-iQ6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Show List">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="WDR-84-m7x" kind="popoverPresentation" identifier="ShowNearbyList" popoverAnchorView="3Po-aP-bXv" id="zca-06-Coc">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="f0o-N9-W7o" firstAttribute="trailing" secondItem="QLT-BZ-keV" secondAttribute="trailing" id="HTR-r4-yTh"/>
-                            <constraint firstItem="f0o-N9-W7o" firstAttribute="top" secondItem="QLT-BZ-keV" secondAttribute="top" id="OBp-Tc-nnc"/>
-                            <constraint firstItem="f0o-N9-W7o" firstAttribute="leading" secondItem="QLT-BZ-keV" secondAttribute="leading" id="XCs-C2-BTn"/>
-                            <constraint firstAttribute="bottom" secondItem="f0o-N9-W7o" secondAttribute="bottom" id="uHd-KD-foC"/>
+                            <constraint firstItem="3Po-aP-bXv" firstAttribute="centerX" secondItem="LAi-U0-IFA" secondAttribute="centerX" id="592-yG-AoG"/>
+                            <constraint firstItem="9hw-Fv-Kvi" firstAttribute="top" secondItem="QLT-BZ-keV" secondAttribute="top" id="Bfj-lv-7Fe"/>
+                            <constraint firstItem="9hw-Fv-Kvi" firstAttribute="trailing" secondItem="QLT-BZ-keV" secondAttribute="trailing" id="ijd-bd-dlc"/>
+                            <constraint firstAttribute="bottom" secondItem="9hw-Fv-Kvi" secondAttribute="bottom" id="kVL-0d-kRC"/>
+                            <constraint firstItem="9hw-Fv-Kvi" firstAttribute="leading" secondItem="QLT-BZ-keV" secondAttribute="leading" id="lJA-Bf-CBB"/>
+                            <constraint firstItem="3Po-aP-bXv" firstAttribute="top" secondItem="QLT-BZ-keV" secondAttribute="top" constant="15" id="nll-Fh-f1s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QLT-BZ-keV"/>
                     </view>
@@ -49,6 +52,7 @@
                     <connections>
                         <outlet property="continueBtn" destination="VOe-Ab-Zmq" id="Ufe-L4-lby"/>
                         <outlet property="mapView" destination="9hw-Fv-Kvi" id="UYi-ac-G0A"/>
+                        <outlet property="martListFAB" destination="3Po-aP-bXv" id="CQ8-5w-ogI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNf-Mx-lXT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

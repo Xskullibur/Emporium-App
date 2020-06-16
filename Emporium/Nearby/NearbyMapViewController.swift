@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import MaterialComponents.MaterialButtons
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -24,6 +25,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var martListFAB: MDCFloatingButton!
     @IBOutlet weak var continueBtn: UIBarButtonItem!
     
     
@@ -31,6 +33,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // MapView
         self.mapView.delegate = self
         
         locationManager = CLLocationManager()
