@@ -19,7 +19,7 @@ class ProductViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        productImageView.layer.cornerRadius = 5
+        productImageView.layer.cornerRadius = 10
     }
     
     func setCell(name: String, price: String, image: String) {

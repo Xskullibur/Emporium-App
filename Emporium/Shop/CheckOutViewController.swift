@@ -8,23 +8,48 @@
 
 import UIKit
 
-class CheckOutViewController: UIViewController {
-
+class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    var cartData: [Cart] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.layer.cornerRadius = 10
+        priceLabel.layer.cornerRadius = 10
+        
+        if cartData.count == 0 {
+            priceLabel.text = "Total: $0.00"
+        }else{
+            var total = 0.0
+            for item in cartData {
+                total = total + (item.price * Double(item.quantity))
+            }
+            priceLabel.text = "Total: $" + String(total)
+        }
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cartData.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartCell
+        let cartDetail = cartData[indexPath.row]
+        
+        cell.layer.cornerRadius = 10
+        cell.nameLabel.text = cartDetail.productName
+        cell.priceLabel.text = String(cartDetail.price)
+        cell.quantityLabel.text = "x" + String(cartDetail.quantity)
+        cell.cartImage.image = UIImage(named: "noImage")
+        
+        return cell
+    }
+    
 }
+
