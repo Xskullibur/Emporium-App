@@ -10,9 +10,12 @@ target 'Emporium' do
   pod 'Firebase'
   pod 'FirebaseUI'
   pod 'FirebaseUI/Auth'
+  pod 'FoursquareAPIClient'
 
   pod 'FirebaseUI/Google'
   
+  pod 'MaterialComponents/Cards'
+
   target 'EmporiumTests' do
     inherit! :search_paths
     # Pods for testing

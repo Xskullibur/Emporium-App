@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                                 <constraint firstAttribute="height" constant="25" id="nd3-lr-Du9"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="Primary"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Volunteer Found!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="992-yK-e69">
@@ -55,7 +56,9 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="EIN-Nb-HGV"/>
                                     </constraints>
-                                    <state key="normal" title="See More"/>
+                                    <state key="normal" title="See More">
+                                        <color key="titleColor" name="Light"/>
+                                    </state>
                                     <connections>
                                         <action selector="seeMorePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="bdB-fN-j1o"/>
                                     </connections>
@@ -88,4 +91,12 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="Light">
+            <color red="1" green="0.69019607843137254" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.96078431372549022" green="0.49803921568627452" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -9,13 +9,30 @@
 /* Begin PBXBuildFile section */
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
+		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
+		7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263A24979E7200BAA2F1 /* CartCell.swift */; };
 		AC0A18F424932494009FFD93 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
 		AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
 		AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F7249336F3009FFD93 /* NotificationError.swift */; };
 		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
 		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
 		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */; };
+		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
+		AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CA249767630058EE50 /* CheckOutViewController.swift */; };
+		AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CB249767630058EE50 /* PickupViewController.swift */; };
+		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
+		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
+		AC21B9D8249767630058EE50 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D0249767630058EE50 /* Product.swift */; };
+		AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D1249767630058EE50 /* ReceiptViewController.swift */; };
+		AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D2249767630058EE50 /* ShopViewController.swift */; };
+		ACD2862C24987CB800497BD9 /* MartDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */; };
+		ACD2862E24987CD600497BD9 /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */; };
+		EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* NearbyMart.storyboard */; };
+		EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */; };
+		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
+		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
+		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
+		EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
@@ -55,6 +72,8 @@
 		10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		7FD0263A24979E7200BAA2F1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartCell.swift; path = Emporium/Shop/Model/CartCell.swift; sourceTree = SOURCE_ROOT; };
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +83,23 @@
 		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
 		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
 		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
+		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
+		AC21B9CA249767630058EE50 /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		AC21B9CB249767630058EE50 /* PickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
+		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
+		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		AC21B9D1249767630058EE50 /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		AC21B9D2249767630058EE50 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MartDetailsViewController.swift; sourceTree = "<group>"; };
+		ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTrackingStoryboard.storyboard; sourceTree = "<group>"; };
+		EDA599052484930400ADD228 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
+		EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMartViewController.swift; sourceTree = "<group>"; };
+		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
+		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +164,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7FD0263524976EDC00BAA2F1 /* CrowdTracking */ = {
+			isa = PBXGroup;
+			children = (
+				ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */,
+				ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */,
+			);
+			path = CrowdTracking;
+			sourceTree = "<group>";
+		};
 		95407E2A058CB1895904ED5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,12 +203,77 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		EDA59904248492D400ADD228 /* CrowdTracking */ = {
+		AC21B9C8249767630058EE50 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				EDA599052484930400ADD228 /* CrowdTrackingStoryboard.storyboard */,
+				AC21B9CF249767630058EE50 /* Model */,
+				AC21B9CC249767630058EE50 /* Cell */,
+				AC21B9C9249767630058EE50 /* Shop.storyboard */,
+				AC21B9CA249767630058EE50 /* CheckOutViewController.swift */,
+				AC21B9CB249767630058EE50 /* PickupViewController.swift */,
+				AC21B9D1249767630058EE50 /* ReceiptViewController.swift */,
+				AC21B9D2249767630058EE50 /* ShopViewController.swift */,
 			);
-			path = CrowdTracking;
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		AC21B9CC249767630058EE50 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7FD0263A24979E7200BAA2F1 /* CartCell.swift */,
+				AC21B9CD249767630058EE50 /* ProductViewCell.xib */,
+				AC21B9CE249767630058EE50 /* ProductViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		AC21B9CF249767630058EE50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC21B9D0249767630058EE50 /* Product.swift */,
+				7FD0263824976FA200BAA2F1 /* Cart.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ACD28624249877ED00497BD9 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		EDA5990D2484D12000ADD228 /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */,
+			);
+			path = Apis;
+			sourceTree = "<group>";
+		};
+		EDA599102484D1BC00ADD228 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EDB4682D248DEA81000DE5F0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EDB4683224948BDF000DE5F0 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				EDA599052484930400ADD228 /* NearbyMart.storyboard */,
+				EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */,
+			);
+			path = Nearby;
 			sourceTree = "<group>";
 		};
 		FE9023482473B9C700CE6B3A = {
@@ -177,6 +285,7 @@
 				FE9023522473B9C700CE6B3A /* Products */,
 				3E559CF4FDE23DA288FF346B /* Pods */,
 				95407E2A058CB1895904ED5E /* Frameworks */,
+				ACD28624249877ED00497BD9 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,8 +305,13 @@
 				AC0A18F224932482009FFD93 /* Notifications */,
 				AC0A18F124932216009FFD93 /* Rewards */,
 				FEA80CEF248DE293005D8F94 /* Login */,
+				EDB4683224948BDF000DE5F0 /* Nearby */,
+				EDB4682D248DEA81000DE5F0 /* Helpers */,
+				EDA599102484D1BC00ADD228 /* Models */,
+				EDA5990D2484D12000ADD228 /* Apis */,
+				7FD0263524976EDC00BAA2F1 /* CrowdTracking */,
+				AC21B9C8249767630058EE50 /* Shop */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
-				EDA59904248492D400ADD228 /* CrowdTracking */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
 				FE9023562473B9C700CE6B3A /* SceneDelegate.swift */,
 				FE9023582473B9C700CE6B3A /* ViewController.swift */,
@@ -206,6 +320,7 @@
 				FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */,
 				FE9023652473B9C900CE6B3A /* Info.plist */,
 				FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */,
+				EDB4682B248DD57D000DE5F0 /* Data.plist */,
 				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
 			);
 			path = Emporium;
@@ -350,10 +465,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
+				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
-				EDA599062484930400ADD228 /* CrowdTrackingStoryboard.storyboard in Resources */,
+				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
+				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
+				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
+				ACD2862E24987CD600497BD9 /* CrowdTracking.storyboard in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
@@ -519,17 +639,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* NotificationError.swift in Sources */,
+				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
+				AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */,
+				AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */,
+				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
+				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
+				7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */,
+				AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
+				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
+				ACD2862C24987CB800497BD9 /* MartDetailsViewController.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
+				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
+				EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
