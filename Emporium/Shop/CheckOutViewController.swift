@@ -44,7 +44,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = String(cartDetail.price)
+        cell.priceLabel.text = "$" + String(cartDetail.price)
         cell.quantityLabel.text = "x" + String(cartDetail.quantity)
         cell.cartImage.image = UIImage(named: "noImage")
         
