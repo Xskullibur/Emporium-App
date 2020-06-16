@@ -35,7 +35,6 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         
 
     }
-    
     @IBAction func loginAction(_ sender: Any) {
         let authViewController = self.authUI!.authViewController()
         self.present(authViewController, animated: true)
