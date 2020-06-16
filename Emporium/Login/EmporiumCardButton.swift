@@ -9,52 +9,37 @@
 import Foundation
 import MaterialComponents.MaterialCards
 
-@IBDesignable
 class EmporiumCardButton : MDCCard{
     
-    
-    @IBOutlet var contentView: UIView!
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
-    @IBInspectable var text: String?
+    private var onTapped: (() -> Void)?
     
-    private var nibName = "EmporiumCardButton"
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-         xibSetup()
-    }
-
-    func xibSetup() {
-        guard let view = loadViewFromNib() else { return }
-        view.frame = bounds
-         view.autoresizingMask =
-                    [.flexibleWidth, .flexibleHeight]
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        let view = UINib(nibName: "EmporiumCardButton", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
         addSubview(view)
-        contentView = view
-    }
 
-    func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(
-                    withOwner: self,
-                    options: nil).first as? UIView
+        self.setBorderWidth(1, for: .normal)
+        self.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+        self.setShadowElevation(ShadowElevation(6), for: .normal)
+        
+        
     }
     
-    override func prepareForInterfaceBuilder() {
-        self.prepareForInterfaceBuilder()
-        xibSetup()
-        contentView.prepareForInterfaceBuilder()
+    func update(text: String, image: UIImage){
+        self.textLabel.text = text;
+        self.imageView.image = image
     }
     
-    override func willMove(toWindow newWindow: UIWindow?) {
-        super.willMove(toWindow: newWindow)
-
-        if newWindow != nil {
-           self.textLabel.text = text
-        }
+    func setTapped(_ tapped: @escaping () -> Void){
+        self.onTapped = tapped
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.onTapped?()
+    }
     
 }

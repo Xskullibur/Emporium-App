@@ -228,30 +228,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="lxJ-zQ-FAM">
-                                <rect key="frame" x="87.666666666666686" y="331" width="200" height="336"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="lxJ-zQ-FAM">
+                                <rect key="frame" x="127.66666666666669" y="216" width="120" height="380"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16j-2i-lvv" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="128"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o6-U4-Ker" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="6pc-9k-Yh7"/>
+                                            <constraint firstAttribute="height" constant="150" id="82V-zE-h6r"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="text" value="Hello"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="EmporiumCardButton"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avJ-JN-77o" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="200" height="128"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RoU-Hl-QhV" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="230" width="120" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="Fg0-d3-Sqa"/>
+                                            <constraint firstAttribute="width" constant="120" id="blb-RF-2Tf"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="Text"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="Hello"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="EmporiumCardButton"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="UUp-hz-Msa"/>
-                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQp-Cb-w1f">
-                                <rect key="frame" x="37.666666666666671" y="123" width="154.33333333333331" height="48"/>
+                                <rect key="frame" x="27.666666666666671" y="123" width="154.33333333333331" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" name="Primary"/>
                                 <nil key="highlightedColor"/>
@@ -260,13 +267,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NQp-Cb-w1f" firstAttribute="top" secondItem="8fD-aV-vHl" secondAttribute="top" constant="35" id="EOB-Db-gyP"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerY" secondItem="OUz-CU-2Kg" secondAttribute="centerY" id="Iin-M6-1WQ"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerX" secondItem="OUz-CU-2Kg" secondAttribute="centerX" id="Ink-wX-FVu"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="leading" secondItem="NQp-Cb-w1f" secondAttribute="leading" constant="50" id="dcn-Tw-0Nr"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerY" secondItem="OUz-CU-2Kg" secondAttribute="centerY" id="blE-LI-moU"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="leading" secondItem="NQp-Cb-w1f" secondAttribute="leading" constant="100" id="jsm-dc-pVm"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerX" secondItem="OUz-CU-2Kg" secondAttribute="centerX" id="lR9-LP-gab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8fD-aV-vHl"/>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="9El-ce-wUi"/>
+                    <connections>
+                        <outlet property="merchantBtn" destination="RoU-Hl-QhV" id="EMy-f2-ucP"/>
+                        <outlet property="userBtn" destination="1o6-U4-Ker" id="p20-fj-w5c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bH-rz-mjx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

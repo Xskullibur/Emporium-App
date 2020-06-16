@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
 
     var authUI: FUIAuth?
     
+    @IBOutlet weak var userBtn: EmporiumCardButton!
+    @IBOutlet weak var merchantBtn: EmporiumCardButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,12 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         self.setupFirebaseLogin()
         
         // Do any additional setup after loading the view.
+        
+        userBtn.update(text: "User", image: UIImage(named: "User")!)
+        userBtn.setTapped(loginAction)
+        
+        
+        merchantBtn.update(text: "Merchant", image: UIImage(named: "Shop")!)
     }
     
     func setupFirebaseLogin(){
@@ -35,7 +43,7 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         
 
     }
-    @IBAction func loginAction(_ sender: Any) {
+    func loginAction() {
         let authViewController = self.authUI!.authViewController()
         self.present(authViewController, animated: true)
     }
