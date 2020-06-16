@@ -6,7 +6,6 @@ target 'Emporium' do
   use_frameworks!
 
   # Pods for Emporium
-	pod 'MapboxNavigation', '~> 0.39.0'
   pod 'Firebase'
   pod 'FirebaseUI'
   pod 'FirebaseUI/Auth'
