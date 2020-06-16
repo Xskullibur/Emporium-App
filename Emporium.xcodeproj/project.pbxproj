@@ -29,6 +29,7 @@
 		ACD2862E24987CD600497BD9 /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */; };
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
+		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
 		EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* NearbyMart.storyboard */; };
 		EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
@@ -97,6 +98,7 @@
 		ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
+		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDA599052484930400ADD228 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMartViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */,
 				EDB4682B248DD57D000DE5F0 /* Data.plist */,
 				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
+				ACD286372498F2D100497BD9 /* MyAccountViewController.swift */,
 			);
 			path = Emporium;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
+				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
 				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,

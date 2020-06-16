@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import MaterialComponents.MaterialCards
+import Firebase
 
 class ViewController: EmporiumNotificationViewController,
 UICollectionViewDataSource, UICollectionViewDelegate {
@@ -16,6 +17,10 @@ UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var notificationTableView: UITableView!
     @IBOutlet weak var mainButtonsCollectionView: UICollectionView!
+    
+    @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
+    
+    var login = false
     
     let cells = ["CrowdTrackingCell", "ShopCell", "RewardsCell"]
     
@@ -30,6 +35,18 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         
         mainButtonsCollectionView.dataSource = self
         mainButtonsCollectionView.delegate = self
+        
+        login = Auth.auth().currentUser != nil
+        
+        Auth.auth().addStateDidChangeListener{
+            (auth, user) in
+            if let user = user {
+                self.switchToAccountState(accountToDisplay: user)
+            }else{
+                self.switchToLoginState()
+            }
+            
+        }
         
     }
     
@@ -52,6 +69,25 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
+    func switchToLoginState(){
+        login = false
+        
+        self.menuBarButtonItem.title = "Login"
+    }
+    func switchToAccountState(accountToDisplay user: User){
+        login = true
+        
+        self.menuBarButtonItem.title = "My Account"
+        
+    }
+    
+    @IBAction func toAccountOrLoginPressed(_ sender: Any) {
+        if login {
+            self.performSegue(withIdentifier: "ToAccount", sender: sender)
+        }else{
+            self.performSegue(withIdentifier: "ToLogin", sender: sender)
+        }
+    }
     
 }
 
