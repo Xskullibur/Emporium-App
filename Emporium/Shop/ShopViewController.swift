@@ -11,12 +11,11 @@ import UIKit
 class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var cartCollectionView: UICollectionView!
     
     var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test4", 4.0, ""), Product(5, "test5", 5.0, ""), Product(6, "test6", 6.0, "")]
     
     var cartData: [Cart] = []
-    
-    var cellMarginSize = 16.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,22 +25,23 @@ class ShopViewController: UIViewController {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
+        self.cartCollectionView.dataSource = self
+        self.cartCollectionView.delegate = self
+        
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
+        self.cartCollectionView.register(UINib(nibName: "SideCartCell", bundle: nil), forCellWithReuseIdentifier: "SideCartCell")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.setupGridView()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    
-    func setupGridView() {
-        let flow = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        flow.minimumInteritemSpacing = CGFloat(self.cellMarginSize)
-        flow.minimumLineSpacing = CGFloat(self.cellMarginSize)
+        
+        DispatchQueue.main.async {
+            self.cartCollectionView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,22 +84,37 @@ class ShopViewController: UIViewController {
 }
 
 extension ShopViewController: UICollectionViewDataSource {
+    // product catalog
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.productData.count
+        if(collectionView == self.collectionView) {
+            return self.productData.count
+        }else{
+            return self.cartData.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-        cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-        cell.layer.cornerRadius = 10
-        
-        return cell
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
+            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
+            cell.layer.cornerRadius = 10
+            return cell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
+            cell.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
+            return cell
+        }
     }
 }
 
 extension ShopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 140, height: 200)
+        if collectionView == self.collectionView {
+            return CGSize(width: 140, height: 200)
+        }else{
+            return CGSize(width: 150, height: 50)
+        }
+        
     }
 }
 
@@ -116,6 +131,7 @@ extension ShopViewController: UICollectionViewDelegate {
                 cartItem.quantity = cartItem.quantity + 1
                 showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
                 newItem = false
+                
                 return
             }
         }
