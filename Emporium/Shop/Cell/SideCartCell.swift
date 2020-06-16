@@ -22,7 +22,7 @@ class SideCartCell: UICollectionViewCell {
     
     func setCell(_ name: String, _ quantity: Int, _ image: String) {
         self.cartName.text = name
-        self.cartQuantity.text = String(quantity)
+        self.cartQuantity.text = String(quantity) + "X"
         self.cartImage.image = UIImage(named: image)
     }
     

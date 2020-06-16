@@ -21,6 +21,7 @@ class ShopViewController: UIViewController {
         super.viewDidLoad()
         
         self.collectionView.layer.cornerRadius = 10
+        self.cartCollectionView.layer.cornerRadius = 10
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -84,7 +85,6 @@ class ShopViewController: UIViewController {
 }
 
 extension ShopViewController: UICollectionViewDataSource {
-    // product catalog
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == self.collectionView) {
             return self.productData.count
@@ -100,9 +100,10 @@ extension ShopViewController: UICollectionViewDataSource {
             cell.layer.cornerRadius = 10
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
-            return cell
+            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
+            cell2.layer.cornerRadius = 10
+            return cell2
         }
     }
 }
@@ -120,26 +121,52 @@ extension ShopViewController: UICollectionViewDelegateFlowLayout {
 
 extension ShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let id = self.productData[indexPath.row].id
-        let name = self.productData[indexPath.row].productName
-        let price = self.productData[indexPath.row].price
-        var newItem = true
         
-        
-        for cartItem in cartData {
-            if cartItem.productID == id {
-                cartItem.quantity = cartItem.quantity + 1
-                showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
-                newItem = false
-                
-                return
+        if collectionView == self.collectionView {
+            let id = self.productData[indexPath.row].id
+            let name = self.productData[indexPath.row].productName
+            let price = self.productData[indexPath.row].price
+            var newItem = true
+            
+            
+            for cartItem in cartData {
+                if cartItem.productID == id {
+                    cartItem.quantity = cartItem.quantity + 1
+                    showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
+                    newItem = false
+                    DispatchQueue.main.async {
+                        self.cartCollectionView.reloadData()
+                    }
+                    
+                    return
+                }
+            }
+            
+            if newItem == true {
+                cartData.append(Cart(id, 1, name, price))
+                showToast(String(name) + " added")
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
+            }
+            
+        }else{
+            if cartData[indexPath.row].quantity > 1 {
+                cartData[indexPath.row].quantity = cartData[indexPath.row].quantity - 1
+                showToast(String(cartData[indexPath.row].productName) + " removed, quantity: " + String(cartData[indexPath.row].quantity))
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
+            }else{
+                cartData.remove(at: indexPath.row)
+                showToast("item removed")
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
             }
         }
         
-        if newItem == true {
-            cartData.append(Cart(id, 1, name, price))
-            showToast(String(name) + " added")
-        }
+        
     }
 }
 
