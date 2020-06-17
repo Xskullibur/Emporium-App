@@ -214,6 +214,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         let placesAPI = PlacesAPI()
         placesAPI.getNearbyGroceryStore(lat: latitude, long: longitude, radius: 2500, completionHandler: { (_storeList, error) in
             
+            #warning("TODO: - Handle Errors")
             // TODO: - Handle Errors
             switch error {
                 case let .connectionError(connectionError):
