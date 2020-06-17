@@ -36,6 +36,13 @@ class MyAccountViewController: UIViewController {
     @IBAction func signOut(_ sender: Any) {
         do{
             try authUI?.signOut()
+            
+            //Reset notifications after signing out
+            let notificationHandler = NotificationHandler.shared
+            notificationHandler.reset()
+            notificationHandler.create()
+            notificationHandler.start()
+            
             self.navigationController?.popViewController(animated: true)
         }catch _ {
             print("Unable to signout")

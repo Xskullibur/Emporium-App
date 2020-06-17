@@ -23,8 +23,8 @@ class NotificationHandler {
     //Create a publisher for sending/emitting notifications
     private var notificationPublisher: AnyPublisher<[EmporiumNotification], EmporiumError>?
     
-    private var userNotificationPublisher: PassthroughSubject<[[String: Any]], EmporiumError>?
-    private var globalNotificationPublisher: PassthroughSubject<[[String: Any]], EmporiumError>?
+    private var userNotificationPublisher: CurrentValueSubject<[[String: Any]], EmporiumError>?
+    private var globalNotificationPublisher: CurrentValueSubject<[[String: Any]], EmporiumError>?
     
     private var notificationRef: CollectionReference?
     private var globalNotificationRef: CollectionReference?
@@ -32,20 +32,33 @@ class NotificationHandler {
     //Create a global reference
     public static let shared = NotificationHandler()
     
+    func reset(){
+        //Send empty objects to reset the subscribers
+        self.userNotificationPublisher?.send([])
+        self.globalNotificationPublisher?.send([])
+        
+        self.userNotificationPublisher = nil
+        self.globalNotificationPublisher = nil
+        
+        self.notificationRef = nil
+        self.globalNotificationRef = nil
+    }
+    
     func create(){
         let db = Firestore.firestore()
         
-        guard let userId = Auth.auth().currentUser?.uid else{
-            return
+        //Create notification reference
+        self.globalNotificationRef = db.collection("emporium/globals/notifications")
+        //Create a user notification reference if the user is login
+        if let userId = Auth.auth().currentUser?.uid{
+            self.notificationRef = db.collection("users/\(userId)/notifications")
         }
         
-        //Create notification reference
-        self.notificationRef = db.collection("users/\(userId)/notifications")
-        self.globalNotificationRef = db.collection("emporium/globals/notifications")
+        //Publishers for sending notifications
+        self.userNotificationPublisher = CurrentValueSubject<[[String: Any]], EmporiumError>([])
+        self.globalNotificationPublisher = CurrentValueSubject<[[String: Any]], EmporiumError>([])
         
-        self.userNotificationPublisher = PassthroughSubject<[[String: Any]], EmporiumError>()
-        self.globalNotificationPublisher = PassthroughSubject<[[String: Any]], EmporiumError>()
-        
+        //Merge the user and global notifications publisher as one single publisher
         self.notificationPublisher = Publishers.CombineLatest(self.userNotificationPublisher!, self.globalNotificationPublisher!)
             .tryMap{
             (userDatas, globalDatas) -> [EmporiumNotification] in
@@ -55,6 +68,10 @@ class NotificationHandler {
             error -> EmporiumError in
             return error as! EmporiumError
         }.eraseToAnyPublisher()
+        
+        //This is to make sure global notification get receive
+        self.userNotificationPublisher?.send([])
+        self.globalNotificationPublisher?.send([])
         
     }
     
@@ -97,7 +114,8 @@ class NotificationHandler {
                     datas.append(data)
                 }
             }
-
+            
+            //This is to make sure global notification get receive
             self.globalNotificationPublisher?.send(datas)
         }
     }

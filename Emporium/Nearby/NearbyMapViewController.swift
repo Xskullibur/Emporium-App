@@ -15,6 +15,44 @@ protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
 }
 
+
+// MARK: - Custom Objects
+class StoreAnnotation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var store: GroceryStore?
+    var title: String?
+    var subtitle: String?
+    var crowdCount: Int?
+    
+    init(coords _coords: CLLocationCoordinate2D, store _store: GroceryStore, crowdCount _crowdCount: Int? = nil) {
+        
+        // Required
+        coordinate = _coords
+        title = _store.name
+        subtitle = _store.address
+        
+        // Others
+        store = _store
+        crowdCount = _crowdCount
+        
+    }
+}
+
+class StoreButton: UIButton {
+    
+    var store: GroceryStore?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+}
+
+// MARK: - ViewController
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate {
 
     // MARK: - Variables
@@ -45,6 +83,10 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Store Selected
+    @objc func annotationPressed(sender: StoreButton!) {
+        storeSelected(store: sender.store!)
+    }
+    
     func storeSelected(store: GroceryStore) {
         
         // Create Coordinates
@@ -69,14 +111,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     // MARK: - MapView
     
-    /// Direction Path Design
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.blue.withAlphaComponent(0.75)
-        renderer.lineWidth = 5
-        return renderer
-    }
-    
     /// Get User Location and Show Nearby Marts
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -93,6 +127,53 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         // Get Grocery Stores near User
         getStores(lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
+        
+    }
+    
+    /// Direction Path Design
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+        renderer.strokeColor = UIColor.blue.withAlphaComponent(0.75)
+        renderer.lineWidth = 5
+        return renderer
+    }
+    
+    /// Custom Annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        // Check for custom annotaion
+        guard let annotation = annotation as? StoreAnnotation else {
+            return nil
+        }
+        
+        let identifier = "StoreAnnotation"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+            
+        }
+        else {
+            
+            view = MKMarkerAnnotationView(
+                annotation: annotation,
+                reuseIdentifier: identifier
+            )
+            
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            
+            let button = StoreButton(type: .infoDark)
+            button.store = annotation.store
+            button.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
+            
+            view.rightCalloutAccessoryView = button
+            
+        }
+        
+        return view
         
     }
     
@@ -119,7 +200,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.mapView.addOverlay(route.polyline)
             self.mapView.setVisibleMapRect(
                 route.polyline.boundingMapRect,
-                edgePadding: UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0),
+                edgePadding: UIEdgeInsets(top: 50, left: 20.0, bottom: 120, right: 20.0),
                 animated: true
             )
             
@@ -133,6 +214,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         let placesAPI = PlacesAPI()
         placesAPI.getNearbyGroceryStore(lat: latitude, long: longitude, radius: 2500, completionHandler: { (_storeList, error) in
             
+            #warning("TODO: - Handle Errors")
             // TODO: - Handle Errors
             switch error {
                 case let .connectionError(connectionError):
@@ -172,10 +254,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan1 {
                 
-                let annotation = MKPointAnnotation()
-                annotation.title = store.name
-                annotation.subtitle = store.address
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                let annotation = StoreAnnotation(
+                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    store: store,
+                    crowdCount: nil
+                )
+                
                 mapView.addAnnotation(annotation)
                 
             }
@@ -185,10 +269,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan2 {
                 
-                let annotation = MKPointAnnotation()
-                annotation.title = store.name
-                annotation.subtitle = store.address
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                let annotation = StoreAnnotation(
+                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    store: store,
+                    crowdCount: nil
+                )
+                
                 mapView.addAnnotation(annotation)
                 
             }
@@ -198,10 +284,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_moreThan2 {
                 
-                let annotation = MKPointAnnotation()
-                annotation.title = store.name
-                annotation.subtitle = store.address
-                annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+                let annotation = StoreAnnotation(
+                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    store: store,
+                    crowdCount: nil
+                )
+                
                 mapView.addAnnotation(annotation)
                 
             }

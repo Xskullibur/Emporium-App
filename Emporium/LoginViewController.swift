@@ -53,6 +53,12 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
             return
         }
         
+        //Reset notifications
+        let notificationHandler = NotificationHandler.shared
+        notificationHandler.reset()
+        notificationHandler.create()
+        notificationHandler.start()
+        
         self.navigationController?.popViewController(animated: true)
     }
 

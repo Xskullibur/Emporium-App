@@ -68,6 +68,9 @@ class PlacesAPI {
                     storeList.append(store)
                 }
                 
+                #warning("TODO: - Remove For Presentation")
+                // TODO: - Remove For Presentation
+                // StoreDataManager.updateStores(storeList: storeList)
                 completionHandler(storeList, .none)
             
             case let .failure(error):

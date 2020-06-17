@@ -34,9 +34,10 @@
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
-		ACE115752499D3A800EB3B55 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */; };
-		ACE115772499D3D200EB3B55 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */; };
+		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
+		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
 		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
+		ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F791249A01080013A133 /* StoreDataManager.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -108,10 +109,11 @@
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
-		ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
-		ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
+		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
 		ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyListViewController.swift; sourceTree = "<group>"; };
+		ED57F791249A01080013A133 /* StoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataManager.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -279,6 +281,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		ED57F790249A00EB0013A133 /* DataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				ED57F791249A01080013A133 /* StoreDataManager.swift */,
+			);
+			path = DataManagers;
+			sourceTree = "<group>";
+		};
 		EDA5990D2484D12000ADD228 /* Apis */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,8 +316,8 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */,
-				ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */,
+				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
+				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
 				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
 			);
 			path = Nearby;
@@ -339,6 +349,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F790249A00EB0013A133 /* DataManagers */,
 				AC0A18F224932482009FFD93 /* Notifications */,
 				AC0A18F124932216009FFD93 /* Rewards */,
 				FEA80CEF248DE293005D8F94 /* Login */,
@@ -506,7 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
-				ACE115772499D3D200EB3B55 /* NearbyMart.storyboard in Resources */,
+				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
@@ -691,6 +702,7 @@
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
+				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				7FD0263B24979E7200BAA2F1 /* CartCell.swift in Sources */,
 				AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */,
@@ -707,9 +719,9 @@
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
+				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
-				ACE115752499D3A800EB3B55 /* NearbyMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
