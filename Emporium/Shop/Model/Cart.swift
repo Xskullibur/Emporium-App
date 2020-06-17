@@ -10,12 +10,12 @@ import UIKit
 
 class Cart: NSObject {
     
-    var productID: Int
+    var productID: String
     var quantity: Int
     var productName: String
     var price: Double
     
-    init(_ id: Int, _ quantity: Int, _ name: String, _ price: Double){
+    init(_ id: String, _ quantity: Int, _ name: String, _ price: Double){
         self.productID = id
         self.quantity = quantity
         self.price = price
