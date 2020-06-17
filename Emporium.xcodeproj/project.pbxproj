@@ -30,8 +30,9 @@
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
-		EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDA599052484930400ADD228 /* NearbyMart.storyboard */; };
-		EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */; };
+		ACE115752499D3A800EB3B55 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */; };
+		ACE115772499D3D200EB3B55 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */; };
+		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -99,9 +100,10 @@
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
+		ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EDA599052484930400ADD228 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
-		EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMartViewController.swift; sourceTree = "<group>"; };
+		ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyListViewController.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -276,8 +278,9 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				EDA599052484930400ADD228 /* NearbyMart.storyboard */,
-				EDA5990B2484B83A00ADD228 /* NearbyMartViewController.swift */,
+				ACE115762499D3D200EB3B55 /* NearbyMart.storyboard */,
+				ACE115742499D3A800EB3B55 /* NearbyMapViewController.swift */,
+				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -433,7 +436,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = NYP;
 				TargetAttributes = {
 					FE9023502473B9C700CE6B3A = {
@@ -475,11 +478,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
-				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
+				ACE115772499D3D200EB3B55 /* NearbyMart.storyboard in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
-				EDA599062484930400ADD228 /* NearbyMart.storyboard in Resources */,
 				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				ACD2862E24987CD600497BD9 /* CrowdTracking.storyboard in Resources */,
@@ -670,11 +672,12 @@
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				ACD2862C24987CB800497BD9 /* MartDetailsViewController.swift in Sources */,
+				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
-				EDA5990C2484B83A00ADD228 /* NearbyMartViewController.swift in Sources */,
+				ACE115752499D3A800EB3B55 /* NearbyMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
