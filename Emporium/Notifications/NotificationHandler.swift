@@ -72,11 +72,13 @@ class NotificationHandler {
             
             var datas: [[String: Any]] = []
             
-            for document in querySnapshot!.documents {
-                let data = document.data()
-                datas.append(data)
+            if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    let data = document.data()
+                    datas.append(data)
+                }
             }
-
+            
             self.userNotificationPublisher?.send(datas)
         }
         //global notifications
@@ -89,9 +91,11 @@ class NotificationHandler {
             
             var datas: [[String: Any]] = []
             
-            for document in querySnapshot!.documents {
-                let data = document.data()
-                datas.append(data)
+            if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    let data = document.data()
+                    datas.append(data)
+                }
             }
 
             self.globalNotificationPublisher?.send(datas)

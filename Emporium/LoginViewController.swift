@@ -49,6 +49,10 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        guard user != nil else {
+            return
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
 

@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import FirebaseUI
 import MaterialComponents.MaterialCards
 
 class MyAccountViewController: UIViewController {
 
     @IBOutlet weak var buttonsContainer: MDCCard!
+    
+    var authUI: FUIAuth? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +23,24 @@ class MyAccountViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         buttonsContainer.setShadowElevation(ShadowElevation(8), for: .normal)
+        
+        setupFirebaseUI()
+        
+    }
+    
+    func setupFirebaseUI(){
+        authUI = FUIAuth.defaultAuthUI()!
     }
     
 
+    @IBAction func signOut(_ sender: Any) {
+        do{
+            try authUI?.signOut()
+            self.navigationController?.popViewController(animated: true)
+        }catch _ {
+            print("Unable to signout")
+        }
+    }
     /*
     // MARK: - Navigation
 
