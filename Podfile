@@ -6,11 +6,15 @@ target 'Emporium' do
   use_frameworks!
 
   # Pods for Emporium
-	pod 'MapboxNavigation', '~> 0.39.0'
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
-  pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase'
+  pod 'FirebaseUI'
+  pod 'FirebaseUI/Auth'
+  pod 'FoursquareAPIClient'
+
+  pod 'FirebaseUI/Google'
+  
+  pod 'MaterialComponents/Cards'
+  pod 'MaterialComponents/Buttons'
 
   target 'EmporiumTests' do
     inherit! :search_paths

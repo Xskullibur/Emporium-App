@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
-import FirebaseFirestoreSwift
+
 
 class ShopDataManager
 {
