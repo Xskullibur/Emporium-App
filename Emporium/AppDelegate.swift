@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationBarAppearace.barTintColor = UIColor(named: "Primary")
         
+        let notificationHandler = NotificationHandler.shared
+        notificationHandler.create()
+        notificationHandler.start()
+        
         return true
     }
 
