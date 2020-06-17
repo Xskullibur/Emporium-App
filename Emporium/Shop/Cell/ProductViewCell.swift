@@ -27,7 +27,7 @@ class ProductViewCell: MDCCardCollectionCell {
         self.nameLabel.text = name
         self.priceLabel.text = "$" + price
         if(image != "") {
-            productImageView.image = UIImage(named: "noImage")
+            productImageView.loadImage(url: image)
         }
     }
 

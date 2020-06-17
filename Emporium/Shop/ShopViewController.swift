@@ -62,6 +62,9 @@ class ShopViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if self.cartData.count == 0 {
+            showToast("Cart is empty")
+        }
         let destVC = segue.destination as! CheckOutViewController
         destVC.cartData = self.cartData
     }
@@ -117,8 +120,8 @@ extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-            //cell.layer.cornerRadius = 10
+            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
+            
             cell.cornerRadius = 13
             cell.contentView.layer.masksToBounds = true
             cell.clipsToBounds = true
@@ -129,8 +132,8 @@ extension ShopViewController: UICollectionViewDataSource {
             return cell
         }else{
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
-            //cell2.layer.cornerRadius = 10
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
+            
             cell2.cornerRadius = 13
             cell2.contentView.layer.masksToBounds = true
             cell2.clipsToBounds = true
@@ -161,6 +164,7 @@ extension ShopViewController: UICollectionViewDelegate {
             let id = self.productData[indexPath.row].id
             let name = self.productData[indexPath.row].productName
             let price = self.productData[indexPath.row].price
+            let image = self.productData[indexPath.row].image
             var newItem = true
             
             
@@ -178,7 +182,7 @@ extension ShopViewController: UICollectionViewDelegate {
             }
             
             if newItem == true {
-                cartData.append(Cart(id, 1, name, price))
+                cartData.append(Cart(id, 1, name, price, image))
                 showToast(String(name) + " added")
                 DispatchQueue.main.async {
                     self.cartCollectionView.reloadData()
