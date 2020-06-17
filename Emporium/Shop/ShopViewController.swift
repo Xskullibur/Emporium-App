@@ -66,7 +66,12 @@ class ShopViewController: UIViewController {
     }
     
     func showToast(_ message: String) {
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = UIApplication.shared.connectedScenes
+        .filter({$0.activationState == .foregroundActive})
+        .map({$0 as? UIWindowScene})
+        .compactMap({$0})
+        .first?.windows
+        .filter({$0.isKeyWindow}).first else {
             return
         }
         
