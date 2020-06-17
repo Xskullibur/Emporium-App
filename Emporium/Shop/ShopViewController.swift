@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialCards
 
 class ShopViewController: UIViewController {
     
@@ -117,12 +118,26 @@ extension ShopViewController: UICollectionViewDataSource {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
             cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-            cell.layer.cornerRadius = 10
+            //cell.layer.cornerRadius = 10
+            cell.cornerRadius = 13
+            cell.contentView.layer.masksToBounds = true
+            cell.clipsToBounds = true
+            cell.setBorderWidth(1, for: .normal)
+            cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+            cell.layer.masksToBounds = false
+            cell.setShadowElevation(ShadowElevation(6), for: .normal)
             return cell
         }else{
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
             cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
-            cell2.layer.cornerRadius = 10
+            //cell2.layer.cornerRadius = 10
+            cell2.cornerRadius = 13
+            cell2.contentView.layer.masksToBounds = true
+            cell2.clipsToBounds = true
+            cell2.setBorderWidth(1, for: .normal)
+            cell2.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+            cell2.layer.masksToBounds = false
+            cell2.setShadowElevation(ShadowElevation(6), for: .normal)
             return cell2
         }
     }

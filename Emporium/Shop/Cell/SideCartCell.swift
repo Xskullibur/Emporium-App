@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialCards
 
-class SideCartCell: UICollectionViewCell {
+class SideCartCell: MDCCardCollectionCell  {
     
     
     @IBOutlet weak var cartImage: UIImageView!
