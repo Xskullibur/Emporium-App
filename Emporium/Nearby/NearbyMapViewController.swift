@@ -200,7 +200,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.mapView.addOverlay(route.polyline)
             self.mapView.setVisibleMapRect(
                 route.polyline.boundingMapRect,
-                edgePadding: UIEdgeInsets(top: 120, left: 20.0, bottom: 20.0, right: 20.0),
+                edgePadding: UIEdgeInsets(top: 50, left: 20.0, bottom: 120, right: 20.0),
                 animated: true
             )
             
