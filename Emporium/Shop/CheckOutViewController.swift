@@ -46,7 +46,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.text = cartDetail.productName
         cell.priceLabel.text = "$" + String(cartDetail.price)
         cell.quantityLabel.text = "x" + String(cartDetail.quantity)
-        cell.cartImage.image = UIImage(named: "noImage")
+        cell.cartImage.loadImage(url: cartDetail.image)
         
         return cell
     }

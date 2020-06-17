@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialCards
 
-class ProductViewCell: UICollectionViewCell {
+class ProductViewCell: MDCCardCollectionCell {
     
     
     @IBOutlet weak var productImageView: UIImageView!
@@ -26,7 +27,7 @@ class ProductViewCell: UICollectionViewCell {
         self.nameLabel.text = name
         self.priceLabel.text = "$" + price
         if(image != "") {
-            productImageView.image = UIImage(named: "noImage")
+            productImageView.loadImage(url: image)
         }
     }
 

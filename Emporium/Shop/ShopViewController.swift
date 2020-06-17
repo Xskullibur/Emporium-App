@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialCards
 
 class ShopViewController: UIViewController {
     
@@ -61,12 +62,20 @@ class ShopViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if self.cartData.count == 0 {
+            showToast("Cart is empty")
+        }
         let destVC = segue.destination as! CheckOutViewController
         destVC.cartData = self.cartData
     }
     
     func showToast(_ message: String) {
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = UIApplication.shared.connectedScenes
+        .filter({$0.activationState == .foregroundActive})
+        .map({$0 as? UIWindowScene})
+        .compactMap({$0})
+        .first?.windows
+        .filter({$0.isKeyWindow}).first else {
             return
         }
         
@@ -111,13 +120,27 @@ extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-            cell.layer.cornerRadius = 10
+            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
+            
+            cell.cornerRadius = 13
+            cell.contentView.layer.masksToBounds = true
+            cell.clipsToBounds = true
+            cell.setBorderWidth(1, for: .normal)
+            cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+            cell.layer.masksToBounds = false
+            cell.setShadowElevation(ShadowElevation(6), for: .normal)
             return cell
         }else{
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
-            cell2.layer.cornerRadius = 10
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
+            
+            cell2.cornerRadius = 13
+            cell2.contentView.layer.masksToBounds = true
+            cell2.clipsToBounds = true
+            cell2.setBorderWidth(1, for: .normal)
+            cell2.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+            cell2.layer.masksToBounds = false
+            cell2.setShadowElevation(ShadowElevation(6), for: .normal)
             return cell2
         }
     }
@@ -141,6 +164,7 @@ extension ShopViewController: UICollectionViewDelegate {
             let id = self.productData[indexPath.row].id
             let name = self.productData[indexPath.row].productName
             let price = self.productData[indexPath.row].price
+            let image = self.productData[indexPath.row].image
             var newItem = true
             
             
@@ -158,7 +182,7 @@ extension ShopViewController: UICollectionViewDelegate {
             }
             
             if newItem == true {
-                cartData.append(Cart(id, 1, name, price))
+                cartData.append(Cart(id, 1, name, price, image))
                 showToast(String(name) + " added")
                 DispatchQueue.main.async {
                     self.cartCollectionView.reloadData()
