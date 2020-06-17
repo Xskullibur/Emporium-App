@@ -474,6 +474,7 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - Stripe (19.3.0)
 
 DEPENDENCIES:
   - Firebase
@@ -483,6 +484,7 @@ DEPENDENCIES:
   - FoursquareAPIClient
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
+  - Stripe
 
 SPEC REPOS:
   trunk:
@@ -520,6 +522,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - Stripe
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -556,7 +559,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: 8fe5ddd1691c75f813a06f13ef7b257a6587fa0e
+PODFILE CHECKSUM: e72ebf7e1c768dee5e1ca32c95e409f09202f422
 
 COCOAPODS: 1.9.3
