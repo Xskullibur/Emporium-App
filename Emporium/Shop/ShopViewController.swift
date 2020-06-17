@@ -11,37 +11,53 @@ import UIKit
 class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var cartCollectionView: UICollectionView!
+    @IBOutlet weak var searchTextField: UITextField!
     
-    var productData = [Product(1, "test1", 4.0, ""), Product(2, "test2", 5.0, ""), Product(3, "test3", 6.0, ""), Product(4, "test4", 4.0, ""), Product(5, "test5", 5.0, ""), Product(6, "test6", 6.0, "")]
+    //var productData = [Product("1", "test1", 4.0, "", ""), Product("2", "test2", 5.0, "", ""), Product("3", "test3", 6.0, "", ""), Product("4", "test4", 4.0, "",""), Product("5", "test5", 5.0, "", ""), Product("6", "test6", 6.0, "", "")]
     
+    var productData: [Product] = []
     var cartData: [Cart] = []
-    
-    var cellMarginSize = 16.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchTextField.placeholder = "Search Products"
+        
+        loadProducts()
+        
         self.collectionView.layer.cornerRadius = 10
+        self.cartCollectionView.layer.cornerRadius = 10
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
+        self.cartCollectionView.dataSource = self
+        self.cartCollectionView.delegate = self
+        
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
+        self.cartCollectionView.register(UINib(nibName: "SideCartCell", bundle: nil), forCellWithReuseIdentifier: "SideCartCell")
+    }
+    
+    func loadProducts() {
+        ShopDataManager.loadProducts() {
+            productList in
+            
+            self.productData = productList
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.setupGridView()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    
-    func setupGridView() {
-        let flow = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        flow.minimumInteritemSpacing = CGFloat(self.cellMarginSize)
-        flow.minimumLineSpacing = CGFloat(self.cellMarginSize)
+        
+        DispatchQueue.main.async {
+            self.cartCollectionView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,45 +101,87 @@ class ShopViewController: UIViewController {
 
 extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.productData.count
+        if(collectionView == self.collectionView) {
+            return self.productData.count
+        }else{
+            return self.cartData.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-        cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
-        cell.layer.cornerRadius = 10
-        
-        return cell
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
+            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: "noImage")
+            cell.layer.cornerRadius = 10
+            return cell
+        }else{
+            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
+            cell2.layer.cornerRadius = 10
+            return cell2
+        }
     }
 }
 
 extension ShopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 140, height: 200)
+        if collectionView == self.collectionView {
+            return CGSize(width: 140, height: 200)
+        }else{
+            return CGSize(width: 150, height: 50)
+        }
+        
     }
 }
 
 extension ShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let id = self.productData[indexPath.row].id
-        let name = self.productData[indexPath.row].productName
-        let price = self.productData[indexPath.row].price
-        var newItem = true
         
-        
-        for cartItem in cartData {
-            if cartItem.productID == id {
-                cartItem.quantity = cartItem.quantity + 1
-                showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
-                newItem = false
-                return
+        if collectionView == self.collectionView {
+            let id = self.productData[indexPath.row].id
+            let name = self.productData[indexPath.row].productName
+            let price = self.productData[indexPath.row].price
+            var newItem = true
+            
+            
+            for cartItem in cartData {
+                if cartItem.productID == id {
+                    cartItem.quantity = cartItem.quantity + 1
+                    showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
+                    newItem = false
+                    DispatchQueue.main.async {
+                        self.cartCollectionView.reloadData()
+                    }
+                    
+                    return
+                }
+            }
+            
+            if newItem == true {
+                cartData.append(Cart(id, 1, name, price))
+                showToast(String(name) + " added")
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
+            }
+            
+        }else{
+            if cartData[indexPath.row].quantity > 1 {
+                cartData[indexPath.row].quantity = cartData[indexPath.row].quantity - 1
+                showToast(String(cartData[indexPath.row].productName) + " removed, quantity: " + String(cartData[indexPath.row].quantity))
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
+            }else{
+                cartData.remove(at: indexPath.row)
+                showToast("item removed")
+                DispatchQueue.main.async {
+                    self.cartCollectionView.reloadData()
+                }
             }
         }
         
-        if newItem == true {
-            cartData.append(Cart(id, 1, name, price))
-            showToast(String(name) + " added")
-        }
+        
     }
 }
 

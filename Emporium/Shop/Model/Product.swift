@@ -8,17 +8,19 @@
 
 import UIKit
 
-class Product: NSObject {
+class Product: Codable {
 
-    var id = 0
+    var id = ""
     var productName = ""
     var price = 0.0
     var image = ""
+    var category = ""
     
-    init(_ id: Int, _ name: String, _ price: Double, _ image: String) {
+    init(_ id: String, _ name: String, _ price: Double, _ image: String, _ cate: String) {
         self.id = id
         self.productName = name
         self.price = price
+        self.category = cate
         if(image != ""){
             self.image = image
         }

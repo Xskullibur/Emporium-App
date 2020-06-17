@@ -1,16 +1,21 @@
 //
-//  NearbyMartViewController.swift
+//  NearbyMapViewController.swift
 //  Emporium
 //
-//  Created by Xskullibur on 1/6/20.
+//  Created by Xskullibur on 16/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 import MapKit
+import MaterialComponents.MaterialButtons
 
-class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
+protocol StoreSelectedDelegate: class {
+    func storeSelected(store: GroceryStore)
+}
+
+class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate {
 
     // MARK: - Variables
     var locationManager: CLLocationManager?
@@ -18,18 +23,17 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
     var storeList_lessThan2: [GroceryStore] = []
     var storeList_moreThan2: [GroceryStore] = []
     
-    var tableSections = ["< 1 km", "< 2 km", "> 2 km"]
-    
     // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var continueBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var martListFAB: MDCFloatingButton!
+    @IBOutlet weak var continueBtn: UIBarButtonItem!
     
-    // MARK: - LifeCycle
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Map View
+
+        // MapView
         self.mapView.delegate = self
         
         locationManager = CLLocationManager()
@@ -38,12 +42,29 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         locationManager?.distanceFilter = 0
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
+    }
+    
+    // MARK: - Store Selected
+    func storeSelected(store: GroceryStore) {
         
-        // Delegate TableView
-        self.tableView.delegate = self
+        // Create Coordinates
+        let sourceCoords = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
+        let destinationCoords = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
         
-        // Hide Continue Button
-        continueBtn.isEnabled = false
+        // Clear Annotations
+        mapView.removeAnnotations(mapView.annotations)
+        
+        // Create Destination Annotation
+        let annotation = MKPointAnnotation()
+        annotation.title = store.name
+        annotation.subtitle = store.address
+        annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        mapView.addAnnotation(annotation)
+        
+        // Show Directions
+        showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
+        
+        continueBtn.isEnabled = true
     }
     
     // MARK: - MapView
@@ -74,7 +95,6 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         getStores(lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
         
     }
-
     
     // MARK: - Custom MapView Functions
     func showDirections(sourceCoords: CLLocationCoordinate2D, destinationCoords: CLLocationCoordinate2D, transportType: MKDirectionsTransportType) {
@@ -141,7 +161,6 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
                     })
             }
             
-            self.tableView.reloadData()
             self.addAnnotations()
         })
         
@@ -190,112 +209,17 @@ class NearbyMartViewController: UIViewController, CLLocationManagerDelegate, UIT
         
     }
     
-    // MARK: - TableView
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tableSections.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tableSections[section]
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        switch section {
-            case 0:
-                return storeList_lessThan1.count
-            case 1:
-                return storeList_lessThan2.count
-            default:    // 2
-                return storeList_moreThan2.count
-        }
-
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let store: GroceryStore
-
-        switch (indexPath.section) {
-            case 0:
-                store = storeList_lessThan1[indexPath.row]
-            case 1:
-                store = storeList_lessThan2[indexPath.row]
-            default:    // 2
-                store = storeList_moreThan2[indexPath.row]
-        }
-        
-        cell.textLabel?.text = store.name
-        cell.detailTextLabel?.text = "\(String(format: "%.2f", store.distance)) km"
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get Selected GroceryStore
-        let store: GroceryStore
-
-        switch (indexPath.section) {
-            case 0:
-                store = storeList_lessThan1[indexPath.row]
-            case 1:
-                store = storeList_lessThan2[indexPath.row]
-            default:    // 2
-                store = storeList_moreThan2[indexPath.row]
-        }
-        
-        // Create Coordinates
-        let sourceCoords = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-        let destinationCoords = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
-        
-        // Clear Annotations
-        mapView.removeAnnotations(mapView.annotations)
-        
-        // Create Destination Annotation
-        let annotation = MKPointAnnotation()
-        annotation.title = store.name
-        annotation.subtitle = store.address
-        annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
-        mapView.addAnnotation(annotation)
-        
-        // Show Directions
-        showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
-        
-        // Enable Continue Button
-        continueBtn.isEnabled = true
-    }
-
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "ShowMartDetails" {
+        if segue.identifier == "ShowNearbyList" {
             
-            let martDetailsVC = segue.destination as! MartDetailsViewController
-            var selectedStore: GroceryStore? = nil
-            
-            if let indexPath = tableView.indexPathForSelectedRow {
-                switch indexPath.section {
-                    case 0:
-                        selectedStore = storeList_lessThan1[indexPath.row]
-                        
-                    case 1:
-                        selectedStore = storeList_lessThan2[indexPath.row]
-                        
-                    default:    // 2
-                        selectedStore = storeList_moreThan2[indexPath.row]
-                }
-                
-                if selectedStore != nil {
-                    martDetailsVC.groceryStore = selectedStore
-                }
-            }
+            let nearbyListVC = segue.destination as! NearbyListViewController
+            nearbyListVC.storeList_lessThan1 = storeList_lessThan1
+            nearbyListVC.storeList_lessThan2 = storeList_lessThan2
+            nearbyListVC.storeList_moreThan2 = storeList_moreThan2
+            nearbyListVC.storeSelectDelegate = self
             
         }
-        
     }
-    
+
 }
