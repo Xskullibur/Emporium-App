@@ -22,7 +22,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     
     var login = false
     
-    let cells = ["CrowdTrackingCell", "ShopCell", "RewardsCell"]
+    let cells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
