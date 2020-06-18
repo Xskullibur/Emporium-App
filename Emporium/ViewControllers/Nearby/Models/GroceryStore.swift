@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 class GroceryStore {
     let id: String
@@ -42,4 +43,24 @@ class GroceryStore {
         maxCount = _maxCount
         
     }
+    
+    func getCrowdLevelColor() -> (UIColor) {
+        
+        // Custom Marker
+        let lowColor = UIColor.systemGreen
+        let midColor = UIColor.systemOrange
+        let highColor = UIColor.systemRed
+        
+        if crowdCount >= (maxCount / 3 * 2) {
+            return highColor
+        }
+        else if crowdCount >= (maxCount / 3) {
+            return midColor
+        }
+        else {
+            return lowColor
+        }
+        
+    }
+    
 }

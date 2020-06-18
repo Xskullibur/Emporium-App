@@ -181,21 +181,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             )
             
             // Custom Marker
-            let lowColor = UIColor.systemGreen
-            let midColor = UIColor.systemOrange
-            let highColor = UIColor.systemRed
-            
+            view.markerTintColor = annotation.store.getCrowdLevelColor()
             view.glyphText = String(annotation.store.crowdCount)
-            
-            if annotation.store.crowdCount >= (annotation.store.maxCount / 3 * 2) {
-                view.markerTintColor = highColor
-            }
-            else if annotation.store.crowdCount >= (annotation.store.maxCount / 3) {
-                view.markerTintColor = midColor
-            }
-            else {
-                view.markerTintColor = lowColor
-            }
+
             
             // Custom Callout
             view.canShowCallout = true
@@ -224,7 +212,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             let leftLabel = UILabel(frame: CGRect(
                 origin: CGPoint.zero,
                 size: CGSize(width: 48, height: 48)
-            ).inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100)))
+            ))
             
             leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
             leftLabel.adjustsFontSizeToFitWidth = true
