@@ -16,7 +16,20 @@ class GroceryStore {
     let latitude: Double
     let longitude: Double
     
-    init(id _id: String, name _name: String, address _address: String, distance _distance: Double, latitude _latitude: Double, logitude _longitude: Double) {
+    let crowdCount: Int
+    let maxCount: Int
+    
+    init(
+        id _id: String,
+        name _name: String,
+        address _address: String,
+        distance _distance: Double,
+        latitude _latitude: Double,
+        logitude _longitude: Double,
+        
+        maxCount _maxCount: Int = 40,
+        crowdCount _crowdCount: Int = Int.random(in: 0...40)
+    ) {
         
         id = _id
         name = _name
@@ -24,6 +37,9 @@ class GroceryStore {
         distance = _distance
         latitude = _latitude
         longitude = _longitude
+        
+        crowdCount = _crowdCount
+        maxCount = _maxCount
         
     }
 }

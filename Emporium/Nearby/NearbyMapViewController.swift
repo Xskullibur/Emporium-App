@@ -19,21 +19,18 @@ protocol StoreSelectedDelegate: class {
 // MARK: - Custom Objects
 class StoreAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    var store: GroceryStore?
+    var store: GroceryStore
     var title: String?
     var subtitle: String?
-    var crowdCount: Int?
     
-    init(coords _coords: CLLocationCoordinate2D, store _store: GroceryStore, crowdCount _crowdCount: Int? = nil) {
+    init(coords _coords: CLLocationCoordinate2D,
+         store _store: GroceryStore) {
         
         // Required
+        store = _store
         coordinate = _coords
         title = _store.name
         subtitle = _store.address
-        
-        // Others
-        store = _store
-        crowdCount = _crowdCount
         
     }
 }
@@ -97,10 +94,10 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         mapView.removeAnnotations(mapView.annotations)
         
         // Create Destination Annotation
-        let annotation = MKPointAnnotation()
-        annotation.title = store.name
-        annotation.subtitle = store.address
-        annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        let annotation = StoreAnnotation(
+            coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+            store: store
+        )
         mapView.addAnnotation(annotation)
         
         // Show Directions
@@ -146,22 +143,42 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             return nil
         }
         
-        let identifier = "StoreAnnotation"
+        let identifier = annotation.store.id
         var view: MKMarkerAnnotationView
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             
+            // Return if Annotation Exist
             dequeuedView.annotation = annotation
             view = dequeuedView
             
         }
         else {
             
+            // Create Annotation if Not Found
             view = MKMarkerAnnotationView(
                 annotation: annotation,
                 reuseIdentifier: identifier
             )
             
+            // Custom Marker
+            let lowColor = UIColor.systemGreen
+            let midColor = UIColor.systemOrange
+            let highColor = UIColor.systemRed
+            
+            view.glyphText = String(annotation.store.crowdCount)
+            
+            if annotation.store.crowdCount >= (annotation.store.maxCount / 3 * 2) {
+                view.markerTintColor = highColor
+            }
+            else if annotation.store.crowdCount >= (annotation.store.maxCount / 3) {
+                view.markerTintColor = midColor
+            }
+            else {
+                view.markerTintColor = lowColor
+            }
+            
+            // Custom Callout
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
@@ -256,8 +273,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
@@ -271,8 +287,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
@@ -286,8 +301,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
