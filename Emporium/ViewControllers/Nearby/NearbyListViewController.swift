@@ -8,6 +8,10 @@
 
 import UIKit
 
+class StoreListCell: UITableViewCell {
+    <#code#>
+}
+
 class NearbyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Variables

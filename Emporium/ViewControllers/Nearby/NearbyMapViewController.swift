@@ -201,11 +201,38 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
-            let button = StoreButton(type: .infoDark)
-            button.store = annotation.store
-            button.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
+            /// Right Callout
+            let rightButton = StoreButton(type: .infoDark)
+            rightButton.store = annotation.store
+            rightButton.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
             
-            view.rightCalloutAccessoryView = button
+            view.rightCalloutAccessoryView = rightButton
+            
+            let pointSize: CGFloat = 24
+            let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light)
+                .fontDescriptor
+            let fractionFontDesc = systemFontDesc.addingAttributes([
+                
+                UIFontDescriptor.AttributeName.featureSettings: [
+                    UIFontDescriptor.FeatureKey.featureIdentifier: kFractionsType,
+                    UIFontDescriptor.FeatureKey.typeIdentifier: kDiagonalFractionsSelector
+                ]
+                
+            ])
+            
+            /// Left Callout
+            let leftLabel = UILabel(frame: CGRect(
+                origin: CGPoint.zero,
+                size: CGSize(width: 48, height: 48)
+            ).inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100)))
+            
+            leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
+            leftLabel.adjustsFontSizeToFitWidth = true
+            leftLabel.textAlignment = .right
+            leftLabel.text = "\(annotation.store.crowdCount)/\(annotation.store.maxCount)"
+            
+            view.leftCalloutAccessoryView = leftLabel
+            view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
             
         }
         
