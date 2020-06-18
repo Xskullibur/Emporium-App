@@ -478,6 +478,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase
+  - Firebase/Storage
   - FirebaseUI
   - FirebaseUI/Auth
   - FirebaseUI/Google
@@ -561,6 +562,6 @@ SPEC CHECKSUMS:
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: e72ebf7e1c768dee5e1ca32c95e409f09202f422
+PODFILE CHECKSUM: 99834a7deaa7d6227643c35c00f67cd86d0fb78b
 
 COCOAPODS: 1.9.3
