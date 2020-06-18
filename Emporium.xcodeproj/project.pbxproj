@@ -35,6 +35,11 @@
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
 		ACED1DE4249B307600094284 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
 		ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
+		ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
+		ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEC249B8BA200094284 /* VouchersViewController.swift */; };
+		ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */; };
+		ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF1249B8D2E00094284 /* Voucher.swift */; };
+		ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
 		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
@@ -111,6 +116,11 @@
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		ACED1DE3249B307600094284 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		ACED1DE6249B41BF00094284 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
+		ACED1DEA249B72DF00094284 /* Rewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rewards.storyboard; sourceTree = "<group>"; };
+		ACED1DEC249B8BA200094284 /* VouchersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VouchersViewController.swift; sourceTree = "<group>"; };
+		ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherTableViewCell.swift; sourceTree = "<group>"; };
+		ACED1DF1249B8D2E00094284 /* Voucher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voucher.swift; sourceTree = "<group>"; };
+		ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +289,7 @@
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACED1DE9249B72BF00094284 /* Rewards */,
 				ACED1DE1249B2FDE00094284 /* Main */,
 				AC21B9C8249767630058EE50 /* Shop */,
 				EDB4683224948BDF000DE5F0 /* Nearby */,
@@ -306,6 +317,26 @@
 				ACED1DE6249B41BF00094284 /* AccountDataManager.swift */,
 			);
 			path = DataManagers;
+			sourceTree = "<group>";
+		};
+		ACED1DE9249B72BF00094284 /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				ACED1DF0249B8D2300094284 /* Models */,
+				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
+				ACED1DEC249B8BA200094284 /* VouchersViewController.swift */,
+				ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */,
+				ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */,
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		ACED1DF0249B8D2300094284 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACED1DF1249B8D2E00094284 /* Voucher.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		ED57F790249A00EB0013A133 /* DataManagers */ = {
@@ -499,6 +530,7 @@
 				TargetAttributes = {
 					FE9023502473B9C700CE6B3A = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					FE9023692473B9C900CE6B3A = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -546,6 +578,7 @@
 				ACD2862E24987CD600497BD9 /* CrowdTracking.storyboard in Resources */,
 				ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
+				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
@@ -718,14 +751,18 @@
 				AC21B9DA249767630058EE50 /* ShopViewController.swift in Sources */,
 				AC21B9D5249767630058EE50 /* PickupViewController.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
+				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
+				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
 				AC21B9D9249767630058EE50 /* ReceiptViewController.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
+				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				AC21B9D4249767630058EE50 /* CheckOutViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
+				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
@@ -915,6 +952,7 @@
 			baseConfigurationReference = F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 657XNP8S5V;
 				INFOPLIST_FILE = Emporium/Info.plist;
@@ -924,6 +962,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.Emporium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -934,6 +973,7 @@
 			baseConfigurationReference = 10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 657XNP8S5V;
 				INFOPLIST_FILE = Emporium/Info.plist;

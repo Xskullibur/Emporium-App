@@ -16,6 +16,9 @@ target 'Emporium' do
   
   pod 'MaterialComponents/Cards'
   pod 'MaterialComponents/Buttons'
+  pod 'MaterialComponents/BottomSheet'
+  
+  pod 'lottie-ios'
   
   pod 'Stripe'
 
