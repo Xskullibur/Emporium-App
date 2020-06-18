@@ -408,8 +408,17 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.8)
   - MaterialComponents/AnimationTiming (109.7.0)
   - MaterialComponents/Availability (109.7.0)
+  - MaterialComponents/BottomSheet (109.7.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
   - MaterialComponents/Buttons (109.7.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -444,6 +453,8 @@ PODS:
   - MaterialComponents/private/Icons/Base (109.7.0)
   - MaterialComponents/private/Icons/ic_check_circle (109.7.0):
     - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/KeyboardWatcher (109.7.0):
+    - MaterialComponents/private/Application
   - MaterialComponents/private/Math (109.7.0)
   - MaterialComponents/Ripple (109.7.0):
     - MaterialComponents/AnimationTiming
@@ -478,10 +489,13 @@ PODS:
 
 DEPENDENCIES:
   - Firebase
+  - Firebase/Storage
   - FirebaseUI
   - FirebaseUI/Auth
   - FirebaseUI/Google
   - FoursquareAPIClient
+  - lottie-ios
+  - MaterialComponents/BottomSheet
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
   - Stripe
@@ -516,6 +530,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
+    - lottie-ios
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -553,6 +568,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MaterialComponents: cc9571d99d14bb085893b43ea90161a7eb696a8f
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -561,6 +577,6 @@ SPEC CHECKSUMS:
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: e72ebf7e1c768dee5e1ca32c95e409f09202f422
+PODFILE CHECKSUM: 2000bcb2eb37bc6a15dbbd0d6405fad21a09d3f5
 
 COCOAPODS: 1.9.3
