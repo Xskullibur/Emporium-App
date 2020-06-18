@@ -337,6 +337,9 @@
                     <navigationItem key="navigationItem" id="uec-45-ZsD"/>
                     <connections>
                         <outlet property="buttonsContainer" destination="PYb-5s-pbB" id="DdS-YA-59g"/>
+                        <outlet property="emailLabel" destination="K8h-dZ-pgR" id="Og9-T2-qMV"/>
+                        <outlet property="profileImageView" destination="BMR-tV-2Hp" id="5hl-ow-w28"/>
+                        <outlet property="userNameLabel" destination="Oq1-vc-288" id="1B0-sM-s0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQW-Ls-M44" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
