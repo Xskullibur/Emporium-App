@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 class GroceryStore {
     let id: String
@@ -16,7 +17,20 @@ class GroceryStore {
     let latitude: Double
     let longitude: Double
     
-    init(id _id: String, name _name: String, address _address: String, distance _distance: Double, latitude _latitude: Double, logitude _longitude: Double) {
+    let crowdCount: Int
+    let maxCount: Int
+    
+    init(
+        id _id: String,
+        name _name: String,
+        address _address: String,
+        distance _distance: Double,
+        latitude _latitude: Double,
+        logitude _longitude: Double,
+        
+        maxCount _maxCount: Int = 40,
+        crowdCount _crowdCount: Int = Int.random(in: 0...40)
+    ) {
         
         id = _id
         name = _name
@@ -25,5 +39,28 @@ class GroceryStore {
         latitude = _latitude
         longitude = _longitude
         
+        crowdCount = _crowdCount
+        maxCount = _maxCount
+        
     }
+    
+    func getCrowdLevelColor() -> (UIColor) {
+        
+        // Custom Marker
+        let lowColor = UIColor.systemGreen
+        let midColor = UIColor.systemOrange
+        let highColor = UIColor.systemRed
+        
+        if crowdCount >= (maxCount / 3 * 2) {
+            return highColor
+        }
+        else if crowdCount >= (maxCount / 3) {
+            return midColor
+        }
+        else {
+            return lowColor
+        }
+        
+    }
+    
 }
