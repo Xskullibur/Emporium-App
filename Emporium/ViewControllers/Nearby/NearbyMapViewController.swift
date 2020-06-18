@@ -63,7 +63,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBOutlet weak var martListFAB: MDCFloatingButton!
     @IBOutlet weak var continueBtn: UIBarButtonItem!
     
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,9 +76,26 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager?.distanceFilter = 0
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
+        
     }
     
+    
     // MARK: - Store Selected
+    @objc func cancelBtnPressed(sender: UIBarButtonItem!) {
+        
+        // Clear all Annotations and Overlays
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        
+        // Add back all annotations
+        addAnnotations()
+        
+        // Show Back Button
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.setHidesBackButton(false, animated: true)
+        
+    }
+    
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
     }
@@ -104,6 +120,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
         
         continueBtn.isEnabled = true
+        
+        navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed(sender:)))
     }
     
     // MARK: - MapView
@@ -308,6 +327,15 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
             }
         }
+        
+        // Shift to user location
+        let region = MKCoordinateRegion (
+            center: mapView.userLocation.coordinate,
+            latitudinalMeters: 3000,
+            longitudinalMeters: 3000
+        )
+        
+        mapView.setRegion(region, animated: true)
         
     }
     

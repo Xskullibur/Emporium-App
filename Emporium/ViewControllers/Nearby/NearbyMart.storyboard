@@ -121,7 +121,6 @@
         <!--Navigation Controller-->
         <scene sceneID="ffF-Td-cah">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wyP-Sz-oMU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fjN-KT-Y5B" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9mU-1s-zeV">
@@ -133,6 +132,7 @@
                         <segue destination="jmf-sj-fhq" kind="relationship" relationship="rootViewController" id="fjf-UT-gYE"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wyP-Sz-oMU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="179.71014492753625" y="146.65178571428569"/>
         </scene>
