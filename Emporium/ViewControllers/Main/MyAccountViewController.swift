@@ -14,7 +14,13 @@ class MyAccountViewController: UIViewController {
 
     @IBOutlet weak var buttonsContainer: MDCCard!
     
-    var authUI: FUIAuth? = nil
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    
+    private var authUI: FUIAuth? = nil
+    private var user: User?
     
     
     override func viewDidLoad() {
@@ -24,14 +30,37 @@ class MyAccountViewController: UIViewController {
         
         buttonsContainer.setShadowElevation(ShadowElevation(8), for: .normal)
         
+        //Change the image view to a circle
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+        profileImageView.clipsToBounds = true;
+        
         setupFirebaseUI()
+        
+        //Make sure user is sign in
+        guard let user = Auth.auth().currentUser else {
+            print("User must be sign in!")
+            return
+        }
+        
+        self.user = user
+        setupUserScreen()
         
     }
     
-    func setupFirebaseUI(){
+    /*
+     Setup firebase stuffs use for signing out
+     */
+    private func setupFirebaseUI(){
         authUI = FUIAuth.defaultAuthUI()!
     }
-    
+
+    /*
+     Update the screen to display current user informations
+     */
+    private func setupUserScreen(){
+        self.userNameLabel.text = self.user?.displayName
+        self.emailLabel.text = self.user?.email
+    }
 
     @IBAction func signOut(_ sender: Any) {
         do{
