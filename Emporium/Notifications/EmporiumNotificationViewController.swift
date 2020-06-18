@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import Firebase
 
 class EmporiumNotificationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate{
 
@@ -30,9 +31,15 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView?.estimatedRowHeight = 233.0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.resetNotifications()
+    }
+    
+    private func resetNotifications(){
         let notificationHandler = NotificationHandler.shared
-        
-        notificationHandler.create()
         
         notificationHandler.getNotifications()?
         .sink(receiveCompletion: {
@@ -48,9 +55,6 @@ class EmporiumNotificationViewController : UIViewController, UITableViewDataSour
         })
             .store(in: &cancellables)
         
-        notificationHandler.start()
-        
-        self.tableView?.estimatedRowHeight = 233.0
     }
     
     

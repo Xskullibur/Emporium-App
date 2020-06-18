@@ -15,6 +15,8 @@ target 'Emporium' do
   
   pod 'MaterialComponents/Cards'
   pod 'MaterialComponents/Buttons'
+  
+  pod 'Stripe'
 
   target 'EmporiumTests' do
     inherit! :search_paths
