@@ -24,6 +24,12 @@
 		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
 		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
 		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
+		AC18C29F249CEFC20033F4C4 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F797249C9DD90013A133 /* QueueViewController.swift */; };
+		AC18C2A0249CEFC20033F4C4 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
+		AC18C2A1249CEFC20033F4C4 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
+		AC18C2A2249CEFC20033F4C4 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E908249CE83300DA2A7F /* PickupViewController.swift */; };
+		AC18C2A3249CEFC20033F4C4 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
+		AC18C2A4249CEFC20033F4C4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F79B249CA2380013A133 /* Toast.swift */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
@@ -66,7 +72,6 @@
 		ACED1E22249CA97500094284 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
 		ACED1E23249CA97500094284 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		ACED1E24249CA97500094284 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		ACED1E25249CA97500094284 /* MartDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */; };
 		ACED1E26249CA97500094284 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
 		ACED1E27249CA97500094284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		ACED1E28249CA97500094284 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
@@ -83,7 +88,6 @@
 		ACED1E35249CA97500094284 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		ACED1E36249CA97500094284 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		ACED1E37249CA97500094284 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
-		ACED1E38249CA97500094284 /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */; };
 		ACED1E39249CA97500094284 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACED1E3A249CA97500094284 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		ACED1E3B249CA97500094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
@@ -164,8 +168,6 @@
 		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
 		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MartDetailsViewController.swift; sourceTree = "<group>"; };
-		ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -351,8 +353,6 @@
 		ACD28624249877ED00497BD9 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */,
-				ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -691,7 +691,6 @@
 				ACED1E35249CA97500094284 /* Shop.storyboard in Resources */,
 				ACED1E36249CA97500094284 /* ProductViewCell.xib in Resources */,
 				ACED1E37249CA97500094284 /* LaunchScreen.storyboard in Resources */,
-				ACED1E38249CA97500094284 /* CrowdTracking.storyboard in Resources */,
 				ACED1E39249CA97500094284 /* EmporiumCardButton.xib in Resources */,
 				ACED1E3A249CA97500094284 /* GoogleService-Info.plist in Resources */,
 				ACED1E3B249CA97500094284 /* Rewards.storyboard in Resources */,
@@ -937,6 +936,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC18C29F249CEFC20033F4C4 /* QueueViewController.swift in Sources */,
+				AC18C2A0249CEFC20033F4C4 /* CheckOutViewController.swift in Sources */,
+				AC18C2A1249CEFC20033F4C4 /* ShopViewController.swift in Sources */,
+				AC18C2A2249CEFC20033F4C4 /* PickupViewController.swift in Sources */,
+				AC18C2A3249CEFC20033F4C4 /* ReceiptViewController.swift in Sources */,
+				AC18C2A4249CEFC20033F4C4 /* Toast.swift in Sources */,
 				ACED1E48249CB95200094284 /* PointDataManager.swift in Sources */,
 				ACED1E07249CA97500094284 /* PlacesAPI.swift in Sources */,
 				ACED1E08249CA97500094284 /* EmporiumError.swift in Sources */,
@@ -964,7 +969,6 @@
 				ACED1E22249CA97500094284 /* SwiftyJSON.swift in Sources */,
 				ACED1E23249CA97500094284 /* SceneDelegate.swift in Sources */,
 				ACED1E24249CA97500094284 /* EmporiumNotificationViewController.swift in Sources */,
-				ACED1E25249CA97500094284 /* MartDetailsViewController.swift in Sources */,
 				ACED1E26249CA97500094284 /* NearbyListViewController.swift in Sources */,
 				ACED1E27249CA97500094284 /* LoginViewController.swift in Sources */,
 				ACED1E28249CA97500094284 /* EmporiumCardButton.swift in Sources */,
