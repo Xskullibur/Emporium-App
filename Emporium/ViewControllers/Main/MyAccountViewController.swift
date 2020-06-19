@@ -10,7 +10,7 @@ import UIKit
 import FirebaseUI
 import MaterialComponents.MaterialCards
 
-class MyAccountViewController: UIViewController {
+class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var buttonsContainer: MDCCard!
     
@@ -60,6 +60,20 @@ class MyAccountViewController: UIViewController {
     private func setupUserScreen(){
         self.userNameLabel.text = self.user?.displayName
         self.emailLabel.text = self.user?.email
+        
+        //Get profile image
+        AccountDataManager.getUserProfileImage(user: self.user!){
+            image, error in
+            
+            guard let image = image else {
+                self.profileImageView.image = UIImage(named: "no-profile")
+                return
+            }
+            
+            self.profileImageView.image = image
+            
+        }
+        
     }
 
     @IBAction func signOut(_ sender: Any) {
@@ -77,6 +91,32 @@ class MyAccountViewController: UIViewController {
             print("Unable to signout")
         }
     }
+    
+    @IBAction func changeImageTap(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.delegate = self
+        self.present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        profileImageView.image = image
+        picker.dismiss(animated: true)
+        AccountDataManager.setUserProfileImage(user: self.user!, image: image){
+            error in
+            if error != nil {
+                print("Error has occur!")
+            }
+        }
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

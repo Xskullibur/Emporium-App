@@ -10,11 +10,15 @@ target 'Emporium' do
   pod 'FirebaseUI'
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'
-
+  pod 'Firebase/Storage'
+  
   pod 'FoursquareAPIClient'
   
   pod 'MaterialComponents/Cards'
   pod 'MaterialComponents/Buttons'
+  pod 'MaterialComponents/BottomSheet'
+  
+  pod 'lottie-ios'
   
   pod 'Stripe'
 
