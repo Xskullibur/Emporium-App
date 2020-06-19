@@ -7,26 +7,86 @@
 //
 
 import UIKit
+import Combine
+import Firebase
 import MaterialComponents.MaterialBottomSheet
 
 class VouchersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 
+    @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var vouchersTableView: UITableView!
     
-    private let vouchers = [
-        Voucher(id: "1", name: "5% Off", description: "Get 5% off voucher", evalFormula: ""),
-        Voucher(id: "2", name: "15% Off", description: "Get 15% off voucher", evalFormula: "")
-    ]
+    private var cancellables = Set<AnyCancellable>()
+    private var vouchers: [Voucher] = []
+    
+    private var pointDataManager: PointDataManager? = nil
+    private var voucherDataManager: VoucherDataManager? = nil
+    
+    private var user: User!
+    
+    private var loginManager: LoginManager? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        self.loginManager = LoginManager(viewController: self)
+        
         vouchersTableView.dataSource = self
         vouchersTableView.delegate = self
         
+        if let user = Auth.auth().currentUser {
+            self.user = user
+            self.setupPoints()
+            self.setupVouchers()
+        }else{
+            self.loginManager?.setLoginComplete{
+                user in
+                
+                guard let user = user else {
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+                
+                self.user = user
+                self.setupPoints()
+                self.setupVouchers()
+            }
+            
+            self.loginManager?.showLoginViewController()
+        }
+        
+    }
+    
+    func setupPoints(){
+        self.pointDataManager = PointDataManager()
+        self.pointDataManager?.getPoints(user: self.user){
+            points in
+            self.pointsLabel.text = "You have: \(points) Points"
+        }
+    }
+    
+    func setupVouchers(){
+        self.voucherDataManager = VoucherDataManager(user: self.user)
+        
+        //Get available vouchers
+        self.voucherDataManager?.getAvailableVouchers()
+            .sink(receiveCompletion: {
+                completion in
+                switch completion {
+                    case .failure(let error):
+                    print("Error getting available vouchers")
+                    break;
+                case .finished:
+                    break
+                }
+            }, receiveValue: {
+                availableVouchers in
+                self.vouchers = availableVouchers
+                self.vouchersTableView.reloadData()
+            }).store(in: &cancellables)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +112,7 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         bottomSheet.preferredContentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 3)
         
         viewController.setVoucher(voucher: vouchers[indexPath.row])
+        viewController.setVoucherDataManager(dataManager: self.voucherDataManager!)
         self.present(bottomSheet, animated: true, completion: nil)
     }
     

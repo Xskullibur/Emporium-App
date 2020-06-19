@@ -47,7 +47,12 @@
                         <viewLayoutGuide key="safeArea" id="QLT-BZ-keV"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nearby Marts" id="pqI-Dq-bBD">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Continue" id="VOe-Ab-Zmq"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Join Queue" id="VOe-Ab-Zmq">
+                            <connections>
+                                <action selector="continueBtnPressed:" destination="jmf-sj-fhq" id="Pw1-QE-fKt"/>
+                                <segue destination="ywg-11-KCK" kind="show" identifier="ShowQueue" id="3UO-b1-Xdk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="continueBtn" destination="VOe-Ab-Zmq" id="Ufe-L4-lby"/>
@@ -58,6 +63,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNf-Mx-lXT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1089.8550724637682" y="146.65178571428569"/>
+        </scene>
+        <!--Queue-->
+        <scene sceneID="rZ4-gJ-9CF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Queue" id="ywg-11-KCK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5LU-Fo-n12"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KZt-QM-TWf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="-281"/>
         </scene>
         <!--Nearby List View Controller-->
         <scene sceneID="vrP-PT-bpA">
