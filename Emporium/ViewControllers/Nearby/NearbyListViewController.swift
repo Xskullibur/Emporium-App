@@ -8,6 +8,14 @@
 
 import UIKit
 
+class NearbyStoreCell: UITableViewCell {
+    
+    @IBOutlet weak var crowdLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
+}
+
 class NearbyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Variables
@@ -33,6 +41,10 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
         return tableSections.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return tableSections[section]
     }
@@ -51,7 +63,8 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NearbyStoreCell
         let store: GroceryStore
 
         switch (indexPath.section) {
@@ -63,8 +76,11 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
                 store = storeList_moreThan2[indexPath.row]
         }
         
-        cell.textLabel?.text = store.name
-        cell.detailTextLabel?.text = "\(String(format: "%.2f", store.distance)) km"
+        cell.titleLabel.text = store.name
+        cell.subtitleLabel.text = "\(String(format: "%.2f", store.distance)) km"
+        cell.crowdLabel.text = "\(String(format: "%02d", store.crowdCount))/\(String(format: "%02d", store.maxCount))"
+        
+        cell.crowdLabel.textColor = store.getCrowdLevelColor()
         
         return cell
     }

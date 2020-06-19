@@ -11,4 +11,8 @@ import Foundation
 enum EmporiumError : Error {
     //Wrapper around firebase error
     case firebaseError(Error)
+    //Wrapper around NSError error
+    case nserror(NSError)
+    
+    case error(String)
 }

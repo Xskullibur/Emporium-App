@@ -1,27 +1,19 @@
 //
-//  MartDetailsViewController.swift
+//  ReceiptViewController.swift
 //  Emporium
 //
-//  Created by Xskullibur on 15/6/20.
+//  Created by user1 on 31/5/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
 
-class MartDetailsViewController: UIViewController {
+class ReceiptViewController: UIViewController {
 
-    var groceryStore: GroceryStore?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if groceryStore != nil {
-            print("\nPAASS\n")
-        }
-        else {
-            print("\nFAIL\n")
-        }
     }
     
 

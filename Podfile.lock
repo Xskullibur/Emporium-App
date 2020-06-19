@@ -249,6 +249,9 @@ PODS:
   - Firebase/Firestore (6.26.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.15.0)
+  - Firebase/Functions (6.26.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (~> 2.5.1)
   - Firebase/Storage (6.26.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.6.1)
@@ -297,6 +300,10 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 1.30905.0)
+  - FirebaseFunctions (2.5.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstallations (1.3.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/Environment (~> 6.6)
@@ -408,8 +415,17 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.8)
   - MaterialComponents/AnimationTiming (109.7.0)
   - MaterialComponents/Availability (109.7.0)
+  - MaterialComponents/BottomSheet (109.7.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
   - MaterialComponents/Buttons (109.7.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -444,6 +460,8 @@ PODS:
   - MaterialComponents/private/Icons/Base (109.7.0)
   - MaterialComponents/private/Icons/ic_check_circle (109.7.0):
     - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/KeyboardWatcher (109.7.0):
+    - MaterialComponents/private/Application
   - MaterialComponents/private/Math (109.7.0)
   - MaterialComponents/Ripple (109.7.0):
     - MaterialComponents/AnimationTiming
@@ -478,10 +496,14 @@ PODS:
 
 DEPENDENCIES:
   - Firebase
+  - Firebase/Functions
+  - Firebase/Storage
   - FirebaseUI
   - FirebaseUI/Auth
   - FirebaseUI/Google
   - FoursquareAPIClient
+  - lottie-ios
+  - MaterialComponents/BottomSheet
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
   - Stripe
@@ -502,6 +524,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseFunctions
     - FirebaseInstallations
     - FirebaseStorage
     - FirebaseUI
@@ -516,6 +539,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
+    - lottie-ios
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -539,6 +563,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 4e99c0c475d1ee0aa64ae2b53c93f80b7b60d7d9
   FirebaseFirestore: 8c158bdde010fa397386333a74570eaef033e62d
+  FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseStorage: f4f39ae834a7145963b913f54e2f24a9db1d8fac
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
@@ -553,6 +578,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MaterialComponents: cc9571d99d14bb085893b43ea90161a7eb696a8f
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -561,6 +587,6 @@ SPEC CHECKSUMS:
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: e72ebf7e1c768dee5e1ca32c95e409f09202f422
+PODFILE CHECKSUM: 6ed3f1b456983a85878a4fb72b521038bc02b844
 
 COCOAPODS: 1.9.3

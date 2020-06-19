@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import MaterialComponents.MaterialButtons
+import FirebaseAuth
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -19,21 +20,18 @@ protocol StoreSelectedDelegate: class {
 // MARK: - Custom Objects
 class StoreAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    var store: GroceryStore?
+    var store: GroceryStore
     var title: String?
     var subtitle: String?
-    var crowdCount: Int?
     
-    init(coords _coords: CLLocationCoordinate2D, store _store: GroceryStore, crowdCount _crowdCount: Int? = nil) {
+    init(coords _coords: CLLocationCoordinate2D,
+         store _store: GroceryStore) {
         
         // Required
+        store = _store
         coordinate = _coords
         title = _store.name
         subtitle = _store.address
-        
-        // Others
-        store = _store
-        crowdCount = _crowdCount
         
     }
 }
@@ -66,7 +64,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBOutlet weak var martListFAB: MDCFloatingButton!
     @IBOutlet weak var continueBtn: UIBarButtonItem!
     
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +77,41 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager?.distanceFilter = 0
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
+        
+    }
+    
+    // MARK: - IBActions
+    @IBAction func continueBtnPressed(_ sender: Any) {
+        
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "ShowQueue", sender: sender)
+        }
+        else {
+            let loginManager = LoginManager(viewController: self)
+            loginManager.setLoginComplete { (user) in
+                self.performSegue(withIdentifier: "ShowQueue", sender: sender)
+            }
+            loginManager.showLoginViewController()
+        }
+        
     }
     
     // MARK: - Store Selected
+    @objc func cancelBtnPressed(sender: UIBarButtonItem!) {
+        
+        // Clear all Annotations and Overlays
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        
+        // Add back all annotations
+        addAnnotations()
+        
+        // Show Back Button
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.setHidesBackButton(false, animated: true)
+        
+    }
+    
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
     }
@@ -97,16 +126,19 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         mapView.removeAnnotations(mapView.annotations)
         
         // Create Destination Annotation
-        let annotation = MKPointAnnotation()
-        annotation.title = store.name
-        annotation.subtitle = store.address
-        annotation.coordinate = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        let annotation = StoreAnnotation(
+            coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+            store: store
+        )
         mapView.addAnnotation(annotation)
         
         // Show Directions
         showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
         
         continueBtn.isEnabled = true
+        
+        navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed(sender:)))
     }
     
     // MARK: - MapView
@@ -146,30 +178,65 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             return nil
         }
         
-        let identifier = "StoreAnnotation"
+        let identifier = annotation.store.id
         var view: MKMarkerAnnotationView
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             
+            // Return if Annotation Exist
             dequeuedView.annotation = annotation
             view = dequeuedView
             
         }
         else {
             
+            // Create Annotation if Not Found
             view = MKMarkerAnnotationView(
                 annotation: annotation,
                 reuseIdentifier: identifier
             )
             
+            // Custom Marker
+            view.markerTintColor = annotation.store.getCrowdLevelColor()
+            view.glyphText = String(annotation.store.crowdCount)
+
+            
+            // Custom Callout
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
-            let button = StoreButton(type: .infoDark)
-            button.store = annotation.store
-            button.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
+            /// Right Callout
+            let rightButton = StoreButton(type: .infoDark)
+            rightButton.store = annotation.store
+            rightButton.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
             
-            view.rightCalloutAccessoryView = button
+            view.rightCalloutAccessoryView = rightButton
+            
+            let pointSize: CGFloat = 24
+            let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light)
+                .fontDescriptor
+            let fractionFontDesc = systemFontDesc.addingAttributes([
+                
+                UIFontDescriptor.AttributeName.featureSettings: [
+                    UIFontDescriptor.FeatureKey.featureIdentifier: kFractionsType,
+                    UIFontDescriptor.FeatureKey.typeIdentifier: kDiagonalFractionsSelector
+                ]
+                
+            ])
+            
+            /// Left Callout
+            let leftLabel = UILabel(frame: CGRect(
+                origin: CGPoint.zero,
+                size: CGSize(width: 48, height: 48)
+            ))
+            
+            leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
+            leftLabel.adjustsFontSizeToFitWidth = true
+            leftLabel.textAlignment = .right
+            leftLabel.text = "\(annotation.store.crowdCount)/\(annotation.store.maxCount)"
+            
+            view.leftCalloutAccessoryView = leftLabel
+            view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
             
         }
         
@@ -256,8 +323,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
@@ -271,8 +337,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
@@ -286,8 +351,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                 let annotation = StoreAnnotation(
                     coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
-                    store: store,
-                    crowdCount: nil
+                    store: store
                 )
                 
                 mapView.addAnnotation(annotation)
@@ -295,19 +359,35 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             }
         }
         
+        // Shift to user location
+        let region = MKCoordinateRegion (
+            center: mapView.userLocation.coordinate,
+            latitudinalMeters: 3000,
+            longitudinalMeters: 3000
+        )
+        
+        mapView.setRegion(region, animated: true)
+        
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // NearbyList
         if segue.identifier == "ShowNearbyList" {
-            
             let nearbyListVC = segue.destination as! NearbyListViewController
             nearbyListVC.storeList_lessThan1 = storeList_lessThan1
             nearbyListVC.storeList_lessThan2 = storeList_lessThan2
             nearbyListVC.storeList_moreThan2 = storeList_moreThan2
             nearbyListVC.storeSelectDelegate = self
-            
         }
+        
+        // Queue
+        else if segue.identifier == "ShowQueue" {
+            let queueVC = segue.destination as! QueueViewController
+            queueVC.justJoinedQueue = true
+        }
+        
     }
 
 }
