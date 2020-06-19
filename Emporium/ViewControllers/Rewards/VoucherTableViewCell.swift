@@ -11,6 +11,7 @@ import UIKit
 class VoucherTableViewCell: UITableViewCell {
 
     @IBOutlet weak var voucherNameLabel: UILabel!
+    @IBOutlet weak var voucherCostLabel: UILabel!
     @IBOutlet weak var voucherDescriptionLabel: UILabel!
     
     private var voucher: Voucher?
@@ -23,6 +24,7 @@ class VoucherTableViewCell: UITableViewCell {
     func setVoucher(voucher: Voucher){
         self.voucher = voucher
         self.voucherNameLabel.text = voucher.name
+        self.voucherCostLabel.text = "\(voucher.cost) Points"
         self.voucherDescriptionLabel.text = voucher.description
     }
     

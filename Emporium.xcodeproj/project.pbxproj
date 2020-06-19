@@ -24,6 +24,7 @@
 		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
 		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
 		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
+		AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
@@ -109,6 +110,7 @@
 		AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		AC13E90C249CE84400DA2A7F /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherStatus.swift; sourceTree = "<group>"; };
 		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
 		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				ACED1DF1249B8D2E00094284 /* Voucher.swift */,
+				AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
+				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,

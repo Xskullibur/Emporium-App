@@ -56,32 +56,44 @@
                                                         <constraint firstAttribute="width" constant="51" id="Utq-Ic-Zye"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFx-ml-gf6">
-                                                    <rect key="frame" x="79" y="11" width="307" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" name="Primary"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 5% off your next purchase " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zY-vV-BvZ">
-                                                    <rect key="frame" x="79" y="40" width="307" height="20"/>
+                                                    <rect key="frame" x="79" y="40" width="310" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFx-ml-gf6">
+                                                    <rect key="frame" x="79" y="11" width="215" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="Primary"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="250 Points" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Np4-zz-lWt">
+                                                    <rect key="frame" x="299" y="11" width="90" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="x1q-vT-MeQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TFx-ml-gf6" secondAttribute="trailing" constant="8" id="0Sd-4E-83g"/>
-                                                <constraint firstItem="2zY-vV-BvZ" firstAttribute="top" secondItem="TFx-ml-gf6" secondAttribute="bottom" constant="8" id="2d8-Jl-3po"/>
-                                                <constraint firstItem="2zY-vV-BvZ" firstAttribute="leading" secondItem="TFx-ml-gf6" secondAttribute="leading" id="2lu-e6-lC6"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="top" secondItem="9t7-2i-PZu" secondAttribute="topMargin" id="8mi-Oa-LKp"/>
+                                                <constraint firstItem="Np4-zz-lWt" firstAttribute="leading" secondItem="TFx-ml-gf6" secondAttribute="trailing" constant="5" id="CAl-AP-5e2"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="leading" secondItem="2zY-vV-BvZ" secondAttribute="leading" id="JT7-Ra-Fyd"/>
                                                 <constraint firstItem="kMT-gf-h9w" firstAttribute="top" secondItem="9t7-2i-PZu" secondAttribute="topMargin" constant="8" id="U56-dq-3rk"/>
-                                                <constraint firstItem="2zY-vV-BvZ" firstAttribute="trailing" secondItem="TFx-ml-gf6" secondAttribute="trailing" id="UoU-4Q-SSX"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="kMT-gf-h9w" secondAttribute="bottom" constant="8" id="VyQ-yH-P5g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Np4-zz-lWt" secondAttribute="trailing" constant="5" id="Y3W-q5-iKY"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="leading" secondItem="kMT-gf-h9w" secondAttribute="trailing" constant="8" id="ZDF-QM-bcr"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="baseline" secondItem="Np4-zz-lWt" secondAttribute="baseline" id="ZIm-UT-Qja"/>
                                                 <constraint firstItem="kMT-gf-h9w" firstAttribute="leading" secondItem="9t7-2i-PZu" secondAttribute="leadingMargin" id="av7-j3-SIJ"/>
-                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="top" secondItem="9t7-2i-PZu" secondAttribute="topMargin" id="eMY-lY-dSJ"/>
-                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="leading" secondItem="kMT-gf-h9w" secondAttribute="trailing" constant="8" id="mMX-Re-VgG"/>
+                                                <constraint firstItem="Np4-zz-lWt" firstAttribute="trailing" secondItem="2zY-vV-BvZ" secondAttribute="trailing" id="tY9-KW-9uy"/>
+                                                <constraint firstItem="2zY-vV-BvZ" firstAttribute="top" secondItem="TFx-ml-gf6" secondAttribute="bottom" constant="8" id="tzv-hI-wbs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="voucherCostLabel" destination="Np4-zz-lWt" id="19O-WH-Nz5"/>
                                             <outlet property="voucherDescriptionLabel" destination="2zY-vV-BvZ" id="XEI-QL-5tr"/>
                                             <outlet property="voucherNameLabel" destination="TFx-ml-gf6" id="ryV-p3-BgR"/>
                                         </connections>
@@ -149,7 +161,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f2U-W1-9YX"/>
                                         </constraints>
-                                        <state key="normal" title="Claim">
+                                        <state key="normal" title="Claim (250 Points)">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -174,6 +186,7 @@
                         <viewLayoutGuide key="safeArea" id="prU-0a-kjJ"/>
                     </view>
                     <connections>
+                        <outlet property="claimButton" destination="QzM-JD-84a" id="vov-1t-KbZ"/>
                         <outlet property="voucherDescriptionLabel" destination="KdT-7i-atj" id="dNH-Hn-pU4"/>
                         <outlet property="voucherNameLabel" destination="NRe-Jp-AEU" id="RT5-NX-XKX"/>
                     </connections>

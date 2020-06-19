@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialButtons
 
 class VoucherBottomSheetViewController: UIViewController {
 
     @IBOutlet weak var voucherNameLabel: UILabel!
     @IBOutlet weak var voucherDescriptionLabel: UILabel!
+    @IBOutlet weak var claimButton: MDCButton!
     
     private var voucher: Voucher?
     
@@ -30,6 +32,7 @@ class VoucherBottomSheetViewController: UIViewController {
     
     private func updateVoucher(){
         self.voucherNameLabel.text = self.voucher?.name
+        self.claimButton.setTitle("Claim (\(self.voucher!.cost) Points)", for: .normal)
         self.voucherDescriptionLabel.text = self.voucher?.description
     }
     
@@ -38,7 +41,19 @@ class VoucherBottomSheetViewController: UIViewController {
     }
     
     @IBAction func claimPressed(_ sender: Any) {
-        self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!, completion: nil)
+        self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!){
+            status in
+            switch status {
+            case .success:
+                Toast.showToast("Voucher claimed!")
+                break
+            case .notEnoughPoints:
+                Toast.showToast("Not enough points to claim this voucher!")
+                break
+            default:
+                break
+            }
+        }
         self.dismiss(animated: true)
     }
     
