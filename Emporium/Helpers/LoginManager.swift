@@ -35,9 +35,6 @@ class LoginManager : NSObject, FUIAuthDelegate {
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-//        guard let user = user else {
-//            return
-//        }
         
         if user != nil{
             //Reset notifications
