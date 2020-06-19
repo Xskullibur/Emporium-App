@@ -90,7 +90,7 @@ class VoucherDataManager {
         }
         
         //Debugging
-        #if LOCAL_FIREBASE
+        #if DEBUG
         functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
         #endif
     }

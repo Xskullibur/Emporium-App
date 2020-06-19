@@ -24,62 +24,6 @@
 		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
 		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
 		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
-		AC18C2A8249CEFF60033F4C4 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E908249CE83300DA2A7F /* PickupViewController.swift */; };
-		AC18C2A9249CEFF60033F4C4 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
-		AC18C2AA249CEFF60033F4C4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F79B249CA2380013A133 /* Toast.swift */; };
-		AC18C2AB249CEFF60033F4C4 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
-		AC18C2AC249CEFF60033F4C4 /* EmporiumError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F7249336F3009FFD93 /* EmporiumError.swift */; };
-		AC18C2AD249CEFF60033F4C4 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
-		AC18C2AE249CEFF60033F4C4 /* VoucherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E00249C64BF00094284 /* VoucherDataManager.swift */; };
-		AC18C2AF249CEFF60033F4C4 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
-		AC18C2B0249CEFF60033F4C4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D0249767630058EE50 /* Product.swift */; };
-		AC18C2B1249CEFF60033F4C4 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
-		AC18C2B2249CEFF60033F4C4 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F797249C9DD90013A133 /* QueueViewController.swift */; };
-		AC18C2B3249CEFF60033F4C4 /* Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF1249B8D2E00094284 /* Voucher.swift */; };
-		AC18C2B4249CEFF60033F4C4 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
-		AC18C2B5249CEFF60033F4C4 /* VouchersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEC249B8BA200094284 /* VouchersViewController.swift */; };
-		AC18C2B6249CEFF60033F4C4 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
-		AC18C2B7249CEFF60033F4C4 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
-		AC18C2B8249CEFF60033F4C4 /* VoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */; };
-		AC18C2B9249CEFF60033F4C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* ViewController.swift */; };
-		AC18C2BA249CEFF60033F4C4 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
-		AC18C2BB249CEFF60033F4C4 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
-		AC18C2BC249CEFF60033F4C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
-		AC18C2BD249CEFF60033F4C4 /* VoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */; };
-		AC18C2BE249CEFF60033F4C4 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
-		AC18C2BF249CEFF60033F4C4 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD02644249A0EF300BAA2F1 /* UIImageView.swift */; };
-		AC18C2C0249CEFF60033F4C4 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
-		AC18C2C1249CEFF60033F4C4 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
-		AC18C2C2249CEFF60033F4C4 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
-		AC18C2C3249CEFF60033F4C4 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
-		AC18C2C4249CEFF60033F4C4 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
-		AC18C2C5249CEFF60033F4C4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
-		AC18C2C6249CEFF60033F4C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
-		AC18C2C7249CEFF60033F4C4 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		AC18C2C8249CEFF60033F4C4 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
-		AC18C2C9249CEFF60033F4C4 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
-		AC18C2CA249CEFF60033F4C4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
-		AC18C2CB249CEFF60033F4C4 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
-		AC18C2CC249CEFF60033F4C4 /* StoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F791249A01080013A133 /* StoreDataManager.swift */; };
-		AC18C2CD249CEFF60033F4C4 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
-		AC18C2CE249CEFF60033F4C4 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
-		AC18C2CF249CEFF60033F4C4 /* Emporium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */; };
-		AC18C2D1249CEFF60033F4C4 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
-		AC18C2D3249CEFF60033F4C4 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
-		AC18C2D4249CEFF60033F4C4 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
-		AC18C2D5249CEFF60033F4C4 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
-		AC18C2D6249CEFF60033F4C4 /* EmporiumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */; };
-		AC18C2D7249CEFF60033F4C4 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
-		AC18C2D8249CEFF60033F4C4 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
-		AC18C2D9249CEFF60033F4C4 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
-		AC18C2DA249CEFF60033F4C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
-		AC18C2DB249CEFF60033F4C4 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
-		AC18C2DC249CEFF60033F4C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
-		AC18C2DD249CEFF60033F4C4 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
-		AC18C2DE249CEFF60033F4C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9023602473B9C900CE6B3A /* Assets.xcassets */; };
-		AC18C2DF249CEFF60033F4C4 /* Queue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F795249C99B50013A133 /* Queue.storyboard */; };
-		AC18C2E0249CEFF60033F4C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE90235A2473B9C700CE6B3A /* Main.storyboard */; };
-		AC18C2E1249CEFF60033F4C4 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
@@ -165,7 +109,6 @@
 		AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		AC13E90C249CE84400DA2A7F /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
-		AC18C2E7249CEFF60033F4C4 /* Emporium Local Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emporium Local Firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
 		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
@@ -220,14 +163,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AC18C2D0249CEFF60033F4C4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC18C2D1249CEFF60033F4C4 /* Pods_Emporium.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FE90234E2473B9C700CE6B3A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,7 +433,6 @@
 				FE9023512473B9C700CE6B3A /* Emporium.app */,
 				FE90236A2473B9C900CE6B3A /* EmporiumTests.xctest */,
 				FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */,
-				AC18C2E7249CEFF60033F4C4 /* Emporium Local Firebase.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,26 +488,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AC18C2A5249CEFF60033F4C4 /* Emporium Local Firebase */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AC18C2E4249CEFF60033F4C4 /* Build configuration list for PBXNativeTarget "Emporium Local Firebase" */;
-			buildPhases = (
-				AC18C2A6249CEFF60033F4C4 /* [CP] Check Pods Manifest.lock */,
-				AC18C2A7249CEFF60033F4C4 /* Sources */,
-				AC18C2D0249CEFF60033F4C4 /* Frameworks */,
-				AC18C2D2249CEFF60033F4C4 /* Resources */,
-				AC18C2E2249CEFF60033F4C4 /* [CP] Embed Pods Frameworks */,
-				AC18C2E3249CEFF60033F4C4 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Emporium Local Firebase";
-			productName = Emporium;
-			productReference = AC18C2E7249CEFF60033F4C4 /* Emporium Local Firebase.app */;
-			productType = "com.apple.product-type.application";
-		};
 		FE9023502473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE90237E2473B9C900CE6B3A /* Build configuration list for PBXNativeTarget "Emporium" */;
@@ -674,34 +588,11 @@
 				FE9023502473B9C700CE6B3A /* Emporium */,
 				FE9023692473B9C900CE6B3A /* EmporiumTests */,
 				FE9023742473B9C900CE6B3A /* EmporiumUITests */,
-				AC18C2A5249CEFF60033F4C4 /* Emporium Local Firebase */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AC18C2D2249CEFF60033F4C4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC18C2D3249CEFF60033F4C4 /* Data.plist in Resources */,
-				AC18C2D4249CEFF60033F4C4 /* NearbyMart.storyboard in Resources */,
-				AC18C2D5249CEFF60033F4C4 /* NotificationTableView.xib in Resources */,
-				AC18C2D6249CEFF60033F4C4 /* EmporiumLoginViewController.xib in Resources */,
-				AC18C2D7249CEFF60033F4C4 /* SideCartCell.xib in Resources */,
-				AC18C2D8249CEFF60033F4C4 /* Shop.storyboard in Resources */,
-				AC18C2D9249CEFF60033F4C4 /* ProductViewCell.xib in Resources */,
-				AC18C2DA249CEFF60033F4C4 /* LaunchScreen.storyboard in Resources */,
-				AC18C2DB249CEFF60033F4C4 /* EmporiumCardButton.xib in Resources */,
-				AC18C2DC249CEFF60033F4C4 /* GoogleService-Info.plist in Resources */,
-				AC18C2DD249CEFF60033F4C4 /* Rewards.storyboard in Resources */,
-				AC18C2DE249CEFF60033F4C4 /* Assets.xcassets in Resources */,
-				AC18C2DF249CEFF60033F4C4 /* Queue.storyboard in Resources */,
-				AC18C2E0249CEFF60033F4C4 /* Main.storyboard in Resources */,
-				AC18C2E1249CEFF60033F4C4 /* FUICustomAuthPickerViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FE90234F2473B9C700CE6B3A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -819,62 +710,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC18C2A6249CEFF60033F4C4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Emporium-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC18C2E2249CEFF60033F4C4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC18C2E3249CEFF60033F4C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D0B8A1A731D3ADF66AF322FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -934,53 +769,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AC18C2A7249CEFF60033F4C4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AC18C2A8249CEFF60033F4C4 /* PickupViewController.swift in Sources */,
-				AC18C2A9249CEFF60033F4C4 /* CheckOutViewController.swift in Sources */,
-				AC18C2AA249CEFF60033F4C4 /* Toast.swift in Sources */,
-				AC18C2AB249CEFF60033F4C4 /* PlacesAPI.swift in Sources */,
-				AC18C2AC249CEFF60033F4C4 /* EmporiumError.swift in Sources */,
-				AC18C2AD249CEFF60033F4C4 /* ProductViewCell.swift in Sources */,
-				AC18C2AE249CEFF60033F4C4 /* VoucherDataManager.swift in Sources */,
-				AC18C2AF249CEFF60033F4C4 /* SideCartCell.swift in Sources */,
-				AC18C2B0249CEFF60033F4C4 /* Product.swift in Sources */,
-				AC18C2B1249CEFF60033F4C4 /* ShopDataManager.swift in Sources */,
-				AC18C2B2249CEFF60033F4C4 /* QueueViewController.swift in Sources */,
-				AC18C2B3249CEFF60033F4C4 /* Voucher.swift in Sources */,
-				AC18C2B4249CEFF60033F4C4 /* Cart.swift in Sources */,
-				AC18C2B5249CEFF60033F4C4 /* VouchersViewController.swift in Sources */,
-				AC18C2B6249CEFF60033F4C4 /* ReceiptViewController.swift in Sources */,
-				AC18C2B7249CEFF60033F4C4 /* CartCell.swift in Sources */,
-				AC18C2B8249CEFF60033F4C4 /* VoucherTableViewCell.swift in Sources */,
-				AC18C2B9249CEFF60033F4C4 /* ViewController.swift in Sources */,
-				AC18C2BA249CEFF60033F4C4 /* NearbyMapViewController.swift in Sources */,
-				AC18C2BB249CEFF60033F4C4 /* NotificationHandler.swift in Sources */,
-				AC18C2BC249CEFF60033F4C4 /* AppDelegate.swift in Sources */,
-				AC18C2BD249CEFF60033F4C4 /* VoucherBottomSheetViewController.swift in Sources */,
-				AC18C2BE249CEFF60033F4C4 /* EmporiumLoginViewController.swift in Sources */,
-				AC18C2BF249CEFF60033F4C4 /* UIImageView.swift in Sources */,
-				AC18C2C0249CEFF60033F4C4 /* Notification.swift in Sources */,
-				AC18C2C1249CEFF60033F4C4 /* ShopViewController.swift in Sources */,
-				AC18C2C2249CEFF60033F4C4 /* NotificationTableView.swift in Sources */,
-				AC18C2C3249CEFF60033F4C4 /* MyAccountViewController.swift in Sources */,
-				AC18C2C4249CEFF60033F4C4 /* AccountDataManager.swift in Sources */,
-				AC18C2C5249CEFF60033F4C4 /* SwiftyJSON.swift in Sources */,
-				AC18C2C6249CEFF60033F4C4 /* SceneDelegate.swift in Sources */,
-				AC18C2C7249CEFF60033F4C4 /* EmporiumNotificationViewController.swift in Sources */,
-				AC18C2C8249CEFF60033F4C4 /* PointDataManager.swift in Sources */,
-				AC18C2C9249CEFF60033F4C4 /* NearbyListViewController.swift in Sources */,
-				AC18C2CA249CEFF60033F4C4 /* LoginViewController.swift in Sources */,
-				AC18C2CB249CEFF60033F4C4 /* EmporiumCardButton.swift in Sources */,
-				AC18C2CC249CEFF60033F4C4 /* StoreDataManager.swift in Sources */,
-				AC18C2CD249CEFF60033F4C4 /* LoginManager.swift in Sources */,
-				AC18C2CE249CEFF60033F4C4 /* GroceryStore.swift in Sources */,
-				AC18C2CF249CEFF60033F4C4 /* Emporium.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FE90234D2473B9C700CE6B3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1079,49 +867,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AC18C2E5249CEFF60033F4C4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 657XNP8S5V;
-				INFOPLIST_FILE = "Emporium copy2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D LOCAL_FIREBASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.Emporium;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AC18C2E6249CEFF60033F4C4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 657XNP8S5V;
-				INFOPLIST_FILE = "Emporium copy2-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D LOCAL_FIREBASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.Emporium;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		FE90237C2473B9C900CE6B3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1368,15 +1113,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AC18C2E4249CEFF60033F4C4 /* Build configuration list for PBXNativeTarget "Emporium Local Firebase" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AC18C2E5249CEFF60033F4C4 /* Debug */,
-				AC18C2E6249CEFF60033F4C4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FE90234C2473B9C700CE6B3A /* Build configuration list for PBXProject "Emporium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
