@@ -87,7 +87,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.performSegue(withIdentifier: "ShowQueue", sender: sender)
         }
         else {
-            #warning("TODO: - Show Login UI")
+            let loginManager = LoginManager(viewController: self)
+            loginManager.setLoginComplete { (user) in
+                self.performSegue(withIdentifier: "ShowQueue", sender: sender)
+            }
+            loginManager.showLoginViewController()
         }
         
     }
