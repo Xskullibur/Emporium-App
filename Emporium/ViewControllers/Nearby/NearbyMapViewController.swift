@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import MaterialComponents.MaterialButtons
+import FirebaseAuth
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -79,6 +80,17 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
     }
     
+    // MARK: - IBActions
+    @IBAction func continueBtnPressed(_ sender: Any) {
+        
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "ShowQueue", sender: sender)
+        }
+        else {
+            #warning("TODO: - Show Login UI")
+        }
+        
+    }
     
     // MARK: - Store Selected
     @objc func cancelBtnPressed(sender: UIBarButtonItem!) {
@@ -356,15 +368,22 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // NearbyList
         if segue.identifier == "ShowNearbyList" {
-            
             let nearbyListVC = segue.destination as! NearbyListViewController
             nearbyListVC.storeList_lessThan1 = storeList_lessThan1
             nearbyListVC.storeList_lessThan2 = storeList_lessThan2
             nearbyListVC.storeList_moreThan2 = storeList_moreThan2
             nearbyListVC.storeSelectDelegate = self
-            
         }
+        
+        // Queue
+        else if segue.identifier == "ShowQueue" {
+            let queueVC = segue.destination as! QueueViewController
+            queueVC.justJoinedQueue = true
+        }
+        
     }
 
 }
