@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Stripe
 
-class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , STPAddCardViewControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
+    
     
     var cartData: [Cart] = []
     
@@ -51,5 +53,25 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    
+    @IBAction func PayBtnPressed(_ sender: Any) {
+        let addCardViewController = STPAddCardViewController()
+        addCardViewController.delegate = self
+        
+        let navCtrl = UINavigationController(rootViewController: addCardViewController)
+        present(navCtrl, animated: true)
+    }
+    
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        dismiss(animated: true)
+    }
+    
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreateToken token: STPToken, completion: @escaping STPErrorBlock) {
+        dismiss(animated: true)
+        print(token.allResponseFields)
+    }
+    
 }
+
 
