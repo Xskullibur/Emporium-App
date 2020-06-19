@@ -11,6 +11,7 @@ target 'Emporium' do
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'
   pod 'Firebase/Storage'
+  pod 'Firebase/Functions'
   
   pod 'FoursquareAPIClient'
   
