@@ -13,6 +13,6 @@ struct Voucher {
     let id: String
     let name: String
     let description: String
-    let evalFormula: String
+    let formula: String
     
 }

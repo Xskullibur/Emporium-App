@@ -15,6 +15,8 @@ class VoucherBottomSheetViewController: UIViewController {
     
     private var voucher: Voucher?
     
+    private var voucherDataManager: VoucherDataManager? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +33,12 @@ class VoucherBottomSheetViewController: UIViewController {
         self.voucherDescriptionLabel.text = self.voucher?.description
     }
     
+    func setVoucherDataManager(dataManager: VoucherDataManager){
+        self.voucherDataManager = dataManager
+    }
+    
     @IBAction func claimPressed(_ sender: Any) {
+        self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!, completion: nil)
         self.dismiss(animated: true)
     }
     
