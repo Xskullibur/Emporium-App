@@ -11,55 +11,33 @@ import Firebase
 import FirebaseUI
 
 class LoginViewController: UIViewController, FUIAuthDelegate {
-
-    var authUI: FUIAuth?
     
     @IBOutlet weak var userBtn: EmporiumCardButton!
     @IBOutlet weak var merchantBtn: EmporiumCardButton!
     
+    private var loginManager: LoginManager?
+    
     override func viewDidLoad() {
+        self.loginManager = LoginManager(viewController: self)
         super.viewDidLoad()
-        
-        self.setupFirebaseLogin()
         
         // Do any additional setup after loading the view.
         
         userBtn.update(text: "User", image: UIImage(named: "User")!)
         userBtn.setTapped(loginAction)
         
-        
         merchantBtn.update(text: "Merchant", image: UIImage(named: "Shop")!)
-    }
-    
-    func setupFirebaseLogin(){
-        self.authUI = FUIAuth.defaultAuthUI()
-        self.authUI?.delegate = self
         
-        let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth()
-        ]
-        
-        self.authUI?.providers = providers
-        
-
-    }
-    func loginAction() {
-        let authViewController = self.authUI!.authViewController()
-        self.present(authViewController, animated: true)
-    }
-    
-    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        guard user != nil else {
-            return
+        self.loginManager?.setLoginComplete{
+            user in
+            //Dismiss this view controller after login
+            self.navigationController?.popViewController(animated: true)
         }
-        
-        //Reset notifications
-        let notificationHandler = NotificationHandler.shared
-        notificationHandler.reset()
-        notificationHandler.create()
-        notificationHandler.start()
-        
-        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func loginAction() {
+        self.loginManager?.showLoginViewController()
     }
 
     
