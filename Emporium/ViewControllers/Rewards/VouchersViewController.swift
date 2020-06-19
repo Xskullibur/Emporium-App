@@ -14,27 +14,62 @@ import MaterialComponents.MaterialBottomSheet
 class VouchersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 
+    @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var vouchersTableView: UITableView!
     
     private var cancellables = Set<AnyCancellable>()
     private var vouchers: [Voucher] = []
     
+    private var pointDataManager: PointDataManager? = nil
     private var voucherDataManager: VoucherDataManager? = nil
+    
+    private var user: User!
+    
+    private var loginManager: LoginManager? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        self.loginManager = LoginManager(viewController: self)
+        
         vouchersTableView.dataSource = self
         vouchersTableView.delegate = self
         
-        setupVouchers()
+        if let user = Auth.auth().currentUser {
+            self.user = user
+            self.setupPoints()
+            self.setupVouchers()
+        }else{
+            self.loginManager?.setLoginComplete{
+                user in
+                
+                guard let user = user else {
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+                
+                self.user = user
+                self.setupPoints()
+                self.setupVouchers()
+            }
+            
+            self.loginManager?.showLoginViewController()
+        }
         
     }
     
+    func setupPoints(){
+        self.pointDataManager = PointDataManager()
+        self.pointDataManager?.getPoints(user: self.user){
+            points in
+            self.pointsLabel.text = "You have: \(points) Points"
+        }
+    }
+    
     func setupVouchers(){
-        self.voucherDataManager = VoucherDataManager(user: Auth.auth().currentUser)
+        self.voucherDataManager = VoucherDataManager(user: self.user)
         
         //Get available vouchers
         self.voucherDataManager?.getAvailableVouchers()

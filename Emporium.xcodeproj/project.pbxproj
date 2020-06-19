@@ -96,6 +96,8 @@
 		ACED1E3C249CA97500094284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9023602473B9C900CE6B3A /* Assets.xcassets */; };
 		ACED1E3D249CA97500094284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE90235A2473B9C700CE6B3A /* Main.storyboard */; };
 		ACED1E3E249CA97500094284 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
+		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
+		ACED1E48249CB95200094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
 		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
@@ -181,6 +183,7 @@
 		ACED1E02249CA19700094284 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		ACED1E44249CA97500094284 /* Emporium Local Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emporium Local Firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACED1E45249CA97500094284 /* Emporium copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Emporium copy-Info.plist"; path = "/Users/riyfhx/Desktop/emporium/Emporium copy-Info.plist"; sourceTree = "<absolute>"; };
+		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				ACED1E00249C64BF00094284 /* VoucherDataManager.swift */,
+				ACED1E46249CB64800094284 /* PointDataManager.swift */,
 			);
 			path = DataMangers;
 			sourceTree = "<group>";
@@ -922,6 +926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACED1E48249CB95200094284 /* PointDataManager.swift in Sources */,
 				ACED1E07249CA97500094284 /* PlacesAPI.swift in Sources */,
 				ACED1E08249CA97500094284 /* EmporiumError.swift in Sources */,
 				ACED1E09249CA97500094284 /* ProductViewCell.swift in Sources */,
@@ -997,6 +1002,7 @@
 				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
+				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ACD2862C24987CB800497BD9 /* MartDetailsViewController.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
