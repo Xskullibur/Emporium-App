@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
@@ -24,6 +25,7 @@
 		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
 		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
 		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
+		AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */; };
 		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
@@ -31,6 +33,11 @@
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
+		ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */; };
+		ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */; };
+		ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */; };
+		ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */; };
+		ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */; };
 		ACED1DE4249B307600094284 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
 		ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
 		ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
@@ -66,7 +73,7 @@
 		ACED1E22249CA97500094284 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
 		ACED1E23249CA97500094284 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		ACED1E24249CA97500094284 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		ACED1E25249CA97500094284 /* MartDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */; };
+		ACED1E25249CA97500094284 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		ACED1E26249CA97500094284 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
 		ACED1E27249CA97500094284 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		ACED1E28249CA97500094284 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
@@ -74,7 +81,6 @@
 		ACED1E2A249CA97500094284 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
 		ACED1E2B249CA97500094284 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
 		ACED1E2C249CA97500094284 /* Emporium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE90235D2473B9C700CE6B3A /* Emporium.xcdatamodeld */; };
-		ACED1E2E249CA97500094284 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		ACED1E30249CA97500094284 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		ACED1E31249CA97500094284 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ACED1E32249CA97500094284 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
@@ -83,7 +89,7 @@
 		ACED1E35249CA97500094284 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
 		ACED1E36249CA97500094284 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
 		ACED1E37249CA97500094284 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
-		ACED1E38249CA97500094284 /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */; };
+		ACED1E38249CA97500094284 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		ACED1E39249CA97500094284 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACED1E3A249CA97500094284 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		ACED1E3B249CA97500094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
@@ -91,7 +97,6 @@
 		ACED1E3D249CA97500094284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE90235A2473B9C700CE6B3A /* Main.storyboard */; };
 		ACED1E3E249CA97500094284 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
 		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
-		ACED1E48249CB95200094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
 		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
@@ -138,9 +143,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
-		10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
+		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
@@ -160,15 +166,19 @@
 		AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		AC13E90C249CE84400DA2A7F /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
+		AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherStatus.swift; sourceTree = "<group>"; };
 		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
 		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MartDetailsViewController.swift; sourceTree = "<group>"; };
-		ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVouchersTableViewController.swift; sourceTree = "<group>"; };
+		ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherTableViewCell.swift; sourceTree = "<group>"; };
+		ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
+		ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPointsViewController.swift; sourceTree = "<group>"; };
+		ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "gift-opening-animation.json"; sourceTree = "<group>"; };
 		ACED1DE3249B307600094284 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		ACED1DE6249B41BF00094284 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
 		ACED1DEA249B72DF00094284 /* Rewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rewards.storyboard; sourceTree = "<group>"; };
@@ -178,8 +188,6 @@
 		ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
 		ACED1E00249C64BF00094284 /* VoucherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherDataManager.swift; sourceTree = "<group>"; };
 		ACED1E02249CA19700094284 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		ACED1E44249CA97500094284 /* Emporium Local Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emporium Local Firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACED1E45249CA97500094284 /* Emporium copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Emporium copy-Info.plist"; path = "/Users/riyfhx/Desktop/emporium/Emporium copy-Info.plist"; sourceTree = "<absolute>"; };
 		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
@@ -193,7 +201,6 @@
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
-		F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,7 +228,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACED1E2E249CA97500094284 /* Pods_Emporium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */,
+				491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,12 +262,12 @@
 		3E559CF4FDE23DA288FF346B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */,
-				10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */,
 				B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */,
 				40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */,
 				813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */,
 				0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */,
+				46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */,
+				032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -351,10 +358,36 @@
 		ACD28624249877ED00497BD9 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				ACD2862B24987CB800497BD9 /* MartDetailsViewController.swift */,
-				ACD2862D24987CD600497BD9 /* CrowdTracking.storyboard */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		ACDA8EC3249DE26C009887A7 /* AvailableVouchers */ = {
+			isa = PBXGroup;
+			children = (
+				ACED1DEC249B8BA200094284 /* VouchersViewController.swift */,
+				ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */,
+				ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */,
+			);
+			path = AvailableVouchers;
+			sourceTree = "<group>";
+		};
+		ACDA8EC4249DE28B009887A7 /* MyVouchers */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */,
+				ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */,
+				ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */,
+			);
+			path = MyVouchers;
+			sourceTree = "<group>";
+		};
+		ACDA8ECB249DF320009887A7 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
@@ -393,12 +426,13 @@
 		ACED1DE9249B72BF00094284 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
+				ACDA8ECB249DF320009887A7 /* Animations */,
+				ACDA8EC4249DE28B009887A7 /* MyVouchers */,
+				ACDA8EC3249DE26C009887A7 /* AvailableVouchers */,
 				ACED1DFF249C64A500094284 /* DataMangers */,
 				ACED1DF0249B8D2300094284 /* Models */,
 				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
-				ACED1DEC249B8BA200094284 /* VouchersViewController.swift */,
-				ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */,
-				ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */,
+				ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -407,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				ACED1DF1249B8D2E00094284 /* Voucher.swift */,
+				AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,7 +522,6 @@
 				3E559CF4FDE23DA288FF346B /* Pods */,
 				95407E2A058CB1895904ED5E /* Frameworks */,
 				ACD28624249877ED00497BD9 /* Recovered References */,
-				ACED1E45249CA97500094284 /* Emporium copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -497,7 +531,6 @@
 				FE9023512473B9C700CE6B3A /* Emporium.app */,
 				FE90236A2473B9C900CE6B3A /* EmporiumTests.xctest */,
 				FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */,
-				ACED1E44249CA97500094284 /* Emporium Local Firebase.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -557,12 +590,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACED1E41249CA97500094284 /* Build configuration list for PBXNativeTarget "Emporium Local Firebase" */;
 			buildPhases = (
-				ACED1E05249CA97500094284 /* [CP] Check Pods Manifest.lock */,
 				ACED1E06249CA97500094284 /* Sources */,
 				ACED1E2D249CA97500094284 /* Frameworks */,
 				ACED1E2F249CA97500094284 /* Resources */,
-				ACED1E3F249CA97500094284 /* [CP] Embed Pods Frameworks */,
-				ACED1E40249CA97500094284 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -673,7 +703,6 @@
 				FE9023502473B9C700CE6B3A /* Emporium */,
 				FE9023692473B9C900CE6B3A /* EmporiumTests */,
 				FE9023742473B9C900CE6B3A /* EmporiumUITests */,
-				ACED1E04249CA97500094284 /* Emporium Local Firebase */,
 			);
 		};
 /* End PBXProject section */
@@ -691,7 +720,7 @@
 				ACED1E35249CA97500094284 /* Shop.storyboard in Resources */,
 				ACED1E36249CA97500094284 /* ProductViewCell.xib in Resources */,
 				ACED1E37249CA97500094284 /* LaunchScreen.storyboard in Resources */,
-				ACED1E38249CA97500094284 /* CrowdTracking.storyboard in Resources */,
+				ACED1E38249CA97500094284 /* BuildFile in Resources */,
 				ACED1E39249CA97500094284 /* EmporiumCardButton.xib in Resources */,
 				ACED1E3A249CA97500094284 /* GoogleService-Info.plist in Resources */,
 				ACED1E3B249CA97500094284 /* Rewards.storyboard in Resources */,
@@ -712,6 +741,7 @@
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
 				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
+				ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
@@ -818,62 +848,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ACED1E05249CA97500094284 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Emporium-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ACED1E3F249CA97500094284 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ACED1E40249CA97500094284 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Emporium/Pods-Emporium-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D0B8A1A731D3ADF66AF322FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -964,7 +938,7 @@
 				ACED1E22249CA97500094284 /* SwiftyJSON.swift in Sources */,
 				ACED1E23249CA97500094284 /* SceneDelegate.swift in Sources */,
 				ACED1E24249CA97500094284 /* EmporiumNotificationViewController.swift in Sources */,
-				ACED1E25249CA97500094284 /* MartDetailsViewController.swift in Sources */,
+				ACED1E25249CA97500094284 /* BuildFile in Sources */,
 				ACED1E26249CA97500094284 /* NearbyListViewController.swift in Sources */,
 				ACED1E27249CA97500094284 /* LoginViewController.swift in Sources */,
 				ACED1E28249CA97500094284 /* EmporiumCardButton.swift in Sources */,
@@ -982,9 +956,11 @@
 				AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */,
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
+				ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */,
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
@@ -1003,6 +979,7 @@
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
+				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
@@ -1013,7 +990,9 @@
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
+				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
+				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
@@ -1075,7 +1054,6 @@
 /* Begin XCBuildConfiguration section */
 		ACED1E42249CA97500094284 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1107,7 +1085,6 @@
 		};
 		ACED1E43249CA97500094284 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1252,7 +1229,7 @@
 		};
 		FE90237F2473B9C900CE6B3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7CDA4B9555554B186F9A386 /* Pods-Emporium.debug.xcconfig */;
+			baseConfigurationReference = 46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1273,7 +1250,7 @@
 		};
 		FE9023802473B9C900CE6B3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10F0B3B0709CD20E8C91C3E7 /* Pods-Emporium.release.xcconfig */;
+			baseConfigurationReference = 032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1382,15 +1359,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ACED1E41249CA97500094284 /* Build configuration list for PBXNativeTarget "Emporium Local Firebase" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ACED1E42249CA97500094284 /* Debug */,
-				ACED1E43249CA97500094284 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FE90234C2473B9C700CE6B3A /* Build configuration list for PBXProject "Emporium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

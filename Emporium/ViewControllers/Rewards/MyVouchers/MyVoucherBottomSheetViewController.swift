@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialButtons
 
-class VoucherBottomSheetViewController: UIViewController {
+class MyVoucherBottomSheetViewController: UIViewController {
 
     @IBOutlet weak var voucherNameLabel: UILabel!
     @IBOutlet weak var voucherDescriptionLabel: UILabel!
     
     private var voucher: Voucher?
-    
-    private var voucherDataManager: VoucherDataManager? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +30,6 @@ class VoucherBottomSheetViewController: UIViewController {
     private func updateVoucher(){
         self.voucherNameLabel.text = self.voucher?.name
         self.voucherDescriptionLabel.text = self.voucher?.description
-    }
-    
-    func setVoucherDataManager(dataManager: VoucherDataManager){
-        self.voucherDataManager = dataManager
-    }
-    
-    @IBAction func claimPressed(_ sender: Any) {
-        self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!, completion: nil)
-        self.dismiss(animated: true)
     }
     
     /*

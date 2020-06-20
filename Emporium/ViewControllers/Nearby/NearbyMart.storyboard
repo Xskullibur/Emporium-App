@@ -50,7 +50,6 @@
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Join Queue" id="VOe-Ab-Zmq">
                             <connections>
                                 <action selector="continueBtnPressed:" destination="jmf-sj-fhq" id="Pw1-QE-fKt"/>
-                                <segue destination="ywg-11-KCK" kind="show" identifier="ShowQueue" id="3UO-b1-Xdk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -58,6 +57,7 @@
                         <outlet property="continueBtn" destination="VOe-Ab-Zmq" id="Ufe-L4-lby"/>
                         <outlet property="mapView" destination="9hw-Fv-Kvi" id="UYi-ac-G0A"/>
                         <outlet property="martListFAB" destination="3Po-aP-bXv" id="CQ8-5w-ogI"/>
+                        <segue destination="ywg-11-KCK" kind="show" identifier="ShowQueue" id="BjB-uH-Ac1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNf-Mx-lXT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
