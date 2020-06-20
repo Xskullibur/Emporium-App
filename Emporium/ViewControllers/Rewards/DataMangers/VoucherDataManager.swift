@@ -65,7 +65,7 @@ class VoucherDataManager {
             self.claimedVoucherPublisher = CurrentValueSubject<[[String: Any]], EmporiumError>([])
             
             //Create user claimed voucher reference if signed in
-            self.claimedVoucherRef = db.collection("users/\(user.uid)/claim_vouchers")
+            self.claimedVoucherRef = db.collection("users/\(user.uid)/claimed_vouchers")
             
             //Get voucher and send to publisher
             self.claimedVoucherRef?.addSnapshotListener{
