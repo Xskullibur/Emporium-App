@@ -10,12 +10,16 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseUI
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        
+        Stripe.setDefaultPublishableKey("pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM")
+        
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
           return true

@@ -15,7 +15,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
     var authUI: FUIAuth?
     private let viewController: UIViewController
     
-    private var loginComplete: ((User) -> Void)? = nil
+    private var loginComplete: ((User?) -> Void)? = nil
     
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -35,15 +35,15 @@ class LoginManager : NSObject, FUIAuthDelegate {
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        guard let user = user else {
-            return
+        
+        if user != nil{
+            //Reset notifications
+            let notificationHandler = NotificationHandler.shared
+            notificationHandler.reset()
+            notificationHandler.create()
+            notificationHandler.start()
         }
         
-        //Reset notifications
-        let notificationHandler = NotificationHandler.shared
-        notificationHandler.reset()
-        notificationHandler.create()
-        notificationHandler.start()
         
         self.loginComplete?(user)
         
@@ -53,7 +53,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
      Callback once the user sign in.
      
      */
-    func setLoginComplete(complete: @escaping (User) -> Void){
+    func setLoginComplete(complete: @escaping (User?) -> Void){
         self.loginComplete = complete
     }
     
