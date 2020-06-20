@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IL4-BM-Jhk">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -114,11 +114,18 @@
                         <viewLayoutGuide key="safeArea" id="lYw-FX-XEh"/>
                     </view>
                     <navigationItem key="navigationItem" title="Vouchers" id="axY-bm-A5g">
-                        <barButtonItem key="rightBarButtonItem" title="My Vouchers" id="G2N-mH-fda">
-                            <connections>
-                                <segue destination="Sd0-L8-bcW" kind="show" id="Ore-0P-xYv"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="My Vouchers" id="G2N-mH-fda">
+                                <connections>
+                                    <segue destination="Sd0-L8-bcW" kind="show" id="Ore-0P-xYv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="My Vouchers" id="VZG-t7-2Mw">
+                                <connections>
+                                    <segue destination="lJs-bD-HrQ" kind="presentation" id="ZD7-vL-BgC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="pointsLabel" destination="M5r-pa-Fs8" id="1JS-TW-qsn"/>
@@ -128,6 +135,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SfW-4R-gmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="672.46376811594212" y="128.57142857142856"/>
+        </scene>
+        <!--Gift Points View Controller-->
+        <scene sceneID="HJh-B1-gpK">
+            <objects>
+                <viewController id="lJs-bD-HrQ" customClass="GiftPointsViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Nk-Mp-KNS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-vP-l8l">
+                                <rect key="frame" x="7" y="50" width="400" height="516"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Gift For You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUP-Lh-ImY">
+                                        <rect key="frame" x="30" y="8" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="HYo-Bd-WvK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tir-Cn-VWU" customClass="AnimationView" customModule="Lottie">
+                                        <rect key="frame" x="30" y="58" width="340" height="350"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="350" id="cnE-tM-hSd"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You just earned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYE-ta-E4a">
+                                        <rect key="frame" x="30" y="408" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="iSd-qr-iH5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8 Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiR-Op-lbP">
+                                        <rect key="frame" x="30" y="458" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Id1-7j-KGF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="2Sc-Xy-xGw"/>
+                                </constraints>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="30" bottom="8" trailing="30"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAu-MF-sJM" customClass="MDCButton">
+                                <rect key="frame" x="57" y="591" width="300" height="50"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="AtM-1D-1FC"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ldl-KH-Uac"/>
+                                </constraints>
+                                <state key="normal" title="Ok">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="claimPressed:" destination="dwY-8b-SZQ" eventType="touchUpInside" id="GAs-bz-d2r"/>
+                                    <action selector="okPressed:" destination="lJs-bD-HrQ" eventType="touchUpInside" id="YCm-AL-Cel"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xye-vP-l8l" firstAttribute="top" secondItem="P8I-u1-zSM" secondAttribute="top" constant="50" id="1ve-QG-gBr"/>
+                            <constraint firstItem="Xye-vP-l8l" firstAttribute="centerX" secondItem="8Nk-Mp-KNS" secondAttribute="centerX" id="BWC-pr-qAU"/>
+                            <constraint firstItem="mAu-MF-sJM" firstAttribute="centerX" secondItem="8Nk-Mp-KNS" secondAttribute="centerX" id="DNb-fN-kCQ"/>
+                            <constraint firstItem="mAu-MF-sJM" firstAttribute="top" secondItem="Xye-vP-l8l" secondAttribute="bottom" constant="25" id="np6-TC-4U8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P8I-u1-zSM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="53S-Lo-3tj"/>
+                    <connections>
+                        <outlet property="giftAnimationView" destination="tir-Cn-VWU" id="j9k-pL-e1P"/>
+                        <outlet property="pointsLabel" destination="OiR-Op-lbP" id="0jM-5t-9vt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TmB-tE-Cc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2561" y="903"/>
         </scene>
         <!--My Vouchers-->
         <scene sceneID="z0h-xs-pos">
@@ -203,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-Sr-vc5">
-                                <rect key="frame" x="15" y="44" width="384" height="818"/>
+                                <rect key="frame" x="15" y="44" width="384" height="803"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="fnE-fQ-75d">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
@@ -221,13 +319,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off your next purchase!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-7i-atj">
-                                        <rect key="frame" x="0.0" y="90" width="384" height="678"/>
+                                        <rect key="frame" x="0.0" y="90" width="384" height="663"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzM-JD-84a" customClass="MDCButton">
-                                        <rect key="frame" x="0.0" y="768" width="384" height="50"/>
+                                        <rect key="frame" x="0.0" y="753" width="384" height="50"/>
                                         <color key="backgroundColor" name="Primary"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f2U-W1-9YX"/>
@@ -250,7 +348,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="aTz-Sr-vc5" firstAttribute="leading" secondItem="prU-0a-kjJ" secondAttribute="leading" constant="15" id="2Od-BA-wXp"/>
-                            <constraint firstItem="prU-0a-kjJ" firstAttribute="bottom" secondItem="aTz-Sr-vc5" secondAttribute="bottom" id="KM8-ME-m5W"/>
+                            <constraint firstItem="prU-0a-kjJ" firstAttribute="bottom" secondItem="aTz-Sr-vc5" secondAttribute="bottom" constant="15" id="KM8-ME-m5W"/>
                             <constraint firstItem="prU-0a-kjJ" firstAttribute="trailing" secondItem="aTz-Sr-vc5" secondAttribute="trailing" constant="15" id="RiW-Ak-pWO"/>
                             <constraint firstItem="aTz-Sr-vc5" firstAttribute="top" secondItem="prU-0a-kjJ" secondAttribute="top" id="W3j-0e-w2B"/>
                         </constraints>

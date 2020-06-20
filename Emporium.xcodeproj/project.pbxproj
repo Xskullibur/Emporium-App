@@ -35,6 +35,8 @@
 		ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */; };
 		ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */; };
 		ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */; };
+		ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */; };
+		ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */; };
 		ACED1DE4249B307600094284 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
 		ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
 		ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
@@ -124,6 +126,8 @@
 		ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVouchersTableViewController.swift; sourceTree = "<group>"; };
 		ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherTableViewCell.swift; sourceTree = "<group>"; };
 		ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
+		ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPointsViewController.swift; sourceTree = "<group>"; };
+		ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "gift-opening-animation.json"; sourceTree = "<group>"; };
 		ACED1DE3249B307600094284 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		ACED1DE6249B41BF00094284 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
 		ACED1DEA249B72DF00094284 /* Rewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rewards.storyboard; sourceTree = "<group>"; };
@@ -320,6 +324,14 @@
 			path = MyVouchers;
 			sourceTree = "<group>";
 		};
+		ACDA8ECB249DF320009887A7 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,11 +368,13 @@
 		ACED1DE9249B72BF00094284 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
+				ACDA8ECB249DF320009887A7 /* Animations */,
 				ACDA8EC4249DE28B009887A7 /* MyVouchers */,
 				ACDA8EC3249DE26C009887A7 /* AvailableVouchers */,
 				ACED1DFF249C64A500094284 /* DataMangers */,
 				ACED1DF0249B8D2300094284 /* Models */,
 				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
+				ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -630,6 +644,7 @@
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
 				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
+				ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
@@ -806,6 +821,7 @@
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
