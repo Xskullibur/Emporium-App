@@ -120,7 +120,7 @@
                                     <segue destination="Sd0-L8-bcW" kind="show" id="Ore-0P-xYv"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="My Vouchers" id="VZG-t7-2Mw">
+                            <barButtonItem title="Test Rewards" id="VZG-t7-2Mw">
                                 <connections>
                                     <segue destination="lJs-bD-HrQ" kind="presentation" id="ZD7-vL-BgC"/>
                                 </connections>
