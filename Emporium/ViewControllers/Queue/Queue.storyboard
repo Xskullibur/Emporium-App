@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Queue View Controller-->
         <scene sceneID="cT9-vy-MrO">
             <objects>
-                <viewController id="a0P-iU-G4O" sceneMemberID="viewController">
+                <viewController id="a0P-iU-G4O" customClass="QueueViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zhx-fv-GgF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
