@@ -26,7 +26,15 @@ class QueueViewController: UIViewController {
             
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                Toast.showToast("Thank you, you will be informed when a request is sent.")
+                
+                let thanksAlert = UIAlertController(
+                    title: "Thank you!",
+                    message: "You will be notified when there is a request.",
+                    preferredStyle: .alert
+                )
+                thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(thanksAlert, animated: true)
+                
             }))
             
             self.present(alert, animated: true)
