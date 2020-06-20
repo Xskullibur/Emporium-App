@@ -127,7 +127,6 @@
 		ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
 		ACED1E00249C64BF00094284 /* VoucherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherDataManager.swift; sourceTree = "<group>"; };
 		ACED1E02249CA19700094284 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		ACED1E45249CA97500094284 /* Emporium copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Emporium copy-Info.plist"; path = "/Users/riyfhx/Desktop/emporium/Emporium copy-Info.plist"; sourceTree = "<absolute>"; };
 		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
@@ -426,7 +425,6 @@
 				3E559CF4FDE23DA288FF346B /* Pods */,
 				95407E2A058CB1895904ED5E /* Frameworks */,
 				ACD28624249877ED00497BD9 /* Recovered References */,
-				ACED1E45249CA97500094284 /* Emporium copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
