@@ -8,115 +8,78 @@
 
 import UIKit
 import Stripe
+import Alamofire
 
 class GatewayViewController: UIViewController {
     
-    var paymentContext: STPPaymentContext? = nil
+    
+    @IBOutlet weak var numberInput: UITextField!
+    @IBOutlet weak var monthInput: UITextField!
+    @IBOutlet weak var yearInput: UITextField!
+    @IBOutlet weak var cvcInput: UITextField!
+    
+    
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
     var backendBaseURL: String? = "http://192.168.86.1:5000"
     //local http://192.168.86.1:5000
     //web https://hidden-ridge-68133.herokuapp.com
     
-    
-    
-    
+//    var baseURLString: String? = nil
+//    var baseURL: URL {
+//        if let urlString = self.baseURLString, let url = URL(string: urlString) {
+//            return url
+//        } else {
+//            fatalError()
+//        }
+//    }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-               var settings: Settings = SettingsViewController().settings
-               if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
-                   self.stripePublishableKey = stripePublishableKey
-               }
-               if let backendBaseURL = UserDefaults.standard.string(forKey: "StripeBackendBaseURL") {
-                   self.backendBaseURL = backendBaseURL
-               }
-               let stripePublishableKey = self.stripePublishableKey
-               let backendBaseURL = self.backendBaseURL
-               
-               MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
-               Stripe.setDefaultPublishableKey(self.stripePublishableKey)
-               let config = STPPaymentConfiguration.shared()
-
-               let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
-               let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: settings.theme)
-
-               let userInformation = STPUserInformation()
-               paymentContext.prefilledInformation = userInformation
-
-               self.paymentContext = paymentContext
-    }
-}
-
-extension GatewayViewController: STPPaymentContextDelegate {
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         
-    }
-    
-    enum CheckoutError: Error {
-        case unknown
+        var settings: Settings = SettingsViewController().settings
+        if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
+            self.stripePublishableKey = stripePublishableKey
+        }
+        if let backendBaseURL = UserDefaults.standard.string(forKey: "StripeBackendBaseURL") {
+            self.backendBaseURL = backendBaseURL
+        }
 
-        var localizedDescription: String {
-            switch self {
-            case .unknown:
-                return "Unknown error"
-            }
-        }
-    }
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-        MyAPIClient.sharedClient.createPaymentIntent() { result in
-            switch result {
-            case .success(let clientSecret):
-                // Confirm the PaymentIntent
-                let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
-                paymentIntentParams.configure(with: paymentResult)
-                paymentIntentParams.returnURL = "payments-example://stripe-redirect"
-                STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
-                    switch status {
-                    case .succeeded:
-                        // Our example backend asynchronously fulfills the customer's order via webhook
-                        // See https://stripe.com/docs/payments/payment-intents/ios#fulfillment
-                        completion(.success, nil)
-                    case .failed:
-                        completion(.error, error)
-                    case .canceled:
-                        completion(.userCancellation, nil)
-                    @unknown default:
-                        completion(.error, nil)
-                    }
-                }
-            case .failure(let error):
-                // A real app should retry this request if it was a network error.
-                print("Failed to create a Payment Intent: \(error)")
-                completion(.error, error)
-                break
-            }
-        }
-    }
-    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        let title: String
-        let message: String
-        switch status {
-        case .error:
-            title = "Error"
-            message = error?.localizedDescription ?? ""
-        case .success:
-            title = "Success"
-            message = "Your purchase was successful!"
-        case .userCancellation:
-            return()
-        @unknown default:
-            return()
-        }
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
+        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
+        Stripe.setDefaultPublishableKey(self.stripePublishableKey)
+        let config = STPPaymentConfiguration.shared()
+
+        let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
+        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: settings.theme)
+
+        let userInformation = STPUserInformation()
+        paymentContext.prefilledInformation = userInformation
+
+
     }
     
-    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-          
+    @IBAction func paybtnPressed(_ sender: Any) {
+        let session  = URLSession.shared
+        let url = URL(string: backendBaseURL! + "/createToken")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let JSON = ["number":"4242424242424242", "month": "3", "year": "2021", "cvc": "321"]
+        let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+        
+        session.uploadTask(with: request, from: JSONDATA) {
+            data, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    print("success")
+                }
+            }
+            if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                print(datastring)
+            }
+        }.resume()
     }
     
 }
+
+

@@ -67,9 +67,5 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
         }
     }
     
-//    func completeCharge(_ result: STPPaymentResult, amount: Int, completion: @escaping STPErrorBlock) {
-//        let url = self.baseURL.appendingPathComponent("charge")
-//        var params: [String: Any] = ["source" : result.source.str]
-//    }
 
 }
