@@ -9,7 +9,7 @@
 import UIKit
 import Stripe
 
-class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , STPAddCardViewControllerDelegate{
+class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
@@ -55,22 +55,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func PayBtnPressed(_ sender: Any) {
-        let addCardViewController = STPAddCardViewController()
-        addCardViewController.delegate = self
-        
-        let navCtrl = UINavigationController(rootViewController: addCardViewController)
+        let navCtrl = UINavigationController(rootViewController: GatewayViewController(settings: SettingsViewController().settings))
         present(navCtrl, animated: true)
     }
     
-    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
-        dismiss(animated: true)
-    }
     
-    
-    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreateToken token: STPToken, completion: @escaping STPErrorBlock) {
-        dismiss(animated: true)
-        print(token.allResponseFields)
-    }
     
 }
 
