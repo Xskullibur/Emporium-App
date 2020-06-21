@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 for earnedReward in earnedRewards {
                     //Display Gift View Controller if the earned rewards is not shown to the user before
                     if !earnedReward.displayed{
-                        let storyboard = UIStoryboard.init(name: "Rewards", bundle: Bundle.init(for: VoucherBottomSheetViewController.self))
+                        let storyboard = UIStoryboard.init(name: "Rewards", bundle: nil)
                         let viewController = storyboard.instantiateViewController(identifier: "GiftPointsViewController") as GiftPointsViewController
                         
                         viewController.setEarnedRewardsDataManager(dataManager: self.earnedRewardsDataManager!)
