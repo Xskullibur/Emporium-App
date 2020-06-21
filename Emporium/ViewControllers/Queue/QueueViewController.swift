@@ -35,9 +35,8 @@ class QueueViewController: UIViewController {
         
         /// Buttons
         let containerScheme = MDCContainerScheme()
-        containerScheme.colorScheme.primaryColor = .systemOrange
-        directionBtn.setBorderColor(.systemOrange, for: .normal)
-        directionBtn.setBorderWidth(1, for: .normal)
+        containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
+
         directionBtn.applyOutlinedTheme(withScheme: containerScheme)
         leaveQueueBtn.applyOutlinedTheme(withScheme: containerScheme)
         
