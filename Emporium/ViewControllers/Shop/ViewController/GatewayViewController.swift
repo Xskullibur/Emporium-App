@@ -59,12 +59,17 @@ class GatewayViewController: UIViewController {
     }
     
     @IBAction func paybtnPressed(_ sender: Any) {
+        let number = numberInput.text
+        let month = monthInput.text
+        let year = yearInput.text
+        let cvc = cvcInput.text
+        
         let session  = URLSession.shared
         let url = URL(string: backendBaseURL! + "/createToken")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let JSON = ["number":"4242424242424242", "month": "3", "year": "2021", "cvc": "321"]
+        let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
         let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
         
         session.uploadTask(with: request, from: JSONDATA) {
