@@ -65,7 +65,7 @@ class VoucherDataManager {
             self.claimedVoucherPublisher = CurrentValueSubject<[[String: Any]], EmporiumError>([])
             
             //Create user claimed voucher reference if signed in
-            self.claimedVoucherRef = db.collection("users/\(user.uid)/claim_vouchers")
+            self.claimedVoucherRef = db.collection("users/\(user.uid)/claimed_vouchers")
             
             //Get voucher and send to publisher
             self.claimedVoucherRef?.addSnapshotListener{
@@ -90,7 +90,7 @@ class VoucherDataManager {
         }
         
         //Debugging
-        #if LOCAL_FIREBASE
+        #if DEBUG
         functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
         #endif
     }
@@ -101,19 +101,22 @@ class VoucherDataManager {
      Requirement:
         User must be signed in in order to use this function.
      */
-    func setClaimVoucher(voucher: Voucher, completion: ((EmporiumError?) -> Void)?){
+    func setClaimVoucher(voucher: Voucher, completion: ((VoucherStatus?) -> Void)?){
         functions.httpsCallable("claimVoucher").call(["voucherId": voucher.id]){
             result, error in
             
             if let error = error as NSError? {
-                completion?(.nserror(error))
+                completion?(.error(error))
             }
             
             if let status = (result?.data as? [String: Any])?["status"] as? String {
                 if status == "Success"{
-                    completion?(nil)
-                }else{
-                    completion?(.error("Unable to claim voucher"))
+                    completion?(.success)
+                }else if status == "Not enough points"{
+                    completion?(.notEnoughPoints)
+                }
+                else{
+                    completion?(.error(StringError.stringError(status)))
                 }
             }
             
@@ -161,8 +164,9 @@ class VoucherDataManager {
         let id = data["id"] as? String ?? ""
         let name = data["name"] as? String ?? ""
         let description = data["description"] as? String ?? ""
+        let cost = data["cost"] as? Int ?? 0
         let formula = data["formula"] as? String ?? ""
-        return Voucher(id: id, name: name, description: description, formula: formula)
+        return Voucher(id: id, name: name, description: description, cost: cost, formula: formula)
     }
     
 }

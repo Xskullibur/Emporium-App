@@ -26,11 +26,12 @@ class LoginManager : NSObject, FUIAuthDelegate {
     private func setupFirebaseLogin(){
         self.authUI = FUIAuth.defaultAuthUI()
         self.authUI?.delegate = self
-        
+
+
         let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth()
+            FUIGoogleAuth(),
+            FUIEmailAuth()
         ]
-        
         self.authUI?.providers = providers
     }
     
