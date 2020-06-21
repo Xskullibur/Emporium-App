@@ -438,6 +438,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
+  - "MaterialComponents/Buttons+ColorThemer (109.7.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Color
+  - "MaterialComponents/Buttons+ShapeThemer (109.7.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Shape
+  - "MaterialComponents/Buttons+Theming (109.7.0)":
+    - MaterialComponents/Buttons
+    - "MaterialComponents/Buttons+ColorThemer"
+    - "MaterialComponents/Buttons+ShapeThemer"
+    - "MaterialComponents/Buttons+TypographyThemer"
+    - MaterialComponents/schemes/Container
+    - MaterialComponents/ShadowElevations
+  - "MaterialComponents/Buttons+TypographyThemer (109.7.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Typography
   - MaterialComponents/Cards (109.7.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -468,6 +484,22 @@ PODS:
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
+  - MaterialComponents/schemes/Color (109.7.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+  - MaterialComponents/schemes/Container (109.7.0):
+    - MaterialComponents/schemes/Color
+    - MaterialComponents/schemes/Shape
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/schemes/Shape (109.7.0):
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+  - MaterialComponents/schemes/Typography (109.7.0):
+    - "MaterialComponents/schemes/Typography+BasicFontScheme"
+    - "MaterialComponents/schemes/Typography+Scheming"
+    - MaterialComponents/Typography
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (109.7.0)"
+  - "MaterialComponents/schemes/Typography+Scheming (109.7.0)"
   - MaterialComponents/ShadowElevations (109.7.0)
   - MaterialComponents/ShadowLayer (109.7.0):
     - MaterialComponents/ShadowElevations
@@ -505,6 +537,7 @@ DEPENDENCIES:
   - lottie-ios
   - MaterialComponents/BottomSheet
   - MaterialComponents/Buttons
+  - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
   - Stripe
 
@@ -587,6 +620,6 @@ SPEC CHECKSUMS:
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: 6ed3f1b456983a85878a4fb72b521038bc02b844
+PODFILE CHECKSUM: 66926742fae11d627e220a449ca4150c275d7e0a
 
 COCOAPODS: 1.9.3

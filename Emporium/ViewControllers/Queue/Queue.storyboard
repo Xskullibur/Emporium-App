@@ -14,10 +14,114 @@
                     <view key="view" contentMode="scaleToFill" id="zhx-fv-GgF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="W8r-V4-J81">
+                                <rect key="frame" x="45" y="276" width="324" height="344"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-2c-FwY" customClass="MDCCard">
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="214"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="H2l-bW-6cx">
+                                                <rect key="frame" x="15" y="15" width="294" height="184"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZIR-8R-bk4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="294" height="88.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQl-NY-Nxi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="294" height="22.5"/>
+                                                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1003" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-g3-kPE">
+                                                                <rect key="frame" x="0.0" y="22.5" width="294" height="66"/>
+                                                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="50"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-pY-RGJ">
+                                                        <rect key="frame" x="0.0" y="128.5" width="294" height="55.5"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xga-cM-PR8">
+                                                                <rect key="frame" x="0.0" y="0.0" width="147" height="55.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queue Length" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-8i-KnC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="22.5"/>
+                                                                        <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBR-lx-fKW">
+                                                                        <rect key="frame" x="0.0" y="22.5" width="147" height="33"/>
+                                                                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="25"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QTu-77-PHB">
+                                                                <rect key="frame" x="147" y="0.0" width="147" height="55.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently Serving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yh-gh-gHM">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="22.5"/>
+                                                                        <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDV-bH-LmA">
+                                                                        <rect key="frame" x="0.0" y="22.5" width="147" height="33"/>
+                                                                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="25"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="H2l-bW-6cx" firstAttribute="top" secondItem="tsY-2c-FwY" secondAttribute="top" constant="15" id="27h-8V-QFt"/>
+                                            <constraint firstAttribute="trailing" secondItem="H2l-bW-6cx" secondAttribute="trailing" constant="15" id="7qH-NQ-QPo"/>
+                                            <constraint firstItem="H2l-bW-6cx" firstAttribute="leading" secondItem="tsY-2c-FwY" secondAttribute="leading" constant="15" id="OwW-5G-ww8"/>
+                                            <constraint firstAttribute="bottom" secondItem="H2l-bW-6cx" secondAttribute="bottom" constant="15" id="zF3-Sv-TZx"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ehd-gZ-byT">
+                                        <rect key="frame" x="0.0" y="264" width="324" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VH-x6-EVw" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="30"/>
+                                                <state key="normal" title="Directions"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="50" width="324" height="30"/>
+                                                <state key="normal" title="Leave Queue"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="W8r-V4-J81" firstAttribute="centerY" secondItem="zhx-fv-GgF" secondAttribute="centerY" id="3BA-3c-xh5"/>
+                            <constraint firstItem="W8r-V4-J81" firstAttribute="leading" secondItem="WWN-3n-LqY" secondAttribute="leading" constant="45" id="CKU-30-Oxv"/>
+                            <constraint firstItem="WWN-3n-LqY" firstAttribute="trailing" secondItem="W8r-V4-J81" secondAttribute="trailing" constant="45" id="PtQ-bQ-FPs"/>
+                            <constraint firstItem="W8r-V4-J81" firstAttribute="centerX" secondItem="zhx-fv-GgF" secondAttribute="centerX" id="R1N-gl-gFJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WWN-3n-LqY"/>
                     </view>
                     <navigationItem key="navigationItem" id="9Id-Kz-GkN"/>
+                    <connections>
+                        <outlet property="cardView" destination="tsY-2c-FwY" id="hms-Xt-cpc"/>
+                        <outlet property="directionBtn" destination="8VH-x6-EVw" id="e8m-zJ-YaX"/>
+                        <outlet property="leaveQueueBtn" destination="KUf-YG-Iko" id="jtR-OA-Xyi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdb-vv-x7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
