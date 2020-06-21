@@ -101,7 +101,7 @@ class EarnedRewardsDataManager {
       EarnedReward must belong to the user signed in
      */
     func seenEarnedRewards(_ earnedReward: EarnedReward, completion: ((EarnedRewardStatus) -> Void)?){
-        functions.httpsCallable("seenRewardReward").call(["earnedRewardId": earnedReward.id]){
+        functions.httpsCallable("seenEarnedReward").call(["earnedRewardId": earnedReward.id]){
             result, error in
             
             if let error = error as NSError? {
