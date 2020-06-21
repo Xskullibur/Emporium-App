@@ -8,13 +8,17 @@
 
 import UIKit
 import CoreData
+import Combine
 import Firebase
 import FirebaseUI
 import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    private var earnedRewardsDataManager: EarnedRewardsDataManager? = nil
+    private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
+    
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         
@@ -43,7 +47,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationHandler.create()
         notificationHandler.start()
         
+        //Listen for rewards
+        self.earnedRewardsDataManager = EarnedRewardsDataManager()
+        self.earnedRewardsDataManager?.getEarnedRewards()
+            .sink(receiveCompletion: {
+                completion in
+            }, receiveValue: {
+                earnedRewards in
+                for earnedReward in earnedRewards {
+                    //Display Gift View Controller if the earned rewards is not shown to the user before
+                    if !earnedReward.displayed{
+                        let storyboard = UIStoryboard.init(name: "Rewards", bundle: Bundle.init(for: VoucherBottomSheetViewController.self))
+                        let viewController = storyboard.instantiateViewController(identifier: "GiftPointsViewController") as GiftPointsViewController
+                        
+                        viewController.setEarnedRewardsDataManager(dataManager: self.earnedRewardsDataManager!)
+                        viewController.setEarnedReward(earnedReward: earnedReward)
+                        viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+                        viewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+                        
+                        let rootViewController = UIApplication.shared.windows.first!.rootViewController
+                        rootViewController?.present(viewController, animated: true, completion: nil)
+                    }
+                }
+            }).store(in: &cancellables!)
+        
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        self.earnedRewardsDataManager = nil
+        self.cancellables = nil
     }
 
     // MARK: UISceneSession Lifecycle
