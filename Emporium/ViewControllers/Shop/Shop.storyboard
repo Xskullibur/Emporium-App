@@ -93,6 +93,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="PayBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="cza-IY-ogC"/>
+                                    <segue destination="iSc-su-h7E" kind="show" id="HGx-NE-UZF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,10 +128,29 @@
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">
             <objects>
-                <viewController title="Payment" id="iSc-su-h7E" customClass="PaymentViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GatewayViewController" title="Payment" id="iSc-su-h7E" customClass="GatewayViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l2Y-aF-c5u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xur-dl-4uX">
+                                <rect key="frame" x="35" y="675" width="345" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="PayBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="Gi6-W9-acQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cPU-go-72U"/>
                     </view>
@@ -230,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaP-Na-4X5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="97.767857142857139"/>
+            <point key="canvasLocation" x="3" y="98"/>
         </scene>
     </scenes>
     <resources>
