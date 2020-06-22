@@ -81,6 +81,18 @@ class MyVouchersTableViewController: UITableViewController {
         self.present(bottomSheet, animated: true, completion: nil)
     }
     
+    //MARK: TESTING ONLY
+    @IBAction func testAddPoints(_ sender: Any) {
+        let functions = Functions.functions()
+        //Debugging
+       #if DEBUG
+       functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
+       #endif
+        functions.httpsCallable("testAddPoints").call{
+            _, _ in
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
