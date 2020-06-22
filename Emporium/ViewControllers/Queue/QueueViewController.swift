@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
@@ -22,6 +23,27 @@ class QueueViewController: UIViewController {
     @IBOutlet weak var leaveQueueBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
     
+    // MARK: - IBActions
+    @IBAction func directionBtnPressed(_ sender: Any) {
+        // Add Store Annotation
+        let annotation = StoreAnnotation(
+            coords: CLLocationCoordinate2D(
+                latitude: store!.latitude,
+                longitude: store!.longitude
+            ),
+            store: store!
+        )
+        annotation.title = store!.name
+        annotation.subtitle = store!.address
+        
+        // Show Directions
+        let launchOptions = [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
+        ]
+        
+        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
+    }
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,15 +51,16 @@ class QueueViewController: UIViewController {
 
         // User Interface
         /// Title
-        if let store = store {
-            navigationItem.title = "\(store.name) (\(store.address))"
-        }
+        navigationItem.title = "\(store!.name) (\(store!.address))"
         
         /// Buttons
         let containerScheme = MDCContainerScheme()
         containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
-
-        directionBtn.applyOutlinedTheme(withScheme: containerScheme)
+        
+        directionBtn.minimumSize = CGSize(width: 64, height: 48)
+        directionBtn.applyContainedTheme(withScheme: containerScheme)
+        
+        leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
         leaveQueueBtn.applyOutlinedTheme(withScheme: containerScheme)
         
         /// CardView
@@ -77,14 +100,9 @@ class QueueViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    // MARK: - Navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
 
 }

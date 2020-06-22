@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="W8r-V4-J81">
-                                <rect key="frame" x="45" y="276" width="324" height="344"/>
+                                <rect key="frame" x="45" y="254" width="324" height="388"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-2c-FwY" customClass="MDCCard">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="214"/>
@@ -92,14 +92,25 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ehd-gZ-byT">
-                                        <rect key="frame" x="0.0" y="264" width="324" height="80"/>
+                                        <rect key="frame" x="0.0" y="264" width="324" height="124"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VH-x6-EVw" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="324" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="Oej-O7-nTB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Directions"/>
+                                                <connections>
+                                                    <action selector="directionBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="Jpc-Nl-eMH"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="50" width="324" height="30"/>
+                                                <rect key="frame" x="0.0" y="72" width="324" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="0Lm-bv-MDA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Leave Queue"/>
                                             </button>
                                         </subviews>
