@@ -13,31 +13,42 @@ import Alamofire
 class GatewayViewController: UIViewController {
     
     
+    @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var numberInput: UITextField!
-    @IBOutlet weak var monthInput: UITextField!
-    @IBOutlet weak var yearInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
-    
+    @IBOutlet weak var expDatePickerView: UIPickerView!
     
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
     var backendBaseURL: String? = "http://192.168.86.1:5000"
     //local http://192.168.86.1:5000
     //web https://hidden-ridge-68133.herokuapp.com
     
-//    var baseURLString: String? = nil
-//    var baseURL: URL {
-//        if let urlString = self.baseURLString, let url = URL(string: urlString) {
-//            return url
-//        } else {
-//            fatalError()
-//        }
-//    }
-
+    var monthPickerData : [Int] = Array(1...12)
+    var yearPickerData: [Int] = Array(2020...2070)
+    var labelData: [String] = ["Exp Month", "Exp Year"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var settings: Settings = SettingsViewController().settings
+        numberInput.placeholder = "Card Number"
+        cvcInput.placeholder = "CVC"
+        
+        cardImageView.image = UIImage(named: "noImage")
+        
+        self.expDatePickerView.dataSource = self
+        self.expDatePickerView.delegate = self
+        self.expDatePickerView.layer.cornerRadius = 10
+        
+        let labelWidth = expDatePickerView.frame.width / CGFloat(expDatePickerView.numberOfComponents)
+        for index in 0..<labelData.count {
+            let label: UILabel = UILabel.init(frame: CGRect(x: expDatePickerView.frame.origin.x + labelWidth * CGFloat(index), y: 0, width: labelWidth, height: 20))
+            label.text = labelData[index]
+            label.textAlignment = .center
+            expDatePickerView.addSubview(label)
+        }
+        
+        
+        let settings: Settings = SettingsViewController().settings
         if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
             self.stripePublishableKey = stripePublishableKey
         }
@@ -60,8 +71,8 @@ class GatewayViewController: UIViewController {
     
     @IBAction func paybtnPressed(_ sender: Any) {
         let number = numberInput.text
-        let month = monthInput.text
-        let year = yearInput.text
+        let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
+        let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
         let cvc = cvcInput.text
         
         let session  = URLSession.shared
@@ -84,7 +95,29 @@ class GatewayViewController: UIViewController {
             }
         }.resume()
     }
+}
+
+extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return monthPickerData.count
+        }else{
+            return yearPickerData.count
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return String(monthPickerData[row])
+        }else{
+            return String(yearPickerData[row])
+        }
+    }
+
 }
 
 

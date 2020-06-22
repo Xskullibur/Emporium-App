@@ -55,10 +55,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func PayBtnPressed(_ sender: Any) {
-        //let navCtrl = UINavigationController(rootViewController: GatewayViewController())
-        //present(navCtrl, animated: true)
-        //let viewcontroller = UIStoryboard(name: "Shop", bundle: nil).instantiateViewController(identifier: "GatewayViewController") as GatewayViewController
-        //self.present(viewcontroller, animated: true, completion: nil)
+        
     }
     
     
