@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import Alamofire
+import Firebase
 
 class GatewayViewController: UIViewController {
     
@@ -52,6 +53,8 @@ class GatewayViewController: UIViewController {
     
     @IBAction func paybtnPressed(_ sender: Any) {
         
+        //print(Auth.auth().currentUser?.uid)
+        
         var paymentInfo = PaymentInfo()
         
         paymentInfo.cartItems = []
@@ -65,6 +68,7 @@ class GatewayViewController: UIViewController {
         paymentInfo.month = Int32(month)
         paymentInfo.year = Int32(year)
         paymentInfo.cvc = cvc!
+        paymentInfo.userid = Auth.auth().currentUser?.uid as! String
         
         for cart in cartData {
             var cartItemAdd = CartItem()
