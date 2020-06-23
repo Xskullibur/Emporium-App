@@ -35,6 +35,7 @@
 		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
 		AC21B9D8249767630058EE50 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D0249767630058EE50 /* Product.swift */; };
 		ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67024A1DC9100C286BF /* Spinner.swift */; };
+		ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */; };
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
@@ -139,6 +140,7 @@
 		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		ACAEE67024A1DC9100C286BF /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
+			isa = PBXGroup;
+			children = (
+				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
+			);
+			path = CrowdTracking;
+			sourceTree = "<group>";
+		};
 		ACD28624249877ED00497BD9 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +383,7 @@
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
 				ED57F79F24A076970013A133 /* Models */,
 				ED57F794249C98F10013A133 /* Queue */,
 				ACED1DE9249B72BF00094284 /* Rewards */,
@@ -706,6 +717,7 @@
 				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
+				ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */,
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
