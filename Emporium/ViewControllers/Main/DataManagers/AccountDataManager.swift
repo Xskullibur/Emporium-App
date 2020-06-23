@@ -11,7 +11,7 @@ import Firebase
 
 class AccountDataManager
 {
-    /*
+    /**
      Store profile image into Firebase Storage
      */
     static func setUserProfileImage(user: User, image: UIImage, completion: ((Error?) -> Void)?) {
@@ -36,7 +36,7 @@ class AccountDataManager
         
     }
     
-    /*
+    /**
      Retrieve profile image from Firebase Storage
      */
     static func getUserProfileImage(user: User, completion: ((UIImage?, Error?) -> Void)?){
