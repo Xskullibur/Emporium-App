@@ -10,14 +10,12 @@
 		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
-		7F0B386E24A08CF30003B9D9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B386D24A08CF20003B9D9 /* SettingsViewController.swift */; };
 		7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387524A210810003B9D9 /* CartItem.pb.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
 		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD02644249A0EF300BAA2F1 /* UIImageView.swift */; };
-		7FD3CD18249F5D5600C1CD80 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD17249F5D5600C1CD80 /* MyAPIClient.swift */; };
 		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
 		AC0A18F424932494009FFD93 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
 		AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
@@ -103,14 +101,12 @@
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F0B386D24A08CF20003B9D9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7F0B387524A210810003B9D9 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
 		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		7FD02644249A0EF300BAA2F1 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		7FD3CD17249F5D5600C1CD80 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
 		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,7 +244,6 @@
 				AC13E908249CE83300DA2A7F /* PickupViewController.swift */,
 				AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */,
 				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
-				7F0B386D24A08CF20003B9D9 /* SettingsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -284,7 +279,6 @@
 				AC21B9CF249767630058EE50 /* Model */,
 				AC21B9CC249767630058EE50 /* Cell */,
 				AC21B9C9249767630058EE50 /* Shop.storyboard */,
-				7FD3CD17249F5D5600C1CD80 /* MyAPIClient.swift */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -845,13 +839,11 @@
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
 				AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */,
-				7FD3CD18249F5D5600C1CD80 /* MyAPIClient.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
 				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* ViewController.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
-				7F0B386E24A08CF30003B9D9 /* SettingsViewController.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
