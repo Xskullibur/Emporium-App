@@ -16,26 +16,6 @@ protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
 }
 
-
-// MARK: - Custom Objects
-class StoreAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var store: GroceryStore
-    var title: String?
-    var subtitle: String?
-    
-    init(coords _coords: CLLocationCoordinate2D,
-         store _store: GroceryStore) {
-        
-        // Required
-        store = _store
-        coordinate = _coords
-        title = _store.name
-        subtitle = _store.address
-        
-    }
-}
-
 class StoreButton: UIButton {
     
     var store: GroceryStore?
