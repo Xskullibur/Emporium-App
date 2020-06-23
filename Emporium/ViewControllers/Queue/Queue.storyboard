@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="W8r-V4-J81">
-                                <rect key="frame" x="45" y="254" width="324" height="388"/>
+                                <rect key="frame" x="45" y="292" width="324" height="312"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-2c-FwY" customClass="MDCCard">
                                         <rect key="frame" x="0.0" y="0.0" width="324" height="214"/>
@@ -92,23 +92,12 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ehd-gZ-byT">
-                                        <rect key="frame" x="0.0" y="264" width="324" height="124"/>
+                                        <rect key="frame" x="0.0" y="264" width="324" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VH-x6-EVw" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="324" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="Oej-O7-nTB"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <state key="normal" title="Directions"/>
-                                                <connections>
-                                                    <action selector="directionBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="Jpc-Nl-eMH"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="72" width="324" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="48"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="0Lm-bv-MDA"/>
+                                                    <constraint firstAttribute="height" constant="48" id="0Lm-bv-MDA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Leave Queue"/>
@@ -127,16 +116,117 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WWN-3n-LqY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9Id-Kz-GkN"/>
+                    <navigationItem key="navigationItem" id="9Id-Kz-GkN">
+                        <barButtonItem key="rightBarButtonItem" title="Debug Entry" id="tc3-jI-L8o">
+                            <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="mxv-pB-aiD" kind="popoverPresentation" identifier="debug.entryVC" popoverAnchorBarButtonItem="tc3-jI-L8o" id="2fA-Rh-Jmf">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cardView" destination="tsY-2c-FwY" id="hms-Xt-cpc"/>
-                        <outlet property="directionBtn" destination="8VH-x6-EVw" id="e8m-zJ-YaX"/>
                         <outlet property="leaveQueueBtn" destination="KUf-YG-Iko" id="jtR-OA-Xyi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdb-vv-x7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079.7101449275362" y="150.66964285714286"/>
+        </scene>
+        <!--Entry View Controller-->
+        <scene sceneID="rMW-mK-HqF">
+            <objects>
+                <viewController id="mxv-pB-aiD" customClass="EntryViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wBx-dz-zfR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="tkL-yZ-O0r">
+                                <rect key="frame" x="25" y="120" width="364" height="602"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0nm-KY-kk5">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="436"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLx-d8-IBa">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="0YP-BP-sNd"/>
+                                                </constraints>
+                                                <string key="text">You may head to the
+Grocery Store</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIS-FG-Ppj" customClass="AnimationView" customModule="Lottie">
+                                                <rect key="frame" x="0.0" y="100" width="364" height="315.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember to wear your mask!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iC-LH-vCn">
+                                                <rect key="frame" x="0.0" y="415.5" width="364" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20.5" id="0hx-rg-mdg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-Ym-VAK">
+                                        <rect key="frame" x="0.0" y="486" width="364" height="116"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUk-ha-Dlv" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="gQg-pD-40L"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Directions"/>
+                                                <connections>
+                                                    <action selector="directionBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="7Ww-Ht-mfS"/>
+                                                    <action selector="directionBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="Iku-SQ-x6O"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDA-50-lM2" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="68" width="364" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="acy-h7-PNR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Enter Grocery Store"/>
+                                                <connections>
+                                                    <action selector="enteryStoreBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="27d-Z7-Plu"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tkL-yZ-O0r" firstAttribute="centerX" secondItem="wBx-dz-zfR" secondAttribute="centerX" id="4eZ-8q-QVr"/>
+                            <constraint firstItem="tkL-yZ-O0r" firstAttribute="leading" secondItem="hyI-cy-rg8" secondAttribute="leading" constant="25" id="6Gv-N4-pdT"/>
+                            <constraint firstItem="tkL-yZ-O0r" firstAttribute="centerY" secondItem="wBx-dz-zfR" secondAttribute="centerY" id="ScZ-Gg-eBm"/>
+                            <constraint firstItem="hyI-cy-rg8" firstAttribute="trailing" secondItem="tkL-yZ-O0r" secondAttribute="trailing" constant="25" id="oXs-Mm-tiO"/>
+                            <constraint firstItem="tkL-yZ-O0r" firstAttribute="top" secondItem="wBx-dz-zfR" secondAttribute="top" constant="120" id="sU5-lT-DLc"/>
+                            <constraint firstAttribute="bottom" secondItem="tkL-yZ-O0r" secondAttribute="bottom" constant="120" id="zNm-br-ZLj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hyI-cy-rg8"/>
+                    </view>
+                    <connections>
+                        <outlet property="animationView" destination="OIS-FG-Ppj" id="7B8-t5-aSp"/>
+                        <outlet property="directionBtn" destination="qUk-ha-Dlv" id="uva-xp-L69"/>
+                        <outlet property="enterStoreBtn" destination="EDA-50-lM2" id="XdK-2D-GO4"/>
+                        <outlet property="reminderLabel" destination="8iC-LH-vCn" id="AbQ-j8-byT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H3l-UI-mTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="919"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hgp-Pf-f1E">

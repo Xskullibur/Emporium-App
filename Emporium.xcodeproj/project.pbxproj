@@ -56,6 +56,9 @@
 		ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F797249C9DD90013A133 /* QueueViewController.swift */; };
 		ED57F79C249CA2380013A133 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F79B249CA2380013A133 /* Toast.swift */; };
 		ED57F7A124A076C10013A133 /* StoreAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A024A076C10013A133 /* StoreAnnotation.swift */; };
+		ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A324A08B6B0013A133 /* wear-mask.json */; };
+		ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A424A08B6C0013A133 /* social-distancing.json */; };
+		ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A724A1CBE70013A133 /* EntryViewController.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -150,6 +153,9 @@
 		ED57F797249C9DD90013A133 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		ED57F79B249CA2380013A133 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		ED57F7A024A076C10013A133 /* StoreAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAnnotation.swift; sourceTree = "<group>"; };
+		ED57F7A324A08B6B0013A133 /* wear-mask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "wear-mask.json"; sourceTree = "<group>"; };
+		ED57F7A424A08B6C0013A133 /* social-distancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "social-distancing.json"; sourceTree = "<group>"; };
+		ED57F7A724A1CBE70013A133 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -413,8 +419,10 @@
 		ED57F794249C98F10013A133 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F7A224A08A810013A133 /* Animation */,
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
 				ED57F797249C9DD90013A133 /* QueueViewController.swift */,
+				ED57F7A724A1CBE70013A133 /* EntryViewController.swift */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
@@ -426,6 +434,15 @@
 				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		ED57F7A224A08A810013A133 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				ED57F7A424A08B6C0013A133 /* social-distancing.json */,
+				ED57F7A324A08B6B0013A133 /* wear-mask.json */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		EDA5990D2484D12000ADD228 /* Apis */ = {
@@ -643,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
+				ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */,
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
@@ -655,6 +673,7 @@
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
+				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
@@ -844,6 +863,7 @@
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
+				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,

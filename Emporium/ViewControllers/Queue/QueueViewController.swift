@@ -19,30 +19,8 @@ class QueueViewController: UIViewController {
     var store: GroceryStore?
 
     // MARK: - Outlets
-    @IBOutlet weak var directionBtn: MDCButton!
     @IBOutlet weak var leaveQueueBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
-    
-    // MARK: - IBActions
-    @IBAction func directionBtnPressed(_ sender: Any) {
-        // Add Store Annotation
-        let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(
-                latitude: store!.latitude,
-                longitude: store!.longitude
-            ),
-            store: store!
-        )
-        annotation.title = store!.name
-        annotation.subtitle = store!.address
-        
-        // Show Directions
-        let launchOptions = [
-            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
-        ]
-        
-        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
-    }
     
     
     // MARK: - Lifecycle
@@ -57,11 +35,8 @@ class QueueViewController: UIViewController {
         let containerScheme = MDCContainerScheme()
         containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
         
-        directionBtn.minimumSize = CGSize(width: 64, height: 48)
-        directionBtn.applyContainedTheme(withScheme: containerScheme)
-        
         leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
-        leaveQueueBtn.applyOutlinedTheme(withScheme: containerScheme)
+        leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
         
         /// CardView
         cardView.cornerRadius = 13
@@ -100,9 +75,14 @@ class QueueViewController: UIViewController {
     }
     
 
-//    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//    }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "debug.entryVC" {
+            let entryVC = segue.destination as! EntryViewController
+            entryVC.store = store
+        }
+        
+    }
 
 }
