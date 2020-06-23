@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
@@ -18,7 +19,6 @@ class QueueViewController: UIViewController {
     var store: GroceryStore?
 
     // MARK: - Outlets
-    @IBOutlet weak var directionBtn: MDCButton!
     @IBOutlet weak var leaveQueueBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
     
@@ -29,16 +29,14 @@ class QueueViewController: UIViewController {
 
         // User Interface
         /// Title
-        if let store = store {
-            navigationItem.title = "\(store.name) (\(store.address))"
-        }
+        navigationItem.title = "\(store!.name) (\(store!.address))"
         
         /// Buttons
         let containerScheme = MDCContainerScheme()
         containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
-
-        directionBtn.applyOutlinedTheme(withScheme: containerScheme)
-        leaveQueueBtn.applyOutlinedTheme(withScheme: containerScheme)
+        
+        leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
+        leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
         
         /// CardView
         cardView.cornerRadius = 13
@@ -77,14 +75,14 @@ class QueueViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "debug.entryVC" {
+            let entryVC = segue.destination as! EntryViewController
+            entryVC.store = store
+        }
+        
     }
-    */
 
 }
