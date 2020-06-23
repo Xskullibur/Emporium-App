@@ -58,6 +58,10 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
 
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! GatewayViewController
+        destVC.cartData = self.cartData
+    }
     
     
 }

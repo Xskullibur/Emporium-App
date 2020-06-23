@@ -26,6 +26,7 @@ class GatewayViewController: UIViewController {
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
     var labelData: [String] = ["Exp Month", "Exp Year"]
+    var cartData: [Cart] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,31 +48,13 @@ class GatewayViewController: UIViewController {
             expDatePickerView.addSubview(label)
         }
         
-        
-//        let settings: Settings = SettingsViewController().settings
-//        if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
-//            self.stripePublishableKey = stripePublishableKey
-//        }
-//        if let backendBaseURL = UserDefaults.standard.string(forKey: "StripeBackendBaseURL") {
-//            self.backendBaseURL = backendBaseURL
-//        }
-//
-//        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
-//        Stripe.setDefaultPublishableKey(self.stripePublishableKey)
-//        let config = STPPaymentConfiguration.shared()
-//
-//        let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
-//        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: settings.theme)
-//
-//        let userInformation = STPUserInformation()
-//        paymentContext.prefilledInformation = userInformation
-
-
     }
     
     @IBAction func paybtnPressed(_ sender: Any) {
         
         var paymentInfo = PaymentInfo()
+        
+        paymentInfo.cartItems = []
         
         let number = numberInput.text
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
@@ -83,29 +66,20 @@ class GatewayViewController: UIViewController {
         paymentInfo.year = Int32(year)
         paymentInfo.cvc = cvc!
         
-        var cartItem1 = CartItem()
-        cartItem1.productID = "1"
-        cartItem1.quantity = 1
-        var cartItem2 = CartItem()
-        cartItem2.productID = "2"
-        cartItem2.quantity = 30
-        var cartItem3 = CartItem()
-        cartItem3.productID = "3"
-        cartItem3.quantity = 2
-        
-        paymentInfo.cartItems = [
-            cartItem1, cartItem2, cartItem3
-        ]
+        for cart in cartData {
+            var cartItemAdd = CartItem()
+            cartItemAdd.productID = cart.productID
+            cartItemAdd.quantity = Int32(cart.quantity)
+            paymentInfo.cartItems.append(cartItemAdd)
+        }
         
         let data = try? paymentInfo.serializedData()
         
         let session  = URLSession.shared
-        let url = URL(string: backendBaseURL! + "/createToken")
+        let url = URL(string: backendBaseURL! + "/oneTimeCharge")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-//        let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
-//        let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
         
         session.uploadTask(with: request, from: data) {
             data, response, error in
