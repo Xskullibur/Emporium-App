@@ -48,42 +48,66 @@ class GatewayViewController: UIViewController {
         }
         
         
-        let settings: Settings = SettingsViewController().settings
-        if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
-            self.stripePublishableKey = stripePublishableKey
-        }
-        if let backendBaseURL = UserDefaults.standard.string(forKey: "StripeBackendBaseURL") {
-            self.backendBaseURL = backendBaseURL
-        }
-
-        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
-        Stripe.setDefaultPublishableKey(self.stripePublishableKey)
-        let config = STPPaymentConfiguration.shared()
-
-        let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
-        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: settings.theme)
-
-        let userInformation = STPUserInformation()
-        paymentContext.prefilledInformation = userInformation
+//        let settings: Settings = SettingsViewController().settings
+//        if let stripePublishableKey = UserDefaults.standard.string(forKey: "StripePublishableKey") {
+//            self.stripePublishableKey = stripePublishableKey
+//        }
+//        if let backendBaseURL = UserDefaults.standard.string(forKey: "StripeBackendBaseURL") {
+//            self.backendBaseURL = backendBaseURL
+//        }
+//
+//        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
+//        Stripe.setDefaultPublishableKey(self.stripePublishableKey)
+//        let config = STPPaymentConfiguration.shared()
+//
+//        let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
+//        let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: settings.theme)
+//
+//        let userInformation = STPUserInformation()
+//        paymentContext.prefilledInformation = userInformation
 
 
     }
     
     @IBAction func paybtnPressed(_ sender: Any) {
+        
+        var paymentInfo = PaymentInfo()
+        
         let number = numberInput.text
-        let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
-        let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
+        let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
+        let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
+        
+        paymentInfo.number = number!
+        paymentInfo.month = Int32(month)
+        paymentInfo.year = Int32(year)
+        paymentInfo.cvc = cvc!
+        
+        var cartItem1 = CartItem()
+        cartItem1.productID = "1"
+        cartItem1.quantity = 1
+        var cartItem2 = CartItem()
+        cartItem2.productID = "2"
+        cartItem2.quantity = 30
+        var cartItem3 = CartItem()
+        cartItem3.productID = "3"
+        cartItem3.quantity = 2
+        
+        paymentInfo.cartItems = [
+            cartItem1, cartItem2, cartItem3
+        ]
+        
+        let data = try? paymentInfo.serializedData()
         
         let session  = URLSession.shared
         let url = URL(string: backendBaseURL! + "/createToken")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
-        let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+//        let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
+//        let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
         
-        session.uploadTask(with: request, from: JSONDATA) {
+        session.uploadTask(with: request, from: data) {
             data, response, error in
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
@@ -96,6 +120,36 @@ class GatewayViewController: UIViewController {
         }.resume()
     }
 }
+    
+//    let number = numberInput.text
+//    let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
+//    let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
+//    let cvc = cvcInput.text
+//
+//    let cartItem = CartItem()
+//
+//    let data = try? cartItem.serializedData()
+//
+//    let session  = URLSession.shared
+//    let url = URL(string: backendBaseURL! + "/createToken")
+//    var request = URLRequest(url: url!)
+//    request.httpMethod = "POST"
+//    request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+//    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
+//    let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+//
+//    session.uploadTask(with: request, from: data) {
+//        data, response, error in
+//        if let httpResponse = response as? HTTPURLResponse {
+//            if httpResponse.statusCode == 200 {
+//                print("success")
+//            }
+//        }
+//        if let data = data, let datastring = String(data:data,encoding: .utf8) {
+//            print(datastring)
+//        }
+//    }.resume()
+//}
 
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -119,5 +173,3 @@ extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
 }
-
-

@@ -55,7 +55,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func PayBtnPressed(_ sender: Any) {
-        
+
     }
     
     

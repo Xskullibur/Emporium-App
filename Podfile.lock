@@ -494,6 +494,7 @@ PODS:
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - Stripe (19.3.0)
+  - SwiftProtobuf (1.9.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -509,6 +510,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
   - Stripe
+  - SwiftProtobuf
 
 SPEC REPOS:
   trunk:
@@ -550,6 +552,7 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - Stripe
+    - SwiftProtobuf
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -590,7 +593,8 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
+  SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
-PODFILE CHECKSUM: 586e0b1e7b5e4052b4a2fff04e15e875d027ee4b
+PODFILE CHECKSUM: af7b015015533f06dd45135e4a5c0bc43d339cf2
 
 COCOAPODS: 1.9.3

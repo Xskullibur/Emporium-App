@@ -23,6 +23,8 @@ target 'Emporium' do
   
   pod 'Stripe'
   pod 'Alamofire'
+  
+  pod 'SwiftProtobuf'
 
   target 'EmporiumTests' do
     inherit! :search_paths
