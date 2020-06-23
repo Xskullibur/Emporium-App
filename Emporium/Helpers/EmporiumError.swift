@@ -16,3 +16,7 @@ enum EmporiumError : Error {
     
     case error(String)
 }
+
+enum StringError : Error {
+    case stringError(String)
+}

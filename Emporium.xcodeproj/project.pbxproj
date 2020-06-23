@@ -38,6 +38,9 @@
 		ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */; };
 		ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */; };
 		ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */; };
+		ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */; };
+		ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ED1249F3000009887A7 /* EarnedReward.swift */; };
+		ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */; };
 		ACED1DE4249B307600094284 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
 		ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
 		ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
@@ -134,6 +137,9 @@
 		ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
 		ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPointsViewController.swift; sourceTree = "<group>"; };
 		ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "gift-opening-animation.json"; sourceTree = "<group>"; };
+		ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedRewardsDataManager.swift; sourceTree = "<group>"; };
+		ACDA8ED1249F3000009887A7 /* EarnedReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedReward.swift; sourceTree = "<group>"; };
+		ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedRewardStatus.swift; sourceTree = "<group>"; };
 		ACED1DE3249B307600094284 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		ACED1DE6249B41BF00094284 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
 		ACED1DEA249B72DF00094284 /* Rewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rewards.storyboard; sourceTree = "<group>"; };
@@ -342,6 +348,14 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		ACDA8ECE249F2B80009887A7 /* EarnedRewards */ = {
+			isa = PBXGroup;
+			children = (
+				ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */,
+			);
+			path = EarnedRewards;
+			sourceTree = "<group>";
+		};
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,13 +393,13 @@
 		ACED1DE9249B72BF00094284 /* Rewards */ = {
 			isa = PBXGroup;
 			children = (
+				ACDA8ECE249F2B80009887A7 /* EarnedRewards */,
 				ACDA8ECB249DF320009887A7 /* Animations */,
 				ACDA8EC4249DE28B009887A7 /* MyVouchers */,
 				ACDA8EC3249DE26C009887A7 /* AvailableVouchers */,
 				ACED1DFF249C64A500094284 /* DataMangers */,
 				ACED1DF0249B8D2300094284 /* Models */,
 				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
-				ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -395,6 +409,8 @@
 			children = (
 				ACED1DF1249B8D2E00094284 /* Voucher.swift */,
 				AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */,
+				ACDA8ED1249F3000009887A7 /* EarnedReward.swift */,
+				ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,6 +418,7 @@
 		ACED1DFF249C64A500094284 /* DataMangers */ = {
 			isa = PBXGroup;
 			children = (
+				ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */,
 				ACED1E00249C64BF00094284 /* VoucherDataManager.swift */,
 				ACED1E46249CB64800094284 /* PointDataManager.swift */,
 			);
@@ -845,6 +862,7 @@
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */,
@@ -881,6 +899,8 @@
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
+				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
+				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
