@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 class PointDataManager {
-    /*
+    /**
      Get the current points that the user has
      */
     func getPoints(user: User,  completion: @escaping (Int) -> Void){

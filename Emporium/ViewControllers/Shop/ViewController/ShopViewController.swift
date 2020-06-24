@@ -15,8 +15,6 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    //var productData = [Product("1", "test1", 4.0, "", ""), Product("2", "test2", 5.0, "", ""), Product("3", "test3", 6.0, "", ""), Product("4", "test4", 4.0, "",""), Product("5", "test5", 5.0, "", ""), Product("6", "test6", 6.0, "", "")]
-    
     var productData: [Product] = []
     var cartData: [Cart] = []
     
@@ -132,8 +130,8 @@ extension ShopViewController: UICollectionViewDataSource {
             return cell
         }else{
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
-            
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
+            //self.cartData[indexPath.row].image
             cell2.cornerRadius = 13
             cell2.contentView.layer.masksToBounds = true
             cell2.clipsToBounds = true

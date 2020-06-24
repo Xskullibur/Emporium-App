@@ -112,6 +112,7 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         bottomSheet.preferredContentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 3)
         
         viewController.setVoucher(voucher: vouchers[indexPath.row])
+        viewController.setViewController(viewController: self)
         viewController.setVoucherDataManager(dataManager: self.voucherDataManager!)
         self.present(bottomSheet, animated: true, completion: nil)
     }
