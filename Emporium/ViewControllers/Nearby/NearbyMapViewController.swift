@@ -16,26 +16,6 @@ protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
 }
 
-
-// MARK: - Custom Objects
-class StoreAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var store: GroceryStore
-    var title: String?
-    var subtitle: String?
-    
-    init(coords _coords: CLLocationCoordinate2D,
-         store _store: GroceryStore) {
-        
-        // Required
-        store = _store
-        coordinate = _coords
-        title = _store.name
-        subtitle = _store.address
-        
-    }
-}
-
 class StoreButton: UIButton {
     
     var store: GroceryStore?
@@ -55,9 +35,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
 
     // MARK: - Variables
     var locationManager: CLLocationManager?
+    var loginManager: LoginManager?
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
     var storeList_moreThan2: [GroceryStore] = []
+    var selectedStore: GroceryStore?
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -87,13 +69,13 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.performSegue(withIdentifier: "ShowQueue", sender: sender)
         }
         else {
-            let loginManager = LoginManager(viewController: self)
+            loginManager? = LoginManager(viewController: self)
             
-            loginManager.setLoginComplete { (user) in
+            loginManager?.setLoginComplete { (user) in
                 self.performSegue(withIdentifier: "ShowQueue", sender: sender)
             }
             
-            loginManager.showLoginViewController()
+            loginManager?.showLoginViewController()
         }
         
     }
@@ -141,6 +123,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed(sender:)))
+        
+        // Update Varible
+        selectedStore = store
     }
     
     // MARK: - MapView
@@ -388,6 +373,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         else if segue.identifier == "ShowQueue" {
             let queueVC = segue.destination as! QueueViewController
             queueVC.justJoinedQueue = true
+            
+            if let store = selectedStore {
+                queueVC.store = store
+            }
+            
         }
         
     }

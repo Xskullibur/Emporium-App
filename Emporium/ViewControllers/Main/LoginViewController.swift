@@ -27,19 +27,27 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         userBtn.setTapped(loginAction)
         
         merchantBtn.update(text: "Merchant", image: UIImage(named: "Shop")!)
+        merchantBtn.setTapped(merchantLoginAction)
         
         self.loginManager?.setLoginComplete{
             user in
             //Dismiss this view controller after login
             self.navigationController?.popViewController(animated: true)
+            
         }
     }
     
     
     func loginAction() {
+        self.loginManager?.setLoginAsUserType(userType: .user)
         self.loginManager?.showLoginViewController()
     }
 
+    
+    func merchantLoginAction() {
+        self.loginManager?.setLoginAsUserType(userType: .merchant)
+        self.loginManager?.showLoginViewController()
+    }
     
     /*
     // MARK: - Navigation

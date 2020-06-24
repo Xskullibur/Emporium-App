@@ -7,15 +7,46 @@
 //
 
 import UIKit
+import MapKit
+import MaterialComponents.MaterialCards
+import MaterialComponents.MaterialButtons
+import MaterialComponents.MaterialButtons_Theming
 
 class QueueViewController: UIViewController {
 
+    // MARK: - Variable
     var justJoinedQueue = false
+    var store: GroceryStore?
+
+    // MARK: - Outlets
+    @IBOutlet weak var leaveQueueBtn: MDCButton!
+    @IBOutlet weak var cardView: MDCCard!
     
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // User Interface
+        /// Title
+        navigationItem.title = "\(store!.name) (\(store!.address))"
+        
+        /// Buttons
+        let containerScheme = MDCContainerScheme()
+        containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
+        
+        leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
+        leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
+        
+        /// CardView
+        cardView.cornerRadius = 13
+        cardView.clipsToBounds = true
+        cardView.setBorderWidth(1, for: .normal)
+        cardView.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+        cardView.layer.masksToBounds = false
+        cardView.setShadowElevation(ShadowElevation(6), for: .normal)
+        
+        // Volunteer Prompt
         if justJoinedQueue {
             
             let alert = UIAlertController(
@@ -44,14 +75,14 @@ class QueueViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "debug.entryVC" {
+            let entryVC = segue.destination as! EntryViewController
+            entryVC.store = store
+        }
+        
     }
-    */
 
 }

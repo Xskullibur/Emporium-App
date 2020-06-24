@@ -11,7 +11,7 @@ import Combine
 import MaterialComponents.MaterialCards
 import Firebase
 
-class ViewController: EmporiumNotificationViewController,
+class MainViewController: EmporiumNotificationViewController,
 UICollectionViewDataSource, UICollectionViewDelegate {
     
 
@@ -22,7 +22,13 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     
     var login = false
     
-    let cells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
+    var loginAsUserType: UserType = .user
+    
+    //User Cells
+    let userCells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
+
+    //Merchant Cells
+    let merchantCells = ["CrowdTrackingCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +48,19 @@ UICollectionViewDataSource, UICollectionViewDelegate {
             (auth, user) in
             if let user = user {
                 self.switchToAccountState(accountToDisplay: user)
+                
+                //Update cells based on user type
+                self.showSpinner(onView: self.view)
+                user.getUserType{
+                    userType, error in
+                    self.loginAsUserType = userType!
+                    self.mainButtonsCollectionView?.reloadData()
+                    self.removeSpinner()
+                }
             }else{
                 self.switchToLoginState()
+                self.loginAsUserType = .user
+                self.mainButtonsCollectionView?.reloadData()
             }
             
         }
@@ -51,11 +68,15 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if self.loginAsUserType == .user { return userCells.count }
+        else { return merchantCells.count }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+        var cells: [String] = userCells
+        if self.loginAsUserType == .merchant {cells = merchantCells}
+        
         let cell = mainButtonsCollectionView.dequeueReusableCell(withReuseIdentifier: cells[indexPath.item], for: indexPath) as! MDCCardCollectionCell
 
         cell.cornerRadius = 13
