@@ -15,6 +15,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var purchaseHistory: [String] = []
+    var docID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,15 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.titleLabel.text = purchaseHistory[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        docID = purchaseHistory[indexPath.row]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! HistoryDetailViewController
+        destVC.docID = "06-Thu-2020-12:38:22-am"
     }
     
 }

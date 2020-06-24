@@ -122,6 +122,7 @@
                                 <rect key="frame" x="23" y="125" width="364" height="674"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCell" rowHeight="85" id="zOI-8H-lnt" customClass="HistoryCell" customModule="Emporium" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="364" height="85"/>
@@ -142,6 +143,7 @@
                                         <color key="backgroundColor" name="Primary"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="hRb-Zn-t1c" id="8yV-QD-M46"/>
+                                            <segue destination="yek-o6-igP" kind="show" id="sIs-qu-UOy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -160,7 +162,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CY9-Uu-BrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2.8985507246376816" y="819.64285714285711"/>
+            <point key="canvasLocation" x="-990" y="824"/>
+        </scene>
+        <!--History Detail View Controller-->
+        <scene sceneID="D4Y-sU-xsg">
+            <objects>
+                <viewController id="yek-o6-igP" customClass="HistoryDetailViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8je-9H-GzH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="d1v-2j-1dQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e6J-Zx-feI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ee0-T8-Xat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="824"/>
         </scene>
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">

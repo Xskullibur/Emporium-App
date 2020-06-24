@@ -63,6 +63,26 @@ class ShopDataManager
             }
             onComplete?(purchaseHistory)
         }
-        
     }
+    
+    static func loadHistoryDetail(docID: String, onComplete: (([String]) -> Void)?) {
+        
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").document(docID).getDocument
+        {
+            (document, err) in
+            
+            var details: [String] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                details = document?.get("cartDetail") as! [String]
+            }
+            onComplete?(details)
+        }
+    }
+     
 }
