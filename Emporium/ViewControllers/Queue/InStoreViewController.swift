@@ -1,5 +1,5 @@
 //
-//  InQueueViewController.swift
+//  InStoreViewController.swift
 //  Emporium
 //
 //  Created by Xskullibur on 23/6/20.
