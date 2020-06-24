@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
-
+import Firebase
 
 class ShopDataManager
 {
@@ -40,6 +40,21 @@ class ShopDataManager
             }
                 
             onComplete?(productData)
+        }
+    }
+    
+    static func loadHistory(onComplete: (([Cart]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
+        {
+            (querySnapshot, err) in
+            var cart: [Cart] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }else{
+                
+            }
         }
     }
 }
