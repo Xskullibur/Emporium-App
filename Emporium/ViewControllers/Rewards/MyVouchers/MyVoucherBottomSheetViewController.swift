@@ -11,11 +11,14 @@ import MaterialComponents.MaterialButtons
 
 class MyVoucherBottomSheetViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet weak var voucherNameLabel: UILabel!
     @IBOutlet weak var voucherDescriptionLabel: UILabel!
     
+    // MARK: - Variables
     private var voucher: Voucher?
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,10 +26,16 @@ class MyVoucherBottomSheetViewController: UIViewController {
         self.updateVoucher()
     }
     
+    /**
+     Set Voucher to be displayed
+     */
     func setVoucher(voucher: Voucher){
         self.voucher = voucher
     }
     
+    /**
+     Display the voucher
+     */
     private func updateVoucher(){
         self.voucherNameLabel.text = self.voucher?.name
         self.voucherDescriptionLabel.text = self.voucher?.description

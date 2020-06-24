@@ -13,6 +13,7 @@ import MaterialComponents.MaterialBottomSheet
 
 class MyVouchersTableViewController: UITableViewController {
 
+    // MARK: - Variables
     private var cancellables = Set<AnyCancellable>()
     
     private var myVouchers: [Voucher] = []
@@ -20,6 +21,7 @@ class MyVouchersTableViewController: UITableViewController {
     
     private var user: User!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +32,9 @@ class MyVouchersTableViewController: UITableViewController {
         setupClaimedVouchers()
         
     }
-    
+    /**
+        Setup the claimed voucher DataManager
+     */
     func setupClaimedVouchers(){
            self.voucherDataManager = VoucherDataManager(user: self.user)
            
@@ -39,7 +43,7 @@ class MyVouchersTableViewController: UITableViewController {
                .sink(receiveCompletion: {
                    completion in
                    switch completion {
-                       case .failure(let error):
+                   case .failure( _):
                        print("Error getting claimed vouchers")
                        break;
                    case .finished:

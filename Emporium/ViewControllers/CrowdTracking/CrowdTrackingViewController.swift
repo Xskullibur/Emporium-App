@@ -11,16 +11,19 @@ import MaterialComponents.MaterialCards
 
 class CrowdTrackingViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet weak var cameraImageView: UIImageView!
     @IBOutlet weak var cardView: MDCCard!
     
     @IBOutlet weak var noOfShopperLabel: UILabel!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        // User Interface
         /// CardView
         cardView.cornerRadius = 13
         cardView.clipsToBounds = true
@@ -30,6 +33,9 @@ class CrowdTrackingViewController: UIViewController {
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
     }
     
+    /**
+        IBAction for stepper, use for manually controlling the amount of shopper inside the supermarket.
+     */
     @IBAction func changeNoOfShoppersStepper(_ sender: Any) {
     }
     
