@@ -43,18 +43,26 @@ class ShopDataManager
         }
     }
     
-    static func loadHistory(onComplete: (([Cart]) -> Void)?) {
+    static func loadHistory(onComplete: (([String]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
         {
             (querySnapshot, err) in
-            var cart: [Cart] = []
+            
+            var purchaseHistory: [String] = []
             
             if let err = err
             {
                 print("Error getting documents: \(err)")
-            }else{
-                
             }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    purchaseHistory.append(doc.documentID)
+                }
+            }
+            onComplete?(purchaseHistory)
         }
+        
     }
 }
