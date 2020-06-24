@@ -26,7 +26,7 @@ class InStoreViewController: UIViewController {
         super.viewDidLoad()
         
         // Animation
-        animationView.animation = Animation.named("shopping-lady")
+        animationView.animation = Animation.named("shopping-bag")
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()

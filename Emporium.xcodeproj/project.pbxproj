@@ -67,8 +67,8 @@
 		ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A324A08B6B0013A133 /* wear-mask.json */; };
 		ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A424A08B6C0013A133 /* social-distancing.json */; };
 		ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A724A1CBE70013A133 /* EntryViewController.swift */; };
-		ED57F7AA24A1DF600013A133 /* shopping-lady.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A924A1DF600013A133 /* shopping-lady.json */; };
 		ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */; };
+		ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61104A24A3482C00FFD408 /* shopping-bag.json */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -174,8 +174,8 @@
 		ED57F7A324A08B6B0013A133 /* wear-mask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "wear-mask.json"; sourceTree = "<group>"; };
 		ED57F7A424A08B6C0013A133 /* social-distancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "social-distancing.json"; sourceTree = "<group>"; };
 		ED57F7A724A1CBE70013A133 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		ED57F7A924A1DF600013A133 /* shopping-lady.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shopping-lady.json"; sourceTree = "<group>"; };
 		ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InStoreViewController.swift; sourceTree = "<group>"; };
+		ED61104A24A3482C00FFD408 /* shopping-bag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shopping-bag.json"; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -377,7 +377,6 @@
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED57F79F24A076970013A133 /* Models */,
 				ED57F794249C98F10013A133 /* Queue */,
 				ACED1DE9249B72BF00094284 /* Rewards */,
 				ACED1DE1249B2FDE00094284 /* Main */,
@@ -475,7 +474,7 @@
 		ED57F7A224A08A810013A133 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				ED57F7A924A1DF600013A133 /* shopping-lady.json */,
+				ED61104A24A3482C00FFD408 /* shopping-bag.json */,
 				ED57F7A424A08B6C0013A133 /* social-distancing.json */,
 				ED57F7A324A08B6B0013A133 /* wear-mask.json */,
 			);
@@ -540,6 +539,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* ViewControllers */,
 				AC0A18F224932482009FFD93 /* Notifications */,
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
@@ -712,8 +712,8 @@
 				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
-				ED57F7AA24A1DF600013A133 /* shopping-lady.json in Resources */,
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
+				ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
