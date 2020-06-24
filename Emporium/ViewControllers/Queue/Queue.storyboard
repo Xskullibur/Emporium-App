@@ -199,6 +199,7 @@ Grocery Store</string>
                                                 <state key="normal" title="Enter Grocery Store"/>
                                                 <connections>
                                                     <action selector="enteryStoreBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="27d-Z7-Plu"/>
+                                                    <segue destination="Fwo-OH-8q4" kind="show" id="zMC-kS-Bxx"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -245,6 +246,78 @@ Grocery Store</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNT-ej-IAI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="169.56521739130437" y="150.66964285714286"/>
+        </scene>
+        <!--In Store View Controller-->
+        <scene sceneID="lb4-rr-hoT">
+            <objects>
+                <viewController id="Fwo-OH-8q4" customClass="InStoreViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ggO-c3-rMU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="YHl-8z-d90">
+                                <rect key="frame" x="25" y="180" width="364" height="482"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qmk-2u-cBE">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="384"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy Shopping!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpE-uU-Fnl">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="bdS-1z-j7M"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Kn-QP-mCA" customClass="AnimationView" customModule="Lottie">
+                                                <rect key="frame" x="0.0" y="50" width="364" height="334"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="shopping-lady"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ElG-RA-Uj2">
+                                        <rect key="frame" x="0.0" y="434" width="364" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xu8-l8-N3L" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="vD4-DO-zPg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Exit Grocery Store"/>
+                                                <connections>
+                                                    <action selector="exitBtnPressed:" destination="Fwo-OH-8q4" eventType="touchUpInside" id="aJt-3U-LEa"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YHl-8z-d90" firstAttribute="top" secondItem="ggO-c3-rMU" secondAttribute="top" constant="180" id="BS3-Dj-YPI"/>
+                            <constraint firstItem="YHl-8z-d90" firstAttribute="leading" secondItem="eh3-8S-H7A" secondAttribute="leading" constant="25" id="Cgd-9L-A7f"/>
+                            <constraint firstAttribute="bottom" secondItem="YHl-8z-d90" secondAttribute="bottom" constant="180" id="Nys-bo-xeQ"/>
+                            <constraint firstItem="YHl-8z-d90" firstAttribute="centerX" secondItem="ggO-c3-rMU" secondAttribute="centerX" id="O9E-Rv-vX0"/>
+                            <constraint firstItem="YHl-8z-d90" firstAttribute="centerY" secondItem="ggO-c3-rMU" secondAttribute="centerY" id="uEQ-GC-LcU"/>
+                            <constraint firstItem="eh3-8S-H7A" firstAttribute="trailing" secondItem="YHl-8z-d90" secondAttribute="trailing" constant="25" id="xhK-T8-qQJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eh3-8S-H7A"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CLo-G9-MOg"/>
+                    <connections>
+                        <outlet property="animationView" destination="1Kn-QP-mCA" id="oOh-Kb-UZX"/>
+                        <outlet property="exitStoreBtn" destination="xu8-l8-N3L" id="aC5-OK-P9v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Txf-W1-MTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="919"/>
         </scene>
     </scenes>
 </document>

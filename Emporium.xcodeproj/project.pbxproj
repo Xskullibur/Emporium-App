@@ -67,6 +67,8 @@
 		ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A324A08B6B0013A133 /* wear-mask.json */; };
 		ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A424A08B6C0013A133 /* social-distancing.json */; };
 		ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A724A1CBE70013A133 /* EntryViewController.swift */; };
+		ED57F7AA24A1DF600013A133 /* shopping-lady.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A924A1DF600013A133 /* shopping-lady.json */; };
+		ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -172,6 +174,8 @@
 		ED57F7A324A08B6B0013A133 /* wear-mask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "wear-mask.json"; sourceTree = "<group>"; };
 		ED57F7A424A08B6C0013A133 /* social-distancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "social-distancing.json"; sourceTree = "<group>"; };
 		ED57F7A724A1CBE70013A133 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		ED57F7A924A1DF600013A133 /* shopping-lady.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shopping-lady.json"; sourceTree = "<group>"; };
+		ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InStoreViewController.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
 				ED57F797249C9DD90013A133 /* QueueViewController.swift */,
 				ED57F7A724A1CBE70013A133 /* EntryViewController.swift */,
+				ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 		ED57F7A224A08A810013A133 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F7A924A1DF600013A133 /* shopping-lady.json */,
 				ED57F7A424A08B6C0013A133 /* social-distancing.json */,
 				ED57F7A324A08B6B0013A133 /* wear-mask.json */,
 			);
@@ -706,6 +712,7 @@
 				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
+				ED57F7AA24A1DF600013A133 /* shopping-lady.json in Resources */,
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
@@ -922,6 +929,7 @@
 				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
 				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
+				ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
