@@ -212,6 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Alamofire (5.2.1)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -525,8 +526,10 @@ PODS:
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - Stripe (19.3.0)
+  - SwiftProtobuf (1.9.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Firebase
   - Firebase/Functions
   - Firebase/Storage
@@ -540,10 +543,12 @@ DEPENDENCIES:
   - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
   - Stripe
+  - SwiftProtobuf
 
 SPEC REPOS:
   trunk:
     - abseil
+    - Alamofire
     - AppAuth
     - BoringSSL-GRPC
     - FBSDKCoreKit
@@ -580,9 +585,11 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - Stripe
+    - SwiftProtobuf
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
@@ -619,7 +626,8 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
+  SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
-PODFILE CHECKSUM: 66926742fae11d627e220a449ca4150c275d7e0a
+PODFILE CHECKSUM: aa98aae6f74d64c8241d8cf313fd71fc8d15643b
 
 COCOAPODS: 1.9.3

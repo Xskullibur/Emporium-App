@@ -19,6 +19,8 @@ class VoucherBottomSheetViewController: UIViewController {
     
     private var voucherDataManager: VoucherDataManager? = nil
     
+    private var viewController: UIViewController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,22 +42,29 @@ class VoucherBottomSheetViewController: UIViewController {
         self.voucherDataManager = dataManager
     }
     
+    func setViewController(viewController: UIViewController){
+        self.viewController = viewController
+    }
+    
     @IBAction func claimPressed(_ sender: Any) {
+        self.viewController?.showSpinner(onView: self.viewController!.view)
         self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!){
             status in
             switch status {
             case .success:
                 Toast.showToast("Voucher claimed!")
+                self.viewController?.removeSpinner()
                 break
             case .notEnoughPoints:
                 Toast.showToast("Not enough points to claim this voucher!")
+                self.viewController?.removeSpinner()
                 break
             default:
                 break
             }
-            self.dismiss(animated: true)
+            
         }
-        
+        self.dismiss(animated: true)
     }
     
     /*

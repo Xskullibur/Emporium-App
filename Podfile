@@ -23,6 +23,9 @@ target 'Emporium' do
   pod 'lottie-ios'
   
   pod 'Stripe'
+  pod 'Alamofire'
+  
+  pod 'SwiftProtobuf'
 
   target 'EmporiumTests' do
     inherit! :search_paths

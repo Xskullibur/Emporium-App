@@ -81,7 +81,7 @@ class EarnedRewardsDataManager {
         return EarnedReward(id: id, earnedAmount: earnedAmount, earnedDate: earnedDate, displayed: displayed)
     }
     
-    /*
+    /**
      Get list of earned points by user
      */
     func getEarnedRewards() -> AnyPublisher<[EarnedReward], EmporiumError>{
@@ -95,7 +95,7 @@ class EarnedRewardsDataManager {
         }.eraseToAnyPublisher()
     }
  
-    /*
+    /**
      Set earned rewards as seen, so it wont be shown to the user again
      Requirements:
       EarnedReward must belong to the user signed in

@@ -83,7 +83,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Pay">
+                                <state key="normal" title="Make Payment">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -93,6 +93,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="PayBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="cza-IY-ogC"/>
+                                    <segue destination="iSc-su-h7E" kind="show" id="HGx-NE-UZF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,14 +128,61 @@
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">
             <objects>
-                <viewController title="Payment" id="iSc-su-h7E" customClass="PaymentViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GatewayViewController" title="Payment" id="iSc-su-h7E" customClass="GatewayViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l2Y-aF-c5u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xur-dl-4uX">
+                                <rect key="frame" x="35" y="680" width="345" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="PayBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="Gi6-W9-acQ"/>
+                                    <action selector="paybtnPressed:" destination="iSc-su-h7E" eventType="touchUpInside" id="MBT-iP-QnG"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V4-pC-Tjq">
+                                <rect key="frame" x="20" y="408" width="261" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DdB-IN-fGq">
+                                <rect key="frame" x="308" y="408" width="86" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAE-Ok-7cM">
+                                <rect key="frame" x="20" y="482" width="374" height="159"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="Primary"/>
+                            </pickerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gn9-09-8Ea">
+                                <rect key="frame" x="34" y="142" width="345" height="226"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cPU-go-72U"/>
                     </view>
                     <navigationItem key="navigationItem" id="1GV-gP-fA9"/>
+                    <connections>
+                        <outlet property="cardImageView" destination="Gn9-09-8Ea" id="ZSc-QH-H4s"/>
+                        <outlet property="cvcInput" destination="DdB-IN-fGq" id="msN-xQ-FNR"/>
+                        <outlet property="expDatePickerView" destination="PAE-Ok-7cM" id="VpG-X9-jzQ"/>
+                        <outlet property="numberInput" destination="9V4-pC-Tjq" id="Hb9-Uw-U1N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2a-R2S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -230,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaP-Na-4X5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="97.767857142857139"/>
+            <point key="canvasLocation" x="3" y="98"/>
         </scene>
     </scenes>
     <resources>

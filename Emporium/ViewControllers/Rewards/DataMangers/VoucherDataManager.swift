@@ -95,7 +95,7 @@ class VoucherDataManager {
         #endif
     }
     
-    /*
+    /**
      Claim a voucher for user
      
      Requirement:
@@ -123,7 +123,7 @@ class VoucherDataManager {
         }
     }
     
-    /*
+    /**
      Get a list of vouchers that has been claimed by the user
      
      Requirement:
@@ -143,7 +143,7 @@ class VoucherDataManager {
         .eraseToAnyPublisher()
     }
     
-    /*
+    /**
      Get a list of available vouchers
      */
     func getAvailableVouchers() -> AnyPublisher<[Voucher], EmporiumError> {
