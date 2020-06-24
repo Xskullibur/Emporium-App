@@ -10,9 +10,11 @@ import UIKit
 
 class MyVoucherTableViewCell: UITableViewCell {
 
+    // MARK: - Outlets
     @IBOutlet weak var voucherNameLabel: UILabel!
     @IBOutlet weak var voucherDescriptionLabel: UILabel!
     
+    // MARK: - Variables
     private var voucher: Voucher?
     
     override func awakeFromNib() {
@@ -20,6 +22,9 @@ class MyVoucherTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+    /**
+     Set the voucher to be displayed
+     */
     func setVoucher(voucher: Voucher){
         self.voucher = voucher
         self.voucherNameLabel.text = voucher.name

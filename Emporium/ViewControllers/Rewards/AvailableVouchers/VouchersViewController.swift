@@ -13,10 +13,11 @@ import MaterialComponents.MaterialBottomSheet
 
 class VouchersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
+    // MARK: - Outlets
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var vouchersTableView: UITableView!
     
+    // MARK: - Variables
     private var cancellables = Set<AnyCancellable>()
     private var vouchers: [Voucher] = []
     
@@ -27,6 +28,7 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private var loginManager: LoginManager? = nil
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +62,9 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    /**
+     Setup the Point Data Manager
+     */
     func setupPoints(){
         self.pointDataManager = PointDataManager()
         self.pointDataManager?.getPoints(user: self.user){
@@ -68,6 +73,9 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    /**
+     Setup the Voucher Data Manager
+     */
     func setupVouchers(){
         self.voucherDataManager = VoucherDataManager(user: self.user)
         
