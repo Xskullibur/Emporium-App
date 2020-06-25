@@ -9,7 +9,7 @@
 import Foundation
 import UIKit.UIColor
 
-class GroceryStore {
+class GroceryStore: NSObject {
     let id: String
     let name: String
     let address: String
