@@ -485,7 +485,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQp-Cb-w1f">
-                                <rect key="frame" x="27.666666666666671" y="123" width="154.33333333333331" height="48"/>
+                                <rect key="frame" x="27.666666666666657" y="123" width="220" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" name="Primary"/>
                                 <nil key="highlightedColor"/>
@@ -494,6 +494,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NQp-Cb-w1f" firstAttribute="top" secondItem="8fD-aV-vHl" secondAttribute="top" constant="35" id="EOB-Db-gyP"/>
+                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="trailing" secondItem="NQp-Cb-w1f" secondAttribute="trailing" id="HbE-ly-vgi"/>
                             <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerY" secondItem="OUz-CU-2Kg" secondAttribute="centerY" id="blE-LI-moU"/>
                             <constraint firstItem="lxJ-zQ-FAM" firstAttribute="leading" secondItem="NQp-Cb-w1f" secondAttribute="leading" constant="100" id="jsm-dc-pVm"/>
                             <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerX" secondItem="OUz-CU-2Kg" secondAttribute="centerX" id="lR9-LP-gab"/>
