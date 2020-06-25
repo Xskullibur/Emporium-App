@@ -37,6 +37,7 @@
 		ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67024A1DC9100C286BF /* Spinner.swift */; };
 		ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */; };
 		ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */; };
+		ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */; };
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
@@ -143,6 +144,7 @@
 		ACAEE67024A1DC9100C286BF /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdTrackingViewController.swift; sourceTree = "<group>"; };
+		ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3TinyFP16.mlmodel; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -334,10 +336,19 @@
 		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
+				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
 			);
 			path = CrowdTracking;
+			sourceTree = "<group>";
+		};
+		ACAEE67924A4223200C286BF /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */,
+			);
+			path = MLModel;
 			sourceTree = "<group>";
 		};
 		ACD28624249877ED00497BD9 /* Recovered References */ = {
@@ -919,6 +930,7 @@
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
+				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,
 				ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */,
 				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
 				ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */,
