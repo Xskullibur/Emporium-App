@@ -23,7 +23,6 @@ target 'Emporium' do
   pod 'lottie-ios'
   
   pod 'Stripe'
-  pod 'Alamofire'
   
   pod 'SwiftProtobuf'
 

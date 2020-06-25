@@ -8,7 +8,6 @@
 
 import UIKit
 import Stripe
-import Alamofire
 import Firebase
 
 class GatewayViewController: UIViewController {

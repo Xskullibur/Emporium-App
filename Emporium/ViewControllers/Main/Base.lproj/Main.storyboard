@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -267,6 +267,16 @@
             </objects>
             <point key="canvasLocation" x="805" y="641"/>
         </scene>
+        <!--HistoryViewController-->
+        <scene sceneID="I6o-pS-z05">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="HistoryViewController" storyboardName="Shop" referencedIdentifier="HistoryViewController" id="kxl-nx-nVf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZKk-FT-w04"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hQ-Zq-ksp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="1213"/>
+        </scene>
         <!--My Account View Controller-->
         <scene sceneID="fn3-o2-hJJ">
             <objects>
@@ -310,9 +320,16 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7lm-Po-xXe">
                                                         <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="112"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Order" translatesAutoresizingMaskIntoConstraints="NO" id="DnU-am-Nrd">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mD2-Ay-Zpr">
                                                                 <rect key="frame" x="0.0" y="8" width="171.66666666666666" height="71"/>
-                                                            </imageView>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="71" id="Tbf-lM-dgf"/>
+                                                                </constraints>
+                                                                <state key="normal" image="Order"/>
+                                                                <connections>
+                                                                    <segue destination="kxl-nx-nVf" kind="show" id="Pny-5Q-AI9"/>
+                                                                </connections>
+                                                            </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKR-L4-35m">
                                                                 <rect key="frame" x="0.0" y="84" width="171.66666666666666" height="20"/>
                                                                 <constraints>
