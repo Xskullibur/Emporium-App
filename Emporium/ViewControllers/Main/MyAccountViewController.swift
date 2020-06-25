@@ -81,10 +81,10 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
             try authUI?.signOut()
             
             //Reset notifications after signing out
-            let notificationHandler = NotificationHandler.shared
-            notificationHandler.reset()
-            notificationHandler.create()
-            notificationHandler.start()
+//            let notificationHandler = NotificationHandler.shared
+//            notificationHandler.reset()
+//            notificationHandler.create()
+//            notificationHandler.start()
             
             self.navigationController?.popViewController(animated: true)
         }catch _ {

@@ -64,10 +64,10 @@ open class LoginManager : NSObject, FUIAuthDelegate {
     
     internal func resetNotifications(){
         //Reset notifications
-       let notificationHandler = NotificationHandler.shared
-       notificationHandler.reset()
-       notificationHandler.create()
-       notificationHandler.start()
+//       let notificationHandler = NotificationHandler.shared
+//       notificationHandler.reset()
+//       notificationHandler.create()
+//       notificationHandler.start()
     }
     
     /*

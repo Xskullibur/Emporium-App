@@ -10,30 +10,7 @@
 		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
-		7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387524A210810003B9D9 /* CartItem.pb.swift */; };
-		7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */; };
-		7F0B387A24A35FA60003B9D9 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387924A35FA60003B9D9 /* HistoryCell.swift */; };
-		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
-		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
-		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
-		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
-		7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD02644249A0EF300BAA2F1 /* UIImageView.swift */; };
-		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
-		AC0A18F424932494009FFD93 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F324932494009FFD93 /* Notification.swift */; };
-		AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F524932628009FFD93 /* NotificationHandler.swift */; };
 		AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18F7249336F3009FFD93 /* EmporiumError.swift */; };
-		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
-		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
-		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E908249CE83300DA2A7F /* PickupViewController.swift */; };
-		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
-		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
-		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
-		AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */; };
-		AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9C9249767630058EE50 /* Shop.storyboard */; };
-		AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC21B9CD249767630058EE50 /* ProductViewCell.xib */; };
-		AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9CE249767630058EE50 /* ProductViewCell.swift */; };
-		AC21B9D8249767630058EE50 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC21B9D0249767630058EE50 /* Product.swift */; };
 		ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67024A1DC9100C286BF /* Spinner.swift */; };
 		ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */; };
 		ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */; };
@@ -41,43 +18,11 @@
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
-		ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */; };
-		ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */; };
-		ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */; };
-		ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */; };
-		ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */; };
-		ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */; };
-		ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ED1249F3000009887A7 /* EarnedReward.swift */; };
-		ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */; };
-		ACED1DE4249B307600094284 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE3249B307600094284 /* CartCell.swift */; };
 		ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DE6249B41BF00094284 /* AccountDataManager.swift */; };
-		ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACED1DEA249B72DF00094284 /* Rewards.storyboard */; };
-		ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEC249B8BA200094284 /* VouchersViewController.swift */; };
-		ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */; };
-		ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF1249B8D2E00094284 /* Voucher.swift */; };
-		ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */; };
-		ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E00249C64BF00094284 /* VoucherDataManager.swift */; };
 		ACED1E03249CA19700094284 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
-		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
-		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
-		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
-		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
-		ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F791249A01080013A133 /* StoreDataManager.swift */; };
-		ED57F796249C99B50013A133 /* Queue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F795249C99B50013A133 /* Queue.storyboard */; };
-		ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F797249C9DD90013A133 /* QueueViewController.swift */; };
 		ED57F79C249CA2380013A133 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F79B249CA2380013A133 /* Toast.swift */; };
-		ED57F7A124A076C10013A133 /* StoreAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A024A076C10013A133 /* StoreAnnotation.swift */; };
-		ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A324A08B6B0013A133 /* wear-mask.json */; };
-		ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */ = {isa = PBXBuildFile; fileRef = ED57F7A424A08B6C0013A133 /* social-distancing.json */; };
-		ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7A724A1CBE70013A133 /* EntryViewController.swift */; };
-		ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */; };
-		ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61104A24A3482C00FFD408 /* shopping-bag.json */; };
-		ED61104D24A34A3F00FFD408 /* Cart2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61104C24A34A3F00FFD408 /* Cart2.swift */; };
-		ED61104F24A34D8800FFD408 /* RequestorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */; };
-		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
-		EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
@@ -118,33 +63,10 @@
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F0B387524A210810003B9D9 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
-		7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		7F0B387924A35FA60003B9D9 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
-		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
-		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
-		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
-		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
-		7FD02644249A0EF300BAA2F1 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
 		813AD4276652AACA02B6DCC2 /* Pods-EmporiumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.debug.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmporiumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC0A18F324932494009FFD93 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		AC0A18F524932628009FFD93 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		AC0A18F7249336F3009FFD93 /* EmporiumError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumError.swift; sourceTree = "<group>"; };
-		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
-		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
-		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
-		AC13E908249CE83300DA2A7F /* PickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
-		AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
-		AC13E90C249CE84400DA2A7F /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
-		AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherStatus.swift; sourceTree = "<group>"; };
-		AC21B9C9249767630058EE50 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
-		AC21B9CD249767630058EE50 /* ProductViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
-		AC21B9CE249767630058EE50 /* ProductViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
-		AC21B9D0249767630058EE50 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		ACAEE67024A1DC9100C286BF /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdTrackingViewController.swift; sourceTree = "<group>"; };
@@ -152,44 +74,12 @@
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
-		ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVouchersTableViewController.swift; sourceTree = "<group>"; };
-		ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherTableViewCell.swift; sourceTree = "<group>"; };
-		ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
-		ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPointsViewController.swift; sourceTree = "<group>"; };
-		ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "gift-opening-animation.json"; sourceTree = "<group>"; };
-		ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedRewardsDataManager.swift; sourceTree = "<group>"; };
-		ACDA8ED1249F3000009887A7 /* EarnedReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedReward.swift; sourceTree = "<group>"; };
-		ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedRewardStatus.swift; sourceTree = "<group>"; };
-		ACED1DE3249B307600094284 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		ACED1DE6249B41BF00094284 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
-		ACED1DEA249B72DF00094284 /* Rewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rewards.storyboard; sourceTree = "<group>"; };
-		ACED1DEC249B8BA200094284 /* VouchersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VouchersViewController.swift; sourceTree = "<group>"; };
-		ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherTableViewCell.swift; sourceTree = "<group>"; };
-		ACED1DF1249B8D2E00094284 /* Voucher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voucher.swift; sourceTree = "<group>"; };
-		ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherBottomSheetViewController.swift; sourceTree = "<group>"; };
-		ACED1E00249C64BF00094284 /* VoucherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherDataManager.swift; sourceTree = "<group>"; };
 		ACED1E02249CA19700094284 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
-		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
-		ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyListViewController.swift; sourceTree = "<group>"; };
-		ED57F791249A01080013A133 /* StoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDataManager.swift; sourceTree = "<group>"; };
-		ED57F795249C99B50013A133 /* Queue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Queue.storyboard; sourceTree = "<group>"; };
-		ED57F797249C9DD90013A133 /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
 		ED57F79B249CA2380013A133 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		ED57F7A024A076C10013A133 /* StoreAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAnnotation.swift; sourceTree = "<group>"; };
-		ED57F7A324A08B6B0013A133 /* wear-mask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "wear-mask.json"; sourceTree = "<group>"; };
-		ED57F7A424A08B6C0013A133 /* social-distancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "social-distancing.json"; sourceTree = "<group>"; };
-		ED57F7A724A1CBE70013A133 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InStoreViewController.swift; sourceTree = "<group>"; };
-		ED61104A24A3482C00FFD408 /* shopping-bag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shopping-bag.json"; sourceTree = "<group>"; };
-		ED61104C24A34A3F00FFD408 /* Cart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart2.swift; sourceTree = "<group>"; };
-		ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestorsListViewController.swift; sourceTree = "<group>"; };
-		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,35 +144,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		7FD026402498EDB900BAA2F1 /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
-				7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
-		7FD02643249A0E7D00BAA2F1 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7FD02644249A0EF300BAA2F1 /* UIImageView.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7FD3CCD5249CB2DA00C1CD80 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */,
-				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
-				AC13E908249CE83300DA2A7F /* PickupViewController.swift */,
-				AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */,
-				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
-				7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		95407E2A058CB1895904ED5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,54 +152,6 @@
 				89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AC0A18F224932482009FFD93 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				AC0A18F324932494009FFD93 /* Notification.swift */,
-				AC0A18F524932628009FFD93 /* NotificationHandler.swift */,
-				AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */,
-				AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */,
-				AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
-		AC21B9C8249767630058EE50 /* Shop */ = {
-			isa = PBXGroup;
-			children = (
-				7FD3CCD5249CB2DA00C1CD80 /* ViewController */,
-				7FD02643249A0E7D00BAA2F1 /* Extensions */,
-				7FD026402498EDB900BAA2F1 /* DataManagers */,
-				AC21B9CF249767630058EE50 /* Model */,
-				AC21B9CC249767630058EE50 /* Cell */,
-				AC21B9C9249767630058EE50 /* Shop.storyboard */,
-			);
-			path = Shop;
-			sourceTree = "<group>";
-		};
-		AC21B9CC249767630058EE50 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				ACED1DE3249B307600094284 /* CartCell.swift */,
-				AC21B9CD249767630058EE50 /* ProductViewCell.xib */,
-				AC21B9CE249767630058EE50 /* ProductViewCell.swift */,
-				7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */,
-				7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */,
-				7F0B387924A35FA60003B9D9 /* HistoryCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		AC21B9CF249767630058EE50 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AC21B9D0249767630058EE50 /* Product.swift */,
-				7FD0263824976FA200BAA2F1 /* Cart.swift */,
-				7F0B387524A210810003B9D9 /* CartItem.pb.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
@@ -366,52 +179,11 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		ACDA8EC3249DE26C009887A7 /* AvailableVouchers */ = {
-			isa = PBXGroup;
-			children = (
-				ACED1DEC249B8BA200094284 /* VouchersViewController.swift */,
-				ACED1DEE249B8C7F00094284 /* VoucherTableViewCell.swift */,
-				ACED1DF7249B949F00094284 /* VoucherBottomSheetViewController.swift */,
-			);
-			path = AvailableVouchers;
-			sourceTree = "<group>";
-		};
-		ACDA8EC4249DE28B009887A7 /* MyVouchers */ = {
-			isa = PBXGroup;
-			children = (
-				ACDA8EC7249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift */,
-				ACDA8EC5249DE317009887A7 /* MyVoucherTableViewCell.swift */,
-				ACDA8EC1249DE191009887A7 /* MyVouchersTableViewController.swift */,
-			);
-			path = MyVouchers;
-			sourceTree = "<group>";
-		};
-		ACDA8ECB249DF320009887A7 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				ACDA8ECC249DF334009887A7 /* gift-opening-animation.json */,
-			);
-			path = Animations;
-			sourceTree = "<group>";
-		};
-		ACDA8ECE249F2B80009887A7 /* EarnedRewards */ = {
-			isa = PBXGroup;
-			children = (
-				ACDA8EC9249DEF63009887A7 /* GiftPointsViewController.swift */,
-			);
-			path = EarnedRewards;
-			sourceTree = "<group>";
-		};
 		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
-				ED57F79F24A076970013A133 /* Models */,
-				ED57F794249C98F10013A133 /* Queue */,
-				ACED1DE9249B72BF00094284 /* Rewards */,
 				ACED1DE1249B2FDE00094284 /* Main */,
-				AC21B9C8249767630058EE50 /* Shop */,
-				EDB4683224948BDF000DE5F0 /* Nearby */,
 				FEA80CEF248DE293005D8F94 /* Login */,
 			);
 			path = ViewControllers;
@@ -437,90 +209,6 @@
 			path = DataManagers;
 			sourceTree = "<group>";
 		};
-		ACED1DE9249B72BF00094284 /* Rewards */ = {
-			isa = PBXGroup;
-			children = (
-				ACDA8ECE249F2B80009887A7 /* EarnedRewards */,
-				ACDA8ECB249DF320009887A7 /* Animations */,
-				ACDA8EC4249DE28B009887A7 /* MyVouchers */,
-				ACDA8EC3249DE26C009887A7 /* AvailableVouchers */,
-				ACED1DFF249C64A500094284 /* DataMangers */,
-				ACED1DF0249B8D2300094284 /* Models */,
-				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
-			);
-			path = Rewards;
-			sourceTree = "<group>";
-		};
-		ACED1DF0249B8D2300094284 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				ACED1DF1249B8D2E00094284 /* Voucher.swift */,
-				AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */,
-				ACDA8ED1249F3000009887A7 /* EarnedReward.swift */,
-				ACDA8ED3249F560D009887A7 /* EarnedRewardStatus.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		ACED1DFF249C64A500094284 /* DataMangers */ = {
-			isa = PBXGroup;
-			children = (
-				ACDA8ECF249F2BE5009887A7 /* EarnedRewardsDataManager.swift */,
-				ACED1E00249C64BF00094284 /* VoucherDataManager.swift */,
-				ACED1E46249CB64800094284 /* PointDataManager.swift */,
-			);
-			path = DataMangers;
-			sourceTree = "<group>";
-		};
-		ED57F790249A00EB0013A133 /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
-				ED57F791249A01080013A133 /* StoreDataManager.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
-		ED57F794249C98F10013A133 /* Queue */ = {
-			isa = PBXGroup;
-			children = (
-				ED57F7A224A08A810013A133 /* Animation */,
-				ED57F795249C99B50013A133 /* Queue.storyboard */,
-				ED57F797249C9DD90013A133 /* QueueViewController.swift */,
-				ED57F7A724A1CBE70013A133 /* EntryViewController.swift */,
-				ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */,
-				ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */,
-			);
-			path = Queue;
-			sourceTree = "<group>";
-		};
-		ED57F79F24A076970013A133 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
-				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
-				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		ED57F7A224A08A810013A133 /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				ED61104A24A3482C00FFD408 /* shopping-bag.json */,
-				ED57F7A424A08B6C0013A133 /* social-distancing.json */,
-				ED57F7A324A08B6B0013A133 /* wear-mask.json */,
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
-		EDA5990D2484D12000ADD228 /* Apis */ = {
-			isa = PBXGroup;
-			children = (
-				EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */,
-			);
-			path = Apis;
-			sourceTree = "<group>";
-		};
 		EDB4682D248DEA81000DE5F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,18 +219,6 @@
 				ACAEE67024A1DC9100C286BF /* Spinner.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		EDB4683224948BDF000DE5F0 /* Nearby */ = {
-			isa = PBXGroup;
-			children = (
-				ED57F790249A00EB0013A133 /* DataManagers */,
-				EDA5990D2484D12000ADD228 /* Apis */,
-				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
-				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
-				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
-			);
-			path = Nearby;
 			sourceTree = "<group>";
 		};
 		FE9023482473B9C700CE6B3A = {
@@ -571,9 +247,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
-				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* ViewControllers */,
-				AC0A18F224932482009FFD93 /* Notifications */,
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
 				FE9023542473B9C700CE6B3A /* AppDelegate.swift */,
@@ -730,23 +404,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
-				ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */,
-				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
-				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
-				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
-				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
-				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
-				ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */,
 				FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */,
 				ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
-				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
-				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
 				ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */,
-				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
-				ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
 				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
@@ -910,66 +573,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */,
-				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
-				ED61104D24A34A3F00FFD408 /* Cart2.swift in Sources */,
-				ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */,
-				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
-				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
-				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
-				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
-				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
-				7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */,
-				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
-				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
-				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
-				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
-				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
-				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
-				AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */,
-				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
-				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
 				FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */,
-				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
-				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
-				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
-				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
-				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
-				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
-				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
-				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
-				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,
 				ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */,
 				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
 				ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */,
-				ED57F7A124A076C10013A133 /* StoreAnnotation.swift in Sources */,
-				ED61104F24A34D8800FFD408 /* RequestorsListViewController.swift in Sources */,
 				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
 				ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */,
-				7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
-				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
-				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
-				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
-				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,
-				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
-				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
-				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
-				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
-				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
-				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
-				ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
-				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
-				7F0B387A24A35FA60003B9D9 /* HistoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1128,7 +747,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import Combine
 import MaterialComponents.MaterialCards
 import Firebase
 
-class MainViewController: EmporiumNotificationViewController,
+class MainViewController: UIViewController,
 UICollectionViewDataSource, UICollectionViewDelegate {
     
 
@@ -35,7 +34,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         
         // Do any additional setup after loading the view.
         
-        self.tableView = notificationTableView
+        //self.tableView = notificationTableView
         
         mainButtonsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
@@ -50,7 +49,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                 self.switchToAccountState(accountToDisplay: user)
                 
                 //Update cells based on user type
-                self.showSpinner(onView: self.view)
+                //self.showSpinner(onView: self.view)
                 user.getUserType{
                     userType, error in
                     self.loginAsUserType = userType!

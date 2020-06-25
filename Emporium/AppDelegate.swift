@@ -15,9 +15,7 @@ import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    private var earnedRewardsDataManager: EarnedRewardsDataManager? = nil
-    private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
+
     
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
@@ -43,55 +41,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationBarAppearace.barTintColor = UIColor(named: "Primary")
         
-        let notificationHandler = NotificationHandler.shared
-        notificationHandler.create()
-        notificationHandler.start()
+//        let notificationHandler = NotificationHandler.shared
+//        notificationHandler.create()
+//        notificationHandler.start()
         
         //Listen for rewards
-        self.earnedRewardsDataManager = EarnedRewardsDataManager()
-        self.earnedRewardsDataManager?.getEarnedRewards()
-            .sink(receiveCompletion: {
-                completion in
-            }, receiveValue: {
-                earnedRewards in
-                for earnedReward in earnedRewards {
-                    //Display Gift View Controller if the earned rewards is not shown to the user before
-                    if !earnedReward.displayed{
-                        let storyboard = UIStoryboard.init(name: "Rewards", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(identifier: "GiftPointsViewController") as GiftPointsViewController
-                        
-                        viewController.setEarnedRewardsDataManager(dataManager: self.earnedRewardsDataManager!)
-                        viewController.setEarnedReward(earnedReward: earnedReward)
-                        viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
-                        viewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                        
-                        let rootViewController = UIApplication.shared.windows.first!.rootViewController
-                        rootViewController?.present(viewController, animated: true, completion: nil)
-                    }
-                }
-            }).store(in: &cancellables!)
+
         
         return true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        self.earnedRewardsDataManager = nil
-        self.cancellables = nil
     }
 
     // MARK: UISceneSession Lifecycle
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
+//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+//        // Called when a new scene session is being created.
+//        // Use this method to select a configuration to create the new scene with.
+//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+//    }
+//
+//    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+//        // Called when the user discards a scene session.
+//        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+//        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+//    }
 
     // MARK: - Core Data stack
 
