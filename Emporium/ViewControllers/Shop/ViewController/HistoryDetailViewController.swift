@@ -43,7 +43,9 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 //total = total + (Double(quantity!)*Double(price!))
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
+                total = total + (Double(price)! * Double(quantity)!)
             }
+            self.totalLabel.text = "Total: $" + String(total)
             self.tableView.reloadData()
         }
         

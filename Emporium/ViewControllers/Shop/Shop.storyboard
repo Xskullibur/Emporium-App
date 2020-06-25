@@ -143,7 +143,6 @@
                                         <color key="backgroundColor" name="Primary"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="hRb-Zn-t1c" id="8yV-QD-M46"/>
-                                            <segue destination="yek-o6-igP" kind="show" id="sIs-qu-UOy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -158,6 +157,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Lrq-md-g2P" id="9xt-Mb-T3F"/>
+                        <segue destination="yek-o6-igP" kind="show" identifier="showDetail" id="QfM-fp-Edl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CY9-Uu-BrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

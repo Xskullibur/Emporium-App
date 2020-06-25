@@ -47,11 +47,27 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         docID = purchaseHistory[indexPath.row]
+        showActionSheet()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! HistoryDetailViewController
-        destVC.docID = "06-Thu-2020-12:38:22-am"
+        destVC.docID = self.docID
     }
     
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let showCart = UIAlertAction(title: "Show Cart", style: .default) {
+            action in
+            self.performSegue(withIdentifier: "showDetail", sender: nil)
+        }
+        
+        actionSheet.addAction(showCart)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
