@@ -87,9 +87,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="128" height="128"/>
-                                        <connections>
-                                            <segue destination="2bV-D7-cam" kind="show" id="FYd-St-oK5"/>
-                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCell" id="tb1-1f-4g7" customClass="MDCCardCollectionCell">
                                         <rect key="frame" x="138" y="11" width="128" height="128"/>
@@ -125,9 +122,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="128" height="128"/>
-                                        <connections>
-                                            <segue destination="Ecv-O1-KC1" kind="show" id="h86-mi-thJ"/>
-                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RewardsCell" id="Ogs-P4-fzf" customClass="MDCCardCollectionCell">
                                         <rect key="frame" x="276" y="11" width="128" height="128"/>
@@ -166,9 +160,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="128" height="128"/>
-                                        <connections>
-                                            <segue destination="gvZ-VN-ewf" kind="show" id="ie8-gY-4PN"/>
-                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CrowdTrackingCell" id="yqQ-fe-Dwg" customClass="MDCCardCollectionCell">
                                         <rect key="frame" x="414" y="11" width="128" height="128"/>
@@ -257,16 +248,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PU0-h1-Ls4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1167" y="252"/>
-        </scene>
-        <!--NearbyMart-->
-        <scene sceneID="e8A-dc-UIO">
-            <objects>
-                <viewControllerPlaceholder storyboardName="NearbyMart" id="2bV-D7-cam" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Jj9-9d-K5c"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fI2-uM-wgj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="805" y="641"/>
         </scene>
         <!--HistoryViewController-->
         <scene sceneID="I6o-pS-z05">
@@ -427,26 +408,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1485.5999999999999" y="853.44827586206895"/>
-        </scene>
-        <!--Shop-->
-        <scene sceneID="aV1-R2-JkR">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Shop" id="Ecv-O1-KC1" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="8vn-EM-WF9"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uUw-kI-dLX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1087" y="-555"/>
-        </scene>
-        <!--Rewards-->
-        <scene sceneID="aLn-We-sbj">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Rewards" id="gvZ-VN-ewf" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="I9V-lg-WRY"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nnL-BZ-ZET" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1870" y="-513"/>
         </scene>
         <!--Login-->
         <scene sceneID="mAD-OA-m5P">
