@@ -75,6 +75,9 @@
 		ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61104A24A3482C00FFD408 /* shopping-bag.json */; };
 		ED61104D24A34A3F00FFD408 /* Cart2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61104C24A34A3F00FFD408 /* Cart2.swift */; };
 		ED61104F24A34D8800FFD408 /* RequestorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */; };
+		ED61105124A44BA600FFD408 /* RequestedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105024A44BA600FFD408 /* RequestedItem.swift */; };
+		ED61105524A4583300FFD408 /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105324A4583300FFD408 /* check.json */; };
+		ED61105624A4583300FFD408 /* cross.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105424A4583300FFD408 /* cross.json */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -188,6 +191,9 @@
 		ED61104A24A3482C00FFD408 /* shopping-bag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shopping-bag.json"; sourceTree = "<group>"; };
 		ED61104C24A34A3F00FFD408 /* Cart2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart2.swift; sourceTree = "<group>"; };
 		ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestorsListViewController.swift; sourceTree = "<group>"; };
+		ED61105024A44BA600FFD408 /* RequestedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedItem.swift; sourceTree = "<group>"; };
+		ED61105324A4583300FFD408 /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
+		ED61105424A4583300FFD408 /* cross.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cross.json; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -485,6 +491,7 @@
 		ED57F794249C98F10013A133 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
+				ED61105224A44BAC00FFD408 /* Models */,
 				ED57F7A224A08A810013A133 /* Animation */,
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
 				ED57F797249C9DD90013A133 /* QueueViewController.swift */,
@@ -508,11 +515,21 @@
 		ED57F7A224A08A810013A133 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				ED61105324A4583300FFD408 /* check.json */,
+				ED61105424A4583300FFD408 /* cross.json */,
 				ED61104A24A3482C00FFD408 /* shopping-bag.json */,
 				ED57F7A424A08B6C0013A133 /* social-distancing.json */,
 				ED57F7A324A08B6B0013A133 /* wear-mask.json */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		ED61105224A44BAC00FFD408 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED61105024A44BA600FFD408 /* RequestedItem.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EDA5990D2484D12000ADD228 /* Apis */ = {
@@ -733,7 +750,9 @@
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
 				ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */,
+				ED61105624A4583300FFD408 /* cross.json in Resources */,
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
+				ED61105524A4583300FFD408 /* check.json in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
@@ -946,6 +965,7 @@
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
+				ED61105124A44BA600FFD408 /* RequestedItem.swift in Sources */,
 				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,
 				ACAEE67124A1DC9100C286BF /* Spinner.swift in Sources */,
 				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
