@@ -52,8 +52,6 @@ class GatewayViewController: UIViewController {
     
     @IBAction func paybtnPressed(_ sender: Any) {
         
-        //print(Auth.auth().currentUser?.uid)
-        
         var paymentInfo = PaymentInfo()
         
         paymentInfo.cartItems = []
@@ -88,7 +86,27 @@ class GatewayViewController: UIViewController {
             data, response, error in
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    print("success")
+                    DispatchQueue.main.async
+                    {
+
+                        let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
+                        let back = UIAlertAction(title: "OK", style: .default) {
+                            action in
+                            
+                        }
+                        showAlert.addAction(back)
+                        self.present(showAlert, animated: true, completion: nil)
+                    }
+                }
+                else
+                {
+                    DispatchQueue.main.async
+                    {
+                        let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
+                        let cancel = UIAlertAction(title: "OK", style: .cancel)
+                        showAlert.addAction(cancel)
+                        self.present(showAlert, animated: true, completion: nil)
+                    }
                 }
             }
             if let data = data, let datastring = String(data:data,encoding: .utf8) {
@@ -97,6 +115,7 @@ class GatewayViewController: UIViewController {
         }.resume()
     }
 }
+
     
 //    let number = numberInput.text
 //    let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
