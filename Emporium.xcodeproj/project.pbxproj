@@ -38,6 +38,7 @@
 		ACAEE67424A22CD800C286BF /* CrowdTracking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */; };
 		ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */; };
 		ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */; };
+		ACB27A8E24A4A80600DE966B /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = ACB27A8D24A4A80600DE966B /* YOLOv3Tiny.mlmodel */; };
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
@@ -149,6 +150,7 @@
 		ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrowdTracking.storyboard; sourceTree = "<group>"; };
 		ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdTrackingViewController.swift; sourceTree = "<group>"; };
 		ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3TinyFP16.mlmodel; sourceTree = "<group>"; };
+		ACB27A8D24A4A80600DE966B /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		ACAEE67924A4223200C286BF /* MLModel */ = {
 			isa = PBXGroup;
 			children = (
+				ACB27A8D24A4A80600DE966B /* YOLOv3Tiny.mlmodel */,
 				ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */,
 			);
 			path = MLModel;
@@ -406,7 +409,6 @@
 			isa = PBXGroup;
 			children = (
 				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
-				ED57F79F24A076970013A133 /* Models */,
 				ED57F794249C98F10013A133 /* Queue */,
 				ACED1DE9249B72BF00094284 /* Rewards */,
 				ACED1DE1249B2FDE00094284 /* Main */,
@@ -931,6 +933,7 @@
 				AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
 				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
+				ACB27A8E24A4A80600DE966B /* YOLOv3Tiny.mlmodel in Sources */,
 				FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
