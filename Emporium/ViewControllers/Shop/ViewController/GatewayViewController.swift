@@ -48,6 +48,13 @@ class GatewayViewController: UIViewController {
             expDatePickerView.addSubview(label)
         }
         
+        expDatePickerView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        expDatePickerView.layer.shadowColor = UIColor.darkGray.cgColor
+        expDatePickerView.layer.shadowRadius = 5
+        expDatePickerView.layer.shadowOpacity = 0.9
+        expDatePickerView.layer.masksToBounds = false
+        expDatePickerView.clipsToBounds = false
+        
     }
     
     @IBAction func paybtnPressed(_ sender: Any) {
