@@ -47,6 +47,22 @@ class ShopViewController: UIViewController {
         }
     }
     
+    func searchProducts(search: String) {
+        var sortedList: [Product] = []
+        
+        ShopDataManager.loadProducts() {
+            productList in
+            for product in productList {
+                if product.productName.lowercased().contains(search.lowercased()) {
+                    sortedList.append(product)
+                }
+            }
+            self.productData = sortedList
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -102,6 +118,15 @@ class ShopViewController: UIViewController {
             toastLbl.alpha = 0
         }) { (_) in
             toastLbl.removeFromSuperview()
+        }
+    }
+    
+    
+    @IBAction func searchBtnPressed(_ sender: Any) {
+        if searchTextField.text == "" {
+            loadProducts()
+        }else{
+            searchProducts(search: searchTextField.text!)
         }
     }
 }
