@@ -9,6 +9,7 @@ import AVFoundation
 import CoreML
 import Vision
 import UIKit
+import Combine
 import MaterialComponents.MaterialCards
 
 class CrowdTrackingViewController: UIViewController,
@@ -18,22 +19,34 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var cardView: MDCCard!
     
+    @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var noOfShopperLabel: UILabel!
     
     // MARK: - Variables
+    private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
+    private let visitorCountPublisher = PassthroughSubject<Int, Never>()
+    private var diffVisitorValue = 0
+    private var currentVisitorCount = 0
+    
+    
+    // MARK: - Cameras
     private let session = AVCaptureSession()
     private var deviceInput: AVCaptureDeviceInput!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var videoDataOutput: AVCaptureVideoDataOutput!
-    
     private var bufferSize: CGSize!
     
+    // MARK: - AI Model
     private var visionModel: VNCoreMLModel!
-    
     private var objectRecognition: VNRequest?
     
+    // MARK: - Drawing Detection
     private var oldShapeLayers: [CALayer] = []
     
+    // MARK: - Firebase
+    private var crowdTrackingDataManager: CrowdTrackingDataManager!
+    
+    var groceryStoreId: String? = "4b15f661f964a52012b623e3"
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -50,10 +63,45 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         cardView.layer.masksToBounds = false
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
-        ///Setup camera
-        self.setupAVCapture()
-        ///Setup model
-        self.loadModel()
+        self.showSpinner(onView: self.view)
+//        ///Setup camera
+//        self.setupAVCapture()
+//        ///Setup model
+//        self.setupModel()
+        
+        ///Setup data manager
+        self.setupDataManager()
+        
+        self.visitorCountPublisher.debounce(for: .milliseconds(500), scheduler: RunLoop.main).eraseToAnyPublisher().sink{
+            value in
+            print(self.diffVisitorValue)
+            
+            self.crowdTrackingDataManager.addVisitorCount(groceryStoreId: self.groceryStoreId!, value: self.diffVisitorValue, completion: nil)
+            
+            self.diffVisitorValue = 0
+        }.store(in: &cancellables!)
+        
+    }
+    
+    private func setupDataManager(){
+        self.crowdTrackingDataManager = CrowdTrackingDataManager()
+        
+        //Setup stepper
+        self.stepper.minimumValue = 0
+        self.crowdTrackingDataManager.getGroceryStore(groceryStoreId: self.groceryStoreId!){
+            groceryStore, error in
+            
+            if let groceryStore = groceryStore {
+                self.stepper.maximumValue = Double(groceryStore.maxVisitorCapacity)
+                self.stepper.value = Double(groceryStore.currentVisitorCount)
+                
+                self.noOfShopperLabel.text = String(groceryStore.currentVisitorCount)
+                
+                self.currentVisitorCount = groceryStore.currentVisitorCount
+                
+            }
+            self.removeSpinner()
+        }
     }
     
     private func setupAVCapture(){
@@ -115,7 +163,7 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         session.startRunning()
     }
     
-    private func loadModel(){
+    private func setupModel(){
         let yoloModel = YOLOv3Tiny()
         do {
         visionModel = try VNCoreMLModel(for: yoloModel.model)
@@ -208,6 +256,13 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         IBAction for stepper, use for manually controlling the amount of shopper inside the supermarket.
      */
     @IBAction func changeNoOfShoppersStepper(_ sender: Any) {
+        let visitorValue = Int(self.stepper.value)
+        self.diffVisitorValue = visitorValue - self.currentVisitorCount
+        
+        //Send arbitrary value to publisher (signaling only)
+        self.visitorCountPublisher.send(0)
+        
+        self.noOfShopperLabel.text = String(visitorValue)
     }
     
     var exifOrientationFromDeviceOrientation: Int32 {

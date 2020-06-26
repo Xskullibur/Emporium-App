@@ -39,6 +39,8 @@
 		ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */; };
 		ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */; };
 		ACB27A8E24A4A80600DE966B /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = ACB27A8D24A4A80600DE966B /* YOLOv3Tiny.mlmodel */; };
+		ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB27A9424A5D19C00DE966B /* CrowdTrackingDataManager.swift */; };
+		ACB27A9824A5D34700DE966B /* ChangeVisitorCountStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB27A9724A5D34700DE966B /* ChangeVisitorCountStatus.swift */; };
 		ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD28633249894E200497BD9 /* EmporiumCardButton.xib */; };
 		ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286352498950700497BD9 /* EmporiumCardButton.swift */; };
 		ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD286372498F2D100497BD9 /* MyAccountViewController.swift */; };
@@ -154,6 +156,8 @@
 		ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdTrackingViewController.swift; sourceTree = "<group>"; };
 		ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3TinyFP16.mlmodel; sourceTree = "<group>"; };
 		ACB27A8D24A4A80600DE966B /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
+		ACB27A9424A5D19C00DE966B /* CrowdTrackingDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdTrackingDataManager.swift; sourceTree = "<group>"; };
+		ACB27A9724A5D34700DE966B /* ChangeVisitorCountStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeVisitorCountStatus.swift; sourceTree = "<group>"; };
 		ACD28633249894E200497BD9 /* EmporiumCardButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumCardButton.xib; sourceTree = "<group>"; };
 		ACD286352498950700497BD9 /* EmporiumCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumCardButton.swift; sourceTree = "<group>"; };
 		ACD286372498F2D100497BD9 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
+				ACB27A9624A5D32C00DE966B /* Models */,
+				ACB27A9324A5D13600DE966B /* DataManager */,
 				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
@@ -366,6 +372,22 @@
 				ACAEE67A24A4223300C286BF /* YOLOv3TinyFP16.mlmodel */,
 			);
 			path = MLModel;
+			sourceTree = "<group>";
+		};
+		ACB27A9324A5D13600DE966B /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				ACB27A9424A5D19C00DE966B /* CrowdTrackingDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		ACB27A9624A5D32C00DE966B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACB27A9724A5D34700DE966B /* ChangeVisitorCountStatus.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		ACD28624249877ED00497BD9 /* Recovered References */ = {
@@ -964,6 +986,7 @@
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
+				ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				ED61105124A44BA600FFD408 /* RequestedItem.swift in Sources */,
 				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,
@@ -985,6 +1008,7 @@
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
+				ACB27A9824A5D34700DE966B /* ChangeVisitorCountStatus.swift in Sources */,
 				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
 				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
