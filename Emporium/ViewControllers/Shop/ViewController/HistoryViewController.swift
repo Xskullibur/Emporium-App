@@ -42,6 +42,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.layer.cornerRadius = 10
         cell.titleLabel.text = purchaseHistory[indexPath.row]
         
+        cell.contentView.layer.masksToBounds = true
+        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOpacity = 0.9
+        cell.layer.masksToBounds = false
+        cell.clipsToBounds = false
+        
         return cell
     }
     
@@ -71,3 +79,4 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         present(actionSheet, animated: true, completion: nil)
     }
 }
+
