@@ -21,6 +21,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.layer.cornerRadius = 10
 
         loadHistoryDetail()
     }
@@ -61,9 +62,17 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = "$" + cartDetail.price
-        cell.quantityLabel.text = "x" + cartDetail.quantity
+        cell.priceLabel.text = "Price: $" + cartDetail.price
+        cell.quantityLabel.text = "Quantity: " + cartDetail.quantity
         cell.cartImage.loadImage(url: cartDetail.image)
+        
+        cell.contentView.layer.masksToBounds = true
+        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOpacity = 0.9
+        cell.layer.masksToBounds = false
+        cell.clipsToBounds = false
         
         return cell
     }

@@ -46,9 +46,17 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = "$" + String(cartDetail.price)
-        cell.quantityLabel.text = "x" + String(cartDetail.quantity)
+        cell.priceLabel.text = "Price: $" + String(cartDetail.price)
+        cell.quantityLabel.text = "Quantity: " + String(cartDetail.quantity)
         cell.cartImage.loadImage(url: cartDetail.image)
+        
+        cell.contentView.layer.masksToBounds = true
+        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOpacity = 0.9
+        cell.layer.masksToBounds = false
+        cell.clipsToBounds = false
         
         return cell
     }
