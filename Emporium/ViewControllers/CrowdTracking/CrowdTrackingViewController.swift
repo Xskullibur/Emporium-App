@@ -261,6 +261,8 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         
         //Send arbitrary value to publisher (signaling only)
         self.visitorCountPublisher.send(0)
+        
+        self.noOfShopperLabel.text = String(visitorValue)
     }
     
     var exifOrientationFromDeviceOrientation: Int32 {
