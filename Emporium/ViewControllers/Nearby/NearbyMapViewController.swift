@@ -104,14 +104,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         // Create Coordinates
         let sourceCoords = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-        let destinationCoords = CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude)
+        let destinationCoords = CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude)
         
         // Clear Annotations
         mapView.removeAnnotations(mapView.annotations)
         
         // Create Destination Annotation
         let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+            coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
             store: store
         )
         mapView.addAnnotation(annotation)
@@ -185,7 +185,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
             // Custom Marker
             view.markerTintColor = annotation.store.getCrowdLevelColor()
-            view.glyphText = String(annotation.store.crowdCount)
+            view.glyphText = String(annotation.store.currentVisitorCount)
 
             
             // Custom Callout
@@ -220,7 +220,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
             leftLabel.adjustsFontSizeToFitWidth = true
             leftLabel.textAlignment = .right
-            leftLabel.text = "\(annotation.store.crowdCount)/\(annotation.store.maxCount)"
+            leftLabel.text = "\(annotation.store.currentVisitorCount)/\(annotation.store.maxVisitorCapacity)"
             
             view.leftCalloutAccessoryView = leftLabel
             view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
@@ -282,18 +282,18 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     print(apiError.errorDetail) // e.g. The requested path does not exist.
                     
                 case .none:
-                    let storeList = _storeList.sorted(by: { $0.distance < $1.distance })
+                    let storeList = _storeList.sorted(by: { $0.distance! < $1.distance! })
                     
                     self.storeList_lessThan1 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance <= 1
+                        groceryStore.distance! <= 1
                     })
                     
                     self.storeList_lessThan2 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance > 1 && groceryStore.distance <= 2
+                        groceryStore.distance! > 1 && groceryStore.distance! <= 2
                     })
                     
                     self.storeList_moreThan2 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance > 2
+                        groceryStore.distance! > 2
                     })
             }
             
@@ -309,7 +309,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
                     store: store
                 )
                 
@@ -323,7 +323,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
                     store: store
                 )
                 
@@ -337,7 +337,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude),
+                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
                     store: store
                 )
                 

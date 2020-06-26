@@ -77,8 +77,8 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         cell.titleLabel.text = store.name
-        cell.subtitleLabel.text = "\(String(format: "%.2f", store.distance)) km"
-        cell.crowdLabel.text = "\(String(format: "%02d", store.crowdCount))/\(String(format: "%02d", store.maxCount))"
+        cell.subtitleLabel.text = "\(String(format: "%.2f", store.distance!)) km"
+        cell.crowdLabel.text = "\(String(format: "%02d", store.currentVisitorCount))/\(String(format: "%02d", store.maxVisitorCapacity))"
         
         cell.crowdLabel.textColor = store.getCrowdLevelColor()
         

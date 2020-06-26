@@ -28,8 +28,8 @@ class EntryViewController: UIViewController {
     @IBAction func directionBtnPressed(_ sender: Any) {
         let annotation = StoreAnnotation(
             coords: CLLocationCoordinate2D(
-                latitude: store!.latitude,
-                longitude: store!.longitude
+                latitude: store!.location.latitude,
+                longitude: store!.location.longitude
             ),
             store: store!
         )

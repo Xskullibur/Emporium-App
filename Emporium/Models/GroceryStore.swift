@@ -7,18 +7,18 @@
 //
 
 import Foundation
+import Firebase
 import UIKit.UIColor
 
 class GroceryStore: NSObject {
     let id: String
     let name: String
     let address: String
-    let distance: Double
-    let latitude: Double
-    let longitude: Double
+    let distance: Double?
+    let location: GeoPoint
     
-    let crowdCount: Int
-    let maxCount: Int
+    let currentVisitorCount: Int
+    let maxVisitorCapacity: Int
     
     init(
         id _id: String,
@@ -36,11 +36,30 @@ class GroceryStore: NSObject {
         name = _name
         address = _address
         distance = _distance
-        latitude = _latitude
-        longitude = _longitude
+        location = GeoPoint(latitude: _latitude, longitude: _longitude)
         
-        crowdCount = _crowdCount
-        maxCount = _maxCount
+        currentVisitorCount = _crowdCount
+        maxVisitorCapacity = _maxCount
+        
+    }
+    
+    init(
+        id _id: String,
+        name _name: String,
+        address _address: String,
+        location _location: GeoPoint,
+        currentVisitorCount _currentVisitorCount: Int,
+        maxVisitorCapacity _maxVisitorCapacity: Int
+    ) {
+        
+        id = _id
+        name = _name
+        address = _address
+        distance = nil
+        location = _location
+        
+        currentVisitorCount = _currentVisitorCount
+        maxVisitorCapacity = _maxVisitorCapacity
         
     }
     
@@ -51,10 +70,10 @@ class GroceryStore: NSObject {
         let midColor = UIColor.systemOrange
         let highColor = UIColor.systemRed
         
-        if crowdCount >= (maxCount / 3 * 2) {
+        if currentVisitorCount >= (maxVisitorCapacity / 3 * 2) {
             return highColor
         }
-        else if crowdCount >= (maxCount / 3) {
+        else if currentVisitorCount >= (maxVisitorCapacity / 3) {
             return midColor
         }
         else {

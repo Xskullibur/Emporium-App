@@ -101,6 +101,7 @@
                         <outlet property="cardView" destination="UmA-pT-BkQ" id="7je-Xv-XRO"/>
                         <outlet property="noOfShopperLabel" destination="kpm-mX-qfQ" id="bH1-3c-unu"/>
                         <outlet property="previewView" destination="nFj-em-VPh" id="dET-nB-npV"/>
+                        <outlet property="stepper" destination="BVg-7F-spW" id="PZG-yx-gEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FI-Gw-4ou" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
