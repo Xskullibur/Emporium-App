@@ -22,6 +22,13 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 10
+        
+        totalLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
+        totalLabel.layer.shadowColor = UIColor.darkGray.cgColor
+        totalLabel.layer.shadowRadius = 5
+        totalLabel.layer.shadowOpacity = 0.9
+        totalLabel.layer.masksToBounds = false
+        totalLabel.clipsToBounds = false
 
         loadHistoryDetail()
     }

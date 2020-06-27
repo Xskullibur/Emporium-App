@@ -14,6 +14,8 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var ProductCateLabel: UILabel!
     
     var productData: [Product] = []
     var cartData: [Cart] = []
@@ -24,6 +26,8 @@ class ShopViewController: UIViewController {
         searchTextField.placeholder = "Search Products"
         
         loadProducts()
+        
+        searchBtn.layer.cornerRadius = 5
         
         self.collectionView.layer.cornerRadius = 10
         self.cartCollectionView.layer.cornerRadius = 10
@@ -43,6 +47,7 @@ class ShopViewController: UIViewController {
             productList in
             
             self.productData = productList
+            self.ProductCateLabel.text = "Product: tap to add"
             self.collectionView.reloadData()
         }
     }
@@ -57,6 +62,7 @@ class ShopViewController: UIViewController {
                     sortedList.append(product)
                 }
             }
+            self.ProductCateLabel.text = "Product: tap to add (result for " + search + ")"
             self.productData = sortedList
             self.collectionView.reloadData()
         }
