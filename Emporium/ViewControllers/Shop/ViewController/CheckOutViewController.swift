@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Stripe
+import Firebase
 
 class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -66,7 +66,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         if self.cartData.count == 0 {
             Toast.showToast("Cart is empty select something first!")
         }else{
-            performSegue(withIdentifier: "toGateway", sender: nil)
+            if Auth.auth().currentUser?.uid == nil {
+                Toast.showToast("You need to log in to make purchase!")
+            }else{
+                performSegue(withIdentifier: "toGateway", sender: nil)
+            }
         }
     }
     
