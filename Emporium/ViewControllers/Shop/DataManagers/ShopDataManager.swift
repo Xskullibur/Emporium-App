@@ -61,7 +61,7 @@ class ShopDataManager
                     purchaseHistory.append(doc.documentID)
                 }
             }
-            onComplete?(purchaseHistory)
+            onComplete?(purchaseHistory.reversed())
         }
     }
     
