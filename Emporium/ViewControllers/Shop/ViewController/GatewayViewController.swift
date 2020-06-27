@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import Firebase
+import Foundation
 
 class GatewayViewController: UIViewController {
     
@@ -31,7 +32,7 @@ class GatewayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        numberInput.placeholder = "Card Number"
+        numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
         
         cardImageView.image = UIImage(named: "noImage")
@@ -57,6 +58,42 @@ class GatewayViewController: UIViewController {
         
     }
     
+    func checkPaymentInfo(number: String, cvc: String, month: Int, year: Int) -> [String] {
+        var error: [String] = []
+        
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "YYYY"
+        let currentYear = format.string(from: date)
+        format.dateFormat = "MM"
+        let currentMonth = format.string(from: date)
+        
+        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16) {
+            error.append("Card number must have exactily 16 digit\n")
+        }
+        
+        if(Int(number) == nil) {
+            error.append("Card number must only contain numbers\n")
+        }
+        
+        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3) {
+            error.append("CVC must have exactily 3 digit\n")
+        }
+        
+        if(Int(cvc) == nil) {
+            error.append("CVC must only contain numbers\n")
+        }
+        
+        if(Int(currentMonth)! >= month) {
+            if Int(currentYear)! >= year {
+                error.append("Card Expiry Date must be next month or longer\n")
+            }
+        }
+        
+        return error
+        
+    }
+    
     @IBAction func paybtnPressed(_ sender: Any) {
         
         var paymentInfo = PaymentInfo()
@@ -68,59 +105,70 @@ class GatewayViewController: UIViewController {
         let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
         
-        paymentInfo.number = number!
-        paymentInfo.month = Int32(month)
-        paymentInfo.year = Int32(year)
-        paymentInfo.cvc = cvc!
-        paymentInfo.userid = Auth.auth().currentUser?.uid as! String
+        let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
-        for cart in cartData {
-            var cartItemAdd = CartItem()
-            cartItemAdd.productID = cart.productID
-            cartItemAdd.quantity = Int32(cart.quantity)
-            paymentInfo.cartItems.append(cartItemAdd)
-        }
-        
-        let data = try? paymentInfo.serializedData()
-        
-        let session  = URLSession.shared
-        let url = URL(string: backendBaseURL! + "/oneTimeCharge")
-        var request = URLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-        
-        session.uploadTask(with: request, from: data) {
-            data, response, error in
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 200 {
-                    DispatchQueue.main.async
-                    {
+        if(error.count == 0) {
+                paymentInfo.number = number!
+                paymentInfo.month = Int32(month)
+                paymentInfo.year = Int32(year)
+                paymentInfo.cvc = cvc!
+                paymentInfo.userid = Auth.auth().currentUser?.uid as! String
+                
+                for cart in cartData {
+                    var cartItemAdd = CartItem()
+                    cartItemAdd.productID = cart.productID
+                    cartItemAdd.quantity = Int32(cart.quantity)
+                    paymentInfo.cartItems.append(cartItemAdd)
+                }
+                
+                let data = try? paymentInfo.serializedData()
+                
+                let session  = URLSession.shared
+                let url = URL(string: backendBaseURL! + "/oneTimeCharge")
+                var request = URLRequest(url: url!)
+                request.httpMethod = "POST"
+                request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+                
+                session.uploadTask(with: request, from: data) {
+                    data, response, error in
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if httpResponse.statusCode == 200 {
+                            DispatchQueue.main.async
+                            {
 
-                        let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
-                        let back = UIAlertAction(title: "OK", style: .default) {
-                            action in
-                            
+                                let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
+                                let back = UIAlertAction(title: "OK", style: .default) {
+                                    action in
+                                    
+                                }
+                                showAlert.addAction(back)
+                                self.present(showAlert, animated: true, completion: nil)
+                            }
                         }
-                        showAlert.addAction(back)
-                        self.present(showAlert, animated: true, completion: nil)
+                        else
+                        {
+                            DispatchQueue.main.async
+                            {
+                                let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
+                                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                                showAlert.addAction(cancel)
+                                self.present(showAlert, animated: true, completion: nil)
+                            }
+                        }
                     }
-                }
-                else
-                {
-                    DispatchQueue.main.async
-                    {
-                        let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
-                        let cancel = UIAlertAction(title: "OK", style: .cancel)
-                        showAlert.addAction(cancel)
-                        self.present(showAlert, animated: true, completion: nil)
+                    if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                        print(datastring)
                     }
-                }
+                }.resume()
+        }else{
+            var totalError: String = ""
+            for err in error {
+                totalError = totalError + err
             }
-            if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                print(datastring)
-            }
-        }.resume()
+            Toast.showToast(totalError)
+        }
     }
+        
 }
 
     
@@ -174,5 +222,5 @@ extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             return String(yearPickerData[row])
         }
     }
-
 }
+
