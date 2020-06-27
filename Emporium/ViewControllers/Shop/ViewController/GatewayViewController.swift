@@ -139,7 +139,7 @@ class GatewayViewController: UIViewController {
                                 let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
-                                    
+                                    self.navigationController?.popToRootViewController(animated: true)
                                 }
                                 showAlert.addAction(back)
                                 self.present(showAlert, animated: true, completion: nil)
