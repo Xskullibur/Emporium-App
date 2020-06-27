@@ -92,7 +92,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="PayBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="cza-IY-ogC"/>
-                                    <segue destination="iSc-su-h7E" kind="show" id="HGx-NE-UZF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -103,6 +102,7 @@
                     <connections>
                         <outlet property="priceLabel" destination="akk-Cd-XB4" id="bes-aS-2i0"/>
                         <outlet property="tableView" destination="nxk-FX-co3" id="wj0-he-o6T"/>
+                        <segue destination="iSc-su-h7E" kind="show" identifier="toGateway" id="lOh-No-Aar"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cl2-qo-17v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

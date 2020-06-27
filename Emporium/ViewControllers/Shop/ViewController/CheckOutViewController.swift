@@ -63,7 +63,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func PayBtnPressed(_ sender: Any) {
-
+        if self.cartData.count == 0 {
+            Toast.showToast("Cart is empty select something first!")
+        }else{
+            performSegue(withIdentifier: "toGateway", sender: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
