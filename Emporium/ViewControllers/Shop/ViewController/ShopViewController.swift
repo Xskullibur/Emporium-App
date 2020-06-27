@@ -14,6 +14,8 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var ProductCateLabel: UILabel!
     
     var productData: [Product] = []
     var cartData: [Cart] = []
@@ -24,6 +26,8 @@ class ShopViewController: UIViewController {
         searchTextField.placeholder = "Search Products"
         
         loadProducts()
+        
+        searchBtn.layer.cornerRadius = 5
         
         self.collectionView.layer.cornerRadius = 10
         self.cartCollectionView.layer.cornerRadius = 10
@@ -43,9 +47,27 @@ class ShopViewController: UIViewController {
             productList in
             
             self.productData = productList
+            self.ProductCateLabel.text = "Product: tap to add"
             self.collectionView.reloadData()
         }
     }
+    
+    func searchProducts(search: String) {
+        var sortedList: [Product] = []
+        
+        ShopDataManager.loadProducts() {
+            productList in
+            for product in productList {
+                if product.productName.lowercased().contains(search.lowercased()) {
+                    sortedList.append(product)
+                }
+            }
+            self.ProductCateLabel.text = "Product: tap to add (result for " + search + ")"
+            self.productData = sortedList
+            self.collectionView.reloadData()
+        }
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -104,6 +126,15 @@ class ShopViewController: UIViewController {
             toastLbl.removeFromSuperview()
         }
     }
+    
+    
+    @IBAction func searchBtnPressed(_ sender: Any) {
+        if searchTextField.text == "" {
+            loadProducts()
+        }else{
+            searchProducts(search: searchTextField.text!)
+        }
+    }
 }
 
 extension ShopViewController: UICollectionViewDataSource {
@@ -130,8 +161,9 @@ extension ShopViewController: UICollectionViewDataSource {
             return cell
         }else{
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, "noImage")
+            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
             //self.cartData[indexPath.row].image
+            //"noImage"
             cell2.cornerRadius = 13
             cell2.contentView.layer.masksToBounds = true
             cell2.clipsToBounds = true
