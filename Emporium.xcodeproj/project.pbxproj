@@ -442,7 +442,7 @@
 			path = EarnedRewards;
 			sourceTree = "<group>";
 		};
-		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
+		ACED1DE0249B2FC800094284 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
@@ -453,7 +453,7 @@
 				EDB4683224948BDF000DE5F0 /* Nearby */,
 				FEA80CEF248DE293005D8F94 /* Login */,
 			);
-			path = ViewControllers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		ACED1DE1249B2FDE00094284 /* Main */ = {
@@ -622,7 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				ED57F79F24A076970013A133 /* Models */,
-				ACED1DE0249B2FC800094284 /* ViewControllers */,
+				ACED1DE0249B2FC800094284 /* Views */,
 				AC0A18F224932482009FFD93 /* Notifications */,
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,

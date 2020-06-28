@@ -89,9 +89,12 @@ class MyVouchersTableViewController: UITableViewController {
     @IBAction func testAddPoints(_ sender: Any) {
         let functions = Functions.functions()
         //Debugging
-       #if DEBUG
-       functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
-       #endif
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
         functions.httpsCallable("testAddPoints").call{
             _, _ in
         }
