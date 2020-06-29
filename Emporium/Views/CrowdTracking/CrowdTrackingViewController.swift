@@ -74,7 +74,6 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         
         self.visitorCountPublisher.debounce(for: .milliseconds(500), scheduler: RunLoop.main).eraseToAnyPublisher().sink{
             value in
-            print(self.diffVisitorValue)
             
             self.crowdTrackingDataManager.addVisitorCount(groceryStoreId: self.groceryStoreId!, value: self.diffVisitorValue, completion: nil)
             
