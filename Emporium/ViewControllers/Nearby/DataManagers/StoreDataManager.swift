@@ -55,7 +55,7 @@ class StoreDataManager {
             batch.setData([
                 "name": store.name,
                 "address": store.address,
-                "coordinates": GeoPoint(latitude: store.latitude, longitude: store.longitude)
+                "coordinates": store.location
             ], forDocument: ref)
         }
         

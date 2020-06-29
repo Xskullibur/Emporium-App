@@ -26,5 +26,19 @@ class CartCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override var frame: CGRect {
+      get {
+          return super.frame
+      }
+      set (newFrame) {
+          var frame =  newFrame
+          frame.origin.y += 4
+          frame.size.height -= 2 * 10
+          frame.origin.x += 4
+          frame.size.width -= 2 * 5
+          super.frame = frame
+      }
+    }
 
 }
