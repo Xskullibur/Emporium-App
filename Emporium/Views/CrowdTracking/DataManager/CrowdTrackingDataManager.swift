@@ -49,6 +49,36 @@ class CrowdTrackingDataManager {
     }
     
     /**
+    Get the list of Grocery Stores in Firebase
+     */
+    func getGroceryStores(completion: @escaping([GroceryStore], EmporiumError?) -> Void){
+        let database = Firestore.firestore()
+        
+        let groceryStores = database.collection("emporium/globals/grocery_stores/")
+        
+        groceryStores.addSnapshotListener{
+            (querySnapshot, error) in
+            if let error = error {
+                completion([], .firebaseError(error))
+            }
+            
+             var datas: [GroceryStore] = []
+             
+             if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    var data = document.data()
+                    data["id"] = document.documentID
+                    datas.append(self.toGroceryStore(data: data))
+                }
+            }
+            
+             completion(datas, nil)
+        }
+        
+        
+    }
+    
+    /**
      Get GroceryStore from Firebase
      */
     func getGroceryStore(groceryStoreId: String, completion: @escaping (GroceryStore?, EmporiumError?) -> Void){

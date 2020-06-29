@@ -46,7 +46,7 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: - Firebase
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
     
-    var groceryStoreId: String? = "4b15f661f964a52012b623e3"
+    var groceryStoreId: String? = nil
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
 		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
@@ -124,6 +125,7 @@
 /* Begin PBXFileReference section */
 		032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
+		34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresTableViewController.swift; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +372,7 @@
 				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
+				34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */,
 			);
 			path = CrowdTracking;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
+				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
