@@ -88,6 +88,8 @@
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
 		EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
+		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
+		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
@@ -208,6 +210,8 @@
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
+		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
+		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -298,6 +302,8 @@
 				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
 				7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */,
 				7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */,
+				FE32168F24A98875003D1196 /* DisplayCardViewController.swift */,
+				FE32169124A98B19003D1196 /* AddCardViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -970,6 +976,7 @@
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
@@ -1027,6 +1034,7 @@
 				ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
+				FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 				7F0B387A24A35FA60003B9D9 /* HistoryCell.swift in Sources */,
 			);

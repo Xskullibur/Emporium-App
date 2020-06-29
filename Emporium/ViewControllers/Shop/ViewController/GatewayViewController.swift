@@ -20,7 +20,7 @@ class GatewayViewController: UIViewController {
     @IBOutlet weak var expDatePickerView: UIPickerView!
     
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://192.168.86.1:5000"
+    var backendBaseURL: String? = "http://172.27.176.188:5000"
     //local http://192.168.86.1:5000
     //web https://hidden-ridge-68133.herokuapp.com
     //test card 4242424242424242 cvc: any 3 number
