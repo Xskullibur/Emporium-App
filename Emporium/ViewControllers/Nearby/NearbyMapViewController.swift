@@ -124,15 +124,18 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             view.calloutOffset = CGPoint(x: -5, y: 5)
             
             /// Right Callout
-            let rightButton = StoreButton(type: .infoDark)
+            let rightButton = StoreButton(frame:
+                CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15))
+            )
+            rightButton.setImage(UIImage(named: "next"), for: .normal)
+            rightButton.contentMode = .scaleAspectFit
             rightButton.store = annotation.store
             rightButton.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
             
             view.rightCalloutAccessoryView = rightButton
             
             let pointSize: CGFloat = 24
-            let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light)
-                .fontDescriptor
+            let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light).fontDescriptor
             let fractionFontDesc = systemFontDesc.addingAttributes([
                 
                 UIFontDescriptor.AttributeName.featureSettings: [
