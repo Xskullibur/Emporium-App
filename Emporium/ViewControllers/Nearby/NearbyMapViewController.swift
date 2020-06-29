@@ -31,7 +31,7 @@ class StoreButton: UIButton {
 }
 
 // MARK: - ViewController
-class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate {
+class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
     // MARK: - Variables
     var locationManager: CLLocationManager?
@@ -44,7 +44,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var martListFAB: MDCFloatingButton!
-    @IBOutlet weak var continueBtn: UIBarButtonItem!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -60,72 +59,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
         
-    }
-    
-    // MARK: - IBActions
-    @IBAction func continueBtnPressed(_ sender: Any) {
-        
-        if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "ShowQueue", sender: sender)
-        }
-        else {
-            loginManager? = LoginManager(viewController: self)
-            
-            loginManager?.setLoginComplete { (user) in
-                self.performSegue(withIdentifier: "ShowQueue", sender: sender)
-            }
-            
-            loginManager?.showLoginViewController()
-        }
-        
-    }
-    
-    // MARK: - Store Selected
-    @objc func cancelBtnPressed(sender: UIBarButtonItem!) {
-        
-        // Clear all Annotations and Overlays
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
-        
-        // Add back all annotations
-        addAnnotations()
-        
-        // Show Back Button
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.setHidesBackButton(false, animated: true)
-        
+        // Spinner
+        showSpinner(onView: self.view)
     }
     
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
-    }
-    
-    func storeSelected(store: GroceryStore) {
-        
-        // Create Coordinates
-        let sourceCoords = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-        let destinationCoords = CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude)
-        
-        // Clear Annotations
-        mapView.removeAnnotations(mapView.annotations)
-        
-        // Create Destination Annotation
-        let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
-            store: store
-        )
-        mapView.addAnnotation(annotation)
-        
-        // Show Directions
-        showDirections(sourceCoords: sourceCoords, destinationCoords: destinationCoords, transportType: .walking)
-        
-        continueBtn.isEnabled = true
-        
-        navigationItem.setHidesBackButton(true, animated: true)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed(sender:)))
-        
-        // Update Varible
-        selectedStore = store
     }
     
     // MARK: - MapView
@@ -138,8 +77,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         let region = MKCoordinateRegion (
             center: currentLocation.coordinate,
-            latitudinalMeters: 3000,
-            longitudinalMeters: 3000
+            latitudinalMeters: 2500,
+            longitudinalMeters: 2500
         )
         
         mapView.setRegion(region, animated: true)
@@ -147,14 +86,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         // Get Grocery Stores near User
         getStores(lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
         
-    }
-    
-    /// Direction Path Design
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.blue.withAlphaComponent(0.75)
-        renderer.lineWidth = 5
-        return renderer
     }
     
     /// Custom Annotation
@@ -232,36 +163,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Custom MapView Functions
-    func showDirections(sourceCoords: CLLocationCoordinate2D, destinationCoords: CLLocationCoordinate2D, transportType: MKDirectionsTransportType) {
-        
-        // Clear Overlays
-        self.mapView.removeOverlays(mapView.overlays)
-        
-        // Create Direction Request
-        let directionRequest = MKDirections.Request()
-        
-        directionRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoords, addressDictionary: nil))
-        directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoords, addressDictionary: nil))
-        directionRequest.requestsAlternateRoutes = false
-        directionRequest.transportType = transportType
-        
-        // Request for Direction and Show on Map
-        let direction = MKDirections(request: directionRequest)
-        direction.calculate { (response, error) in
-            guard let unwrappedResponse = response else { return }
-            
-            let route = unwrappedResponse.routes[0]
-            self.mapView.addOverlay(route.polyline)
-            self.mapView.setVisibleMapRect(
-                route.polyline.boundingMapRect,
-                edgePadding: UIEdgeInsets(top: 50, left: 20.0, bottom: 120, right: 20.0),
-                animated: true
-            )
-            
-        }
-        
-    }
-    
     func getStores(lat latitude: Double, long longitude: Double) {
         
         // Do any additional setup after loading the view.
@@ -282,6 +183,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     print(apiError.errorDetail) // e.g. The requested path does not exist.
                     
                 case .none:
+                    // Prep Data
                     let storeList = _storeList.sorted(by: { $0.distance! < $1.distance! })
                     
                     self.storeList_lessThan1 = storeList.filter({ (groceryStore) -> Bool in
@@ -295,9 +197,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     self.storeList_moreThan2 = storeList.filter({ (groceryStore) -> Bool in
                         groceryStore.distance! > 2
                     })
+                
+                    // Display and Unload Spinner
+                    self.addAnnotations()
+                    self.removeSpinner()
             }
-            
-            self.addAnnotations()
+
         })
         
     }
@@ -349,8 +254,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         // Shift to user location
         let region = MKCoordinateRegion (
             center: mapView.userLocation.coordinate,
-            latitudinalMeters: 3000,
-            longitudinalMeters: 3000
+            latitudinalMeters: 2500,
+            longitudinalMeters: 2500
         )
         
         mapView.setRegion(region, animated: true)
@@ -358,6 +263,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Navigation
+    func storeSelected(store: GroceryStore) {
+        selectedStore = store
+        performSegue(withIdentifier: "ShowQueue", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // NearbyList
@@ -366,7 +276,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             nearbyListVC.storeList_lessThan1 = storeList_lessThan1
             nearbyListVC.storeList_lessThan2 = storeList_lessThan2
             nearbyListVC.storeList_moreThan2 = storeList_moreThan2
-            nearbyListVC.storeSelectDelegate = self
         }
         
         // Queue

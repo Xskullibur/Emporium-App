@@ -19,6 +19,7 @@ class NearbyStoreCell: UITableViewCell {
 class NearbyListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Variables
+    var selectedStore: GroceryStore?
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
     var storeList_moreThan2: [GroceryStore] = []
@@ -101,10 +102,7 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Update Selected Store
         storeSelectDelegate?.storeSelected(store: store)
         
-        // Dismiss Popover
-        self.dismiss(animated: true, completion: nil)
     }
-
 
     /*
     // MARK: - Navigation
@@ -116,4 +114,5 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     */
 
+    
 }
