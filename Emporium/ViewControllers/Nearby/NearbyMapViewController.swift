@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import MaterialComponents.MaterialButtons
 import FirebaseAuth
+import FirebaseFirestore
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -36,9 +37,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // MARK: - Variables
     var locationManager: CLLocationManager?
     var loginManager: LoginManager?
+    
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
     var storeList_moreThan2: [GroceryStore] = []
+    var visitorCountListiners: [ListenerRegistration] = []
+    
     var selectedStore: GroceryStore?
     
     // MARK: - Outlets
@@ -166,6 +170,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Custom MapView Functions
+    
+    /// Uses PlacesAPI to get **GroceryStores** based on provided coordinates
     func getStores(lat latitude: Double, long longitude: Double) {
         
         // Do any additional setup after loading the view.
@@ -204,24 +210,62 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     // Display and Unload Spinner
                     self.addAnnotations()
                     self.removeSpinner()
+                    self.locationManager?.stopUpdatingLocation()
             }
 
         })
         
     }
     
+    /// Create a **StoreAnnotation** and add it into the mapView
+    func createAnnotationWithStore(_ store: GroceryStore) {
+        let annotation = StoreAnnotation(
+            coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
+            store: store
+        )
+        
+        mapView.addAnnotation(annotation)
+    }
+    
+    /// Remove **StoreAnnotation** with the same **GroceryStore.id** and re-create it
+    func updateAnnotationWithStore(_ store: GroceryStore) {
+
+        let annotation = mapView.annotations.first { (annotation) -> Bool in
+            
+            let annotation = annotation as? StoreAnnotation
+            return annotation?.id == store.id
+            
+        }
+        
+        if annotation != nil {
+            self.mapView.removeAnnotation(annotation!)
+        }
+        
+        createAnnotationWithStore(store)
+        
+    }
+    
+    /**
+     Create and add **StoreAnnotations** based on:
+     
+     1. storeList_lessThan1
+     2. storeList_lessThan2
+     3. storeList_moreThan2
+     */
     func addAnnotations() {
         
         // < 1km Stores
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan1 {
                 
-                let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
-                    store: store
-                )
+                // Create Annotation
+//                createAnnotationWithStore(store)
                 
-                mapView.addAnnotation(annotation)
+                // Add listiner to update annotation
+                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
+                    store.currentVisitorCount = visitorCount
+                    self.updateAnnotationWithStore(store)
+                }
                 
             }
         }
@@ -230,12 +274,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan2 {
                 
-                let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
-                    store: store
-                )
+                // Create Annotation
+//                createAnnotationWithStore(store)
                 
-                mapView.addAnnotation(annotation)
+                // Add listiner to update annotation
+                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
+                    store.currentVisitorCount = visitorCount
+                    self.updateAnnotationWithStore(store)
+                }
                 
             }
         }
@@ -244,12 +290,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_moreThan2 {
                 
-                let annotation = StoreAnnotation(
-                    coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
-                    store: store
-                )
+                // Create Annotation
+//                createAnnotationWithStore(store)
                 
-                mapView.addAnnotation(annotation)
+                // Add listiner to update annotation
+                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
+                    store.currentVisitorCount = visitorCount
+                    self.updateAnnotationWithStore(store)
+                }
                 
             }
         }

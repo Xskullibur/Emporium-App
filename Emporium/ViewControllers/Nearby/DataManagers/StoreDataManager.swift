@@ -17,29 +17,32 @@ class StoreDataManager {
         .document("globals")
         .collection("grocery_stores")
     
-    static func getStores(storeList: [GroceryStore],
-                          onComplete: @escaping([[String: Any?]]) -> Void){
+    static func visitorCountListener(store: GroceryStore, onUpdate: @escaping (Int) -> Void) {
         
-        storeCollection.whereField(FieldPath.documentID(), in: storeList.map { $0.id })
-            .getDocuments { (querySnapshot, error) in
-            
+        storeCollection.document(store.id)
+            .addSnapshotListener { (documentSnapshot, error) in
+                
+                guard let document = documentSnapshot else {
+                    print("Error fetching document. (VisitorCount.Listener): \(error!)")
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    print("Document data was empty. (VisitorCount.Listener)")
+                    return
+                }
+                
+                guard let visitorCount = data["current_visitor_count"] else {
+                    print("Field data was empty. (VisitorCount.Listener)")
+                    return
+                }
+                
                 if let error = error {
-                    print("Error getting store documents: \(error)")
+                    print("Error retreiving collection. (VisitorCount.Listener): \(error)")
+                    return
                 }
-                else {
-                    
-                    var storeList: [[String: Any?]] = []
-                    
-                    for doc in querySnapshot!.documents {
-                        
-                        let data = doc.data()
-                        storeList.append(data)
-                        
-                    }
-                    
-                    onComplete(storeList)
-                    
-                }
+                
+                onUpdate(visitorCount as! Int)
                 
         }
         
@@ -53,9 +56,12 @@ class StoreDataManager {
             let ref = storeCollection.document(store.id)
             
             batch.setData([
+                "id": store.id,
                 "name": store.name,
                 "address": store.address,
-                "coordinates": store.location
+                "coordinates": store.location,
+                "current_visitor_count": store.currentVisitorCount,
+                "max_visitor_capacity": store.maxVisitorCapacity
             ], forDocument: ref)
         }
         
