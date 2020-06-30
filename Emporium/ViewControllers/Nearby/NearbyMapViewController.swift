@@ -118,52 +118,51 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 reuseIdentifier: identifier
             )
             
-            // Custom Marker
-            view.markerTintColor = annotation.store.getCrowdLevelColor()
-            view.glyphText = String(annotation.store.currentVisitorCount)
-
-            
-            // Custom Callout
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: -5, y: 5)
-            
-            /// Right Callout
-            let rightButton = StoreButton(frame:
-                CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15))
-            )
-            rightButton.setImage(UIImage(named: "next"), for: .normal)
-            rightButton.contentMode = .scaleAspectFit
-            rightButton.store = annotation.store
-            rightButton.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
-            
-            view.rightCalloutAccessoryView = rightButton
-            
-            let pointSize: CGFloat = 24
-            let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light).fontDescriptor
-            let fractionFontDesc = systemFontDesc.addingAttributes([
-                
-                UIFontDescriptor.AttributeName.featureSettings: [
-                    UIFontDescriptor.FeatureKey.featureIdentifier: kFractionsType,
-                    UIFontDescriptor.FeatureKey.typeIdentifier: kDiagonalFractionsSelector
-                ]
-                
-            ])
-            
-            /// Left Callout
-            let leftLabel = UILabel(frame: CGRect(
-                origin: CGPoint.zero,
-                size: CGSize(width: 48, height: 48)
-            ))
-            
-            leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
-            leftLabel.adjustsFontSizeToFitWidth = true
-            leftLabel.textAlignment = .right
-            leftLabel.text = "\(annotation.store.currentVisitorCount)/\(annotation.store.maxVisitorCapacity)"
-            
-            view.leftCalloutAccessoryView = leftLabel
-            view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
-            
         }
+        // Custom Marker
+        view.markerTintColor = annotation.store.getCrowdLevelColor()
+        view.glyphText = String(annotation.store.currentVisitorCount)
+
+        
+        // Custom Callout
+        view.canShowCallout = true
+        view.calloutOffset = CGPoint(x: -5, y: 5)
+        
+        /// Right Callout
+        let rightButton = StoreButton(frame:
+            CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15))
+        )
+        rightButton.setImage(UIImage(named: "next"), for: .normal)
+        rightButton.contentMode = .scaleAspectFit
+        rightButton.store = annotation.store
+        rightButton.addTarget(self, action: #selector(annotationPressed(sender:)), for: .touchUpInside)
+        
+        view.rightCalloutAccessoryView = rightButton
+        
+        let pointSize: CGFloat = 24
+        let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light).fontDescriptor
+        let fractionFontDesc = systemFontDesc.addingAttributes([
+            
+            UIFontDescriptor.AttributeName.featureSettings: [
+                UIFontDescriptor.FeatureKey.featureIdentifier: kFractionsType,
+                UIFontDescriptor.FeatureKey.typeIdentifier: kDiagonalFractionsSelector
+            ]
+            
+        ])
+        
+        /// Left Callout
+        let leftLabel = UILabel(frame: CGRect(
+            origin: CGPoint.zero,
+            size: CGSize(width: 48, height: 48)
+        ))
+        
+        leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
+        leftLabel.adjustsFontSizeToFitWidth = true
+        leftLabel.textAlignment = .right
+        leftLabel.text = "\(annotation.store.currentVisitorCount)/\(annotation.store.maxVisitorCapacity)"
+        
+        view.leftCalloutAccessoryView = leftLabel
+        view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
         
         return view
         
