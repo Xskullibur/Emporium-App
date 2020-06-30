@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -232,17 +232,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Light"/>
                             </pickerView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="creditcard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-mL-cxc">
-                                <rect key="frame" x="34" y="116" width="345" height="226"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tI5-a9-Fcm" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="35" y="91" width="345" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="Primary"/>
-                            </imageView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="K8N-Zb-4th"/>
                     </view>
                     <navigationItem key="navigationItem" id="0G6-M3-Ad4"/>
                     <connections>
+                        <outlet property="cardAnimation" destination="tI5-a9-Fcm" id="cgk-wV-djs"/>
                         <outlet property="cvcInput" destination="krT-qp-DQ0" id="pNo-y0-afh"/>
                         <outlet property="expDatePickerView" destination="Tjc-Ky-5zw" id="k13-bp-77g"/>
                         <outlet property="numberInput" destination="M4H-KA-EBx" id="MTw-gW-YlW"/>
@@ -250,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPv-Bn-JeC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2519" y="98"/>
+            <point key="canvasLocation" x="2518.840579710145" y="97.767857142857139"/>
         </scene>
         <!--Purchase History-->
         <scene sceneID="9e9-qF-F6q">
@@ -426,18 +427,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Light"/>
                             </pickerView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="creditcard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gn9-09-8Ea">
-                                <rect key="frame" x="34" y="142" width="345" height="226"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yXV-FC-cK2" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="30" y="113" width="345" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="Primary"/>
-                            </imageView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cPU-go-72U"/>
                     </view>
                     <navigationItem key="navigationItem" id="1GV-gP-fA9"/>
                     <connections>
-                        <outlet property="cardImageView" destination="Gn9-09-8Ea" id="ZSc-QH-H4s"/>
+                        <outlet property="cardAnimation" destination="yXV-FC-cK2" id="rKj-BV-3yD"/>
                         <outlet property="cvcInput" destination="DdB-IN-fGq" id="msN-xQ-FNR"/>
                         <outlet property="expDatePickerView" destination="PAE-Ok-7cM" id="VpG-X9-jzQ"/>
                         <outlet property="numberInput" destination="9V4-pC-Tjq" id="Hb9-Uw-U1N"/>
@@ -555,12 +556,11 @@
     </scenes>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
-        <image name="creditcard" catalog="system" width="128" height="91"/>
         <namedColor name="Light">
-            <color red="1" green="0.68999999761581421" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.69019607843137254" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.49803921568627452" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

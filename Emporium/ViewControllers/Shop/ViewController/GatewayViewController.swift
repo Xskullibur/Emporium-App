@@ -10,17 +10,18 @@ import UIKit
 import Stripe
 import Firebase
 import Foundation
+import Lottie
 
 class GatewayViewController: UIViewController {
     
-    
-    @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
     
+    @IBOutlet weak var cardAnimation: AnimationView!
+    
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://172.27.176.188:5000"
+    var backendBaseURL: String? = "http://192.168.86.1:5000"
     //local http://192.168.86.1:5000
     //web https://hidden-ridge-68133.herokuapp.com
     //test card 4242424242424242 cvc: any 3 number
@@ -41,6 +42,11 @@ class GatewayViewController: UIViewController {
         self.expDatePickerView.dataSource = self
         self.expDatePickerView.delegate = self
         self.expDatePickerView.layer.cornerRadius = 10
+        
+        self.cardAnimation.animation = Animation.named("cardAni")
+        self.cardAnimation.contentMode = .scaleAspectFit
+        self.cardAnimation.loopMode = .loop
+        self.cardAnimation.play()
         
         let labelWidth = expDatePickerView.frame.width / CGFloat(expDatePickerView.numberOfComponents)
         for index in 0..<labelData.count {
@@ -109,6 +115,9 @@ class GatewayViewController: UIViewController {
         let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
         if(error.count == 0) {
+            
+                self.showSpinner(onView: self.view)
+            
                 paymentInfo.number = number!
                 paymentInfo.month = Int32(month)
                 paymentInfo.year = Int32(year)
@@ -136,7 +145,7 @@ class GatewayViewController: UIViewController {
                         if httpResponse.statusCode == 200 {
                             DispatchQueue.main.async
                             {
-
+                                self.removeSpinner()
                                 let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
@@ -150,6 +159,7 @@ class GatewayViewController: UIViewController {
                         {
                             DispatchQueue.main.async
                             {
+                                self.removeSpinner()
                                 let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
                                 let cancel = UIAlertAction(title: "OK", style: .cancel)
                                 showAlert.addAction(cancel)

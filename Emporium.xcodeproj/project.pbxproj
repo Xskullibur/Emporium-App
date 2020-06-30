@@ -16,6 +16,7 @@
 		7F0B387C24A3BB0B0003B9D9 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */; };
 		7F0B387F24A3C38C0003B9D9 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */; };
 		7F0B388124A486830003B9D9 /* HistoryCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388024A486830003B9D9 /* HistoryCartCell.swift */; };
+		7F0B388424AB3BF20003B9D9 /* cardAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F0B388324AB3BF10003B9D9 /* cardAni.json */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
@@ -135,6 +136,7 @@
 		7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		7F0B388024A486830003B9D9 /* HistoryCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCartCell.swift; sourceTree = "<group>"; };
+		7F0B388324AB3BF10003B9D9 /* cardAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAni.json; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
@@ -276,6 +278,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7F0B388224AB3BC00003B9D9 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				7F0B388324AB3BF10003B9D9 /* cardAni.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		7FD026402498EDB900BAA2F1 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +343,7 @@
 		AC21B9C8249767630058EE50 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				7F0B388224AB3BC00003B9D9 /* Animations */,
 				7FD3CCD5249CB2DA00C1CD80 /* ViewController */,
 				7FD02643249A0E7D00BAA2F1 /* Extensions */,
 				7FD026402498EDB900BAA2F1 /* DataManagers */,
@@ -786,6 +797,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
+				7F0B388424AB3BF20003B9D9 /* cardAni.json in Resources */,
 				ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */,
 				ED61105624A4583300FFD408 /* cross.json in Resources */,
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,

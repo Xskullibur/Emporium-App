@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class AddCardViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
+    
+    @IBOutlet weak var cardAnimation: AnimationView!
     
     var backendBaseURL: String? = "http://172.27.176.188:5000"
     
@@ -27,6 +30,12 @@ class AddCardViewController: UIViewController {
 
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
+        
+        //startAnimation
+        self.cardAnimation.animation = Animation.named("cardAni")
+        self.cardAnimation.contentMode = .scaleAspectFit
+        self.cardAnimation.loopMode = .loop
+        self.cardAnimation.play()
         
         self.expDatePickerView.dataSource = self
         self.expDatePickerView.delegate = self
