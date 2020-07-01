@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseUI
 
-open class LoginManager : NSObject, FUIAuthDelegate {
+class LoginManager : NSObject, FUIAuthDelegate {
     
     private var authUI: FUIAuth?
     private let viewController: UIViewController
