@@ -14,7 +14,7 @@ class GroceryStore: NSObject {
     let id: String
     let name: String
     let address: String
-    let distance: Double?
+    var distance: Double?
     let location: GeoPoint
     
     
