@@ -12,23 +12,28 @@ import FirebaseUI
 
 class LoginViewController: UIViewController, FUIAuthDelegate {
     
+    // MARK: - Outlets
     @IBOutlet weak var userBtn: EmporiumCardButton!
     @IBOutlet weak var merchantBtn: EmporiumCardButton!
     
+    // MARK: - Variables
     private var loginManager: LoginManager?
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         self.loginManager = LoginManager(viewController: self)
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
+        //Set action listener for both user and merchant card button
         userBtn.update(text: "User", image: UIImage(named: "User")!)
         userBtn.setTapped(loginAction)
         
         merchantBtn.update(text: "Merchant", image: UIImage(named: "Shop")!)
         merchantBtn.setTapped(merchantLoginAction)
         
+        //After login completes
         self.loginManager?.setLoginComplete{
             user in
             //Dismiss this view controller after login
@@ -37,13 +42,17 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
         }
     }
     
-    
+    /**
+    When user taps on 'User' login button
+     */
     func loginAction() {
         self.loginManager?.setLoginAsUserType(userType: .user)
         self.loginManager?.showLoginViewController()
     }
 
-    
+    /**
+    When user taps on 'Merchant' login button
+     */
     func merchantLoginAction() {
         self.loginManager?.setLoginAsUserType(userType: .merchant)
         self.loginManager?.showLoginViewController()

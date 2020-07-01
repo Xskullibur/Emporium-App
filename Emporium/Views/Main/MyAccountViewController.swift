@@ -12,22 +12,24 @@ import MaterialComponents.MaterialCards
 
 class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // MARK: - Outlets
     @IBOutlet weak var buttonsContainer: MDCCard!
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    
+    // MARK: - Variables
     private var authUI: FUIAuth? = nil
     private var user: User?
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        //Set shadow for the buttons container
         buttonsContainer.setShadowElevation(ShadowElevation(8), for: .normal)
         
         //Change the image view to a circle
@@ -76,6 +78,9 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
 
+    /**
+     When the user taps on 'Sign out'
+     */
     @IBAction func signOut(_ sender: Any) {
         do{
             try authUI?.signOut()
@@ -92,6 +97,9 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         }
     }
     
+    /**
+     When the user taps on their profile image
+     */
     @IBAction func changeImageTap(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -99,7 +107,9 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         picker.delegate = self
         self.present(picker, animated: true)
     }
-    
+    /**
+     Get the edited image from the image picker to be uploaded onto Firebase Storage
+     */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         profileImageView.image = image
@@ -112,7 +122,9 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         }
         
     }
-    
+    /**
+     Dismiss picker on cancel
+     */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
