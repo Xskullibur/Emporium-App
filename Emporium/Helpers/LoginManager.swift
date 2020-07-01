@@ -10,22 +10,34 @@ import Foundation
 import Firebase
 import FirebaseUI
 
+/**
+ Login Manager handles the logic for logining into Firebase
+ */
 class LoginManager : NSObject, FUIAuthDelegate {
     
+    //Firebase UI
     private var authUI: FUIAuth?
     private let viewController: UIViewController
     
-    internal var loginComplete: ((User?) -> Void)? = nil
+    //Closure called once the login completes
+    private var loginComplete: ((User?) -> Void)? = nil
     
+    //Logining as 'User' or 'Merchant'
     var loginAsUserType: UserType = .user
     
-    
+    /**
+     - Parameters:
+        - viewController: To present the login popover view controller
+     */
     init(viewController: UIViewController) {
         self.viewController = viewController
         super.init()
         self.setupFirebaseLogin()
     }
     
+    /**
+     Setup Firebase login
+     */
     private func setupFirebaseLogin(){
         self.authUI = FUIAuth.defaultAuthUI()
         self.authUI?.delegate = self
@@ -37,11 +49,16 @@ class LoginManager : NSObject, FUIAuthDelegate {
         ]
         self.authUI?.providers = providers
     }
-    
+    /**
+     Set login as 'User' or 'Merchant'
+     */
     func setLoginAsUserType(userType: UserType){
         self.loginAsUserType = userType
     }
     
+    /**
+     After FirebaseUI login completes
+     */
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let user = user{
             self.resetNotifications()
@@ -63,6 +80,9 @@ class LoginManager : NSObject, FUIAuthDelegate {
         self.loginComplete?(user)
     }
     
+    /**
+     Reset the notifications handler once the user logouts
+     */
     internal func resetNotifications(){
         //Reset notifications
        let notificationHandler = NotificationHandler.shared
@@ -71,7 +91,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
        notificationHandler.start()
     }
     
-    /*
+    /**
      Callback once the user sign in.
      
      */
@@ -79,7 +99,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
         self.loginComplete = complete
     }
     
-    /*
+    /**
      Display the Login page for user to sign in.
      */
     func showLoginViewController(){
@@ -101,7 +121,7 @@ extension User {
     /**
      Get user type from Firebase
      
-        Note:
+    - Note:
         `completion` may return nil for both UserType and Emporium Error, this means that the user type has not been set inside the Firebase and there is no error.
         This may happen because the user is a new registered user.
      
