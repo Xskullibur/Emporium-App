@@ -67,7 +67,6 @@ class PlacesAPI {
                         logitude: venue["location"]["labeledLatLngs"][0]["lng"].double!
                     )
                     
-//                    StoreDataManager.updateStores(storeList: storeList)
                     storeList.append(store)
                 }
                 
@@ -75,7 +74,7 @@ class PlacesAPI {
             
             case let .failure(error):
                 completionHandler(storeList, error)
-            
+
             }
         }
     }
