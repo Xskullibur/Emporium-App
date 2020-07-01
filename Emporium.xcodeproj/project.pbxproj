@@ -102,7 +102,6 @@
 		FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
-		FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,7 +229,6 @@
 		FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,7 +670,6 @@
 		FEA80CEF248DE293005D8F94 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */,
 				ACD28633249894E200497BD9 /* EmporiumCardButton.xib */,
 				ACD286352498950700497BD9 /* EmporiumCardButton.swift */,
 			);
@@ -1002,7 +999,6 @@
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
-				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,

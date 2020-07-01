@@ -2,7 +2,7 @@
 //  GroceryStoresTableViewController.swift
 //  Emporium
 //
-//  Created by ITP312Grp1 on 29/6/20.
+//  Created by Peh Zi Heng on 29/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 

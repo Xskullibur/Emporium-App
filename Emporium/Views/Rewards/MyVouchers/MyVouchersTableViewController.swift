@@ -2,7 +2,7 @@
 //  MyVouchersViewController.swift
 //  Emporium
 //
-//  Created by Riyfhx on 19/6/20.
+//  Created by Peh Zi Heng on 19/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 

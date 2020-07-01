@@ -2,7 +2,7 @@
 //  CrowdTrackingViewController.swift
 //  Emporium
 //
-//  Created by Riyfhx on 23/6/20.
+//  Created by Peh Zi Heng on 23/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 import AVFoundation
