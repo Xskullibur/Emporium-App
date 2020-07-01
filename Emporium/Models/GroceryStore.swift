@@ -14,12 +14,12 @@ class GroceryStore: NSObject {
     let id: String
     let name: String
     let address: String
-    let distance: Double?
     let location: GeoPoint
     
+     var distance: Double?
     
     var currentVisitorCount: Int
-    let maxVisitorCapacity: Int
+    var maxVisitorCapacity: Int
     
     init(
         id _id: String,
@@ -30,7 +30,7 @@ class GroceryStore: NSObject {
         logitude _longitude: Double,
         
         maxCount _maxCount: Int = 40,
-        crowdCount _crowdCount: Int = Int.random(in: 0...40)
+        crowdCount _crowdCount: Int = 0
     ) {
         
         id = _id

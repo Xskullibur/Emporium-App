@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseFirestore
+import MapKit
 
 class StoreDataManager {
     
@@ -17,7 +18,7 @@ class StoreDataManager {
         .document("globals")
         .collection("grocery_stores")
     
-    static func visitorCountListener(store: GroceryStore, onUpdate: @escaping (Int) -> Void) {
+    static func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping (Int, Int) -> Void) {
         
         storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
@@ -32,9 +33,11 @@ class StoreDataManager {
                     return
                 }
                 
-                guard let visitorCount = data["current_visitor_count"] else {
-                    print("Field data was empty. (VisitorCount.Listener)")
-                    return
+                guard let visitorCount = data["current_visitor_count"],
+                    let maxCapacity = data["max_visitor_capacity"] else {
+                        print("Field data was empty. (VisitorCount.Listener)")
+                        updateStore(store: store)
+                        return
                 }
                 
                 if let error = error {
@@ -42,8 +45,42 @@ class StoreDataManager {
                     return
                 }
                 
-                onUpdate(visitorCount as! Int)
+                onUpdate(visitorCount as! Int, maxCapacity as! Int)
                 
+        }
+        
+    }
+    
+    static func updateStore(store: GroceryStore) {
+        storeCollection.document(store.id).updateData([
+            "id": store.id,
+            "name": store.name,
+            "address": store.address,
+            "coordinates": store.location,
+            "current_visitor_count": store.currentVisitorCount,
+            "max_visitor_capacity": store.maxVisitorCapacity
+        ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+    
+    static func addStore(store: GroceryStore) {
+        
+        storeCollection.document(store.id).setData([
+            "id": store.id,
+            "name": store.name,
+            "address": store.address,
+            "coordinates": store.location
+        ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
         }
         
     }
@@ -59,10 +96,8 @@ class StoreDataManager {
                 "id": store.id,
                 "name": store.name,
                 "address": store.address,
-                "coordinates": store.location,
-                "current_visitor_count": store.currentVisitorCount,
-                "max_visitor_capacity": store.maxVisitorCapacity
-            ], forDocument: ref)
+                "coordinates": store.location
+            ], forDocument: ref, merge: true)
         }
         
         batch.commit() { error in

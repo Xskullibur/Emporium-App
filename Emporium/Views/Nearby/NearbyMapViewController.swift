@@ -257,13 +257,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan1 {
                 
-                // Create Annotation
-//                createAnnotationWithStore(store)
-                
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
-                    store.currentVisitorCount = visitorCount
-                    self.updateAnnotationWithStore(store)
+                StoreDataManager.visitorCountListenerForStore(store) {
+                    (visitorCount, maxCapacity) in
+                        store.currentVisitorCount = visitorCount
+                        store.maxVisitorCapacity = maxCapacity
+                        self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -273,13 +272,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_lessThan2 {
                 
-                // Create Annotation
-//                createAnnotationWithStore(store)
-                
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
-                    store.currentVisitorCount = visitorCount
-                    self.updateAnnotationWithStore(store)
+                StoreDataManager.visitorCountListenerForStore(store) {
+                    (visitorCount, maxCapacity) in
+                        store.currentVisitorCount = visitorCount
+                        store.maxVisitorCapacity = maxCapacity
+                        self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -289,13 +287,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if !storeList_lessThan1.isEmpty {
             for store in storeList_moreThan2 {
                 
-                // Create Annotation
-//                createAnnotationWithStore(store)
-                
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListener(store: store) { (visitorCount) in
-                    store.currentVisitorCount = visitorCount
-                    self.updateAnnotationWithStore(store)
+                StoreDataManager.visitorCountListenerForStore(store) {
+                    (visitorCount, maxCapacity) in
+                        store.currentVisitorCount = visitorCount
+                        store.maxVisitorCapacity = maxCapacity
+                        self.updateAnnotationWithStore(store)
                 }
                 
             }

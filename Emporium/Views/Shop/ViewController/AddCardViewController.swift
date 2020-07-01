@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import Firebase
 
 class AddCardViewController: UIViewController {
     
@@ -18,7 +19,7 @@ class AddCardViewController: UIViewController {
     
     @IBOutlet weak var cardAnimation: AnimationView!
     
-    var backendBaseURL: String? = "http://172.27.176.188:5000"
+    var backendBaseURL: String? = "http://192.168.86.1:5000"
     
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
@@ -58,6 +59,31 @@ class AddCardViewController: UIViewController {
     }
         
     @IBAction func addBtnPressed(_ sender: Any) {
+            let number = numberInput.text
+            let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
+            let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
+            let cvc = cvcInput.text
+            let userID = Auth.auth().currentUser?.uid as! String
+        
+            let session  = URLSession.shared
+            let url = URL(string: backendBaseURL! + "/createCard")
+            var request = URLRequest(url: url!)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID]
+            let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+        
+            session.uploadTask(with: request, from: JSONDATA) {
+                data, response, error in
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        print("success")
+                    }
+                }
+                if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                    print(datastring)
+                }
+            }.resume()
     }
 }
 
