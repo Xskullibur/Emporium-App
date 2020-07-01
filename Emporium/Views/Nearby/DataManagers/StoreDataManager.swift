@@ -18,7 +18,7 @@ class StoreDataManager {
         .document("globals")
         .collection("grocery_stores")
     
-    static func visitorCountListener(store: GroceryStore, onUpdate: @escaping (Int) -> Void) {
+    static func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping (Int, Int) -> Void) {
         
         storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
@@ -33,9 +33,11 @@ class StoreDataManager {
                     return
                 }
                 
-                guard let visitorCount = data["current_visitor_count"] else {
-                    print("Field data was empty. (VisitorCount.Listener)")
-                    return
+                guard let visitorCount = data["current_visitor_count"],
+                    let maxCapacity = data["max_visitor_capacity"] else {
+                        print("Field data was empty. (VisitorCount.Listener)")
+                        updateStore(store: store)
+                        return
                 }
                 
                 if let error = error {
@@ -43,69 +45,27 @@ class StoreDataManager {
                     return
                 }
                 
-                onUpdate(visitorCount as! Int)
+                onUpdate(visitorCount as! Int, maxCapacity as! Int)
                 
         }
         
     }
     
-    static func getStores(storeList: [GroceryStore], onComplete: @escaping ([GroceryStore]) -> Void) {
-        
-        var tempList: [GroceryStore] = []
-        let idList = storeList.map{ $0.id }
-        
-        storeCollection.whereField("id", arrayContains: idList)
-            .getDocuments { (querySnapshot, error) in
-                
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                }
-                else {
-                    
-                    // Add DB data into tempList
-                    for document in querySnapshot!.documents {
-                        
-                        let data = document.data()
-                        let store = GroceryStore(
-                            id: data["id"] as! String,
-                            name: data["name"] as! String,
-                            address: data["address"] as! String,
-                            location: data["coordinates"] as! GeoPoint,
-                            currentVisitorCount: data["current_visitor_count"] as! Int,
-                            maxVisitorCapacity: data["max_visitor_capacity"] as! Int
-                        )
-                        tempList.append(store)
-                        
-                    }
-                    
-                    // Update distance and add stores not in DB
-                    var missingList: [GroceryStore] = []
-                    for store in storeList {
-                        
-                        let temp = tempList.first { (temp) -> Bool in
-                            temp.id == store.id
-                        }
-
-                        if temp != nil {
-                            temp?.distance = store.distance
-                        }
-                        else {
-                            tempList.append(store)
-                            missingList.append(store)
-                        }
-                        
-                    }
-                    
-                    if missingList.count > 0 {
-                        updateStores(storeList: missingList)
-                    }
-                    
-                    onComplete(tempList)
-                    
-                }
-                
+    static func updateStore(store: GroceryStore) {
+        storeCollection.document(store.id).updateData([
+            "id": store.id,
+            "name": store.name,
+            "address": store.address,
+            "coordinates": store.location,
+            "current_visitor_count": store.currentVisitorCount,
+            "max_visitor_capacity": store.maxVisitorCapacity
+        ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
         }
-        
     }
     
     static func addStore(store: GroceryStore) {
@@ -114,9 +74,7 @@ class StoreDataManager {
             "id": store.id,
             "name": store.name,
             "address": store.address,
-            "coordinates": store.location,
-            "current_visitor_count": store.currentVisitorCount,
-            "max_visitor_capacity": store.maxVisitorCapacity
+            "coordinates": store.location
         ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
@@ -138,9 +96,7 @@ class StoreDataManager {
                 "id": store.id,
                 "name": store.name,
                 "address": store.address,
-                "coordinates": store.location,
-                "current_visitor_count": store.currentVisitorCount,
-                "max_visitor_capacity": store.maxVisitorCapacity
+                "coordinates": store.location
             ], forDocument: ref, merge: true)
         }
         

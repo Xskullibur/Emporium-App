@@ -70,13 +70,11 @@ class PlacesAPI {
                     storeList.append(store)
                 }
                 
-                StoreDataManager.getStores(storeList: storeList) { (storeList) in
-                    completionHandler(storeList, .none)
-                }
+                completionHandler(storeList, .none)
             
             case let .failure(error):
                 completionHandler(storeList, error)
-            
+
             }
         }
     }
