@@ -60,6 +60,7 @@ open class LoginManager : NSObject, FUIAuthDelegate {
                 
             }
         }
+        self.loginComplete?(user)
     }
     
     internal func resetNotifications(){

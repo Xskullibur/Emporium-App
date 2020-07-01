@@ -14,7 +14,9 @@ import Firebase
 class MainViewController: EmporiumNotificationViewController,
 UICollectionViewDataSource, UICollectionViewDelegate {
     
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var buttonsCard: MDCCard!
+    
     @IBOutlet weak var notificationTableView: UITableView!
     @IBOutlet weak var mainButtonsCollectionView: UICollectionView!
     
@@ -34,6 +36,9 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        
+        buttonsCard.setShadowElevation(ShadowElevation(6), for: .normal)
         
         self.tableView = notificationTableView
         
@@ -84,8 +89,6 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         cell.clipsToBounds = true
         cell.setBorderWidth(1, for: .normal)
         cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
-        cell.layer.masksToBounds = false
-        cell.setShadowElevation(ShadowElevation(6), for: .normal)
         
         return cell
     }
@@ -100,6 +103,8 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         
         self.menuBarButtonItem.title = "My Account"
         
+        //Set username
+        self.nameLabel.text = user.displayName
     }
     
     @IBAction func toAccountOrLoginPressed(_ sender: Any) {
