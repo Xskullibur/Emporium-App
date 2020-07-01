@@ -244,7 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */,
-				491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,6 +38,7 @@ class PlacesAPI {
     // MARK: - Functions
     func getNearbyGroceryStore(lat: Double, long: Double, radius: Int, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
         
+        // Set API parameters
         let SUPERMARKET_ID = "52f2ab2ebcbc57f1066b8b46"
         var storeList: [GroceryStore] = []
         
@@ -47,6 +48,7 @@ class PlacesAPI {
             "categoryId": SUPERMARKET_ID
         ]
         
+        // Call API for data
         client.request(path: "venues/search", parameter: parameter) { (result) in
             switch result {
             case let .success(data):
@@ -65,12 +67,10 @@ class PlacesAPI {
                         logitude: venue["location"]["labeledLatLngs"][0]["lng"].double!
                     )
                     
+//                    StoreDataManager.updateStores(storeList: storeList)
                     storeList.append(store)
                 }
                 
-                #warning("TODO: - Remove For Presentation")
-                // TODO: - Remove For Presentation
-                // StoreDataManager.updateStores(storeList: storeList)
                 completionHandler(storeList, .none)
             
             case let .failure(error):
