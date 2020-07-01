@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -85,6 +85,7 @@
                                                 <constraint firstItem="JDE-O3-kM9" firstAttribute="top" secondItem="bq9-57-cZe" secondAttribute="top" id="c9V-eS-Uk3"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="Background"/>
                                         <size key="customSize" width="128" height="128"/>
                                         <connections>
                                             <segue destination="2bV-D7-cam" kind="show" id="FYd-St-oK5"/>
@@ -123,6 +124,7 @@
                                                 <constraint firstItem="mFp-gf-5Fx" firstAttribute="top" secondItem="hXk-rF-xG8" secondAttribute="top" id="zY7-kq-UjS"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="Background"/>
                                         <size key="customSize" width="128" height="128"/>
                                         <connections>
                                             <segue destination="Ecv-O1-KC1" kind="show" id="h86-mi-thJ"/>
@@ -164,6 +166,7 @@
                                                 <constraint firstItem="nfK-si-RzD" firstAttribute="top" secondItem="eHR-Jl-NOd" secondAttribute="top" id="xzR-OD-EXv"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="Background"/>
                                         <size key="customSize" width="128" height="128"/>
                                         <connections>
                                             <segue destination="gvZ-VN-ewf" kind="show" id="ie8-gY-4PN"/>
@@ -205,6 +208,7 @@
                                                 <constraint firstItem="Wbt-0R-bY6" firstAttribute="leading" secondItem="VAA-9q-IHF" secondAttribute="leading" id="eIx-Du-e3L"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="Background"/>
                                         <size key="customSize" width="128" height="128"/>
                                         <connections>
                                             <segue destination="v4V-Kt-lp1" kind="show" id="0zb-pe-fKo"/>
@@ -277,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="516" y="1213"/>
         </scene>
-        <!--My Account View Controller-->
+        <!--Account-->
         <scene sceneID="fn3-o2-hJJ">
             <objects>
                 <viewController id="oSk-Xp-OKn" customClass="MyAccountViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
@@ -350,7 +354,7 @@
                                                         </constraints>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5X-Mw-aej">
+                                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5X-Mw-aej">
                                                         <rect key="frame" x="185.66666666666666" y="0.0" width="10.666666666666657" height="112"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
@@ -360,7 +364,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-vC-Hxp">
                                                                 <rect key="frame" x="0.0" y="8" width="175" height="71"/>
                                                                 <inset key="contentEdgeInsets" minX="55" minY="0.0" maxX="55" maxY="0.0"/>
-                                                                <state key="normal" image="Signout"/>
+                                                                <state key="normal" image="Logout"/>
                                                                 <connections>
                                                                     <action selector="signOut:" destination="oSk-Xp-OKn" eventType="touchUpInside" id="WEX-R3-fFv"/>
                                                                 </connections>
@@ -392,7 +396,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="uux-72-SmP" secondAttribute="bottom" id="B0g-ZB-f3B"/>
                                             <constraint firstItem="uux-72-SmP" firstAttribute="top" secondItem="PYb-5s-pbB" secondAttribute="top" id="Ghg-fO-wQn"/>
@@ -433,7 +437,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xw6-67-ry3"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uec-45-ZsD"/>
+                    <navigationItem key="navigationItem" title="Account" id="uec-45-ZsD"/>
                     <connections>
                         <outlet property="buttonsContainer" destination="PYb-5s-pbB" id="DdS-YA-59g"/>
                         <outlet property="emailLabel" destination="K8h-dZ-pgR" id="Og9-T2-qMV"/>
@@ -555,11 +559,14 @@
     <resources>
         <image name="Crowd" width="512" height="512"/>
         <image name="Groceries" width="512" height="512"/>
+        <image name="Logout" width="512" height="512"/>
         <image name="Order" width="512" height="512"/>
         <image name="Queue" width="512" height="512"/>
-        <image name="Signout" width="512" height="512"/>
         <image name="Voucher" width="512" height="512"/>
         <image name="no-profile" width="512" height="512"/>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Primary">
             <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

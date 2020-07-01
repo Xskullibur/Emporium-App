@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
-		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387524A210810003B9D9 /* CartItem.pb.swift */; };
@@ -103,8 +102,6 @@
 		FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
-		FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */; };
-		FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
 		FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -233,8 +230,6 @@
 		FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumLoginViewController.xib; sourceTree = "<group>"; };
-		FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FUICustomAuthPickerViewController.xib; sourceTree = "<group>"; };
 		FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -677,8 +672,6 @@
 		FEA80CEF248DE293005D8F94 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */,
-				FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */,
 				FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */,
 				ACD28633249894E200497BD9 /* EmporiumCardButton.xib */,
 				ACD286352498950700497BD9 /* EmporiumCardButton.swift */,
@@ -805,7 +798,6 @@
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
 				ED61105524A4583300FFD408 /* check.json in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
-				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
 				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
@@ -820,7 +812,6 @@
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
 				ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
-				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
