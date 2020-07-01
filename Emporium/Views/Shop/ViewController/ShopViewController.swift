@@ -43,12 +43,14 @@ class ShopViewController: UIViewController {
     }
     
     func loadProducts() {
+        self.showSpinner(onView: self.view)
         ShopDataManager.loadProducts() {
             productList in
             
             self.productData = productList
             self.ProductCateLabel.text = "Product: tap to add"
             self.collectionView.reloadData()
+            self.removeSpinner()
         }
     }
     
