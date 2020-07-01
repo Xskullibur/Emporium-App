@@ -18,7 +18,10 @@ class CrowdTrackingDataManager {
     init (){
         //Debugging
         #if DEBUG
-        functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
         #endif
     }
     /**
@@ -43,6 +46,36 @@ class CrowdTrackingDataManager {
             
             
         }
+    }
+    
+    /**
+    Get the list of Grocery Stores in Firebase
+     */
+    func getGroceryStores(completion: @escaping([GroceryStore], EmporiumError?) -> Void){
+        let database = Firestore.firestore()
+        
+        let groceryStores = database.collection("emporium/globals/grocery_stores/")
+        
+        groceryStores.addSnapshotListener{
+            (querySnapshot, error) in
+            if let error = error {
+                completion([], .firebaseError(error))
+            }
+            
+             var datas: [GroceryStore] = []
+             
+             if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    var data = document.data()
+                    data["id"] = document.documentID
+                    datas.append(self.toGroceryStore(data: data))
+                }
+            }
+            
+             completion(datas, nil)
+        }
+        
+        
     }
     
     /**

@@ -46,7 +46,7 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: - Firebase
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
     
-    var groceryStoreId: String? = "4b15f661f964a52012b623e3"
+    var groceryStoreId: String? = nil
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -74,7 +74,6 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         
         self.visitorCountPublisher.debounce(for: .milliseconds(500), scheduler: RunLoop.main).eraseToAnyPublisher().sink{
             value in
-            print(self.diffVisitorValue)
             
             self.crowdTrackingDataManager.addVisitorCount(groceryStoreId: self.groceryStoreId!, value: self.diffVisitorValue, completion: nil)
             

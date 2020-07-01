@@ -91,7 +91,10 @@ class VoucherDataManager {
         
         //Debugging
         #if DEBUG
-        functions.useFunctionsEmulator(origin: "http://192.168.211.1:5000")
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
         #endif
     }
     

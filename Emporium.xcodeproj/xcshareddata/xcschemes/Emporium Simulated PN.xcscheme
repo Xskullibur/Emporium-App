@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE9023502473B9C700CE6B3A"
-               BuildableName = "Emporium.app"
-               BlueprintName = "Emporium"
+               BlueprintIdentifier = "FEB102DB249741060058FD61"
+               BuildableName = "Emporium Simulated PN.app"
+               BlueprintName = "Emporium Simulated PN"
                ReferencedContainer = "container:Emporium.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE9023692473B9C900CE6B3A"
-               BuildableName = "EmporiumTests.xctest"
-               BlueprintName = "EmporiumTests"
-               ReferencedContainer = "container:Emporium.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE9023742473B9C900CE6B3A"
-               BuildableName = "EmporiumUITests.xctest"
-               BlueprintName = "EmporiumUITests"
-               ReferencedContainer = "container:Emporium.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,19 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FE9023502473B9C700CE6B3A"
-            BuildableName = "Emporium.app"
-            BlueprintName = "Emporium"
+            BlueprintIdentifier = "FEB102DB249741060058FD61"
+            BuildableName = "Emporium Simulated PN.app"
+            BlueprintName = "Emporium Simulated PN"
             ReferencedContainer = "container:Emporium.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "functions_host"
-            value = "http://169.254.68.182:5000"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -88,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FE9023502473B9C700CE6B3A"
-            BuildableName = "Emporium.app"
-            BlueprintName = "Emporium"
+            BlueprintIdentifier = "FEB102DB249741060058FD61"
+            BuildableName = "Emporium Simulated PN.app"
+            BlueprintName = "Emporium Simulated PN"
             ReferencedContainer = "container:Emporium.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

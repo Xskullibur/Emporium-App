@@ -76,16 +76,39 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                performSegue(withIdentifier: "toGateway", sender: nil)
+                //performSegue(withIdentifier: "toGateway", sender: nil)
+                showActionSheet()
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destVC = segue.destination as! GatewayViewController
-        destVC.cartData = self.cartData
+        if segue.identifier == "toGateway" {
+            let destVC = segue.destination as! GatewayViewController
+            destVC.cartData = self.cartData
+        }
     }
     
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let card = UIAlertAction(title: "Select Card", style: .default) {
+            action in
+            self.performSegue(withIdentifier: "toCard", sender: nil)
+        }
+        
+        let payment = UIAlertAction(title: "One Time Payment", style: .default) {
+            action in
+            self.performSegue(withIdentifier: "toGateway", sender: nil)
+        }
+        
+        actionSheet.addAction(card)
+        actionSheet.addAction(payment)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
     
 }
 
