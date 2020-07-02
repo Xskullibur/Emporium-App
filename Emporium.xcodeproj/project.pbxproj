@@ -19,6 +19,7 @@
 		7F0B388424AB3BF20003B9D9 /* cardAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F0B388324AB3BF10003B9D9 /* cardAni.json */; };
 		7F0B388624ADDA830003B9D9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388524ADDA830003B9D9 /* Card.swift */; };
 		7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388724ADE06B0003B9D9 /* CardCell.swift */; };
+		7F0B388A24AE1C1B0003B9D9 /* cardAni2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F0B388924AE1C1B0003B9D9 /* cardAni2.json */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
@@ -141,6 +142,7 @@
 		7F0B388324AB3BF10003B9D9 /* cardAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAni.json; sourceTree = "<group>"; };
 		7F0B388524ADDA830003B9D9 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		7F0B388724ADE06B0003B9D9 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		7F0B388924AE1C1B0003B9D9 /* cardAni2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAni2.json; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				7F0B388324AB3BF10003B9D9 /* cardAni.json */,
+				7F0B388924AE1C1B0003B9D9 /* cardAni2.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
 				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
+				7F0B388A24AE1C1B0003B9D9 /* cardAni2.json in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
 				AC21B9D6249767630058EE50 /* ProductViewCell.xib in Resources */,
 				ACDA8ECD249DF335009887A7 /* gift-opening-animation.json in Resources */,

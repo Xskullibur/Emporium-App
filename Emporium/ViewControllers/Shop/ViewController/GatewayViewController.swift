@@ -43,7 +43,7 @@ class GatewayViewController: UIViewController {
         self.expDatePickerView.delegate = self
         self.expDatePickerView.layer.cornerRadius = 10
         
-        self.cardAnimation.animation = Animation.named("cardAni")
+        self.cardAnimation.animation = Animation.named("cardAni2")
         self.cardAnimation.contentMode = .scaleAspectFit
         self.cardAnimation.loopMode = .loop
         self.cardAnimation.play()

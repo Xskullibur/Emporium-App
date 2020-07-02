@@ -100,14 +100,16 @@ class ShopDataManager
             {
                 for doc in querySnapshot!.documents
                 {
+                    let fp = String(doc.documentID)
                     let brand = doc.get("brand") as! String
                     let cardType = doc.get("cardType") as! String
                     let last4 = doc.get("last4") as! String
-                    let expMonth = doc.get("expMonth") as! String
-                    let expYear = doc.get("expYear") as! String
+                    let expMonth = "\(doc.get("expMonth") ?? "0")"
+                    let expYear = "\(doc.get("expYear") ?? "0000")"
                     
-                    cardList.append(Card(brand: brand, cardType: cardType, last4: last4, expMonth: expMonth, expYear: expYear))
+                    cardList.append(Card(fp: fp, brand: brand, cardType: cardType, last4: last4, expMonth: expMonth, expYear: expYear))
                 }
+                 onComplete?(cardList)
             }
         }
     }

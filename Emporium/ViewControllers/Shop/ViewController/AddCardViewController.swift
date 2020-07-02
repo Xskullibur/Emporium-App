@@ -33,7 +33,7 @@ class AddCardViewController: UIViewController {
         cvcInput.placeholder = "CVC"
         
         //startAnimation
-        self.cardAnimation.animation = Animation.named("cardAni")
+        self.cardAnimation.animation = Animation.named("cardAni2")
         self.cardAnimation.contentMode = .scaleAspectFit
         self.cardAnimation.loopMode = .loop
         self.cardAnimation.play()

@@ -12,14 +12,12 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     var cardList: [Card] = []
+    //var cardList: [Card] = [Card(fp: "test", brand: "test", cardType: "test", last4: "test", expMonth: "test", expYear: "test")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.layer.cornerRadius = 10
-        tableView.dataSource = self
-        tableView.delegate = self
-        
         loadCards()
     }
     
@@ -42,12 +40,12 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.cardTypeLabel.text = "Type: " + cardList[indexPath.row].cardType
         cell.last4Label.text = "Last 4 digit: " + cardList[indexPath.row].last4
-        cell.expDateLabel.text = "Expiry Date: " + cardList[indexPath.row].expMonth + "/" + cardList[indexPath.row].expYear
+        cell.expDateLabel.text = "Expiry Date: " + cardList[indexPath.row].expMonth + "-" + cardList[indexPath.row].expYear
         
         if cardList[indexPath.row].brand.uppercased() == "VISA" {
-            cell.brandImage.loadImage(url: "visa")
+            cell.brandImage.image = UIImage(named: "visa")
         }else{
-            cell.brandImage.loadImage(url: "mastercard")
+            cell.brandImage.image = UIImage(named: "mastercard")
         }
         
         cell.contentView.layer.masksToBounds = true
