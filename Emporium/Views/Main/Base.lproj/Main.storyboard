@@ -222,8 +222,9 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m42-ja-Fz7">
-                                                <rect key="frame" x="20.000000000000004" y="176" width="57.333333333333343" height="20"/>
+                                                <rect key="frame" x="20" y="176" width="58" height="20"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="f14-mG-JWG"/>
                                                     <constraint firstAttribute="height" constant="20" id="iVU-QY-sUR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -238,10 +239,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Pt" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6Q-r2-8nU">
-                                                <rect key="frame" x="264" y="176" width="90" height="20.333333333333343"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="hl5-4Z-Yo6"/>
-                                                </constraints>
+                                                <rect key="frame" x="320.66666666666669" y="176" width="33.333333333333314" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" name="Background Text Color"/>
                                                 <nil key="highlightedColor"/>
@@ -249,6 +247,7 @@
                                         </subviews>
                                         <color key="backgroundColor" name="Background"/>
                                         <constraints>
+                                            <constraint firstItem="c6Q-r2-8nU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m42-ja-Fz7" secondAttribute="trailing" constant="10" id="1eL-eJ-y2l"/>
                                             <constraint firstItem="Ith-YI-ZZr" firstAttribute="top" secondItem="gBS-xG-U7x" secondAttribute="bottom" constant="10" id="671-Sj-k4S"/>
                                             <constraint firstItem="c6Q-r2-8nU" firstAttribute="firstBaseline" secondItem="m42-ja-Fz7" secondAttribute="firstBaseline" id="7GA-Ky-nzy"/>
                                             <constraint firstItem="Ith-YI-ZZr" firstAttribute="trailing" secondItem="gBS-xG-U7x" secondAttribute="trailing" id="Afi-hv-T4m"/>
@@ -258,7 +257,7 @@
                                             <constraint firstItem="Ith-YI-ZZr" firstAttribute="top" secondItem="gBS-xG-U7x" secondAttribute="bottom" constant="10" id="N8O-Y3-P3O"/>
                                             <constraint firstItem="m42-ja-Fz7" firstAttribute="top" secondItem="Ith-YI-ZZr" secondAttribute="bottom" constant="15" id="awv-c1-yKR"/>
                                             <constraint firstItem="gBS-xG-U7x" firstAttribute="top" secondItem="cO0-aQ-H6c" secondAttribute="top" constant="10" id="hKf-rc-3Nn"/>
-                                            <constraint firstItem="c6Q-r2-8nU" firstAttribute="trailing" secondItem="Ith-YI-ZZr" secondAttribute="trailing" id="lKP-Ld-quN"/>
+                                            <constraint firstItem="c6Q-r2-8nU" firstAttribute="trailing" secondItem="Ith-YI-ZZr" secondAttribute="trailing" id="iYd-aS-yxz"/>
                                             <constraint firstItem="Ith-YI-ZZr" firstAttribute="leading" secondItem="gBS-xG-U7x" secondAttribute="leading" id="q9J-mW-zBf"/>
                                             <constraint firstAttribute="trailing" secondItem="gBS-xG-U7x" secondAttribute="trailing" constant="20" id="zYx-nx-d2C"/>
                                         </constraints>
