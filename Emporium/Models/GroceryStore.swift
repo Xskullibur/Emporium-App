@@ -70,6 +70,17 @@ class GroceryStore: NSObject {
         case high
     }
     
+    func isFull() -> Bool {
+        
+        if currentVisitorCount == maxVisitorCapacity {
+            return true
+        }
+        else {
+            return false
+        }
+        
+    }
+    
     func getCrowdLevel() -> CrowdLevel {
         if currentVisitorCount >= (maxVisitorCapacity / 3 * 2) {
             return .high

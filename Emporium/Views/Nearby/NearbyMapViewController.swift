@@ -310,6 +310,21 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Navigation
+    func navigateBasedOnCapacity(_ store: GroceryStore) {
+        
+        if store.isFull() {
+            self.performSegue(withIdentifier: "ShowQueue", sender: self)
+        }
+        else {
+            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+            entryVC.store = store
+            
+            self.present(entryVC, animated: true, completion: nil)
+        }
+        
+    }
+    
     func storeSelected(store: GroceryStore) {
         selectedStore = store
         
@@ -323,7 +338,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
                 
-                self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                self.navigateBasedOnCapacity(store)
                 
             }))
             
