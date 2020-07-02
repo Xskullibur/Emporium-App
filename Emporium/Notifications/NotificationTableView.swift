@@ -2,7 +2,7 @@
 //  NotificationTableViewCell.swift
 //  Emporium
 //
-//  Created by Riyfhx on 13/6/20.
+//  Created by Peh Zi Heng on 13/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
