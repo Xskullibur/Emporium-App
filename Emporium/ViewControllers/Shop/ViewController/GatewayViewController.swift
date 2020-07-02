@@ -185,37 +185,6 @@ class GatewayViewController: UIViewController {
         
 }
 
-    
-//    let number = numberInput.text
-//    let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
-//    let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
-//    let cvc = cvcInput.text
-//
-//    let cartItem = CartItem()
-//
-//    let data = try? cartItem.serializedData()
-//
-//    let session  = URLSession.shared
-//    let url = URL(string: backendBaseURL! + "/createToken")
-//    var request = URLRequest(url: url!)
-//    request.httpMethod = "POST"
-//    request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-//    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
-//    let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
-//
-//    session.uploadTask(with: request, from: data) {
-//        data, response, error in
-//        if let httpResponse = response as? HTTPURLResponse {
-//            if httpResponse.statusCode == 200 {
-//                print("success")
-//            }
-//        }
-//        if let data = data, let datastring = String(data:data,encoding: .utf8) {
-//            print(datastring)
-//        }
-//    }.resume()
-//}
-
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2

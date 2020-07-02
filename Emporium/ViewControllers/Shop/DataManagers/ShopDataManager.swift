@@ -84,5 +84,32 @@ class ShopDataManager
             onComplete?(details)
         }
     }
+    
+    static func loadCards(onComplete: (([Card]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("cards").getDocuments()
+        {
+            (querySnapshot, err) in
+            
+            var cardList: [Card] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    let brand = doc.get("brand") as! String
+                    let cardType = doc.get("cardType") as! String
+                    let last4 = doc.get("last4") as! String
+                    let expMonth = doc.get("expMonth") as! String
+                    let expYear = doc.get("expYear") as! String
+                    
+                    cardList.append(Card(brand: brand, cardType: cardType, last4: last4, expMonth: expMonth, expYear: expYear))
+                }
+            }
+        }
+    }
      
 }
