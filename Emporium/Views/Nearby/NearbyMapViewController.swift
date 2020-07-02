@@ -312,7 +312,28 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // MARK: - Navigation
     func storeSelected(store: GroceryStore) {
         selectedStore = store
-        performSegue(withIdentifier: "ShowQueue", sender: self)
+        
+        if store.getCrowdLevel() == .high {
+            let alert = UIAlertController(
+                title: "Notice",
+                message: "The grocery store is crowded at the moment. Would you like to continue?",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                
+                self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                
+            }))
+            
+            self.present(alert, animated: true)
+        }
+        else {
+            performSegue(withIdentifier: "ShowQueue", sender: self)
+        }
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -64,21 +64,38 @@ class GroceryStore: NSObject {
         
     }
     
+    enum CrowdLevel {
+        case low
+        case medium
+        case high
+    }
+    
+    func getCrowdLevel() -> CrowdLevel {
+        if currentVisitorCount >= (maxVisitorCapacity / 3 * 2) {
+            return .high
+        }
+        else if currentVisitorCount >= (maxVisitorCapacity / 3) {
+            return .medium
+        }
+        else {
+            return .low
+        }
+    }
+    
     func getCrowdLevelColor() -> (UIColor) {
         
         // Custom Marker
         let lowColor = UIColor.systemGreen
         let midColor = UIColor.systemOrange
         let highColor = UIColor.systemRed
-        
-        if currentVisitorCount >= (maxVisitorCapacity / 3 * 2) {
-            return highColor
-        }
-        else if currentVisitorCount >= (maxVisitorCapacity / 3) {
-            return midColor
-        }
-        else {
-            return lowColor
+
+        switch getCrowdLevel() {
+            case .low:
+                return lowColor
+            case .medium:
+                return midColor
+            case .high:
+                return highColor
         }
         
     }
