@@ -111,6 +111,7 @@ class GatewayViewController: UIViewController {
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
         let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
+        var message = ""
         
         let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
@@ -142,6 +143,11 @@ class GatewayViewController: UIViewController {
                 session.uploadTask(with: request, from: data) {
                     data, response, error in
                     if let httpResponse = response as? HTTPURLResponse {
+                        
+                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                            message = datastring
+                        }
+                        
                         if httpResponse.statusCode == 200 {
                             DispatchQueue.main.async
                             {
@@ -160,15 +166,12 @@ class GatewayViewController: UIViewController {
                             DispatchQueue.main.async
                             {
                                 self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
+                                let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
                                 let cancel = UIAlertAction(title: "OK", style: .cancel)
                                 showAlert.addAction(cancel)
                                 self.present(showAlert, animated: true, completion: nil)
                             }
                         }
-                    }
-                    if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                        print(datastring)
                     }
                 }.resume()
         }else{
