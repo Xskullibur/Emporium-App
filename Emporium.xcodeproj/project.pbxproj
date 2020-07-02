@@ -93,6 +93,10 @@
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
+		FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */; };
+		FE6303CF24AD947A00BF7976 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */; };
+		FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303D124AD964600BF7976 /* EmptyTableView.swift */; };
+		FE6303D524ADA48800BF7976 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = FE6303D424ADA48800BF7976 /* empty.json */; };
 		FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023542473B9C700CE6B3A /* AppDelegate.swift */; };
 		FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023562473B9C700CE6B3A /* SceneDelegate.swift */; };
 		FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023582473B9C700CE6B3A /* MainViewController.swift */; };
@@ -214,6 +218,10 @@
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewExtension.swift; sourceTree = "<group>"; };
+		FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
+		FE6303D124AD964600BF7976 /* EmptyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableView.swift; sourceTree = "<group>"; };
+		FE6303D424ADA48800BF7976 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		FE9023512473B9C700CE6B3A /* Emporium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emporium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023542473B9C700CE6B3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9023562473B9C700CE6B3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -586,6 +594,7 @@
 		EDB4682D248DEA81000DE5F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FE6303D024AD953A00BF7976 /* EmptyTableView */,
 				AC0A18F7249336F3009FFD93 /* EmporiumError.swift */,
 				EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */,
 				ACED1E02249CA19700094284 /* LoginManager.swift */,
@@ -605,6 +614,25 @@
 				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
 			);
 			path = Nearby;
+			sourceTree = "<group>";
+		};
+		FE6303D024AD953A00BF7976 /* EmptyTableView */ = {
+			isa = PBXGroup;
+			children = (
+				FE6303D324ADA47C00BF7976 /* Animations */,
+				FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */,
+				FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */,
+				FE6303D124AD964600BF7976 /* EmptyTableView.swift */,
+			);
+			path = EmptyTableView;
+			sourceTree = "<group>";
+		};
+		FE6303D324ADA47C00BF7976 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				FE6303D424ADA48800BF7976 /* empty.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		FE9023482473B9C700CE6B3A = {
@@ -788,9 +816,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE6303CF24AD947A00BF7976 /* EmptyTableView.xib in Resources */,
 				EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */,
 				7F0B388424AB3BF20003B9D9 /* cardAni.json in Resources */,
 				ED57F7A524A08B6C0013A133 /* wear-mask.json in Resources */,
+				FE6303D524ADA48800BF7976 /* empty.json in Resources */,
 				ED61105624A4583300FFD408 /* cross.json in Resources */,
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
 				ED61105524A4583300FFD408 /* check.json in Resources */,
@@ -996,6 +1026,7 @@
 				FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
+				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
@@ -1033,6 +1064,7 @@
 				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
 				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
 				ED57F792249A01080013A133 /* StoreDataManager.swift in Sources */,
+				FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */,
 				ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
