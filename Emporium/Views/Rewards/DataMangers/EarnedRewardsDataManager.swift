@@ -13,6 +13,9 @@ import Combine
 
 class EarnedRewardsDataManager {
     
+   //Create a global reference
+   public static let shared = EarnedRewardsDataManager()
+    
     private var earnedRewardsPublisher: CurrentValueSubject<[[String: Any]], EmporiumError>!
     
     private var earnedPointsRef: CollectionReference?
@@ -40,7 +43,7 @@ class EarnedRewardsDataManager {
         
     }
     
-    private func listen(){
+    func listen(){
         guard let user = user else{
             return
         }
@@ -72,8 +75,9 @@ class EarnedRewardsDataManager {
         }
     }
     
-    private func reset(){
+    func reset(){
         self.earnedPointsRef = nil
+        self.earnedRewardsPublisher?.send([])
     }
     
     private func toEarnedReward(data: [String: Any]) -> EarnedReward{
