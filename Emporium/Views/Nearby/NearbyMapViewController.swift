@@ -53,6 +53,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Login
+        loginManager  = LoginManager(viewController: self)
+        
         // MapView
         self.mapView.delegate = self
         
@@ -328,6 +331,20 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     func storeSelected(store: GroceryStore) {
         selectedStore = store
         
+        if Auth.auth().currentUser != nil {
+            navigate(store)
+        }
+        else {
+            loginManager!.setLoginComplete { (user) in
+                self.navigate(store)
+            }
+            
+            loginManager!.showLoginViewController()
+        }
+        
+    }
+    
+    func navigate(_ store: GroceryStore) {
         if store.getCrowdLevel() == .high {
             let alert = UIAlertController(
                 title: "Notice",
@@ -347,8 +364,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         else {
             performSegue(withIdentifier: "ShowQueue", sender: self)
         }
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -65,7 +65,6 @@ class EntryViewController: UIViewController {
         // Animation
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
-        animationView.play()
         
         // Button
         let containerScheme = MDCContainerScheme()
@@ -77,8 +76,22 @@ class EntryViewController: UIViewController {
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
+        // onResume
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(playAnimation),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        animationView.play()
+    }
+    
+    @objc func playAnimation() {
+        animationView.play()
+    }
 
     /*
     // MARK: - Navigation
