@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IL4-BM-Jhk">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="EzF-4k-qjC">
+            <objects>
+                <navigationController id="HsV-Pf-k4V" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xrd-Vl-QiK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="IL4-BM-Jhk" kind="relationship" relationship="rootViewController" id="Hpx-KE-Uld"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g5o-Fy-W9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-478" y="129"/>
+        </scene>
+        <!--Vouchers-->
+        <scene sceneID="Xc5-QM-HTA">
+            <objects>
+                <viewController id="IL4-BM-Jhk" customClass="VouchersViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gWf-ZO-Ml0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have: 0 Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5r-pa-Fs8">
+                                <rect key="frame" x="20" y="113" width="374" height="37"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
+                                <color key="textColor" name="Primary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tfX-tN-7jT">
+                                <rect key="frame" x="0.0" y="170" width="414" height="726"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoucherCell" rowHeight="81" id="npH-D5-oau" customClass="VoucherTableViewCell" customModule="Emporium" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="npH-D5-oau" id="9t7-2i-PZu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="kMT-gf-h9w">
+                                                    <rect key="frame" x="20" y="19" width="51" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="DEx-Vf-og8"/>
+                                                        <constraint firstAttribute="width" constant="51" id="Utq-Ic-Zye"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 5% off your next purchase " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zY-vV-BvZ">
+                                                    <rect key="frame" x="79" y="40" width="310" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" name="Secondary Text Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFx-ml-gf6">
+                                                    <rect key="frame" x="79" y="11" width="215" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="Primary"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="250 Points" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Np4-zz-lWt">
+                                                    <rect key="frame" x="299" y="11" width="90" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="x1q-vT-MeQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="top" secondItem="9t7-2i-PZu" secondAttribute="topMargin" id="8mi-Oa-LKp"/>
+                                                <constraint firstItem="Np4-zz-lWt" firstAttribute="leading" secondItem="TFx-ml-gf6" secondAttribute="trailing" constant="5" id="CAl-AP-5e2"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="leading" secondItem="2zY-vV-BvZ" secondAttribute="leading" id="JT7-Ra-Fyd"/>
+                                                <constraint firstItem="kMT-gf-h9w" firstAttribute="top" secondItem="9t7-2i-PZu" secondAttribute="topMargin" constant="8" id="U56-dq-3rk"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kMT-gf-h9w" secondAttribute="bottom" constant="8" id="VyQ-yH-P5g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Np4-zz-lWt" secondAttribute="trailing" constant="5" id="Y3W-q5-iKY"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="leading" secondItem="kMT-gf-h9w" secondAttribute="trailing" constant="8" id="ZDF-QM-bcr"/>
+                                                <constraint firstItem="TFx-ml-gf6" firstAttribute="baseline" secondItem="Np4-zz-lWt" secondAttribute="baseline" id="ZIm-UT-Qja"/>
+                                                <constraint firstItem="kMT-gf-h9w" firstAttribute="leading" secondItem="9t7-2i-PZu" secondAttribute="leadingMargin" id="av7-j3-SIJ"/>
+                                                <constraint firstItem="Np4-zz-lWt" firstAttribute="trailing" secondItem="2zY-vV-BvZ" secondAttribute="trailing" id="tY9-KW-9uy"/>
+                                                <constraint firstItem="2zY-vV-BvZ" firstAttribute="top" secondItem="TFx-ml-gf6" secondAttribute="bottom" constant="8" id="tzv-hI-wbs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="voucherCostLabel" destination="Np4-zz-lWt" id="19O-WH-Nz5"/>
+                                            <outlet property="voucherDescriptionLabel" destination="2zY-vV-BvZ" id="XEI-QL-5tr"/>
+                                            <outlet property="voucherNameLabel" destination="TFx-ml-gf6" id="ryV-p3-BgR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lYw-FX-XEh" firstAttribute="trailing" secondItem="M5r-pa-Fs8" secondAttribute="trailing" constant="20" id="75N-MA-aLq"/>
+                            <constraint firstItem="M5r-pa-Fs8" firstAttribute="top" secondItem="lYw-FX-XEh" secondAttribute="top" constant="25" id="CMK-v2-jIG"/>
+                            <constraint firstItem="tfX-tN-7jT" firstAttribute="trailing" secondItem="lYw-FX-XEh" secondAttribute="trailing" id="adT-Qz-ze1"/>
+                            <constraint firstAttribute="bottom" secondItem="tfX-tN-7jT" secondAttribute="bottom" id="mPL-eN-7if"/>
+                            <constraint firstItem="tfX-tN-7jT" firstAttribute="leading" secondItem="lYw-FX-XEh" secondAttribute="leading" id="mSg-25-Ids"/>
+                            <constraint firstItem="tfX-tN-7jT" firstAttribute="top" secondItem="M5r-pa-Fs8" secondAttribute="bottom" constant="20" id="qH1-2u-A7a"/>
+                            <constraint firstItem="M5r-pa-Fs8" firstAttribute="leading" secondItem="lYw-FX-XEh" secondAttribute="leading" constant="20" id="vsd-im-bNJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lYw-FX-XEh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Vouchers" id="axY-bm-A5g">
+                        <barButtonItem key="rightBarButtonItem" title="My Vouchers" id="G2N-mH-fda">
+                            <connections>
+                                <segue destination="Sd0-L8-bcW" kind="show" id="Ore-0P-xYv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pointsLabel" destination="M5r-pa-Fs8" id="1JS-TW-qsn"/>
+                        <outlet property="vouchersTableView" destination="tfX-tN-7jT" id="OBd-kE-XYJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SfW-4R-gmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672.46376811594212" y="128.57142857142856"/>
+        </scene>
+        <!--Gift Points View Controller-->
+        <scene sceneID="HJh-B1-gpK">
+            <objects>
+                <viewController storyboardIdentifier="GiftPointsViewController" id="lJs-bD-HrQ" customClass="GiftPointsViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Nk-Mp-KNS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-vP-l8l">
+                                <rect key="frame" x="7" y="94" width="400" height="516"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Gift For You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUP-Lh-ImY">
+                                        <rect key="frame" x="30" y="8" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="HYo-Bd-WvK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tir-Cn-VWU" customClass="AnimationView" customModule="Lottie">
+                                        <rect key="frame" x="30" y="58" width="340" height="350"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="350" id="cnE-tM-hSd"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You just earned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYE-ta-E4a">
+                                        <rect key="frame" x="30" y="408" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="iSd-qr-iH5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8 Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiR-Op-lbP">
+                                        <rect key="frame" x="30" y="458" width="340" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Id1-7j-KGF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="2Sc-Xy-xGw"/>
+                                </constraints>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="30" bottom="8" trailing="30"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAu-MF-sJM" customClass="MDCButton">
+                                <rect key="frame" x="57" y="635" width="300" height="50"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="AtM-1D-1FC"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ldl-KH-Uac"/>
+                                </constraints>
+                                <state key="normal" title="Ok">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="claimPressed:" destination="dwY-8b-SZQ" eventType="touchUpInside" id="GAs-bz-d2r"/>
+                                    <action selector="okPressed:" destination="lJs-bD-HrQ" eventType="touchUpInside" id="YCm-AL-Cel"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xye-vP-l8l" firstAttribute="top" secondItem="P8I-u1-zSM" secondAttribute="top" constant="50" id="1ve-QG-gBr"/>
+                            <constraint firstItem="Xye-vP-l8l" firstAttribute="centerX" secondItem="8Nk-Mp-KNS" secondAttribute="centerX" id="BWC-pr-qAU"/>
+                            <constraint firstItem="mAu-MF-sJM" firstAttribute="centerX" secondItem="8Nk-Mp-KNS" secondAttribute="centerX" id="DNb-fN-kCQ"/>
+                            <constraint firstItem="mAu-MF-sJM" firstAttribute="top" secondItem="Xye-vP-l8l" secondAttribute="bottom" constant="25" id="np6-TC-4U8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P8I-u1-zSM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="53S-Lo-3tj"/>
+                    <connections>
+                        <outlet property="giftAnimationView" destination="tir-Cn-VWU" id="j9k-pL-e1P"/>
+                        <outlet property="pointsLabel" destination="OiR-Op-lbP" id="0jM-5t-9vt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TmB-tE-Cc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2561" y="903"/>
+        </scene>
+        <!--My Vouchers-->
+        <scene sceneID="z0h-xs-pos">
+            <objects>
+                <tableViewController id="Sd0-L8-bcW" customClass="MyVouchersTableViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="680-Fx-fBo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoucherCell" rowHeight="81" id="2NF-Kl-g0y" customClass="MyVoucherTableViewCell" customModule="Emporium" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="81"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2NF-Kl-g0y" id="O7o-ML-C76">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="4p5-kb-eDt">
+                                            <rect key="frame" x="20" y="19" width="51" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="51" id="1Od-KY-Z24"/>
+                                                <constraint firstAttribute="height" constant="44" id="tGh-xZ-yZ5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 5% off your next purchase " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDD-6u-Luy">
+                                            <rect key="frame" x="79" y="40" width="310" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" name="Secondary Text Color"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGT-kc-GAY">
+                                            <rect key="frame" x="79" y="11" width="310" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" name="Primary"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4p5-kb-eDt" firstAttribute="top" secondItem="O7o-ML-C76" secondAttribute="topMargin" constant="8" id="13K-Eh-9fc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4p5-kb-eDt" secondAttribute="bottom" constant="8" id="2oB-mi-fwD"/>
+                                        <constraint firstItem="UGT-kc-GAY" firstAttribute="top" secondItem="O7o-ML-C76" secondAttribute="topMargin" id="MLu-Ax-o1t"/>
+                                        <constraint firstItem="UGT-kc-GAY" firstAttribute="leading" secondItem="ZDD-6u-Luy" secondAttribute="leading" id="Q3f-8B-b09"/>
+                                        <constraint firstItem="ZDD-6u-Luy" firstAttribute="top" secondItem="UGT-kc-GAY" secondAttribute="bottom" constant="8" id="f5s-sx-dDQ"/>
+                                        <constraint firstItem="UGT-kc-GAY" firstAttribute="leading" secondItem="4p5-kb-eDt" secondAttribute="trailing" constant="8" id="kVC-we-TL6"/>
+                                        <constraint firstItem="ZDD-6u-Luy" firstAttribute="trailing" secondItem="UGT-kc-GAY" secondAttribute="trailing" id="tNd-JB-soh"/>
+                                        <constraint firstItem="4p5-kb-eDt" firstAttribute="leading" secondItem="O7o-ML-C76" secondAttribute="leadingMargin" id="uEz-Jj-AaU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="UGT-kc-GAY" secondAttribute="trailing" constant="5" id="wcF-Ro-E9x"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="voucherDescriptionLabel" destination="ZDD-6u-Luy" id="uXu-jV-Cqh"/>
+                                    <outlet property="voucherNameLabel" destination="UGT-kc-GAY" id="bqd-DC-OVS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Sd0-L8-bcW" id="JOS-WW-2lU"/>
+                            <outlet property="delegate" destination="Sd0-L8-bcW" id="hKX-Xl-JGj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Vouchers" id="qAc-qq-KhP">
+                        <barButtonItem key="rightBarButtonItem" title="Test Add Point" id="VZG-t7-2Mw">
+                            <connections>
+                                <action selector="testAddPoints:" destination="Sd0-L8-bcW" id="91T-z8-b1k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6qA-MN-eqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1563.768115942029" y="126.5625"/>
+        </scene>
+        <!--Voucher Bottom Sheet View Controller-->
+        <scene sceneID="px9-c9-JTa">
+            <objects>
+                <viewController storyboardIdentifier="VoucherBottomSheetViewControllerID" id="dwY-8b-SZQ" customClass="VoucherBottomSheetViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nEd-OQ-jSp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aTz-Sr-vc5">
+                                <rect key="frame" x="15" y="44" width="384" height="803"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="fnE-fQ-75d">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="C2n-WD-Tj0"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRe-Jp-AEU">
+                                        <rect key="frame" x="0.0" y="50" width="384" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ebs-1w-yyA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" name="Primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off your next purchase!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-7i-atj">
+                                        <rect key="frame" x="0.0" y="90" width="384" height="663"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="Secondary Text Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzM-JD-84a" customClass="MDCButton">
+                                        <rect key="frame" x="0.0" y="753" width="384" height="50"/>
+                                        <color key="backgroundColor" name="Primary"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="f2U-W1-9YX"/>
+                                        </constraints>
+                                        <state key="normal" title="Claim (250 Points)">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="claimPressed:" destination="dwY-8b-SZQ" eventType="touchUpInside" id="Fy1-TI-MII"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aTz-Sr-vc5" firstAttribute="leading" secondItem="prU-0a-kjJ" secondAttribute="leading" constant="15" id="2Od-BA-wXp"/>
+                            <constraint firstItem="prU-0a-kjJ" firstAttribute="bottom" secondItem="aTz-Sr-vc5" secondAttribute="bottom" constant="15" id="KM8-ME-m5W"/>
+                            <constraint firstItem="prU-0a-kjJ" firstAttribute="trailing" secondItem="aTz-Sr-vc5" secondAttribute="trailing" constant="15" id="RiW-Ak-pWO"/>
+                            <constraint firstItem="aTz-Sr-vc5" firstAttribute="top" secondItem="prU-0a-kjJ" secondAttribute="top" id="W3j-0e-w2B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="prU-0a-kjJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="claimButton" destination="QzM-JD-84a" id="vov-1t-KbZ"/>
+                        <outlet property="voucherDescriptionLabel" destination="KdT-7i-atj" id="dNH-Hn-pU4"/>
+                        <outlet property="voucherNameLabel" destination="NRe-Jp-AEU" id="RT5-NX-XKX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8tg-od-DcC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2561" y="127"/>
+        </scene>
+        <!--My Voucher Bottom Sheet View Controller-->
+        <scene sceneID="CIt-6Y-Axr">
+            <objects>
+                <viewController storyboardIdentifier="MyVoucherBottomSheetViewControllerID" id="t5b-Ip-t00" customClass="MyVoucherBottomSheetViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zQu-OH-me9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T0Z-Nz-jol">
+                                <rect key="frame" x="15" y="44" width="384" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-Yf-eMQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="YgY-Tx-5Fu"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off Voucher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szS-Ez-WAk">
+                                        <rect key="frame" x="0.0" y="50" width="384" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cZY-RV-Puf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" name="Primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5% Off your next purchase!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-KU-5RB">
+                                        <rect key="frame" x="0.0" y="90" width="384" height="728"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="Secondary Text Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="T0Z-Nz-jol" firstAttribute="top" secondItem="9Rz-YM-NqZ" secondAttribute="top" id="95Q-lw-61H"/>
+                            <constraint firstItem="T0Z-Nz-jol" firstAttribute="leading" secondItem="9Rz-YM-NqZ" secondAttribute="leading" constant="15" id="O4S-Rl-1VQ"/>
+                            <constraint firstItem="9Rz-YM-NqZ" firstAttribute="bottom" secondItem="T0Z-Nz-jol" secondAttribute="bottom" id="sIX-HD-7Zc"/>
+                            <constraint firstItem="9Rz-YM-NqZ" firstAttribute="trailing" secondItem="T0Z-Nz-jol" secondAttribute="trailing" constant="15" id="tkl-q5-MrA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Rz-YM-NqZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="voucherDescriptionLabel" destination="MaI-KU-5RB" id="lIv-wM-ZGy"/>
+                        <outlet property="voucherNameLabel" destination="szS-Ez-WAk" id="A7W-qm-cqX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekP-wG-1JG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3457.971014492754" y="128.57142857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Coupon" width="512" height="512"/>
+        <namedColor name="Primary">
+            <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Secondary Text Color">
+            <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

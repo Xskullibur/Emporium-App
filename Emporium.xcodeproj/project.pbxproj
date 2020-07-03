@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
+		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
 		7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B387524A210810003B9D9 /* CartItem.pb.swift */; };
@@ -105,9 +105,6 @@
 		FE9023642473B9C900CE6B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9023622473B9C900CE6B3A /* LaunchScreen.storyboard */; };
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
-		FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */; };
-		FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */; };
-		FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +127,7 @@
 /* Begin PBXFileReference section */
 		032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
+		34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresTableViewController.swift; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
 		70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emporium_EmporiumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,9 +235,6 @@
 		FE9023752473B9C900CE6B3A /* EmporiumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporiumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmporiumLoginViewController.xib; sourceTree = "<group>"; };
-		FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FUICustomAuthPickerViewController.xib; sourceTree = "<group>"; };
-		FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */,
-				491D37669A28A892A8BBD2F1 /* Pods_Emporium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +390,7 @@
 				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
+				34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */,
 			);
 			path = CrowdTracking;
 			sourceTree = "<group>";
@@ -468,7 +463,7 @@
 			path = EarnedRewards;
 			sourceTree = "<group>";
 		};
-		ACED1DE0249B2FC800094284 /* ViewControllers */ = {
+		ACED1DE0249B2FC800094284 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
@@ -479,7 +474,7 @@
 				EDB4683224948BDF000DE5F0 /* Nearby */,
 				FEA80CEF248DE293005D8F94 /* Login */,
 			);
-			path = ViewControllers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		ACED1DE1249B2FDE00094284 /* Main */ = {
@@ -648,7 +643,7 @@
 			isa = PBXGroup;
 			children = (
 				ED57F79F24A076970013A133 /* Models */,
-				ACED1DE0249B2FC800094284 /* ViewControllers */,
+				ACED1DE0249B2FC800094284 /* Views */,
 				AC0A18F224932482009FFD93 /* Notifications */,
 				EDB4682D248DEA81000DE5F0 /* Helpers */,
 				FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */,
@@ -684,9 +679,6 @@
 		FEA80CEF248DE293005D8F94 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				FEA80CF0248DE2D3005D8F94 /* EmporiumLoginViewController.xib */,
-				FEA80CF2248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib */,
-				FEA80CF4248DE57C005D8F94 /* EmporiumLoginViewController.swift */,
 				ACD28633249894E200497BD9 /* EmporiumCardButton.xib */,
 				ACD286352498950700497BD9 /* EmporiumCardButton.swift */,
 			);
@@ -812,7 +804,6 @@
 				ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */,
 				ED61105524A4583300FFD408 /* check.json in Resources */,
 				AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */,
-				FEA80CF1248DE2D3005D8F94 /* EmporiumLoginViewController.xib in Resources */,
 				7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */,
 				7F0B388A24AE1C1B0003B9D9 /* cardAni2.json in Resources */,
 				AC21B9D3249767630058EE50 /* Shop.storyboard in Resources */,
@@ -828,7 +819,6 @@
 				ED57F796249C99B50013A133 /* Queue.storyboard in Resources */,
 				ED61104B24A3482C00FFD408 /* shopping-bag.json in Resources */,
 				FE90235C2473B9C700CE6B3A /* Main.storyboard in Resources */,
-				FEA80CF3248DE39A005D8F94 /* FUICustomAuthPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,7 +1008,7 @@
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
-				FEA80CF5248DE57C005D8F94 /* EmporiumLoginViewController.swift in Sources */,
+				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,

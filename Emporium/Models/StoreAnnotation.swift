@@ -12,9 +12,10 @@ import Contacts
 
 class StoreAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    var store: GroceryStore
+    @objc dynamic var store: GroceryStore
     var title: String?
     var subtitle: String?
+    var id: String
     
     init(coords _coords: CLLocationCoordinate2D,
          store _store: GroceryStore) {
@@ -24,6 +25,7 @@ class StoreAnnotation: NSObject, MKAnnotation {
         coordinate = _coords
         title = _store.name
         subtitle = _store.address
+        id = _store.id
         
         super.init()
     }
