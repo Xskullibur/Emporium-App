@@ -12,7 +12,6 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     var cardList: [Card] = []
-    //var cardList: [Card] = [Card(fp: "test", brand: "test", cardType: "test", last4: "test", expMonth: "test", expYear: "test")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +37,9 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.layer.cornerRadius = 10
         
-        cell.cardTypeLabel.text = "Type: " + cardList[indexPath.row].cardType
-        cell.last4Label.text = "Last 4 digit: " + cardList[indexPath.row].last4
-        cell.expDateLabel.text = "Expiry Date: " + cardList[indexPath.row].expMonth + "-" + cardList[indexPath.row].expYear
+        cell.cardTypeLabel.text = cardList[indexPath.row].cardType.capitalizingFirstLetter() + "(*" + cardList[indexPath.row].last4 + ")"
+        //cell.last4Label.text = "Last 4 digit: " + cardList[indexPath.row].last4
+        cell.expDateLabel.text = cardList[indexPath.row].expMonth + "-" + cardList[indexPath.row].expYear
         
         if cardList[indexPath.row].brand.uppercased() == "VISA" {
             cell.brandImage.image = UIImage(named: "visa")
@@ -57,5 +56,15 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         cell.clipsToBounds = false
         
         return cell
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
 }
