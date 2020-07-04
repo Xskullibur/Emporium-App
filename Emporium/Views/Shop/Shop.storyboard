@@ -41,14 +41,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODK-30-Y5h">
-                                                    <rect key="frame" x="143" y="59" width="191" height="22"/>
+                                                    <rect key="frame" x="143" y="59" width="135" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" name="Primary"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4C-DI-mFZ">
-                                                    <rect key="frame" x="143" y="94" width="191" height="22"/>
+                                                    <rect key="frame" x="143" y="94" width="135" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" name="Primary"/>
@@ -68,6 +68,15 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzx-ek-3Ze">
+                                                    <rect key="frame" x="297" y="33" width="34" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="tintColor" name="Primary"/>
+                                                    <state key="normal" image="trash" catalog="system">
+                                                        <color key="titleColor" name="Primary"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -75,6 +84,7 @@
                                             <outlet property="nameLabel" destination="KYq-VK-Yd0" id="Yhf-1x-Mlo"/>
                                             <outlet property="priceLabel" destination="ODK-30-Y5h" id="uxE-J6-ghn"/>
                                             <outlet property="quantityLabel" destination="y4C-DI-mFZ" id="61J-23-XZX"/>
+                                            <outlet property="removeBtn" destination="lzx-ek-3Ze" id="d2p-Yy-b1r"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -604,6 +614,7 @@
     </scenes>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="Light">
             <color red="1" green="0.68999999761581421" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

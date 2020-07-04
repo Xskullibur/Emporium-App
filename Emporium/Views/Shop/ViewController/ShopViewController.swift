@@ -236,8 +236,6 @@ extension ShopViewController: UICollectionViewDelegate {
                 }
             }
         }
-        
-        
     }
 }
 
