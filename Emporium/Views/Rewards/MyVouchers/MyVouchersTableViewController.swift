@@ -56,6 +56,15 @@ class MyVouchersTableViewController: UITableViewController {
                }).store(in: &cancellables)
        }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if self.myVouchers.count > 0 {
+            return 1
+        } else {
+            tableView.setEmptyMessage("Oops no voucher to show here!")
+            return 0
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myVouchers.count
     }

@@ -136,7 +136,7 @@
         <!--Entry View Controller-->
         <scene sceneID="rMW-mK-HqF">
             <objects>
-                <viewController id="mxv-pB-aiD" customClass="EntryViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="entryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mxv-pB-aiD" customClass="EntryViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wBx-dz-zfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
