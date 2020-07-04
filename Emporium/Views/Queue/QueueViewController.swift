@@ -17,6 +17,7 @@ class QueueViewController: UIViewController {
     // MARK: - Variable
     var justJoinedQueue = false
     var store: GroceryStore?
+    var queueId: String?
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
@@ -49,31 +50,44 @@ class QueueViewController: UIViewController {
         // Volunteer Prompt
         if justJoinedQueue {
             
-            let alert = UIAlertController(
-                title: "Would you like to volunteer?",
-                message: "Volunteer to help your fellow neighbours get groceries",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                
-                let thanksAlert = UIAlertController(
-                    title: "Thank you!",
-                    message: "You will be notified when there is a request.",
-                    preferredStyle: .alert
-                )
-                thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(thanksAlert, animated: true)
-                
-            }))
-            
-            self.present(alert, animated: true)
+            // Show Volunteer Alert
+            showVolunteerAlert()
+            // Create and join queue
+            joinQueue()
             
         }
         
     }
     
+    // MARK: - Custom Functions
+    func joinQueue() {
+        
+        queueId = QueueDataManager.joinQueue(store: store!)
+        
+    }
+    
+    func showVolunteerAlert() {
+        let alert = UIAlertController(
+            title: "Would you like to volunteer?",
+            message: "Volunteer to help your fellow neighbours get groceries",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            
+            let thanksAlert = UIAlertController(
+                title: "Thank you!",
+                message: "You will be notified when there is a request.",
+                preferredStyle: .alert
+            )
+            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(thanksAlert, animated: true)
+            
+        }))
+        
+        self.present(alert, animated: true)
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -65,7 +65,6 @@ class EntryViewController: UIViewController {
         // Animation
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
-        animationView.play()
         
         // Button
         let containerScheme = MDCContainerScheme()
@@ -77,17 +76,29 @@ class EntryViewController: UIViewController {
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
+        // onResume
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(playAnimation),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        animationView.play()
     }
-    */
+    
+    @objc func playAnimation() {
+        animationView.play()
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        NotificationCenter.default.removeObserver(self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
 
 }

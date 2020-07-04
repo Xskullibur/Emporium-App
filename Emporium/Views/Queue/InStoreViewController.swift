@@ -29,7 +29,6 @@ class InStoreViewController: UIViewController {
         animationView.animation = Animation.named("shopping-bag")
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
-        animationView.play()
         
         // Button
         let containerScheme = MDCContainerScheme()
@@ -40,6 +39,9 @@ class InStoreViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        animationView.play()
+    }
 
     /*
     // MARK: - Navigation
