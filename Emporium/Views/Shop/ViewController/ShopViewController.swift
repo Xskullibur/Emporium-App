@@ -151,7 +151,7 @@ extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
+            cell.setCell(name: self.productData[indexPath.row].productName, price: String(format: "%.02f", self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
             
             cell.cornerRadius = 13
             cell.contentView.layer.masksToBounds = true

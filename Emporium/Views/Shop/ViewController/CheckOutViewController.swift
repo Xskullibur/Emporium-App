@@ -38,7 +38,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             for item in cartData {
                 total = total + (item.price * Double(item.quantity))
             }
-            priceLabel.text = "Total: $" + String(total)
+            priceLabel.text = "Total: $" + String(format: "%.02f", total)
         }
 
     }
@@ -53,8 +53,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = "Price: $" + String(cartDetail.price)
-        cell.quantityLabel.text = "Quantity: " + String(cartDetail.quantity)
+        cell.priceLabel.text = "$" + String(format: "%.02f", cartDetail.price)
+        cell.quantityLabel.text = String(cartDetail.quantity)
         cell.cartImage.loadImage(url: cartDetail.image)
         
         cell.contentView.layer.masksToBounds = true
