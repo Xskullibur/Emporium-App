@@ -20,6 +20,7 @@
 		7F0B388624ADDA830003B9D9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388524ADDA830003B9D9 /* Card.swift */; };
 		7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388724ADE06B0003B9D9 /* CardCell.swift */; };
 		7F0B388A24AE1C1B0003B9D9 /* cardAni2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F0B388924AE1C1B0003B9D9 /* cardAni2.json */; };
+		7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388B24B0BB200003B9D9 /* CartItem.proto */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
@@ -146,6 +147,7 @@
 		7F0B388524ADDA830003B9D9 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		7F0B388724ADE06B0003B9D9 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		7F0B388924AE1C1B0003B9D9 /* cardAni2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAni2.json; sourceTree = "<group>"; };
+		7F0B388B24B0BB200003B9D9 /* CartItem.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = CartItem.proto; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				7F0B387524A210810003B9D9 /* CartItem.pb.swift */,
 				7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */,
 				7F0B388524ADDA830003B9D9 /* Card.swift */,
+				7F0B388B24B0BB200003B9D9 /* CartItem.proto */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
+				7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
