@@ -100,6 +100,9 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "toGateway" {
             let destVC = segue.destination as! GatewayViewController
             destVC.cartData = self.cartData
+        }else if segue.identifier == "toCard" {
+            let destVC = segue.destination as! DisplayCardViewController
+            destVC.cartData = self.cartData
         }
     }
     
