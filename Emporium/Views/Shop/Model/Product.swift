@@ -2,7 +2,7 @@
 //  Product.swift
 //  Emporium
 //
-//  Created by user1 on 13/6/20.
+//  Created by hsienxiang on 13/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 

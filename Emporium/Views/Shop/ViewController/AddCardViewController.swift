@@ -2,7 +2,7 @@
 //  AddCardViewController.swift
 //  Emporium
 //
-//  Created by Peh Zi Heng on 29/6/20.
+//  Created by hsienxiang on 29/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 

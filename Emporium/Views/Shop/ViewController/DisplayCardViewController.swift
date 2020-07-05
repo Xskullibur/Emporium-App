@@ -2,7 +2,7 @@
 //  DisplayCardViewController.swift
 //  Emporium
 //
-//  Created by Peh Zi Heng on 29/6/20.
+//  Created by hsienxiang on 29/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
@@ -76,7 +76,14 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         self.present(showAlert, animated: true, completion: nil)
     }
     
+    @objc func removeClick(sender: UIButton) {
+           //let selectedItem = cartData[sender.tag]
+    }
+    
     func setUpPayment(docID: String) {
+        
+        self.showSpinner(onView: self.view)
+        
         var paymentInfo = PaymentInfo()
         paymentInfo.cartItems = []
         

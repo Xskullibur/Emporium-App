@@ -197,11 +197,21 @@
                                                     <color key="textColor" name="Primary"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XH-bz-ORX">
+                                                    <rect key="frame" x="360" y="37" width="34" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="tintColor" name="Primary"/>
+                                                    <state key="normal" image="trash" catalog="system">
+                                                        <color key="titleColor" name="Primary"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="brandImage" destination="97c-f4-uQA" id="Tsh-3n-a7g"/>
                                             <outlet property="cardTypeLabel" destination="VXs-vv-epM" id="W51-Pw-vdF"/>
+                                            <outlet property="deleteBtn" destination="0XH-bz-ORX" id="Vf4-Pr-M3r"/>
                                             <outlet property="expDateLabel" destination="egY-3N-PC2" id="3bU-uc-Rkb"/>
                                             <outlet property="last4Label" destination="Iq2-1x-epm" id="cWk-rI-fu4"/>
                                         </connections>
@@ -515,7 +525,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l68-gk-005">
-                                <rect key="frame" x="22" y="212" width="367" height="639"/>
+                                <rect key="frame" x="22" y="240" width="367" height="611"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SvC-QP-9gF">

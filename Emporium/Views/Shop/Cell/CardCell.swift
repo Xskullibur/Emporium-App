@@ -2,7 +2,7 @@
 //  CardCell.swift
 //  Emporium
 //
-//  Created by user1 on 2/7/20.
+//  Created by hsienxiang on 2/7/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
@@ -15,6 +15,7 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var cardTypeLabel: UILabel!
     @IBOutlet weak var last4Label: UILabel!
     @IBOutlet weak var expDateLabel: UILabel!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

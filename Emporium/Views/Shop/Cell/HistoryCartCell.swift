@@ -2,7 +2,7 @@
 //  HistoryCartCell.swift
 //  Emporium
 //
-//  Created by user1 on 25/6/20.
+//  Created by hsienxiang on 25/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
