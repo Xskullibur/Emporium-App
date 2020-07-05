@@ -19,7 +19,7 @@ class AddCardViewController: UIViewController {
     
     @IBOutlet weak var cardAnimation: AnimationView!
     
-    var backendBaseURL: String? = "http://172.27.177.40:5000" //school
+    var backendBaseURL: String? = "http://192.168.86.1:5000" //school
     
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
