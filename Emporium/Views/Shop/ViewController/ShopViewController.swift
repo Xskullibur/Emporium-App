@@ -29,6 +29,8 @@ class ShopViewController: UIViewController {
         searchBtn.layer.cornerRadius = 5
         
         self.collectionView.layer.cornerRadius = 10
+        self.collectionView.layer.borderWidth = 1
+        self.collectionView.layer.borderColor = UIColor.darkGray.cgColor
         //self.cartCollectionView.layer.cornerRadius = 10
         
         self.collectionView.dataSource = self
@@ -185,7 +187,7 @@ extension ShopViewController: UICollectionViewDataSource {
         cell.setBorderWidth(1, for: .normal)
         cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
         cell.layer.masksToBounds = false
-        cell.setShadowElevation(ShadowElevation(6), for: .normal)
+        cell.setShadowElevation(ShadowElevation(1), for: .normal)
         return cell
     }
 }
