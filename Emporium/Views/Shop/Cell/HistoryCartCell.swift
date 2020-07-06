@@ -32,10 +32,10 @@ class HistoryCartCell: UITableViewCell {
       }
       set (newFrame) {
           var frame =  newFrame
-          frame.origin.y += 4
+          frame.origin.y += 8
           frame.size.height -= 2 * 10
-          frame.origin.x += 4
-          frame.size.width -= 2 * 5
+          frame.origin.x += 8
+          frame.size.width -= 2 * 10
           super.frame = frame
       }
     }

@@ -45,20 +45,14 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         cell.expDateLabel.text = cardList[indexPath.row].expMonth + "-" + cardList[indexPath.row].expYear
         cell.deleteBtn.tag = indexPath.row
         cell.deleteBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
         
         if cardList[indexPath.row].brand.uppercased() == "VISA" {
             cell.brandImage.image = UIImage(named: "visa")
         }else{
             cell.brandImage.image = UIImage(named: "mastercard")
         }
-        
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
-        cell.layer.shadowRadius = 5
-        cell.layer.shadowOpacity = 0.9
-        cell.layer.masksToBounds = false
-        cell.clipsToBounds = false
         
         return cell
     }
