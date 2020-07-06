@@ -38,7 +38,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             for item in cartData {
                 total = total + (item.price * Double(item.quantity))
             }
-            priceLabel.text = "Total: $" + String(total)
+            priceLabel.text = "Total: $" + String(format: "%.02f", total)
         }
 
     }
@@ -53,9 +53,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = "Price: $" + String(cartDetail.price)
-        cell.quantityLabel.text = "Quantity: " + String(cartDetail.quantity)
+        cell.priceLabel.text = "$" + String(format: "%.02f", cartDetail.price)
+        cell.quantityLabel.text = String(cartDetail.quantity)
         cell.cartImage.loadImage(url: cartDetail.image)
+        cell.removeBtn.tag = indexPath.row
+        cell.removeBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
         
         cell.contentView.layer.masksToBounds = true
         cell.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -66,6 +68,18 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.clipsToBounds = false
         
         return cell
+    }
+    
+    @objc func removeClick(sender: UIButton) {
+        let selectedItem = cartData[sender.tag]
+        if selectedItem.quantity == 1 {
+            cartData.remove(at: sender.tag)
+            Toast.showToast("Item is removed")
+        }else{
+            selectedItem.quantity = selectedItem.quantity - 1
+            Toast.showToast(selectedItem.productName + " quantity left " + String(selectedItem.quantity))
+        }
+        tableView.reloadData()
     }
     
     
@@ -85,6 +99,9 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toGateway" {
             let destVC = segue.destination as! GatewayViewController
+            destVC.cartData = self.cartData
+        }else if segue.identifier == "toCard" {
+            let destVC = segue.destination as! DisplayCardViewController
             destVC.cartData = self.cartData
         }
     }
@@ -110,6 +127,12 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         present(actionSheet, animated: true, completion: nil)
     }
     
+}
+
+extension CheckOutViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        (viewController as? ShopViewController)?.cartData = cartData 
+    }
 }
 
 

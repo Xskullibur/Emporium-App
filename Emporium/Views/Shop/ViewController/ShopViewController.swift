@@ -12,7 +12,6 @@ import MaterialComponents.MaterialCards
 class ShopViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var ProductCateLabel: UILabel!
@@ -30,16 +29,16 @@ class ShopViewController: UIViewController {
         searchBtn.layer.cornerRadius = 5
         
         self.collectionView.layer.cornerRadius = 10
-        self.cartCollectionView.layer.cornerRadius = 10
+        //self.cartCollectionView.layer.cornerRadius = 10
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        self.cartCollectionView.dataSource = self
-        self.cartCollectionView.delegate = self
+        //self.cartCollectionView.dataSource = self
+        //self.cartCollectionView.delegate = self
         
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
-        self.cartCollectionView.register(UINib(nibName: "SideCartCell", bundle: nil), forCellWithReuseIdentifier: "SideCartCell")
+        //self.cartCollectionView.register(UINib(nibName: "SideCartCell", bundle: nil), forCellWithReuseIdentifier: "SideCartCell")
     }
     
     func loadProducts() {
@@ -78,9 +77,9 @@ class ShopViewController: UIViewController {
             self.collectionView.reloadData()
         }
         
-        DispatchQueue.main.async {
-            self.cartCollectionView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//            self.cartCollectionView.reloadData()
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,50 +140,65 @@ class ShopViewController: UIViewController {
 
 extension ShopViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(collectionView == self.collectionView) {
-            return self.productData.count
-        }else{
-            return self.cartData.count
-        }
+//        if(collectionView == self.collectionView) {
+//            return self.productData.count
+//        }else{
+//            return self.cartData.count
+//        }
+        return self.productData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.collectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
-            cell.setCell(name: self.productData[indexPath.row].productName, price: String(self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
-            
-            cell.cornerRadius = 13
-            cell.contentView.layer.masksToBounds = true
-            cell.clipsToBounds = true
-            cell.setBorderWidth(1, for: .normal)
-            cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
-            cell.layer.masksToBounds = false
-            cell.setShadowElevation(ShadowElevation(6), for: .normal)
-            return cell
-        }else{
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
-            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
-            //self.cartData[indexPath.row].image
-            //"noImage"
-            cell2.cornerRadius = 13
-            cell2.contentView.layer.masksToBounds = true
-            cell2.clipsToBounds = true
-            cell2.setBorderWidth(1, for: .normal)
-            cell2.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
-            cell2.layer.masksToBounds = false
-            cell2.setShadowElevation(ShadowElevation(6), for: .normal)
-            return cell2
-        }
+//        if collectionView == self.collectionView {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
+//            cell.setCell(name: self.productData[indexPath.row].productName, price: String(format: "%.02f", self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
+//
+//            cell.cornerRadius = 13
+//            cell.contentView.layer.masksToBounds = true
+//            cell.clipsToBounds = true
+//            cell.setBorderWidth(1, for: .normal)
+//            cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+//            cell.layer.masksToBounds = false
+//            cell.setShadowElevation(ShadowElevation(6), for: .normal)
+//            return cell
+//        }else{
+//            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "SideCartCell", for: indexPath) as! SideCartCell
+//            cell2.setCell(self.cartData[indexPath.row].productName, self.cartData[indexPath.row].quantity, self.cartData[indexPath.row].image)
+//            //self.cartData[indexPath.row].image
+//            //"noImage"
+//            cell2.cornerRadius = 13
+//            cell2.contentView.layer.masksToBounds = true
+//            cell2.clipsToBounds = true
+//            cell2.setBorderWidth(1, for: .normal)
+//            cell2.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+//            cell2.layer.masksToBounds = false
+//            cell2.setShadowElevation(ShadowElevation(6), for: .normal)
+//            return cell2
+//        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
+        cell.setCell(name: self.productData[indexPath.row].productName, price: String(format: "%.02f", self.productData[indexPath.row].price), image: self.productData[indexPath.row].image)
+        
+        cell.cornerRadius = 13
+        cell.contentView.layer.masksToBounds = true
+        cell.clipsToBounds = true
+        cell.setBorderWidth(1, for: .normal)
+        cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+        cell.layer.masksToBounds = false
+        cell.setShadowElevation(ShadowElevation(6), for: .normal)
+        return cell
     }
 }
 
 extension ShopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == self.collectionView {
-            return CGSize(width: 140, height: 200)
-        }else{
-            return CGSize(width: 150, height: 50)
-        }
+//        if collectionView == self.collectionView {
+//            return CGSize(width: 140, height: 200)
+//        }else{
+//            return CGSize(width: 150, height: 50)
+//        }
+        
+         return CGSize(width: 140, height: 200)
         
     }
 }
@@ -205,10 +219,9 @@ extension ShopViewController: UICollectionViewDelegate {
                     cartItem.quantity = cartItem.quantity + 1
                     showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
                     newItem = false
-                    DispatchQueue.main.async {
-                        self.cartCollectionView.reloadData()
-                    }
-                    
+//                    DispatchQueue.main.async {
+//                        self.cartCollectionView.reloadData()
+//                    }
                     return
                 }
             }
@@ -216,28 +229,26 @@ extension ShopViewController: UICollectionViewDelegate {
             if newItem == true {
                 cartData.append(Cart(id, 1, name, price, image))
                 showToast(String(name) + " added")
-                DispatchQueue.main.async {
-                    self.cartCollectionView.reloadData()
-                }
+//                DispatchQueue.main.async {
+//                    self.cartCollectionView.reloadData()
+//                }
             }
             
         }else{
-            if cartData[indexPath.row].quantity > 1 {
-                cartData[indexPath.row].quantity = cartData[indexPath.row].quantity - 1
-                showToast(String(cartData[indexPath.row].productName) + " removed, quantity: " + String(cartData[indexPath.row].quantity))
-                DispatchQueue.main.async {
-                    self.cartCollectionView.reloadData()
-                }
-            }else{
-                cartData.remove(at: indexPath.row)
-                showToast("item removed")
-                DispatchQueue.main.async {
-                    self.cartCollectionView.reloadData()
-                }
-            }
+//            if cartData[indexPath.row].quantity > 1 {
+//                cartData[indexPath.row].quantity = cartData[indexPath.row].quantity - 1
+//                showToast(String(cartData[indexPath.row].productName) + " removed, quantity: " + String(cartData[indexPath.row].quantity))
+//                DispatchQueue.main.async {
+//                    self.cartCollectionView.reloadData()
+//                }
+//            }else{
+//                cartData.remove(at: indexPath.row)
+//                showToast("item removed")
+//                DispatchQueue.main.async {
+//                    self.cartCollectionView.reloadData()
+//                }
+//            }
         }
-        
-        
     }
 }
 

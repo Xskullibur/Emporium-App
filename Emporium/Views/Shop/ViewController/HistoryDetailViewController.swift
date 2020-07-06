@@ -53,7 +53,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
                 total = total + (Double(price)! * Double(quantity)!)
             }
-            self.totalLabel.text = "Total: $" + String(total)
+            self.totalLabel.text = "Total: $" + String(format: "%.02f", total)
             self.tableView.reloadData()
         }
         
@@ -69,8 +69,8 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.layer.cornerRadius = 10
         cell.nameLabel.text = cartDetail.productName
-        cell.priceLabel.text = "Price: $" + cartDetail.price
-        cell.quantityLabel.text = "Quantity: " + cartDetail.quantity
+        cell.priceLabel.text = "$" + String(format: "%.02f", Double(cartDetail.price)!)
+        cell.quantityLabel.text = cartDetail.quantity
         cell.cartImage.loadImage(url: cartDetail.image)
         
         cell.contentView.layer.masksToBounds = true

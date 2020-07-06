@@ -21,7 +21,7 @@ class GatewayViewController: UIViewController {
     @IBOutlet weak var cardAnimation: AnimationView!
     
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://192.168.86.1:5000"
+    var backendBaseURL: String? = "http://172.27.177.40:5000"
     //local http://192.168.86.1:5000
     //web https://hidden-ridge-68133.herokuapp.com
     //test card 4242424242424242 cvc: any 3 number
@@ -43,7 +43,7 @@ class GatewayViewController: UIViewController {
         self.expDatePickerView.delegate = self
         self.expDatePickerView.layer.cornerRadius = 10
         
-        self.cardAnimation.animation = Animation.named("cardAni")
+        self.cardAnimation.animation = Animation.named("cardAni2")
         self.cardAnimation.contentMode = .scaleAspectFit
         self.cardAnimation.loopMode = .loop
         self.cardAnimation.play()
@@ -111,6 +111,7 @@ class GatewayViewController: UIViewController {
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
         let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
+        var message = ""
         
         let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
@@ -142,6 +143,11 @@ class GatewayViewController: UIViewController {
                 session.uploadTask(with: request, from: data) {
                     data, response, error in
                     if let httpResponse = response as? HTTPURLResponse {
+                        
+                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                            message = datastring
+                        }
+                        
                         if httpResponse.statusCode == 200 {
                             DispatchQueue.main.async
                             {
@@ -160,15 +166,12 @@ class GatewayViewController: UIViewController {
                             DispatchQueue.main.async
                             {
                                 self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Payment Failed", preferredStyle: .alert)
+                                let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
                                 let cancel = UIAlertAction(title: "OK", style: .cancel)
                                 showAlert.addAction(cancel)
                                 self.present(showAlert, animated: true, completion: nil)
                             }
                         }
-                    }
-                    if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                        print(datastring)
                     }
                 }.resume()
         }else{
@@ -181,37 +184,6 @@ class GatewayViewController: UIViewController {
     }
         
 }
-
-    
-//    let number = numberInput.text
-//    let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
-//    let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
-//    let cvc = cvcInput.text
-//
-//    let cartItem = CartItem()
-//
-//    let data = try? cartItem.serializedData()
-//
-//    let session  = URLSession.shared
-//    let url = URL(string: backendBaseURL! + "/createToken")
-//    var request = URLRequest(url: url!)
-//    request.httpMethod = "POST"
-//    request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-//    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc]
-//    let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
-//
-//    session.uploadTask(with: request, from: data) {
-//        data, response, error in
-//        if let httpResponse = response as? HTTPURLResponse {
-//            if httpResponse.statusCode == 200 {
-//                print("success")
-//            }
-//        }
-//        if let data = data, let datastring = String(data:data,encoding: .utf8) {
-//            print(datastring)
-//        }
-//    }.resume()
-//}
 
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -1,22 +1,20 @@
 //
-//  CartCell.swift
+//  CardCell.swift
 //  Emporium
 //
-//  Created by user1 on 15/6/20.
+//  Created by user1 on 2/7/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
 
-class CartCell: UITableViewCell {
+class CardCell: UITableViewCell {
     
     
-    @IBOutlet weak var cartImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var quantityLabel: UILabel!
-
-    @IBOutlet weak var removeBtn: UIButton!
+    @IBOutlet weak var brandImage: UIImageView!
+    @IBOutlet weak var cardTypeLabel: UILabel!
+    @IBOutlet weak var last4Label: UILabel!
+    @IBOutlet weak var expDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

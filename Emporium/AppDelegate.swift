@@ -16,7 +16,6 @@ import Stripe
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    private var earnedRewardsDataManager: EarnedRewardsDataManager? = nil
     private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
     
     func application(_ app: UIApplication, open url: URL,
@@ -48,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationHandler.start()
         
         //Listen for rewards
-        self.earnedRewardsDataManager = EarnedRewardsDataManager()
-        self.earnedRewardsDataManager?.getEarnedRewards()
+        let earnedRewardsDataManager = EarnedRewardsDataManager.shared
+        earnedRewardsDataManager.getEarnedRewards()
             .sink(receiveCompletion: {
                 completion in
             }, receiveValue: {
@@ -60,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let storyboard = UIStoryboard.init(name: "Rewards", bundle: nil)
                         let viewController = storyboard.instantiateViewController(identifier: "GiftPointsViewController") as GiftPointsViewController
                         
-                        viewController.setEarnedRewardsDataManager(dataManager: self.earnedRewardsDataManager!)
                         viewController.setEarnedReward(earnedReward: earnedReward)
                         viewController.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
                         viewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
@@ -75,7 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        self.earnedRewardsDataManager = nil
         self.cancellables = nil
     }
 
