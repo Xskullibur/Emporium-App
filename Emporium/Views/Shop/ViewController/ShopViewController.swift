@@ -29,8 +29,8 @@ class ShopViewController: UIViewController {
         searchBtn.layer.cornerRadius = 5
         
         self.collectionView.layer.cornerRadius = 10
-        self.collectionView.layer.borderWidth = 1
-        self.collectionView.layer.borderColor = UIColor.darkGray.cgColor
+        //self.collectionView.layer.borderWidth = 1
+        //self.collectionView.layer.borderColor = UIColor.darkGray.cgColor
         //self.cartCollectionView.layer.cornerRadius = 10
         
         self.collectionView.dataSource = self
@@ -200,7 +200,7 @@ extension ShopViewController: UICollectionViewDelegateFlowLayout {
 //            return CGSize(width: 150, height: 50)
 //        }
         
-         return CGSize(width: 140, height: 200)
+         return CGSize(width: 170, height: 220)
         
     }
 }
