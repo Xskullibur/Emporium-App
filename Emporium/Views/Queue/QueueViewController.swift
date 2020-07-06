@@ -34,6 +34,13 @@ class QueueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+        
         // User Interface
         /// Title
         navigationItem.title = "\(store!.name) (\(store!.address))"
@@ -62,38 +69,46 @@ class QueueViewController: UIViewController {
             // Show Volunteer Alert
             showVolunteerAlert()
             
-            // Queue Listener
-            functions.httpsCallable("queueListener").call { (result, error) in
-                if let error = error as NSError? {
-                    if error.domain == FunctionsErrorDomain{
-                        let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
-                        let message = error.localizedDescription
-                        let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+            // Visitor Count Listener
+            StoreDataManager.visitorCountListenerForStore(store!) { (current_visitor_count, max_capacity_count) in
+                if current_visitor_count < max_capacity_count{
+                    self.functions.httpsCallable("popQueue").call(["queueId": self.queueId, "storeId": self.store!.id]) { (result, error) in
                         
-                        print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
+                        // Error
+                        if let error = error as NSError? {
+                            if error.domain == FunctionsErrorDomain{
+                                let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
+                                let message = error.localizedDescription
+                                let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+                                
+                                print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
+                            }
+                        }
+                        
+                        // Data found
+                        if let data = (result?.data as? [String: Any]) {
+                            
+                            let currentQueueId: String = data["currentQueueId"] as! String
+                            let queueLength: String = data["queueLength"] as! String
+                            
+                            // Navigate if currently serving user
+                            if currentQueueId == self.queueId {
+                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                                entryVC.store = self.store
+                                
+                                self.present(entryVC, animated: true, completion: nil)
+                            }
+                            else {
+                                // Update cards
+                                self.queueLengthLbl.text = queueLength
+                                self.currentlyServingLbl.text = currentQueueId
+                            }
+                            
+                        }
+                        
                     }
                 }
-                
-                if let data = (result?.data as? [String: Any]) {
-                    let currentQueueId: String = data["currentQueueId"] as! String
-                    let queueLength: String = data["queueLength"] as! String
-                    
-                    // Navigate if currently serving user
-                    if currentQueueId == self.queueId {
-                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-                        let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-                        entryVC.store = self.store
-                        
-                        self.present(entryVC, animated: true, completion: nil)
-                    }
-                    else {
-                        // Update cards
-                        self.queueLengthLbl.text = queueLength
-                        self.currentlyServingLbl.text = currentQueueId
-                    }
-                    
-                }
-                
             }
             
         }

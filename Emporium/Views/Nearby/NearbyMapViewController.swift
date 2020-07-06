@@ -358,7 +358,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         if store.isFull() {
             
             // Join Queue
-            functions.httpsCallable("joinQueue").call { (result, error) in
+            functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
                 if let error = error as NSError? {
                     if error.domain == FunctionsErrorDomain{
                         let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
