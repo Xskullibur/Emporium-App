@@ -12,6 +12,7 @@ import MapKit
 import MaterialComponents.MaterialButtons
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFunctions
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -35,6 +36,7 @@ class StoreButton: UIButton {
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
     // MARK: - Variables
+    var functions = Functions.functions()
     var locationManager: CLLocationManager?
     var loginManager: LoginManager?
     
@@ -313,21 +315,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     // MARK: - Navigation
-    func navigateBasedOnCapacity(_ store: GroceryStore) {
-        
-        if store.isFull() {
-            self.performSegue(withIdentifier: "ShowQueue", sender: self)
-        }
-        else {
-            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-            entryVC.store = store
-            
-            self.present(entryVC, animated: true, completion: nil)
-        }
-        
-    }
-    
     func storeSelected(store: GroceryStore) {
         selectedStore = store
         
@@ -364,6 +351,40 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         else {
             performSegue(withIdentifier: "ShowQueue", sender: self)
         }
+    }
+    
+    func navigateBasedOnCapacity(_ store: GroceryStore) {
+        
+        if store.isFull() {
+            
+            // Join Queue
+            functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
+                if let error = error as NSError? {
+                    if error.domain == FunctionsErrorDomain{
+                        let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
+                        let message = error.localizedDescription
+                        let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+                        
+                        print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
+                    }
+                }
+                
+                if let data = (result?.data as? [String: Any]) {
+                    let queueId = data["queueId"]
+                    self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                }
+                
+            }
+            
+        }
+        else {
+            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+            entryVC.store = store
+            
+            self.present(entryVC, animated: true, completion: nil)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
