@@ -25,6 +25,8 @@ target 'Emporium' do
   pod 'Stripe'
   
   pod 'SwiftProtobuf'
+  
+  pod 'GoogleMLKit/TextRecognition'
 
   target 'EmporiumTests' do
     inherit! :search_paths
