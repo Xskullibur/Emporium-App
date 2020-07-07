@@ -46,6 +46,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var visitorCountListiners: [ListenerRegistration] = []
     
     var selectedStore: GroceryStore?
+    var queueId: String?
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -367,10 +368,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                         
                         print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
                     }
+                    print(error.localizedDescription)
                 }
                 
                 if let data = (result?.data as? [String: Any]) {
-                    let queueId = data["queueId"]
+                    print(data)
+                    self.queueId = data["queueId"] as? String
                     self.performSegue(withIdentifier: "ShowQueue", sender: self)
                 }
                 
@@ -401,6 +404,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         else if segue.identifier == "ShowQueue" {
             let queueVC = segue.destination as! QueueViewController
             queueVC.justJoinedQueue = true
+            queueVC.queueId = queueId!
             
             if let store = selectedStore {
                 queueVC.store = store
