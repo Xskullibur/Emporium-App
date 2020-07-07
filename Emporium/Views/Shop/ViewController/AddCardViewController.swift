@@ -2,7 +2,7 @@
 //  AddCardViewController.swift
 //  Emporium
 //
-//  Created by Peh Zi Heng on 29/6/20.
+//  Created by hsienxiang on 29/6/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ class AddCardViewController: UIViewController {
     
     @IBOutlet weak var cardAnimation: AnimationView!
     
-    var backendBaseURL: String? = "http://172.27.177.40:5000" //school
+    var backendBaseURL: String? = "http://192.168.86.1:5000" //school
     
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)

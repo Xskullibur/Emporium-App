@@ -23,29 +23,7 @@ class QueueDataManager {
         case inStore
         case completed
     }
-    
-    static func joinQueue(store: GroceryStore) -> String {
-        let storeRef = storeCollection.document(store.id)
-        let queueCollection = db.collection("users/\(userID)/queue/")
-        
-        let newStatusDoc = queueCollection.document()
-        newStatusDoc.setData([
-        
-            "status": "InQueue",
-            "store": storeRef
-        
-        ]) { (error) in
-            if let error = error {
-                print("Error writing document (JoinQueue): \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-
-        return newStatusDoc.documentID
-        
-    }
-    
+ 
     static func updateQueueStatus(status: QueueStatus, queueId: String) {
         
         let queueDocumment = db.document("users/\(userID)/queue/\(queueId)")

@@ -58,6 +58,7 @@ class MyVouchersTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if self.myVouchers.count > 0 {
+            tableView.restore()
             return 1
         } else {
             tableView.setEmptyMessage("Oops no voucher to show here!")

@@ -22,6 +22,8 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var noOfShopperLabel: UILabel!
     
+    @IBOutlet weak var previewViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previewViewHeightConstraint: NSLayoutConstraint!
     // MARK: - Variables
     private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
     private let visitorCountPublisher = PassthroughSubject<Int, Never>()
@@ -64,10 +66,10 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
         self.showSpinner(onView: self.view)
-//        ///Setup camera
-//        self.setupAVCapture()
-//        ///Setup model
-//        self.setupModel()
+        ///Setup camera
+        self.setupAVCapture()
+        ///Setup model
+        self.setupModel()
         
         ///Setup data manager
         self.setupDataManager()
@@ -146,8 +148,11 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
             try  videoDevice!.lockForConfiguration()
             let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)
             bufferSize = CGSize()
-            bufferSize.width = CGFloat(dimensions.width)
-            bufferSize.height = CGFloat(dimensions.height)
+            let ratio = self.previewView.frame.width / CGFloat(dimensions.width)
+            previewViewHeightConstraint.constant = CGFloat(dimensions.height) * ratio
+            previewView.layoutIfNeeded()
+            bufferSize.width = self.previewView.frame.width
+            bufferSize.height = self.previewView.frame.height
             videoDevice!.unlockForConfiguration()
         } catch {
             print(error)
@@ -157,7 +162,7 @@ AVCaptureVideoDataOutputSampleBufferDelegate {
         previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.frame = previewView.bounds
-        previewView.layer.insertSublayer(previewLayer, at: 0)
+        previewView.layer.addSublayer(previewLayer)
         
         session.startRunning()
     }

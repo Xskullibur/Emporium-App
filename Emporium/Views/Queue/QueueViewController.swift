@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import FirebaseFunctions
+import FirebaseFirestore
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
@@ -18,16 +20,27 @@ class QueueViewController: UIViewController {
     var justJoinedQueue = false
     var store: GroceryStore?
     var queueId: String?
+    var functions = Functions.functions()
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
+    @IBOutlet weak var currentlyServingLbl: UILabel!
+    @IBOutlet weak var queueLengthLbl: UILabel!
+    @IBOutlet weak var queueNumberLbl: UILabel!
     
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+        
         // User Interface
         /// Title
         navigationItem.title = "\(store!.name) (\(store!.address))"
@@ -47,25 +60,62 @@ class QueueViewController: UIViewController {
         cardView.layer.masksToBounds = false
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
-        // Volunteer Prompt
+        // Values
+        queueNumberLbl.text = queueId!
+        
+        // Setup
         if justJoinedQueue {
             
             // Show Volunteer Alert
             showVolunteerAlert()
-            // Create and join queue
-            joinQueue()
+            
+            // Visitor Count Listener
+            StoreDataManager.visitorCountListenerForStore(store!) { (current_visitor_count, max_capacity_count) in
+                if current_visitor_count < max_capacity_count{
+                    self.functions.httpsCallable("popQueue").call(["queueId": self.queueId, "storeId": self.store!.id]) { (result, error) in
+                        
+                        // Error
+                        if let error = error as NSError? {
+                            if error.domain == FunctionsErrorDomain{
+                                let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
+                                let message = error.localizedDescription
+                                let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+                                
+                                print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
+                            }
+                        }
+                        
+                        // Data found
+                        if let data = (result?.data as? [String: Any]) {
+                            
+                            let currentQueueId: String = data["currentQueueId"] as! String
+                            let queueLength: String = data["queueLength"] as! String
+                            
+                            // Navigate if currently serving user
+                            if currentQueueId == self.queueId {
+                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                                entryVC.store = self.store
+                                
+                                self.present(entryVC, animated: true, completion: nil)
+                            }
+                            else {
+                                // Update cards
+                                self.queueLengthLbl.text = queueLength
+                                self.currentlyServingLbl.text = currentQueueId
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            }
             
         }
         
     }
     
     // MARK: - Custom Functions
-    func joinQueue() {
-        
-        queueId = QueueDataManager.joinQueue(store: store!)
-        
-    }
-    
     func showVolunteerAlert() {
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
