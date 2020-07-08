@@ -56,6 +56,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Debugging
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+        
         // Login
         loginManager  = LoginManager(viewController: self)
         
