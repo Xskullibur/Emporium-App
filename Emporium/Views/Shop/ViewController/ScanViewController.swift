@@ -78,7 +78,8 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? AddCardViewController)?.scanNumber = scanNumber
+        print("test")
+        (viewController as? AddCardViewController)?.scanNumber = "test"
     }
 }
 

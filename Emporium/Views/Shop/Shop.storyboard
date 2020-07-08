@@ -291,7 +291,7 @@
                                     <color key="titleColor" name="Primary"/>
                                 </state>
                                 <connections>
-                                    <segue destination="n1J-Dx-XaC" kind="show" id="v5T-iN-6lh"/>
+                                    <action selector="scanBtnPressed:" destination="5sA-vn-gZh" eventType="touchUpInside" id="PZq-OU-oaO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -304,6 +304,7 @@
                         <outlet property="cvcInput" destination="krT-qp-DQ0" id="pNo-y0-afh"/>
                         <outlet property="expDatePickerView" destination="Tjc-Ky-5zw" id="k13-bp-77g"/>
                         <outlet property="numberInput" destination="M4H-KA-EBx" id="MTw-gW-YlW"/>
+                        <segue destination="n1J-Dx-XaC" kind="show" id="sdn-7Z-ebf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPv-Bn-JeC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

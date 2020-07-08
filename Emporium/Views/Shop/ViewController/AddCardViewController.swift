@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import Firebase
+import MLKit
 
 class AddCardViewController: UIViewController {
     
@@ -35,9 +36,6 @@ class AddCardViewController: UIViewController {
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
         
-        if scanNumber != "" {
-            numberInput.text = scanNumber
-        }
         
         //startAnimation
         self.cardAnimation.animation = Animation.named("cardAni2")
@@ -64,8 +62,15 @@ class AddCardViewController: UIViewController {
         expDatePickerView.layer.masksToBounds = false
         expDatePickerView.clipsToBounds = false
     }
-        
+    
+    
+    @IBAction func scanBtnPressed(_ sender: Any) {
+        showActionSheet()
+    }
+    
     @IBAction func addBtnPressed(_ sender: Any) {
+        
+            print(scanNumber)
         
             let number = numberInput.text
             let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
@@ -166,6 +171,27 @@ class AddCardViewController: UIViewController {
         return error
         
     }
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let gallery = UIAlertAction(title: "Choose from gallery", style: .default) {
+            action in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            
+            picker.allowsEditing = true
+            picker.sourceType = .photoLibrary
+            
+            self.present(picker, animated: true)
+        }
+        
+        actionSheet.addAction(gallery)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 
 extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -186,6 +212,60 @@ extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             return String(monthPickerData[row])
         }else{
             return String(yearPickerData[row])
+        }
+    }
+}
+
+extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        getImageData(imageInput: info[.editedImage] as! UIImage)
+        picker.dismiss(animated: true)
+    }
+    
+    func getImageData(imageInput: UIImage) {
+        let imageInput = VisionImage(image: imageInput)
+        let textRec = TextRecognizer.textRecognizer()
+        
+        textRec.process(imageInput) {
+            result, error in
+            
+            if error != nil {
+                
+            }else{
+                let resultText = result!.text
+                let resultArray = resultText.components(separatedBy: "\n")
+                
+                for item in resultArray {
+                    let noWhiteSpace = String(item.filter { !" \n\t\r".contains($0)})
+                    let number = noWhiteSpace.filter("0123456789".contains)
+                    
+                    if number.count == 16 {
+                        let pattern = "\\d{16}"
+                        let result = noWhiteSpace.range(of: pattern, options: .regularExpression)
+                        
+                        if result != nil {
+                            print(noWhiteSpace)
+                            self.numberInput.text = noWhiteSpace
+                        }
+                    }
+                    
+                    if noWhiteSpace.contains("/") {
+                        let date = noWhiteSpace.filter("0123456789/".contains)
+                        let dateArray = date.components(separatedBy: "/")
+                        
+                        if 0...12 ~= Int(dateArray[0])! {
+                            self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                        }
+                        
+                        if 20...70 ~= Int(dateArray[1])! {
+                            self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                        }
+                        print(date)
+                    }
+                    
+                }
+                
+            }
         }
     }
 }
