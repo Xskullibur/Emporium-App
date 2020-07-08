@@ -379,9 +379,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     print(error.localizedDescription)
                 }
                 
+                print(result?.data)
+                
                 if let data = (result?.data as? [String: Any]) {
-                    print(data)
                     self.queueId = data["queueId"] as? String
+                    print("QueueId: \(self.queueId!)")
                     self.performSegue(withIdentifier: "ShowQueue", sender: self)
                 }
                 
