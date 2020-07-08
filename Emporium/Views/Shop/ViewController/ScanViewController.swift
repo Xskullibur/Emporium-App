@@ -13,7 +13,9 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var galleryBtn: UIButton!
-    @IBOutlet weak var cameraBtn: UIButton!
+    
+    var scanNumber: String = ""
+    var scanDate: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +44,43 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         textRec.process(imageInput) {
             result, error in
             
-            if error == nil {
+            if error != nil {
                 print(error)
             }else{
-                print(result!)
+                let resultText = result!.text
+                let resultArray = resultText.components(separatedBy: "\n")
+                
+                for item in resultArray {
+                    let noWhiteSpace = String(item.filter { !" \n\t\r".contains($0)})
+                    let number = noWhiteSpace.filter("0123456789".contains)
+                    
+                    if number.count == 16 {
+                        let pattern = "\\d{16}"
+                        let result = noWhiteSpace.range(of: pattern, options: .regularExpression)
+                        
+                        if result != nil {
+                            print(noWhiteSpace)
+                            self.scanNumber = noWhiteSpace
+                        }
+                    }
+                    
+                    if noWhiteSpace.contains("/") {
+                        let date = noWhiteSpace.filter("0123456789/".contains)
+                        print(date)
+                    }
+                    
+                }
+                
+                self.navigationController?.popViewController(animated: true)
+                //print(resultText)
             }
         }
     }
     
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        (viewController as? AddCardViewController)?.scanNumber = scanNumber
+    }
 }
+
+
+//^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$

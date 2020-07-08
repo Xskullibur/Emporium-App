@@ -26,11 +26,18 @@ class AddCardViewController: UIViewController {
     var labelData: [String] = ["Exp Month", "Exp Year"]
     var cartData: [Cart] = []
     
+    var scanNumber: String = ""
+    var scanDate: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
+        
+        if scanNumber != "" {
+            numberInput.text = scanNumber
+        }
         
         //startAnimation
         self.cardAnimation.animation = Animation.named("cardAni2")

@@ -291,7 +291,7 @@
                                     <color key="titleColor" name="Primary"/>
                                 </state>
                                 <connections>
-                                    <segue destination="n1J-Dx-XaC" kind="showDetail" id="Rkc-Ue-VzC"/>
+                                    <segue destination="n1J-Dx-XaC" kind="show" id="v5T-iN-6lh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -323,11 +323,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-Te-YPi">
-                                <rect key="frame" x="20" y="580" width="174" height="56"/>
+                                <rect key="frame" x="20" y="580" width="374" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Gallery">
+                                <state key="normal" title="Choose From Gallery">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -340,30 +340,12 @@
                                     <action selector="galleryBtnPressed:" destination="n1J-Dx-XaC" eventType="touchUpInside" id="I0C-9E-T8V"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nk0-z2-xLr">
-                                <rect key="frame" x="220" y="580" width="174" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Primary"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Camera">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addBtnPressed:" destination="5sA-vn-gZh" eventType="touchUpInside" id="emI-e3-6Wa"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="J6f-fe-WPk"/>
                     </view>
                     <navigationItem key="navigationItem" id="VzA-v1-cwi"/>
                     <connections>
-                        <outlet property="cameraBtn" destination="nk0-z2-xLr" id="ys5-Mk-h7t"/>
                         <outlet property="galleryBtn" destination="LEO-Te-YPi" id="VtV-EA-7ag"/>
                         <outlet property="imageView" destination="qIH-it-MBp" id="o1P-RZ-RXV"/>
                     </connections>
