@@ -20,6 +20,7 @@ class QueueViewController: UIViewController {
     var justJoinedQueue = false
     var store: GroceryStore?
     var queueId: String?
+    var queueLength: Int?
     var functions = Functions.functions()
 
     // MARK: - Outlets
@@ -71,7 +72,9 @@ class QueueViewController: UIViewController {
             
             // Visitor Count Listener
             StoreDataManager.visitorCountListenerForStore(store!) { (current_visitor_count, max_capacity_count) in
+                
                 if current_visitor_count < max_capacity_count{
+                    // Get next person in Queue
                     self.functions.httpsCallable("popQueue").call(["queueId": self.queueId, "storeId": self.store!.id]) { (result, error) in
                         
                         // Error
@@ -108,6 +111,17 @@ class QueueViewController: UIViewController {
                         }
                         
                     }
+                }
+                else {
+                    
+                    // Get Queue Number and Queue Length
+                    QueueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
+
+                        self.currentlyServingLbl.text = currentlyServing
+                        self.queueLengthLbl.text = "\(queueLength)"
+                        
+                    }
+
                 }
             }
             

@@ -368,6 +368,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
             // Join Queue
             functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
+                
+                #warning("TODO: Handle Errors")
                 if let error = error as NSError? {
                     if error.domain == FunctionsErrorDomain{
                         let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
@@ -379,11 +381,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     print(error.localizedDescription)
                 }
                 
-                print(result?.data)
-                
+                // Navigate to QueueVC
                 if let data = (result?.data as? [String: Any]) {
                     self.queueId = data["queueId"] as? String
-                    print("QueueId: \(self.queueId!)")
                     self.performSegue(withIdentifier: "ShowQueue", sender: self)
                 }
                 
@@ -391,6 +391,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
         }
         else {
+            
+            // Navigate to Entry
             let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
             let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
             entryVC.store = store
