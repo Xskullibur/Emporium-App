@@ -2,7 +2,7 @@
 //  CheckOutViewController.swift
 //  Emporium
 //
-//  Created by user1 on 31/5/20.
+//  Created by hsienxiang on 31/5/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
@@ -59,13 +59,16 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.removeBtn.tag = indexPath.row
         cell.removeBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
         
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
-        cell.layer.shadowRadius = 5
-        cell.layer.shadowOpacity = 0.9
-        cell.layer.masksToBounds = false
-        cell.clipsToBounds = false
+//        cell.contentView.layer.masksToBounds = true
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
+//        cell.layer.shadowColor = UIColor.darkGray.cgColor
+//        cell.layer.shadowRadius = 5
+//        cell.layer.shadowOpacity = 0.9
+//        cell.layer.masksToBounds = false
+//        cell.clipsToBounds = false
+        
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
         
         return cell
     }
