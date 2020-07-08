@@ -96,6 +96,7 @@
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
+		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */; };
@@ -226,6 +227,7 @@
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewExtension.swift; sourceTree = "<group>"; };
@@ -623,6 +625,7 @@
 				ACED1E02249CA19700094284 /* LoginManager.swift */,
 				ED57F79B249CA2380013A133 /* Toast.swift */,
 				ACAEE67024A1DC9100C286BF /* Spinner.swift */,
+				FE56B17124B58A71000274A1 /* Alert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1086,6 +1089,7 @@
 				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
 				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
 				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
+				FE56B17224B58A71000274A1 /* Alert.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				ACB27A9824A5D34700DE966B /* ChangeVisitorCountStatus.swift in Sources */,

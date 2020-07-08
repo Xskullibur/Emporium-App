@@ -45,7 +45,20 @@ class GiftPointsViewController: UIViewController {
         
         //Send message to server as seen
         let earnedRewardsDataManager = EarnedRewardsDataManager.shared
-        earnedRewardsDataManager.seenEarnedRewards(self.earnedReward!, completion: nil)
+        earnedRewardsDataManager.seenEarnedRewards(self.earnedReward!){
+            earnedRewardStatus in
+            switch earnedRewardStatus {
+                case .failure:
+                    self.showAlert(title: "Error", message: "An error has occured when communicating with server.")
+                    break
+                case .error(let error):
+                    let sError = error as? StringError
+                    self.showAlert(title: "Error", message: sError?.get() ?? "An error has occured when communicating with server.")
+                    break;
+                default:
+                    break
+            }
+        }
         
         self.dismiss(animated: true, completion: nil)
     }
