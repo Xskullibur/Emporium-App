@@ -328,7 +328,6 @@
                         <outlet property="nameLabel" destination="NvH-ub-HOb" id="A9K-CG-DOK"/>
                         <outlet property="notificationTableView" destination="R2O-zY-6qV" id="XeE-pi-N7L"/>
                         <outlet property="pointsLabel" destination="c6Q-r2-8nU" id="qie-1s-47M"/>
-                        <segue destination="XF6-M6-Ype" kind="show" identifier="ToLogin" id="SI0-j7-46Y"/>
                         <segue destination="oSk-Xp-OKn" kind="show" identifier="ToAccount" id="aYB-46-rgC"/>
                     </connections>
                 </viewController>
@@ -554,70 +553,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnL-BZ-ZET" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1870" y="-513"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="mAD-OA-m5P">
-            <objects>
-                <viewController id="XF6-M6-Ype" customClass="LoginViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OUz-CU-2Kg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="lxJ-zQ-FAM">
-                                <rect key="frame" x="147" y="178" width="120" height="380"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1o6-U4-Ker" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="6pc-9k-Yh7"/>
-                                            <constraint firstAttribute="height" constant="150" id="82V-zE-h6r"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="Hello"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="EmporiumCardButton"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poK-Ue-X90" customClass="EmporiumCardButton" customModule="Emporium" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="230" width="120" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="ICd-Fy-7Yu"/>
-                                            <constraint firstAttribute="width" constant="120" id="maN-CY-f5g"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="Hello"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="EmporiumCardButton"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQp-Cb-w1f">
-                                <rect key="frame" x="47" y="79" width="220" height="48"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" name="Primary"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="NQp-Cb-w1f" firstAttribute="top" secondItem="8fD-aV-vHl" secondAttribute="top" constant="35" id="EOB-Db-gyP"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="trailing" secondItem="NQp-Cb-w1f" secondAttribute="trailing" id="HbE-ly-vgi"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerY" secondItem="OUz-CU-2Kg" secondAttribute="centerY" id="blE-LI-moU"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="leading" secondItem="NQp-Cb-w1f" secondAttribute="leading" constant="100" id="jsm-dc-pVm"/>
-                            <constraint firstItem="lxJ-zQ-FAM" firstAttribute="centerX" secondItem="OUz-CU-2Kg" secondAttribute="centerX" id="lR9-LP-gab"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="8fD-aV-vHl"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Login" id="9El-ce-wUi"/>
-                    <connections>
-                        <outlet property="merchantBtn" destination="poK-Ue-X90" id="och-Bt-PmZ"/>
-                        <outlet property="userBtn" destination="1o6-U4-Ker" id="p20-fj-w5c"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7bH-rz-mjx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1644" y="86"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h97-XE-Ren">

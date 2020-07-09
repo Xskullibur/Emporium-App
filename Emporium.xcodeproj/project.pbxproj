@@ -98,7 +98,6 @@
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
 		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
-		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */; };
 		FE6303CF24AD947A00BF7976 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */; };
 		FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303D124AD964600BF7976 /* EmptyTableView.swift */; };
@@ -229,7 +228,6 @@
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewExtension.swift; sourceTree = "<group>"; };
 		FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
 		FE6303D124AD964600BF7976 /* EmptyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableView.swift; sourceTree = "<group>"; };
@@ -498,7 +496,6 @@
 				ACED1DE5249B41AA00094284 /* DataManagers */,
 				FE9023582473B9C700CE6B3A /* MainViewController.swift */,
 				FE90235A2473B9C700CE6B3A /* Main.storyboard */,
-				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
 				ACD286372498F2D100497BD9 /* MyAccountViewController.swift */,
 			);
 			path = Main;
@@ -1088,7 +1085,6 @@
 				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,
 				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
 				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
-				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
 				FE56B17224B58A71000274A1 /* Alert.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,

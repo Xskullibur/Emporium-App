@@ -25,17 +25,18 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var menuBarButtonItem: UIBarButtonItem!
     
     // MARK: - Variables
-    var pointsDataManager: PointDataManager!
+    private var pointsDataManager: PointDataManager!
     
-    var login = false
-    var loginAsUserType: UserType = .user
+    private var loginManager: LoginManager!
+    private var login = false
+    private var loginAsUserType: UserType = .user
     
     // MARK: - Static Collection Cells
     //User Reuseable Cell Ids
-    let userCells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
+    private let userCells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
 
     //Merchant Reuseable Cell Ids
-    let merchantCells = ["CrowdTrackingCell"]
+    private let merchantCells = ["CrowdTrackingCell"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -43,8 +44,9 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         
         // Do any additional setup after loading the view.
         
-        //Data Manager
+        //Data Managers
         self.pointsDataManager = PointDataManager()
+        self.loginManager = LoginManager(viewController: self)
         
         //Setup card shadow
         buttonsCard.setShadowElevation(ShadowElevation(6), for: .normal)
@@ -153,7 +155,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         if login {
             self.performSegue(withIdentifier: "ToAccount", sender: sender)
         }else{
-            self.performSegue(withIdentifier: "ToLogin", sender: sender)
+             self.loginManager.showLoginViewController()
         }
     }
     
