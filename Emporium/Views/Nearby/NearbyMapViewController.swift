@@ -366,11 +366,20 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         if store.isFull() {
             
+            // Show Spinner
+            showSpinner(onView: self.view)
+            
             // Join Queue
             functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
                 
+                // Remove Spinner
+                self.removeSpinner()
+                
                 #warning("TODO: Handle Errors")
                 if let error = error as NSError? {
+                    
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    
                     if error.domain == FunctionsErrorDomain{
                         let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
                         let message = error.localizedDescription
@@ -378,7 +387,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                         
                         print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
                     }
+                    
                     print(error.localizedDescription)
+                    
+                    let alert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
                 }
                 
                 // Navigate to QueueVC
