@@ -13,20 +13,32 @@ import FirebaseFunctions
 
 class QueueDataManager {
     
-    static let functions = Functions.functions()
-    static let db = Firestore.firestore()
-    static let userID = Auth.auth().currentUser!.uid
-    static let storeCollection = db
-        .collection("emporium")
-        .document("globals")
-        .collection("grocery_stores")
+    let functions = Functions.functions()
+    let db = Firestore.firestore()
+    let userID = Auth.auth().currentUser!.uid
+    let storeCollection: CollectionReference
     
     enum QueueStatus {
         case inStore
         case completed
     }
     
-    static func getQueueInfo(storeId: String, onComplete: @escaping (String, Int) -> Void) {
+    init() {
+        
+        storeCollection = db
+            .collection("emporium")
+            .document("globals")
+            .collection("grocery_stores")
+        
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+    }
+    
+    func getQueueInfo(storeId: String, onComplete: @escaping (String, String) -> Void) {
         
         functions.httpsCallable("queueInfo").call(["storeId": storeId]) { (result, error) in
          
@@ -43,7 +55,7 @@ class QueueDataManager {
             }
             
             if let data = (result?.data as? [String: Any]) {
-                let queueLength = data["queueLength"] as? Int
+                let queueLength = data["queueLength"] as? String
                 let currentlyServing = data["currentlyServing"] as? String
                 
                 onComplete(currentlyServing!, queueLength!)
@@ -53,7 +65,7 @@ class QueueDataManager {
 
     }
  
-    static func updateQueueStatus(status: QueueStatus, queueId: String) {
+    func updateQueueStatus(status: QueueStatus, queueId: String) {
         
         let queueDocumment = db.document("users/\(userID)/queue/\(queueId)")
         

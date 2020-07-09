@@ -17,10 +17,13 @@ import MaterialComponents.MaterialButtons_Theming
 class QueueViewController: UIViewController {
 
     // MARK: - Variable
+    var queueDataManager = QueueDataManager()
+    var storeDataManager = StoreDataManager()
     var justJoinedQueue = false
     var store: GroceryStore?
     var queueId: String?
-    var queueLength: Int?
+    var queueLength: String?
+    var currentlyServing: String?
     var functions = Functions.functions()
 
     // MARK: - Outlets
@@ -63,6 +66,8 @@ class QueueViewController: UIViewController {
         
         // Values
         queueNumberLbl.text = queueId!
+        queueLengthLbl.text = queueLength!
+        currentlyServingLbl.text = currentlyServing!
         
         // Setup
         if justJoinedQueue {
@@ -71,7 +76,7 @@ class QueueViewController: UIViewController {
             showVolunteerAlert()
             
             // Visitor Count Listener
-            StoreDataManager.visitorCountListenerForStore(store!) { (current_visitor_count, max_capacity_count) in
+            storeDataManager.visitorCountListenerForStore(store!) { (current_visitor_count, max_capacity_count) in
                 
                 if current_visitor_count < max_capacity_count{
                     // Get next person in Queue
@@ -115,10 +120,10 @@ class QueueViewController: UIViewController {
                 else {
                     
                     // Get Queue Number and Queue Length
-                    QueueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
+                    self.queueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
 
                         self.currentlyServingLbl.text = currentlyServing
-                        self.queueLengthLbl.text = "\(queueLength)"
+                        self.queueLengthLbl.text = queueLength
                         
                     }
 

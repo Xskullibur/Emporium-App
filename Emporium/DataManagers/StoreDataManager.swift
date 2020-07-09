@@ -8,16 +8,30 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFunctions
 
 class StoreDataManager {
     
-    static let db = Firestore.firestore()
-    static let storeCollection = db
-        .collection("emporium")
-        .document("globals")
-        .collection("grocery_stores")
+    let functions = Functions.functions()
+    let db = Firestore.firestore()
+    let storeCollection: CollectionReference
     
-    static func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping (Int, Int) -> Void) {
+    init() {
+        
+        storeCollection = db
+           .collection("emporium")
+           .document("globals")
+           .collection("grocery_stores")
+        
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+    }
+    
+    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping (Int, Int) -> Void) {
         
         storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
@@ -35,7 +49,7 @@ class StoreDataManager {
                 guard let visitorCount = data["current_visitor_count"],
                     let maxCapacity = data["max_visitor_capacity"] else {
                         print("Field data was empty. (VisitorCount.Listener)")
-                        updateStore(store: store)
+                        self.updateStore(store: store)
                         return
                 }
                 
@@ -50,7 +64,7 @@ class StoreDataManager {
         
     }
     
-    static func updateStore(store: GroceryStore) {
+    func updateStore(store: GroceryStore) {
         storeCollection.document(store.id).updateData([
             "id": store.id,
             "name": store.name,
@@ -67,7 +81,7 @@ class StoreDataManager {
         }
     }
     
-    static func addStore(store: GroceryStore) {
+    func addStore(store: GroceryStore) {
         
         storeCollection.document(store.id).setData([
             "id": store.id,
@@ -84,7 +98,7 @@ class StoreDataManager {
         
     }
     
-    static func updateStores(storeList: [GroceryStore]) {
+    func updateStores(storeList: [GroceryStore]) {
         let batch = db.batch()
         
         for store in storeList {

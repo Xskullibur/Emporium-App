@@ -39,6 +39,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var functions = Functions.functions()
     var locationManager: CLLocationManager?
     var loginManager: LoginManager?
+    var storeDataManager = StoreDataManager()
     
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
@@ -47,6 +48,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     var selectedStore: GroceryStore?
     var queueId: String?
+    var currentlyServing: String?
+    var queueLength: String?
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -84,6 +87,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
     }
+    
+    // MARK: - IBAction
+    @IBAction func clearQueueBtnPressed(_ sender: Any) {
+        functions.httpsCallable("clearQueue").call { (_, _) in }
+    }
+    
     
     // MARK: - MapView
     
@@ -272,7 +281,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
+                storeDataManager.visitorCountListenerForStore(store) {
                     (visitorCount, maxCapacity) in
                         store.currentVisitorCount = visitorCount
                         store.maxVisitorCapacity = maxCapacity
@@ -287,7 +296,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
+                storeDataManager.visitorCountListenerForStore(store) {
                     (visitorCount, maxCapacity) in
                         store.currentVisitorCount = visitorCount
                         store.maxVisitorCapacity = maxCapacity
@@ -302,7 +311,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
+                storeDataManager.visitorCountListenerForStore(store) {
                     (visitorCount, maxCapacity) in
                         store.currentVisitorCount = visitorCount
                         store.maxVisitorCapacity = maxCapacity
@@ -395,10 +404,29 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     self.present(alert, animated: true, completion: nil)
                 }
                 
-                // Navigate to QueueVC
+                // Check Data
                 if let data = (result?.data as? [String: Any]) {
                     self.queueId = data["queueId"] as? String
-                    self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                    
+                    // Show Spinner
+                    self.showSpinner(onView: self.view)
+                    
+                    // Get QueueInfo
+                    let queueDataManager = QueueDataManager()
+                    queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
+                        
+                        // Remove Spinnter
+                        self.removeSpinner()
+                        
+                        // Set Globals for navigation
+                        self.currentlyServing = currentlyServing
+                        self.queueLength = queueLength
+                        
+                        // Navigate to QueueVC
+                        self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                        
+                    }
+                    
                 }
                 
             }
@@ -428,11 +456,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         // Queue
         else if segue.identifier == "ShowQueue" {
+            
             let queueVC = segue.destination as! QueueViewController
             queueVC.justJoinedQueue = true
-            queueVC.queueId = queueId!
+            queueVC.queueId = self.queueId!
+            queueVC.currentlyServing = currentlyServing
+            queueVC.queueLength = queueLength
             
-            if let store = selectedStore {
+            if let store = self.selectedStore {
                 queueVC.store = store
             }
             
