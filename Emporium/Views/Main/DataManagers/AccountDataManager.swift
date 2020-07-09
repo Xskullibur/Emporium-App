@@ -48,9 +48,15 @@ class AccountDataManager
         //Allow 5MiB size
         profileImageRef.getData(maxSize: 5*1024*1024){
             data, error in
-            if let error = error {
-                //Error
-                completion?(nil, error)
+            if let error = error as NSError?{
+                switch StorageErrorCode(rawValue: error.code) {
+                case .objectNotFound:
+                    //Check if error is not found -> User has not set a profile image
+                    completion?(nil, nil)
+                default:
+                    //Error
+                    completion?(nil, error)
+                }
                 return
             }
             
