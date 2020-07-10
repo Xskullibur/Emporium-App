@@ -78,7 +78,7 @@ class AddCardViewController: UIViewController {
             let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
             let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
             let cvc = cvcInput.text
-            let userID = Auth.auth().currentUser?.uid as! String
+            let userID = String(Auth.auth().currentUser!.uid)
             var message = ""
         
             let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: Int(month)!, year: Int(year)!)

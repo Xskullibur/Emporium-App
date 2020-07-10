@@ -42,7 +42,7 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             result, error in
             
             if error != nil {
-                print(error)
+                print(error ?? "error")
             }else{
                 let resultText = result!.text
                 let resultArray = resultText.components(separatedBy: "\n")
