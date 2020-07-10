@@ -309,6 +309,7 @@
                         <outlet property="cardAnimation" destination="tI5-a9-Fcm" id="cgk-wV-djs"/>
                         <outlet property="cvcInput" destination="krT-qp-DQ0" id="pNo-y0-afh"/>
                         <outlet property="expDatePickerView" destination="Tjc-Ky-5zw" id="k13-bp-77g"/>
+                        <outlet property="nameInput" destination="6ze-xr-TKz" id="wAg-Iu-VF0"/>
                         <outlet property="numberInput" destination="M4H-KA-EBx" id="MTw-gW-YlW"/>
                         <segue destination="n1J-Dx-XaC" kind="show" identifier="toScan" id="sdn-7Z-ebf"/>
                     </connections>

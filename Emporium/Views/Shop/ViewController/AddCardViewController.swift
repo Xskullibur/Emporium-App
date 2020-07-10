@@ -17,6 +17,7 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
+    @IBOutlet weak var nameInput: UITextField!
     
     @IBOutlet weak var cardAnimation: AnimationView!
     
@@ -36,7 +37,7 @@ class AddCardViewController: UIViewController {
 
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
-        
+        nameInput.placeholder = "Name(Optional)"
         
         //startAnimation
         self.cardAnimation.animation = Animation.named("cardAni2")
@@ -71,7 +72,7 @@ class AddCardViewController: UIViewController {
     
     @IBAction func addBtnPressed(_ sender: Any) {
         
-            print(scanNumber)
+            //print(scanNumber)
         
             let number = numberInput.text
             let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
@@ -316,6 +317,20 @@ extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             print(alternateDate)
         }
     }
+    
+    func extractName(results: [String]) {
+        let notName: [String] = ["mastercard", "visa", "signature"]
+        let pattern = "^[a-zA-Z\\s]*$"
+        for index in stride(from: results.count - 1, to: 0, by: -1) {
+            let isLetter = results[index].range(of: pattern, options: .regularExpression)
+            if isLetter != nil {
+                if !notName.contains(results[index].lowercased()) {
+                    nameInput.text = results[index]
+                    break
+                }
+            }
+        }
+    }
 }
 
 extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -339,9 +354,8 @@ extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationCo
                 
                 for item in resultArray {
                     self.extractValue(item: item, bankInput: self.banks)
-                    
-                    //date
                 }
+                self.extractName(results: resultArray)
                 print("Raw result:\n" + resultText + "\n end of raw result")
             }
         }
