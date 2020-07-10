@@ -127,8 +127,13 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             )
             
         }
+        
+        // Crowd Level
+        let crowdColor = annotation.store.getCrowdLevelColor()
+        let crowdLevel = annotation.store.getCrowdLevel()
+        
         // Custom Marker
-        view.markerTintColor = annotation.store.getCrowdLevelColor()
+        view.markerTintColor = crowdColor
         view.glyphText = String(annotation.store.currentVisitorCount)
 
         
@@ -158,19 +163,32 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
         ])
         
-        /// Left Callout
-        let leftLabel = UILabel(frame: CGRect(
+        
+        let leftCalloutView = UIView(frame: CGRect(
             origin: CGPoint.zero,
-            size: CGSize(width: 48, height: 48)
+            size: CGSize(width: 60, height: 60)
         ))
         
+        // Label
+        let leftLabel = UILabel(frame: CGRect(
+            origin: CGPoint(x: 5, y: 0),
+            size: CGSize(width: 50, height: 50)
+        ))
+        leftLabel.textColor = .white
         leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
+        leftLabel.font = UIFont.boldSystemFont(ofSize: leftLabel.font.pointSize)
         leftLabel.adjustsFontSizeToFitWidth = true
         leftLabel.textAlignment = .right
         leftLabel.text = "\(annotation.store.currentVisitorCount)/\(annotation.store.maxVisitorCapacity)"
+        leftLabel.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        view.leftCalloutAccessoryView = leftLabel
-        view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
+        
+        // Left Callout
+        leftCalloutView.addSubview(leftLabel)
+        leftCalloutView.backgroundColor = crowdColor
+        
+        // View
+        view.leftCalloutAccessoryView = leftCalloutView
         
         return view
         
