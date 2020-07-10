@@ -38,6 +38,13 @@ class QueueDataManager {
         #endif
     }
     
+    /**
+     Call Firebase Function **queueInfo**
+     
+     Returns:
+     - currentlyServing (String)
+     - queueLength (String)
+     */
     func getQueueInfo(storeId: String, onComplete: @escaping (String, String) -> Void) {
         
         functions.httpsCallable("queueInfo").call(["storeId": storeId]) { (result, error) in
@@ -53,48 +60,80 @@ class QueueDataManager {
                 }
                 print(error.localizedDescription)
             }
-            
-            if let data = (result?.data as? [String: Any]) {
-                let queueLength = data["queueLength"] as? String
-                let currentlyServing = data["currentlyServing"] as? String
-                
-                onComplete(currentlyServing!, queueLength!)
+            else {
+                // Check Data
+                if let data = (result?.data as? [String: Any]) {
+                    let queueLength = data["queueLength"] as? String
+                    let currentlyServing = data["currentlyServing"] as? String
+                    
+                    onComplete(currentlyServing!, queueLength!)
+                }
             }
             
         }
 
     }
- 
-    func updateQueueStatus(status: QueueStatus, queueId: String) {
-        
-        let queueDocumment = db.document("users/\(userID)/queue/\(queueId)")
-        
-        switch status {
-                        
-            case .inStore:
-                queueDocumment.updateData([
-                    "status": "InStore"
-                ]) { (error) in
-                    if let error = error {
-                        print("Error updating document (UpdateQueue.\(queueId).InStore): \(error)")
-                    } else {
-                        print("Document successfully updated")
-                    }
+    
+    /**
+     Call Firebase Function **joinQueue**
+     
+     Returns:
+     - data ([String : Any])
+     */
+    func joinQueue(storeId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
+        functions.httpsCallable("joinQueue").call(["storeId": storeId]) { (result, error) in
+         
+            if let error = error as NSError? {
+                if error.domain == FunctionsErrorDomain{
+                    let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+                    
+                    print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
                 }
-
-            case .completed:
-                queueDocumment.updateData([
-                    "status": "Completed"
-                ]) { (error) in
-                    if let error = error {
-                        print("Error updating document (UpdateQueue.\(queueId).Completed): \(error)")
-                    } else {
-                        print("Document successfully updated")
-                    }
+                print(error.localizedDescription)
+                onError(error.localizedDescription)
+            }
+            else {
+                // Check Data
+                if let data = (result?.data as? [String: Any]) {
+                    onComplete(data)
                 }
+            }
+            
+        }
+    }
+    
+    /**
+     Call Firebase Function **popQueue**
+     
+     Returns:
+     - data ([String: Any])
+     */
+    func popQueue(storeId: String, queueId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
+        
+        self.functions.httpsCallable("popQueue").call(["queueId": queueId, "storeId": storeId]) { (result, error) in
+            
+            // Error
+            if let error = error as NSError? {
+                if error.domain == FunctionsErrorDomain{
+                    let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
+                    let message = error.localizedDescription
+                    let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
+                    
+                    print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
+                }
+                print(error.localizedDescription)
+                onError(error.localizedDescription)
+            }
+            else {
+                // Data
+                if let data = (result?.data as? [String: Any]) {
+                    onComplete(data)
+                }
+            }
             
         }
         
     }
-    
 }
