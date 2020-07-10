@@ -97,6 +97,7 @@
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
 		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
+		FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B18624B81A9D000274A1 /* EdgeDetection.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
 		FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */; };
 		FE6303CF24AD947A00BF7976 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */; };
@@ -227,6 +228,7 @@
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		FE56B18624B81A9D000274A1 /* EdgeDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeDetection.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewExtension.swift; sourceTree = "<group>"; };
 		FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
 				34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */,
+				FE56B18624B81A9D000274A1 /* EdgeDetection.swift */,
 			);
 			path = CrowdTracking;
 			sourceTree = "<group>";
@@ -1050,6 +1053,7 @@
 				ACB27A8E24A4A80600DE966B /* YOLOv3Tiny.mlmodel in Sources */,
 				FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
+				FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
