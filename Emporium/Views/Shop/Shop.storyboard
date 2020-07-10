@@ -304,7 +304,7 @@
                         <outlet property="cvcInput" destination="krT-qp-DQ0" id="pNo-y0-afh"/>
                         <outlet property="expDatePickerView" destination="Tjc-Ky-5zw" id="k13-bp-77g"/>
                         <outlet property="numberInput" destination="M4H-KA-EBx" id="MTw-gW-YlW"/>
-                        <segue destination="n1J-Dx-XaC" kind="show" id="sdn-7Z-ebf"/>
+                        <segue destination="n1J-Dx-XaC" kind="show" identifier="toScan" id="sdn-7Z-ebf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPv-Bn-JeC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,31 +323,12 @@
                                 <rect key="frame" x="0.0" y="130" width="414" height="311"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-Te-YPi">
-                                <rect key="frame" x="20" y="580" width="374" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Primary"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Choose From Gallery">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addBtnPressed:" destination="5sA-vn-gZh" eventType="touchUpInside" id="reK-ie-1uF"/>
-                                    <action selector="galleryBtnPressed:" destination="n1J-Dx-XaC" eventType="touchUpInside" id="I0C-9E-T8V"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="J6f-fe-WPk"/>
                     </view>
                     <navigationItem key="navigationItem" id="VzA-v1-cwi"/>
                     <connections>
-                        <outlet property="galleryBtn" destination="LEO-Te-YPi" id="VtV-EA-7ag"/>
                         <outlet property="imageView" destination="qIH-it-MBp" id="o1P-RZ-RXV"/>
                     </connections>
                 </viewController>

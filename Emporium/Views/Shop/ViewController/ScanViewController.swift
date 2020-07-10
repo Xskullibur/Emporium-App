@@ -20,14 +20,11 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-    
-    @IBAction func galleryBtnPressed(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
         
         picker.allowsEditing = true
-        picker.sourceType = .photoLibrary
+        picker.sourceType = .camera
         
         self.present(picker, animated: true)
     }
@@ -60,19 +57,30 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         
                         if result != nil {
                             print(noWhiteSpace)
-                            self.scanNumber = noWhiteSpace
                         }
                     }
                     
                     if noWhiteSpace.contains("/") {
                         let date = noWhiteSpace.filter("0123456789/".contains)
+                        let dateArray = date.components(separatedBy: "/")
+                        
+                        if dateArray[0] != "" {
+                            if 0...12 ~= Int(dateArray[0])! {
+                                
+                            }
+                        }
+                        
+                        if dateArray[1] != "" {
+                            if 20...70 ~= Int(dateArray[1])! {
+                                
+                            }
+                        }
+                        
                         print(date)
                     }
                     
                 }
-                
-                self.navigationController?.popViewController(animated: true)
-                //print(resultText)
+                print(resultText)
             }
         }
     }
@@ -82,6 +90,3 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         (viewController as? AddCardViewController)?.scanNumber = "test"
     }
 }
-
-
-//^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$

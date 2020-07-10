@@ -187,11 +187,19 @@ class AddCardViewController: UIViewController {
             self.present(picker, animated: true)
         }
         
+        let scan = UIAlertAction(title: "Camera", style: .default) {
+            action in
+            self.performSegue(withIdentifier: "toScan", sender: self)
+        }
+        
         actionSheet.addAction(gallery)
+        actionSheet.addAction(scan)
         actionSheet.addAction(cancel)
         
         present(actionSheet, animated: true, completion: nil)
     }
+    
+    
 }
 
 extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -213,6 +221,13 @@ extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }else{
             return String(yearPickerData[row])
         }
+    }
+    
+    func replace(myString: String, _ index: Int, _ newChar: Character) -> String {
+        var chars = Array(myString)     // gets an array of characters
+        chars[index] = newChar
+        let modifiedString = String(chars)
+        return modifiedString
     }
 }
 
@@ -253,18 +268,45 @@ extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationCo
                         let date = noWhiteSpace.filter("0123456789/".contains)
                         let dateArray = date.components(separatedBy: "/")
                         
-                        if 0...12 ~= Int(dateArray[0])! {
-                            self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                        if dateArray[0] != "" {
+                            if 0...12 ~= Int(dateArray[0])! {
+                                self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                            }
                         }
                         
-                        if 20...70 ~= Int(dateArray[1])! {
-                            self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                        if dateArray[1] != "" {
+                            if 20...70 ~= Int(dateArray[1])! {
+                                self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                            }
                         }
+                        
                         print(date)
+                    }else{
+                        var alternateDate = noWhiteSpace.filter("0123456789".contains)
+                        
+                        if alternateDate.count == 5 {
+                            alternateDate = self.replace(myString: alternateDate, 2, "/")
+                            
+                            let dateArray = alternateDate.components(separatedBy: "/")
+                            
+                            if dateArray[0] != "" {
+                                if 0...12 ~= Int(dateArray[0])! {
+                                    self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                                }
+                            }
+                            
+                            if dateArray[1] != "" {
+                                if 20...70 ~= Int(dateArray[1])! {
+                                    self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                                }
+                            }
+                        }
+                        
+                        print(alternateDate)
                     }
                     
                 }
-                
+                print(resultText)
             }
         }
     }
