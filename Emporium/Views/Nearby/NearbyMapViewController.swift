@@ -386,9 +386,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             // Join Queue
             queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
                 
-                self.removeSpinner()
-                
+                // Guard queueId
                 guard let queueId = data["queueId"] as? String else {
+                    self.removeSpinner()
                     self.present(errorAlert, animated: true, completion: nil)
                     return
                 }
@@ -396,7 +396,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 self.queueId = queueId
                 
                 // Get QueueInfo
-                self.showSpinner(onView: self.view)
                 let queueDataManager = QueueDataManager()
                 queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
                     

@@ -37,9 +37,9 @@ class StoreDataManager {
      Returns:
      - data ([String: Any])
      */
-    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping ([String: Any]) -> Void) {
+    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping ([String: Any]) -> Void) -> ListenerRegistration {
         
-        storeCollection.document(store.id)
+        return storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
                 
                 if let error = error {

@@ -60,12 +60,14 @@ class QueueDataManager {
                 }
                 print(error.localizedDescription)
             }
-            
-            if let data = (result?.data as? [String: Any]) {
-                let queueLength = data["queueLength"] as? String
-                let currentlyServing = data["currentlyServing"] as? String
-                
-                onComplete(currentlyServing!, queueLength!)
+            else {
+                // Check Data
+                if let data = (result?.data as? [String: Any]) {
+                    let queueLength = data["queueLength"] as? String
+                    let currentlyServing = data["currentlyServing"] as? String
+                    
+                    onComplete(currentlyServing!, queueLength!)
+                }
             }
             
         }
@@ -92,9 +94,11 @@ class QueueDataManager {
                 print(error.localizedDescription)
                 onError(error.localizedDescription)
             }
-            
-            if let data = (result?.data as? [String: Any]) {
-                onComplete(data)
+            else {
+                // Check Data
+                if let data = (result?.data as? [String: Any]) {
+                    onComplete(data)
+                }
             }
             
         }
@@ -122,10 +126,11 @@ class QueueDataManager {
                 print(error.localizedDescription)
                 onError(error.localizedDescription)
             }
-            
-            // Data
-            if let data = (result?.data as? [String: Any]) {
-                onComplete(data)
+            else {
+                // Data
+                if let data = (result?.data as? [String: Any]) {
+                    onComplete(data)
+                }
             }
             
         }
