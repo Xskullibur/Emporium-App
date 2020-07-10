@@ -100,8 +100,17 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         return bufferSize
     }
     
-    func onEdgeDetect(_ results: [Any]) {
-        
+    func onEdgeDetect(side: Side) {
+        switch side {
+        case .left:
+            print("Left")
+            break
+        case .right:
+            print("Right")
+            break
+        default:
+            break
+        }
     }
     
     /**
