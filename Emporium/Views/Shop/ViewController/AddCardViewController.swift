@@ -262,8 +262,23 @@ extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationCo
                             print(noWhiteSpace)
                             self.numberInput.text = noWhiteSpace
                         }
+                    }else{
+                        var alternateNumber = noWhiteSpace.filter("0123456789sSbBL".contains)
+                        
+                        if 14...16 ~= alternateNumber.count {
+                            alternateNumber = alternateNumber.replacingOccurrences(of: "s", with: "5")
+                            alternateNumber = alternateNumber.replacingOccurrences(of: "S", with: "5")
+                            alternateNumber = alternateNumber.replacingOccurrences(of: "b", with: "6")
+                            alternateNumber = alternateNumber.replacingOccurrences(of: "L", with: "6")
+                            alternateNumber = alternateNumber.replacingOccurrences(of: "B", with: "8")
+                            
+                            self.numberInput.text = alternateNumber
+                            print("alternate number \(alternateNumber)")
+                        }
                     }
                     
+                    
+                    //date
                     if noWhiteSpace.contains("/") {
                         let date = noWhiteSpace.filter("0123456789/".contains)
                         let dateArray = date.components(separatedBy: "/")
@@ -305,6 +320,7 @@ extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationCo
                         print(alternateDate)
                     }
                     
+                    //date
                 }
                 print(resultText)
             }
