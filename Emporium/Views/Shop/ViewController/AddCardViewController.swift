@@ -24,7 +24,8 @@ class AddCardViewController: UIViewController {
     
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
-    var labelData: [String] = ["Exp Month", "Exp Year"]
+    let banks: [String] = ["Others", "POSB", "DBS", "OCBC", "UOB"]
+    var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
     var scanNumber: String = ""
@@ -204,22 +205,26 @@ class AddCardViewController: UIViewController {
 
 extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return monthPickerData.count
-        }else{
+        }else if component == 1{
             return yearPickerData.count
+        }else{
+            return banks.count
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             return String(monthPickerData[row])
-        }else{
+        }else if component == 1{
             return String(yearPickerData[row])
+        }else{
+            return String(banks[row])
         }
     }
     
@@ -228,6 +233,88 @@ extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         chars[index] = newChar
         let modifiedString = String(chars)
         return modifiedString
+    }
+    
+    func extractValue(item : String, bankInput: [String]) {
+        let noWhiteSpace = String(item.filter { !" \n\t\r".contains($0)})
+        
+        //bank
+        for brand in bankInput {
+            if noWhiteSpace.contains(brand) {
+                let row = bankInput.firstIndex(of: brand)
+                self.expDatePickerView.selectRow(row!, inComponent: 2, animated: true)
+                break
+            }
+        }
+        //bank
+        
+        //number
+        let number = noWhiteSpace.filter("0123456789".contains)
+        if number.count == 16 {
+            let pattern = "\\d{16}"
+            let result = noWhiteSpace.range(of: pattern, options: .regularExpression)
+            
+            if result != nil {
+                print(noWhiteSpace)
+                self.numberInput.text = noWhiteSpace
+            }
+        }else{
+            var alternateNumber = noWhiteSpace.filter("0123456789sSbBL".contains)
+            
+            if 14...16 ~= alternateNumber.count {
+                alternateNumber = alternateNumber.replacingOccurrences(of: "s", with: "5")
+                alternateNumber = alternateNumber.replacingOccurrences(of: "S", with: "5")
+                alternateNumber = alternateNumber.replacingOccurrences(of: "b", with: "6")
+                alternateNumber = alternateNumber.replacingOccurrences(of: "L", with: "6")
+                alternateNumber = alternateNumber.replacingOccurrences(of: "B", with: "8")
+                
+                self.numberInput.text = alternateNumber
+                print("alternate number \(alternateNumber)")
+            }
+        }
+        //number
+        
+        //date
+        if noWhiteSpace.contains("/") {
+            let date = noWhiteSpace.filter("0123456789/".contains)
+            let dateArray = date.components(separatedBy: "/")
+            
+            if dateArray[0] != "" {
+                if 0...12 ~= Int(dateArray[0])! {
+                    self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                }
+            }
+            
+            if dateArray[1] != "" {
+                if 20...70 ~= Int(dateArray[1])! {
+                    self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                }
+            }
+            
+            print(date)
+        }else{
+            var alternateDate = noWhiteSpace.filter("0123456789".contains)
+            
+            if alternateDate.count == 5 {
+                alternateDate = self.replace(myString: alternateDate, 2, "/")
+                
+                let dateArray = alternateDate.components(separatedBy: "/")
+                
+                if dateArray[0] != "" {
+                    if 0...12 ~= Int(dateArray[0])! {
+                        self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
+                    }
+                }
+                
+                if dateArray[1] != "" {
+                    if 20...70 ~= Int(dateArray[1])! {
+                        self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
+                    }
+                }
+            }
+            
+            print(alternateDate)
+        }
     }
 }
 
@@ -251,78 +338,11 @@ extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationCo
                 let resultArray = resultText.components(separatedBy: "\n")
                 
                 for item in resultArray {
-                    let noWhiteSpace = String(item.filter { !" \n\t\r".contains($0)})
-                    let number = noWhiteSpace.filter("0123456789".contains)
-                    
-                    if number.count == 16 {
-                        let pattern = "\\d{16}"
-                        let result = noWhiteSpace.range(of: pattern, options: .regularExpression)
-                        
-                        if result != nil {
-                            print(noWhiteSpace)
-                            self.numberInput.text = noWhiteSpace
-                        }
-                    }else{
-                        var alternateNumber = noWhiteSpace.filter("0123456789sSbBL".contains)
-                        
-                        if 14...16 ~= alternateNumber.count {
-                            alternateNumber = alternateNumber.replacingOccurrences(of: "s", with: "5")
-                            alternateNumber = alternateNumber.replacingOccurrences(of: "S", with: "5")
-                            alternateNumber = alternateNumber.replacingOccurrences(of: "b", with: "6")
-                            alternateNumber = alternateNumber.replacingOccurrences(of: "L", with: "6")
-                            alternateNumber = alternateNumber.replacingOccurrences(of: "B", with: "8")
-                            
-                            self.numberInput.text = alternateNumber
-                            print("alternate number \(alternateNumber)")
-                        }
-                    }
-                    
-                    
-                    //date
-                    if noWhiteSpace.contains("/") {
-                        let date = noWhiteSpace.filter("0123456789/".contains)
-                        let dateArray = date.components(separatedBy: "/")
-                        
-                        if dateArray[0] != "" {
-                            if 0...12 ~= Int(dateArray[0])! {
-                                self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
-                            }
-                        }
-                        
-                        if dateArray[1] != "" {
-                            if 20...70 ~= Int(dateArray[1])! {
-                                self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
-                            }
-                        }
-                        
-                        print(date)
-                    }else{
-                        var alternateDate = noWhiteSpace.filter("0123456789".contains)
-                        
-                        if alternateDate.count == 5 {
-                            alternateDate = self.replace(myString: alternateDate, 2, "/")
-                            
-                            let dateArray = alternateDate.components(separatedBy: "/")
-                            
-                            if dateArray[0] != "" {
-                                if 0...12 ~= Int(dateArray[0])! {
-                                    self.expDatePickerView.selectRow(Int(dateArray[0])! - 1, inComponent: 0, animated: true)
-                                }
-                            }
-                            
-                            if dateArray[1] != "" {
-                                if 20...70 ~= Int(dateArray[1])! {
-                                    self.expDatePickerView.selectRow(Int(dateArray[1])! - 20, inComponent: 1, animated: true)
-                                }
-                            }
-                        }
-                        
-                        print(alternateDate)
-                    }
+                    self.extractValue(item: item, bankInput: self.banks)
                     
                     //date
                 }
-                print(resultText)
+                print("Raw result:\n" + resultText + "\n end of raw result")
             }
         }
     }
