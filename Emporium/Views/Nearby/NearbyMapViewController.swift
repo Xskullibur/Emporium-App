@@ -12,7 +12,6 @@ import MapKit
 import MaterialComponents.MaterialButtons
 import FirebaseAuth
 import FirebaseFirestore
-import FirebaseFunctions
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -36,10 +35,10 @@ class StoreButton: UIButton {
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
     // MARK: - Variables
-    var functions = Functions.functions()
     var locationManager: CLLocationManager?
     var loginManager: LoginManager?
     var storeDataManager = StoreDataManager()
+    var queueDataManager = QueueDataManager()
     
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
@@ -58,14 +57,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Debugging
-        #if DEBUG
-        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
-        if let functionsHost = functionsHost {
-            functions.useFunctionsEmulator(origin: functionsHost)
-        }
-        #endif
         
         // Login
         loginManager  = LoginManager(viewController: self)
@@ -84,18 +75,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         showSpinner(onView: self.view)
     }
     
+    // MARK: - IBAction
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
     }
     
-    // MARK: - IBAction
-    @IBAction func clearQueueBtnPressed(_ sender: Any) {
-        functions.httpsCallable("clearQueue").call { (_, _) in }
-    }
-    
-    
     // MARK: - MapView
-    
     /// Get User Location and Show Nearby Marts
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -281,11 +266,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -296,11 +286,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                    
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -311,11 +306,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                    
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -378,61 +378,48 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             // Show Spinner
             showSpinner(onView: self.view)
             
+            // Error Alert
+            let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            errorAlert.addAction(okAction)
+            
             // Join Queue
-            functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
+            queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
                 
-                // Remove Spinner
                 self.removeSpinner()
                 
-                #warning("TODO: Handle Errors")
-                if let error = error as NSError? {
-                    
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    
-                    if error.domain == FunctionsErrorDomain{
-                        let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
-                        let message = error.localizedDescription
-                        let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
-                        
-                        print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
-                    }
-                    
-                    print(error.localizedDescription)
-                    
-                    let alert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
+                guard let queueId = data["queueId"] as? String else {
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
                 }
                 
-                // Check Data
-                if let data = (result?.data as? [String: Any]) {
-                    self.queueId = data["queueId"] as? String
+                self.queueId = queueId
+                
+                // Get QueueInfo
+                self.showSpinner(onView: self.view)
+                let queueDataManager = QueueDataManager()
+                queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
                     
-                    // Show Spinner
-                    self.showSpinner(onView: self.view)
+                    // Remove Spinnter
+                    self.removeSpinner()
                     
-                    // Get QueueInfo
-                    let queueDataManager = QueueDataManager()
-                    queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
-                        
-                        // Remove Spinnter
-                        self.removeSpinner()
-                        
-                        // Set Globals for navigation
-                        self.currentlyServing = currentlyServing
-                        self.queueLength = queueLength
-                        
-                        // Navigate to QueueVC
-                        self.performSegue(withIdentifier: "ShowQueue", sender: self)
-                        
-                    }
+                    // Set Globals for navigation
+                    self.currentlyServing = currentlyServing
+                    self.queueLength = queueLength
+                    
+                    // Navigate to QueueVC
+                    self.performSegue(withIdentifier: "ShowQueue", sender: self)
                     
                 }
-                
+            }) { (error) in
+                self.removeSpinner()
+                self.present(errorAlert, animated: true, completion: nil)
             }
             
         }
         else {
+            
+            // Update Visitor Count
             
             // Navigate to Entry
             let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)

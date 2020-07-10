@@ -46,14 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QLT-BZ-keV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Nearby Marts" id="pqI-Dq-bBD">
-                        <barButtonItem key="rightBarButtonItem" title="Clear Queue" id="gBh-6J-ldf">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="clearQueueBtnPressed:" destination="jmf-sj-fhq" id="XZ3-GU-0NV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Nearby Marts" id="pqI-Dq-bBD"/>
                     <connections>
                         <outlet property="mapView" destination="9hw-Fv-Kvi" id="UYi-ac-G0A"/>
                         <outlet property="martListFAB" destination="3Po-aP-bXv" id="CQ8-5w-ogI"/>

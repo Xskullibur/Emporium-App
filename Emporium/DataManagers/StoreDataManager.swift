@@ -31,10 +31,21 @@ class StoreDataManager {
         #endif
     }
     
-    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping (Int, Int) -> Void) {
+    /**
+     Firestore **storeId** listener
+     
+     Returns:
+     - data ([String: Any])
+     */
+    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping ([String: Any]) -> Void) {
         
         storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
+                
+                if let error = error {
+                    print("Error retreiving collection. (VisitorCount.Listener): \(error)")
+                    return
+                }
                 
                 guard let document = documentSnapshot else {
                     print("Error fetching document. (VisitorCount.Listener): \(error!)")
@@ -46,24 +57,15 @@ class StoreDataManager {
                     return
                 }
                 
-                guard let visitorCount = data["current_visitor_count"],
-                    let maxCapacity = data["max_visitor_capacity"] else {
-                        print("Field data was empty. (VisitorCount.Listener)")
-                        self.updateStore(store: store)
-                        return
-                }
-                
-                if let error = error {
-                    print("Error retreiving collection. (VisitorCount.Listener): \(error)")
-                    return
-                }
-                
-                onUpdate(visitorCount as! Int, maxCapacity as! Int)
+                onUpdate(data)
                 
         }
         
     }
     
+    /**
+     Firestore update store contents
+     */
     func updateStore(store: GroceryStore) {
         storeCollection.document(store.id).updateData([
             "id": store.id,
@@ -81,6 +83,9 @@ class StoreDataManager {
         }
     }
     
+    /**
+     Firestore add store
+     */
     func addStore(store: GroceryStore) {
         
         storeCollection.document(store.id).setData([
@@ -96,32 +101,5 @@ class StoreDataManager {
             }
         }
         
-    }
-    
-    func updateStores(storeList: [GroceryStore]) {
-        let batch = db.batch()
-        
-        for store in storeList {
-            
-            let ref = storeCollection.document(store.id)
-            
-            batch.setData([
-                "id": store.id,
-                "name": store.name,
-                "address": store.address,
-                "coordinates": store.location
-            ], forDocument: ref, merge: true)
-        }
-        
-        batch.commit() { error in
-            if let error = error {
-                print("Error writing batch \(error)")
-            }
-            else {
-                print("Batch write successful")
-            }
-        }
-        
-    }
-    
+    }    
 }
