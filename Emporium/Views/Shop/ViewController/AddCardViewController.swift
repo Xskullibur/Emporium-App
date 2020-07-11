@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import Firebase
+import MLKit
 
 class AddCardViewController: UIViewController {
     
@@ -16,21 +17,28 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
-    
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var nicknameInput: UITextField!
     @IBOutlet weak var cardAnimation: AnimationView!
     
     var backendBaseURL: String? = "http://192.168.86.1:5000" //school
     
+    let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
-    var labelData: [String] = ["Exp Month", "Exp Year"]
+    var banks: [String] = []
+    var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        banks = scan.getBankList()
 
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
+        nameInput.placeholder = "Name(Optional)"
+        nicknameInput.placeholder = "display name(Optional)"
         
         //startAnimation
         self.cardAnimation.animation = Animation.named("cardAni2")
@@ -50,21 +58,27 @@ class AddCardViewController: UIViewController {
             expDatePickerView.addSubview(label)
         }
         
-        expDatePickerView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        expDatePickerView.layer.shadowColor = UIColor.darkGray.cgColor
-        expDatePickerView.layer.shadowRadius = 5
-        expDatePickerView.layer.shadowOpacity = 0.9
-        expDatePickerView.layer.masksToBounds = false
-        expDatePickerView.clipsToBounds = false
+        expDatePickerView.layer.borderWidth = 1
+        expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
     }
-        
+    
+    
+    @IBAction func scanBtnPressed(_ sender: Any) {
+        showActionSheet()
+    }
+    
     @IBAction func addBtnPressed(_ sender: Any) {
+        
+            //print(scanNumber)
         
             let number = numberInput.text
             let month = String(monthPickerData[expDatePickerView.selectedRow(inComponent: 0)])
             let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
             let cvc = cvcInput.text
-            let userID = Auth.auth().currentUser?.uid as! String
+            let userID = String(Auth.auth().currentUser!.uid)
+            let name = nameInput.text
+            let bank = String(banks[expDatePickerView.selectedRow(inComponent: 2)])
+            let nickname = nicknameInput.text
             var message = ""
         
             let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: Int(month)!, year: Int(year)!)
@@ -77,7 +91,7 @@ class AddCardViewController: UIViewController {
                     var request = URLRequest(url: url!)
                     request.httpMethod = "POST"
                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID]
+                    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID, "bank": bank, "name": name, "nickname": nickname]
                     let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
                 
                     session.uploadTask(with: request, from: JSONDATA) {
@@ -159,26 +173,108 @@ class AddCardViewController: UIViewController {
         return error
         
     }
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let gallery = UIAlertAction(title: "Choose from gallery", style: .default) {
+            action in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            
+            picker.allowsEditing = true
+            picker.sourceType = .photoLibrary
+            
+            self.present(picker, animated: true)
+        }
+        
+        let scan = UIAlertAction(title: "Camera", style: .default) {
+            action in
+            
+            if !(UIImagePickerController.isSourceTypeAvailable( .camera))
+            {
+                let showAlert = UIAlertController(title: "Error", message: "Camera not available!", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
+                
+            }else{
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                
+                self.present(picker, animated: true)
+            }
+        }
+        
+        actionSheet.addAction(gallery)
+        actionSheet.addAction(scan)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
 }
 
 extension AddCardViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return monthPickerData.count
-        }else{
+        }else if component == 1{
             return yearPickerData.count
+        }else{
+            return banks.count
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             return String(monthPickerData[row])
-        }else{
+        }else if component == 1{
             return String(yearPickerData[row])
+        }else{
+            return String(banks[row])
+        }
+    }
+}
+
+extension AddCardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        getImageData(imageInput: info[.editedImage] as! UIImage)
+        picker.dismiss(animated: true)
+    }
+    
+    func getImageData(imageInput: UIImage) {
+        let imageInput = VisionImage(image: imageInput)
+        let textRec = TextRecognizer.textRecognizer()
+        
+        textRec.process(imageInput) {
+            result, error in
+            
+            if error != nil {
+                
+            }else{
+                let resultText = result!.text
+                let resultArray = resultText.components(separatedBy: "\n")
+                
+                let details =  self.scan.extractValue(items: resultArray)
+                
+                self.numberInput.text = details.cardNumber
+                self.expDatePickerView.selectRow(details.month, inComponent: 0, animated: true)
+                self.expDatePickerView.selectRow(details.year, inComponent: 1, animated: true)
+                self.expDatePickerView.selectRow(details.bank, inComponent: 2, animated: true)
+                
+                self.nameInput.text = self.scan.extractName(results: resultArray)
+                print("Raw result:\n" + resultText + "\n end of raw result")
+            }
         }
     }
 }

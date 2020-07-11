@@ -41,8 +41,14 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.layer.cornerRadius = 10
         
-        cell.cardTypeLabel.text = cardList[indexPath.row].cardType.capitalizingFirstLetter() + "(*" + cardList[indexPath.row].last4 + ")"
-        cell.expDateLabel.text = cardList[indexPath.row].expMonth + "-" + cardList[indexPath.row].expYear
+        let cardDetail = cardList[indexPath.row]
+        
+        cell.nicknameLabel.text = cardDetail.nickName
+        cell.expDateLabel.text = cardDetail.expMonth + "-" + cardDetail.expYear
+        cell.last4Label.text = "(*" + cardDetail.last4 + ")"
+        cell.brandLabel.text = cardDetail.brand
+        cell.typeLabel.text = cardDetail.cardType.capitalizingFirstLetter()
+        
         cell.deleteBtn.tag = indexPath.row
         cell.deleteBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
         cell.layer.borderWidth = 1
@@ -52,6 +58,18 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
             cell.brandImage.image = UIImage(named: "visa")
         }else{
             cell.brandImage.image = UIImage(named: "mastercard")
+        }
+        
+        if cardDetail.bank == "OCBC" {
+            cell.brandImage.image = UIImage(named: "OCBC")
+        }else if cardDetail.bank == "POSB" {
+            cell.brandImage.image = UIImage(named: "POSB")
+        }else if cardDetail.bank == "DBS" {
+            cell.brandImage.image = UIImage(named: "DBS")
+        }else if cardDetail.bank == "UOB" {
+            cell.brandImage.image = UIImage(named: "UOB")
+        }else{
+            cell.brandImage.image = UIImage(named: "noImage")
         }
         
         return cell
