@@ -187,7 +187,7 @@
                                     <constraint firstAttribute="width" constant="300" id="AtM-1D-1FC"/>
                                     <constraint firstAttribute="height" constant="50" id="Ldl-KH-Uac"/>
                                 </constraints>
-                                <state key="normal" title="Ok">
+                                <state key="normal" title="OK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

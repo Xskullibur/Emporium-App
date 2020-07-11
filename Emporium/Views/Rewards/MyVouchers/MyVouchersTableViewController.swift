@@ -44,6 +44,7 @@ class MyVouchersTableViewController: UITableViewController {
                    completion in
                    switch completion {
                    case .failure( _):
+                    self.showAlert(title: "Error", message: "Error getting claimed vouchers")
                        print("Error getting claimed vouchers")
                        break;
                    case .finished:

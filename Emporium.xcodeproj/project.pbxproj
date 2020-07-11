@@ -21,6 +21,9 @@
 		7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388724ADE06B0003B9D9 /* CardCell.swift */; };
 		7F0B388A24AE1C1B0003B9D9 /* cardAni2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F0B388924AE1C1B0003B9D9 /* cardAni2.json */; };
 		7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B388B24B0BB200003B9D9 /* CartItem.proto */; };
+		7F37652424B4DA1700CC27F3 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652324B4DA1700CC27F3 /* ScanViewController.swift */; };
+		7F37652624B9A72F00CC27F3 /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652524B9A72F00CC27F3 /* Scan.swift */; };
+		7F37652824B9AF5E00CC27F3 /* ScanDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */; };
 		7FD0263F2498AA0100BAA2F1 /* SideCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */; };
@@ -89,6 +92,7 @@
 		ED61105524A4583300FFD408 /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105324A4583300FFD408 /* check.json */; };
 		ED61105624A4583300FFD408 /* cross.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105424A4583300FFD408 /* cross.json */; };
 		ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105824AD93A500FFD408 /* QueueDataManager.swift */; };
+		ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105A24B6EBB800FFD408 /* QueueItem.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -96,8 +100,9 @@
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
+		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
+		FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B18624B81A9D000274A1 /* EdgeDetection.swift */; };
 		FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */; };
-		FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */; };
 		FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */; };
 		FE6303CF24AD947A00BF7976 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */; };
 		FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6303D124AD964600BF7976 /* EmptyTableView.swift */; };
@@ -148,6 +153,9 @@
 		7F0B388724ADE06B0003B9D9 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		7F0B388924AE1C1B0003B9D9 /* cardAni2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAni2.json; sourceTree = "<group>"; };
 		7F0B388B24B0BB200003B9D9 /* CartItem.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = CartItem.proto; sourceTree = "<group>"; };
+		7F37652324B4DA1700CC27F3 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		7F37652524B9A72F00CC27F3 /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
+		7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDetail.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD0263C2498AA0100BAA2F1 /* SideCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartCell.swift; sourceTree = "<group>"; };
 		7FD0263D2498AA0100BAA2F1 /* SideCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideCartCell.xib; sourceTree = "<group>"; };
@@ -220,14 +228,16 @@
 		ED61105324A4583300FFD408 /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
 		ED61105424A4583300FFD408 /* cross.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cross.json; sourceTree = "<group>"; };
 		ED61105824AD93A500FFD408 /* QueueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDataManager.swift; sourceTree = "<group>"; };
+		ED61105A24B6EBB800FFD408 /* QueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItem.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		FE56B18624B81A9D000274A1 /* EdgeDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeDetection.swift; sourceTree = "<group>"; };
 		FE5AAE572484AE5B0018DA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE6303CC24AD93E200BF7976 /* EmptyTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewExtension.swift; sourceTree = "<group>"; };
 		FE6303CE24AD947A00BF7976 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
 		FE6303D124AD964600BF7976 /* EmptyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableView.swift; sourceTree = "<group>"; };
@@ -327,6 +337,7 @@
 				7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */,
 				FE32168F24A98875003D1196 /* DisplayCardViewController.swift */,
 				FE32169124A98B19003D1196 /* AddCardViewController.swift */,
+				7F37652324B4DA1700CC27F3 /* ScanViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -363,6 +374,7 @@
 				AC21B9CF249767630058EE50 /* Model */,
 				AC21B9CC249767630058EE50 /* Cell */,
 				AC21B9C9249767630058EE50 /* Shop.storyboard */,
+				7F37652524B9A72F00CC27F3 /* Scan.swift */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -391,6 +403,7 @@
 				7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */,
 				7F0B388524ADDA830003B9D9 /* Card.swift */,
 				7F0B388B24B0BB200003B9D9 /* CartItem.proto */,
+				7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,6 +417,7 @@
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
 				34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */,
+				FE56B18624B81A9D000274A1 /* EdgeDetection.swift */,
 			);
 			path = CrowdTracking;
 			sourceTree = "<group>";
@@ -496,7 +510,6 @@
 				ACED1DE5249B41AA00094284 /* DataManagers */,
 				FE9023582473B9C700CE6B3A /* MainViewController.swift */,
 				FE90235A2473B9C700CE6B3A /* Main.storyboard */,
-				FE5AAE592484BD0D0018DA42 /* LoginViewController.swift */,
 				ACD286372498F2D100497BD9 /* MyAccountViewController.swift */,
 			);
 			path = Main;
@@ -545,18 +558,9 @@
 			path = DataMangers;
 			sourceTree = "<group>";
 		};
-		ED57F790249A00EB0013A133 /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
-				ED57F791249A01080013A133 /* StoreDataManager.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
 		ED57F794249C98F10013A133 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				ED61105724AD938600FFD408 /* DataManagers */,
 				ED61105224A44BAC00FFD408 /* Models */,
 				ED57F7A224A08A810013A133 /* Animation */,
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
@@ -574,6 +578,7 @@
 				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
 				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
 				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
+				ED61105A24B6EBB800FFD408 /* QueueItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 		ED61105724AD938600FFD408 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F791249A01080013A133 /* StoreDataManager.swift */,
 				ED61105824AD93A500FFD408 /* QueueDataManager.swift */,
 			);
 			path = DataManagers;
@@ -623,6 +629,7 @@
 				ACED1E02249CA19700094284 /* LoginManager.swift */,
 				ED57F79B249CA2380013A133 /* Toast.swift */,
 				ACAEE67024A1DC9100C286BF /* Spinner.swift */,
+				FE56B17124B58A71000274A1 /* Alert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -630,7 +637,6 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				ED57F790249A00EB0013A133 /* DataManagers */,
 				EDA5990D2484D12000ADD228 /* Apis */,
 				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
 				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
@@ -684,6 +690,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				ED61105724AD938600FFD408 /* DataManagers */,
 				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* Views */,
 				AC0A18F224932482009FFD93 /* Notifications */,
@@ -1034,12 +1041,14 @@
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
 				7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */,
+				ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				7FD0263E2498AA0100BAA2F1 /* SideCartCell.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
+				7F37652424B4DA1700CC27F3 /* ScanViewController.swift in Sources */,
 				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
@@ -1049,7 +1058,9 @@
 				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
 				ACB27A8E24A4A80600DE966B /* YOLOv3Tiny.mlmodel in Sources */,
 				FE9023592473B9C700CE6B3A /* MainViewController.swift in Sources */,
+				7F37652824B9AF5E00CC27F3 /* ScanDetail.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
+				FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
@@ -1077,6 +1088,7 @@
 				EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */,
 				ACAEE67824A3016500C286BF /* CrowdTrackingViewController.swift in Sources */,
 				7F0B387624A210810003B9D9 /* CartItem.pb.swift in Sources */,
+				7F37652624B9A72F00CC27F3 /* Scan.swift in Sources */,
 				FE9023572473B9C700CE6B3A /* SceneDelegate.swift in Sources */,
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				7F0B387C24A3BB0B0003B9D9 /* HistoryDetailViewController.swift in Sources */,
@@ -1085,7 +1097,7 @@
 				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,
 				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
 				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
-				FE5AAE5A2484BD0D0018DA42 /* LoginViewController.swift in Sources */,
+				FE56B17224B58A71000274A1 /* Alert.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				ACB27A9824A5D34700DE966B /* ChangeVisitorCountStatus.swift in Sources */,
