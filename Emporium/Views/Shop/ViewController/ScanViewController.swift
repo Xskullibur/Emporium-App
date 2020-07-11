@@ -20,13 +20,13 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        
-        picker.allowsEditing = true
-        picker.sourceType = .photoLibrary
-        
-        self.present(picker, animated: true)
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        
+//        picker.allowsEditing = true
+//        picker.sourceType = .photoLibrary
+//        
+//        self.present(picker, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -44,20 +44,15 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if error != nil {
                 
             }else{
-                let resultText = result!.text
-                let resultArray = resultText.components(separatedBy: "\n")
+                //let resultText = result!.text
+                //let resultArray = resultText.components(separatedBy: "\n")
                 
-                let details =  self.scan.extractValue(items: resultArray)
-                print("test number " + details.cardNumber)
-                print("test bank " + String(details.bank))
-                self.scan.extractName(results: resultArray)
+                //let details =  self.scan.extractValue(items: resultArray)
+                //self.scan.extractName(results: resultArray)
+                
+                
             }
         }
     }
     
-    
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print("test")
-        (viewController as? AddCardViewController)?.scanNumber = "test"
-    }
 }

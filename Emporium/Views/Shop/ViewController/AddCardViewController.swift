@@ -30,9 +30,6 @@ class AddCardViewController: UIViewController {
     var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
-    var scanNumber: String = ""
-    var scanDate: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,12 +57,8 @@ class AddCardViewController: UIViewController {
             expDatePickerView.addSubview(label)
         }
         
-        expDatePickerView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        expDatePickerView.layer.shadowColor = UIColor.darkGray.cgColor
-        expDatePickerView.layer.shadowRadius = 5
-        expDatePickerView.layer.shadowOpacity = 0.9
-        expDatePickerView.layer.masksToBounds = false
-        expDatePickerView.clipsToBounds = false
+        expDatePickerView.layer.borderWidth = 1
+        expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
     }
     
     
@@ -194,7 +187,23 @@ class AddCardViewController: UIViewController {
         
         let scan = UIAlertAction(title: "Camera", style: .default) {
             action in
-            self.performSegue(withIdentifier: "toScan", sender: self)
+            
+            if !(UIImagePickerController.isSourceTypeAvailable( .camera))
+            {
+                let showAlert = UIAlertController(title: "Error", message: "Camera not available!", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
+                
+            }else{
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                
+                self.present(picker, animated: true)
+            }
         }
         
         actionSheet.addAction(gallery)
