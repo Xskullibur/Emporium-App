@@ -18,7 +18,7 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
     @IBOutlet weak var nameInput: UITextField!
-    
+    @IBOutlet weak var nicknameInput: UITextField!
     @IBOutlet weak var cardAnimation: AnimationView!
     
     var backendBaseURL: String? = "http://192.168.86.1:5000" //school
@@ -38,6 +38,7 @@ class AddCardViewController: UIViewController {
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
         nameInput.placeholder = "Name(Optional)"
+        nicknameInput.placeholder = "display name(Optional)"
         
         //startAnimation
         self.cardAnimation.animation = Animation.named("cardAni2")
@@ -75,6 +76,9 @@ class AddCardViewController: UIViewController {
             let year = String(yearPickerData[expDatePickerView.selectedRow(inComponent: 1)])
             let cvc = cvcInput.text
             let userID = String(Auth.auth().currentUser!.uid)
+            let name = nameInput.text
+            let bank = String(banks[expDatePickerView.selectedRow(inComponent: 2)])
+            let nickname = nicknameInput.text
             var message = ""
         
             let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: Int(month)!, year: Int(year)!)
@@ -87,7 +91,7 @@ class AddCardViewController: UIViewController {
                     var request = URLRequest(url: url!)
                     request.httpMethod = "POST"
                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID]
+                    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID, "bank": bank, "name": name, "nickname": nickname]
                     let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
                 
                     session.uploadTask(with: request, from: JSONDATA) {
