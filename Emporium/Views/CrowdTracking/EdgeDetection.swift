@@ -34,10 +34,13 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: - Drawing Detection
     private var oldShapeLayers: [CALayer] = []
     
-    //MARK: - Detection Rectangles
+    //MARK: - Detectors
     private static let UNDETECTED_COLOR = UIColor.blue
     private static let DETECTED_COLOR = UIColor.red
     private static let DETECTION_MARGIN: CGFloat = 70.0
+    
+    private var leftShapeLayer: CALayer?
+    private var rightShapeLayer: CALayer?
     
     private var leftDetector: Detector!
     private var rightDetector: Detector!
@@ -55,8 +58,8 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         self.setupModel()
         
         //Create detection rectangles
-        self.leftDetector = Detector(rectangle: CGRect(x: 0, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
-        self.rightDetector = Detector(rectangle: CGRect(x: previewView.frame.width - EdgeDetection.DETECTION_MARGIN, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
+        self.leftDetector = Detector(rectangle: CGRect(x: previewView.frame.width - EdgeDetection.DETECTION_MARGIN * 2, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
+        self.rightDetector = Detector(rectangle: CGRect(x: EdgeDetection.DETECTION_MARGIN, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
         //Add detection rectangles to layer (visualise the detection bounds)
         self.drawDetectionRectangles()
         
@@ -89,11 +92,16 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                     let updatedTrackingPoints = Array(self.trackingPoints)
                     
                     //Check if the tracking points have pass by the detector
-                    let detectedSide = self.checkDetectionForObservation(trackingPoints: updatedTrackingPoints)
-                    if detectedSide != .none {self.delegate.onEdgeDetect(side: detectedSide)}
+                    let detectedSides = self.checkDetectionForObservation(trackingPoints: updatedTrackingPoints)
+                    detectedSides.forEach{
+                        self.delegate.onEdgeDetect(side: $0)
+                    }
                     
                     //Draw the tracking points
                     self.drawTrackingPoints(updatedTrackingPoints)
+                    
+                    //Update detection rectangles colors
+                    self.updateDetectionRectangles()
                 }
             }
         }
@@ -303,26 +311,65 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         trackingPoints.subtract(nonUpdatedTrackingPoints.filter{$0.age <= 0})
         
     }
+   /**
+    Check if observation intersects with any detection rectangles.
+     - Returns:
+        A list of all the detected sides
+   */
+   private func checkDetectionForObservation(trackingPoints: [TrackingPoint]) -> [Side]{
+       //Get tracking points going in the left directions
+       let leftSides = self.leftDetector
+                  .updateTrackingPoints(trackingPoints)
+           .filter{$0.side == .left}
+           .map{
+               _ -> Side in
+               return .left
+           }
+       //Get tracking points going in the right directions
+       let rightSides = self.rightDetector
+                  .updateTrackingPoints(trackingPoints)
+           .filter{$0.side == .right}
+           .map{
+               _ -> Side in
+               return .right
+           }
+          
+       return leftSides + rightSides
+   }
+    
     /**
-     Check if observation intersects with any detection rectangles
+        Check if the detection rectangles contains tracking points.
+        - If there is tracking points, we change the color of the box to DETECTED.
+        - If there is no tracking points, we change the color of the box to UNDETECTED.
+            
      */
-    private func checkDetectionForObservation(trackingPoints: [TrackingPoint]) -> Side{
-        if self.leftDetector.updateTrackingPoints(trackingPoints).contains(where: {$0.side == .left}) {return .left}
-        else if self.rightDetector.updateTrackingPoints(trackingPoints).contains(where: {$0.side == .right}) {return .right}
-        return .none
+    private func updateDetectionRectangles(){
+        //Check for left rectangle
+        if leftDetector.haveTrackingPoints {
+            self.leftShapeLayer!.backgroundColor = EdgeDetection.DETECTED_COLOR.cgColor
+        }else{
+            self.leftShapeLayer!.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
+        }
+        
+        //Check for right rectangle
+        if rightDetector.haveTrackingPoints {
+            self.rightShapeLayer!.backgroundColor = EdgeDetection.DETECTED_COLOR.cgColor
+        }else{
+            self.rightShapeLayer!.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
+        }
     }
     
     /**
      Draw the detection rectangles on the preview layer 
      */
     private func drawDetectionRectangles(){
-        let leftLayer = self.createRoundedRectLayerWithBounds(self.leftDetector.rectangle)
-        leftLayer.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
-        self.previewLayer.addSublayer(leftLayer)
+        self.leftShapeLayer = self.createRoundedRectLayerWithBounds(self.leftDetector.rectangle)
+        self.leftShapeLayer!.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
+        self.previewLayer.addSublayer(self.leftShapeLayer!)
         
-        let rightLayer = self.createRoundedRectLayerWithBounds(self.rightDetector.rectangle)
-        rightLayer.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
-        self.previewLayer.addSublayer(rightLayer)
+        self.rightShapeLayer = self.createRoundedRectLayerWithBounds(self.rightDetector.rectangle)
+        self.rightShapeLayer!.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
+        self.previewLayer.addSublayer(self.rightShapeLayer!)
     }
     
     var exifOrientationFromDeviceOrientation: Int32 {
@@ -375,6 +422,12 @@ enum Side {
 class Detector {
     let rectangle: CGRect
     var trackingPoints: Set<TrackingPoint> = [] // Tracking Points inside the detector
+    
+    var haveTrackingPoints: Bool {
+        get {
+            return trackingPoints.count > 0
+        }
+    }
     
     init (rectangle: CGRect){
         self.rectangle = rectangle
