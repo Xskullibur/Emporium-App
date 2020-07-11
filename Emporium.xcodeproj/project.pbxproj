@@ -92,6 +92,7 @@
 		ED61105524A4583300FFD408 /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105324A4583300FFD408 /* check.json */; };
 		ED61105624A4583300FFD408 /* cross.json in Resources */ = {isa = PBXBuildFile; fileRef = ED61105424A4583300FFD408 /* cross.json */; };
 		ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105824AD93A500FFD408 /* QueueDataManager.swift */; };
+		ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105A24B6EBB800FFD408 /* QueueItem.swift */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -227,6 +228,7 @@
 		ED61105324A4583300FFD408 /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
 		ED61105424A4583300FFD408 /* cross.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cross.json; sourceTree = "<group>"; };
 		ED61105824AD93A500FFD408 /* QueueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDataManager.swift; sourceTree = "<group>"; };
+		ED61105A24B6EBB800FFD408 /* QueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItem.swift; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -556,18 +558,9 @@
 			path = DataMangers;
 			sourceTree = "<group>";
 		};
-		ED57F790249A00EB0013A133 /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
-				ED57F791249A01080013A133 /* StoreDataManager.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
 		ED57F794249C98F10013A133 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				ED61105724AD938600FFD408 /* DataManagers */,
 				ED61105224A44BAC00FFD408 /* Models */,
 				ED57F7A224A08A810013A133 /* Animation */,
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
@@ -585,6 +578,7 @@
 				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
 				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
 				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
+				ED61105A24B6EBB800FFD408 /* QueueItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -612,6 +606,7 @@
 		ED61105724AD938600FFD408 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
+				ED57F791249A01080013A133 /* StoreDataManager.swift */,
 				ED61105824AD93A500FFD408 /* QueueDataManager.swift */,
 			);
 			path = DataManagers;
@@ -642,7 +637,6 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				ED57F790249A00EB0013A133 /* DataManagers */,
 				EDA5990D2484D12000ADD228 /* Apis */,
 				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
 				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
@@ -696,6 +690,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				ED61105724AD938600FFD408 /* DataManagers */,
 				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* Views */,
 				AC0A18F224932482009FFD93 /* Notifications */,
@@ -1046,6 +1041,7 @@
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
 				7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */,
+				ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,

@@ -12,7 +12,6 @@ import MapKit
 import MaterialComponents.MaterialButtons
 import FirebaseAuth
 import FirebaseFirestore
-import FirebaseFunctions
 
 protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
@@ -36,9 +35,10 @@ class StoreButton: UIButton {
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
     // MARK: - Variables
-    var functions = Functions.functions()
     var locationManager: CLLocationManager?
     var loginManager: LoginManager?
+    var storeDataManager = StoreDataManager()
+    var queueDataManager = QueueDataManager()
     
     var storeList_lessThan1: [GroceryStore] = []
     var storeList_lessThan2: [GroceryStore] = []
@@ -46,6 +46,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var visitorCountListiners: [ListenerRegistration] = []
     
     var selectedStore: GroceryStore?
+    var queueId: String?
+    var currentlyServing: String?
+    var queueLength: String?
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -54,7 +57,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Login
         loginManager  = LoginManager(viewController: self)
         
@@ -72,12 +75,12 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         showSpinner(onView: self.view)
     }
     
+    // MARK: - IBAction
     @objc func annotationPressed(sender: StoreButton!) {
         storeSelected(store: sender.store!)
     }
     
     // MARK: - MapView
-    
     /// Get User Location and Show Nearby Marts
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -124,8 +127,13 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             )
             
         }
+        
+        // Crowd Level
+        let crowdColor = annotation.store.getCrowdLevelColor()
+        let crowdLevel = annotation.store.getCrowdLevel()
+        
         // Custom Marker
-        view.markerTintColor = annotation.store.getCrowdLevelColor()
+        view.markerTintColor = crowdColor
         view.glyphText = String(annotation.store.currentVisitorCount)
 
         
@@ -155,19 +163,32 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
         ])
         
-        /// Left Callout
-        let leftLabel = UILabel(frame: CGRect(
+        
+        let leftCalloutView = UIView(frame: CGRect(
             origin: CGPoint.zero,
-            size: CGSize(width: 48, height: 48)
+            size: CGSize(width: 60, height: 60)
         ))
         
+        // Label
+        let leftLabel = UILabel(frame: CGRect(
+            origin: CGPoint(x: 5, y: 0),
+            size: CGSize(width: 50, height: 50)
+        ))
+        leftLabel.textColor = .white
         leftLabel.font = UIFont(descriptor: fractionFontDesc, size: pointSize)
+        leftLabel.font = UIFont.boldSystemFont(ofSize: leftLabel.font.pointSize)
         leftLabel.adjustsFontSizeToFitWidth = true
         leftLabel.textAlignment = .right
         leftLabel.text = "\(annotation.store.currentVisitorCount)/\(annotation.store.maxVisitorCapacity)"
+        leftLabel.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
-        view.leftCalloutAccessoryView = leftLabel
-        view.leftCalloutAccessoryView?.backgroundColor = view.markerTintColor
+        
+        // Left Callout
+        leftCalloutView.addSubview(leftLabel)
+        leftCalloutView.backgroundColor = crowdColor
+        
+        // View
+        view.leftCalloutAccessoryView = leftCalloutView
         
         return view
         
@@ -263,11 +284,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -278,11 +304,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                    
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -293,11 +324,16 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 // Add listiner to update annotation
-                StoreDataManager.visitorCountListenerForStore(store) {
-                    (visitorCount, maxCapacity) in
-                        store.currentVisitorCount = visitorCount
-                        store.maxVisitorCapacity = maxCapacity
-                        self.updateAnnotationWithStore(store)
+                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                    guard let visitorCount = data["current_visitor_count"] as? Int,
+                        let maxCapacity = data["max_visitor_capacity"] as? Int else {
+                            print("Field data was empty. (VisitorCount.Listener)")
+                            return
+                    }
+                    
+                    store.currentVisitorCount = visitorCount
+                    store.maxVisitorCapacity = maxCapacity
+                    self.updateAnnotationWithStore(store)
                 }
                 
             }
@@ -357,27 +393,52 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         if store.isFull() {
             
+            // Show Spinner
+            showSpinner(onView: self.view)
+            
+            // Error Alert
+            let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            errorAlert.addAction(okAction)
+            
             // Join Queue
-            functions.httpsCallable("joinQueue").call(["storeId": store.id]) { (result, error) in
-                if let error = error as NSError? {
-                    if error.domain == FunctionsErrorDomain{
-                        let code = FunctionsErrorCode(rawValue: error.code)?.rawValue
-                        let message = error.localizedDescription
-                        let details = error.userInfo[FunctionsErrorDetailsKey].debugDescription
-                        
-                        print("Error joining queue: Code: \(String(describing: code)), Message: \(message), Details: \(String(describing: details))")
-                    }
+            queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
+                
+                // Guard queueId
+                guard let queueId = data["queueId"] as? String else {
+                    self.removeSpinner()
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
                 }
                 
-                if let data = (result?.data as? [String: Any]) {
-                    let queueId = data["queueId"]
+                self.queueId = queueId
+                
+                // Get QueueInfo
+                let queueDataManager = QueueDataManager()
+                queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
+                    
+                    // Remove Spinnter
+                    self.removeSpinner()
+                    
+                    // Set Globals for navigation
+                    self.currentlyServing = currentlyServing
+                    self.queueLength = queueLength
+                    
+                    // Navigate to QueueVC
                     self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                    
                 }
-                
+            }) { (error) in
+                self.removeSpinner()
+                self.present(errorAlert, animated: true, completion: nil)
             }
             
         }
         else {
+            
+            // Update Visitor Count
+            
+            // Navigate to Entry
             let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
             let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
             entryVC.store = store
@@ -399,10 +460,14 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         // Queue
         else if segue.identifier == "ShowQueue" {
+            
             let queueVC = segue.destination as! QueueViewController
             queueVC.justJoinedQueue = true
+            queueVC.queueId = self.queueId!
+            queueVC.currentlyServing = currentlyServing
+            queueVC.queueLength = queueLength
             
-            if let store = selectedStore {
+            if let store = self.selectedStore {
                 queueVC.store = store
             }
             
