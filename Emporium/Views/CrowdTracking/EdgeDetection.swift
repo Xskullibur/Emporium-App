@@ -28,6 +28,9 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var previewView: UIView!
     private var delegate: EdgeDetectionDelegate!
     
+    private var trackingPoints = Set<TrackingPoint>() // Current list of tracking points
+    private static let CLOSE_THRESHOLD = CGFloat(60.0) // How close should the points be to be considered as close
+    
     // MARK: - Drawing Detection
     private var oldShapeLayers: [CALayer] = []
     
@@ -36,8 +39,6 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private static let DETECTED_COLOR = UIColor.red
     private static let DETECTION_MARGIN: CGFloat = 70.0
     
-    private var topDetector: Detector!
-    private var bottomDetector: Detector!
     private var leftDetector: Detector!
     private var rightDetector: Detector!
     
@@ -54,8 +55,6 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         self.setupModel()
         
         //Create detection rectangles
-        self.topDetector = Detector(rectangle: CGRect(x: 0, y: 0, width: previewView.frame.width, height: EdgeDetection.DETECTION_MARGIN))
-        self.bottomDetector = Detector(rectangle: CGRect(x: 0, y: previewView.frame.height - EdgeDetection.DETECTION_MARGIN, width: previewView.frame.width, height: EdgeDetection.DETECTION_MARGIN))
         self.leftDetector = Detector(rectangle: CGRect(x: 0, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
         self.rightDetector = Detector(rectangle: CGRect(x: previewView.frame.width - EdgeDetection.DETECTION_MARGIN, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
         //Add detection rectangles to layer (visualise the detection bounds)
@@ -75,7 +74,26 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             (request, error) in
             DispatchQueue.main.async {
                 if let results = request.results {
-                    self.drawVisionRequestResults(results)
+                    
+                    //Get the new tracking points
+                    let newTrackingPoints = self.getObservationObjects(from: results)
+                        .map{
+                            (observation) -> TrackingPoint in
+                            //Transform observation into tracking point
+                            let objectBounds = VNImageRectForNormalizedRect(observation.boundingBox, Int(self.bufferSize.width), Int(self.bufferSize.height))
+                            
+                            return TrackingPoint(objectBounds: objectBounds, observation: observation)
+                    }
+                    //Update the current tracking points
+                    self.updateCurrentTrackingPoints(newTrackingPoints)
+                    let updatedTrackingPoints = Array(self.trackingPoints)
+                    
+                    //Check if the tracking points have pass by the detector
+                    let detectedSide = self.checkDetectionForObservation(trackingPoints: updatedTrackingPoints)
+                    if detectedSide != .none {self.delegate.onEdgeDetect(side: detectedSide)}
+                    
+                    //Draw the tracking points
+                    self.drawTrackingPoints(updatedTrackingPoints)
                 }
             }
         }
@@ -127,7 +145,7 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             // Always process the frames
             captureConnection?.isEnabled = true
             do {
-                try  videoDevice!.lockForConfiguration()
+                try videoDevice!.lockForConfiguration()
                 let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)
                 bufferSize = self.delegate.createBufferSize()
 //    //            let ratio = self.previewView.frame.width / CGFloat(dimensions.width)
@@ -162,52 +180,33 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }catch {print(error)}
     }
     
-    private func drawVisionRequestResults(_ results: [Any]) {
+    private func drawTrackingPoints(_ trackingPoints: [TrackingPoint]) {
+        //Clear all the old shapes from the view
         self.oldShapeLayers.forEach {
             $0.removeFromSuperlayer()
         }
         
         var newShapeLayers: [CALayer] = []
-        var midPoints: [CGPoint] = []
-        for observation in results where observation is VNRecognizedObjectObservation {
-            guard let objectObservation = observation as? VNRecognizedObjectObservation else {
-                continue
-            }
+        for trackingPoint in trackingPoints {
+            
+            let objectBounds = trackingPoint.rectangle
+            
             // Select only the label with the highest confidence.
-            let topLabelObservation = objectObservation.labels[0]
-            
-            // Only detect person
-            guard topLabelObservation.identifier == "person" else{
-                continue
-            }
-            
-            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
+            let topLabelObservation = trackingPoint.observation.labels[0]
             
             let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds)
-            
             let textLayer = self.createTextSubLayerInBounds(objectBounds,
                                                             topLabelObservation.identifier,
                                                             topLabelObservation.confidence)
             
-            //MARK: - Determine the direction of where the box is moving
-            let midPoint = CGPoint(x: objectBounds.midX, y: objectBounds.midY)
-            
-            //Get the closest old shape layer
-            var points = self.oldShapeLayers.map{ CGPoint(x: $0.frame.midX, y: $0.frame.midY)}.sorted(by: {$0.getEuclideanDistance(point: midPoint) < $1.getEuclideanDistance(point: midPoint)})
-            let closestPoint = points.first
-
-            if let closestPoint = closestPoint {
-                // Get direction of the two points
-                let theta = midPoint.getAngle(of: closestPoint)
-                if (theta >= 0 && theta < 90) || (theta >= 270) {
-                    shapeLayer.backgroundColor = UIColor.green.cgColor
-                }else {
-                    shapeLayer.backgroundColor = UIColor.orange.cgColor
-                }
+            //Change color of background based on direction
+            if trackingPoint.side == .right {
+                //Right direction
+                shapeLayer.backgroundColor = UIColor.orange.cgColor
+            }else if trackingPoint.side == .left{
+                //Left direction
+                shapeLayer.backgroundColor = UIColor.green.cgColor
             }
-            
-            midPoints.append(midPoint)
-
             
             //shapeLayer.addSublayer(textLayer)
             //previewView.layer.insertSublayer(previewLayer, at: 0)
@@ -220,27 +219,96 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             previewLayer.addSublayer(shapeLayer)
         }
         
-        //Check detection bounds
-        let side = self.checkDetectionForObservation(points: midPoints)
-        if side != .none {
-            self.delegate.onEdgeDetect(side: side)
-        }
-        
         //Updates the old shape layers to the new shape layers
         self.oldShapeLayers = newShapeLayers
-        
-        
-        
     }
     
     /**
+     Get observation objects from vision results
+     */
+    func getObservationObjects(from results: [Any]) -> [VNRecognizedObjectObservation]{
+        var observations: [VNRecognizedObjectObservation] = []
+        for observation in results where observation is VNRecognizedObjectObservation {
+            guard let objectObservation = observation as? VNRecognizedObjectObservation else {
+                continue
+            }
+            // Select only the label with the highest confidence.
+            let topLabelObservation = objectObservation.labels[0]
+            
+            // Only detect person
+            guard topLabelObservation.identifier == "person" else{
+                continue
+            }
+            
+            observations.append(objectObservation)
+        }
+        return observations
+    }
+    
+    /**
+     
+    This functions updates the points which has moved based on the old tracking points.
+     
+    Tracks the point moving inside the viewport.
+     
+     - Details:
+         - New points which enter the viewport will be added to the tracking list.
+         - Points which moved will be updated with its new coordinates
+         - Points which id not inside the viewport will be removed from the tracking list.
+     */
+    func updateCurrentTrackingPoints(_ newTrackingPoints: [TrackingPoint]){
+        
+        var updatedOldTrackingPoints = Set<TrackingPoint>()
+        
+        for newTrackingPoint in newTrackingPoints {
+            //Get the middle point of the object bound
+            let point = newTrackingPoint.point
+            
+            //Find any old tracking points which is close to this new point
+            let isCloseToAnyTrackingPoints = trackingPoints.contains(where: {self.isClose(point1: $0.point, point2: point)})
+            
+            if !isCloseToAnyTrackingPoints{
+                print("New Point")
+                //If this new point is not close to any tracking points, means it is a new object bound.
+                
+                //Add this new tracking point to the tracking list
+                trackingPoints.insert(newTrackingPoint)
+                updatedOldTrackingPoints.insert(newTrackingPoint)
+            }else{
+                //Probably some existing object bound that has moved.
+                
+                //Get the closest point from the old point
+                let closestTrackingPoint = trackingPoints.sorted(by: {
+                    $0.point.getEuclideanDistance(point: point) < $1.point.getEuclideanDistance(point: point)
+                    
+                }).first!
+                
+                //Reset tracking point age
+                closestTrackingPoint.age = TrackingPoint.MAX_AGE
+                
+                //Update the tracking point
+                closestTrackingPoint.update(movedTrackingPoint: newTrackingPoint)
+                updatedOldTrackingPoints.insert(closestTrackingPoint)
+            }
+        }
+        
+        //Remove all the tracking points that are not new or updated (the object is not detected anymore)
+        let nonUpdatedTrackingPoints = trackingPoints.subtracting(updatedOldTrackingPoints)
+        
+        //Minus one age from the tracking point
+        for nonUpdatedTrackingPoint in nonUpdatedTrackingPoints {
+            nonUpdatedTrackingPoint.age -= 1
+        }
+        
+        trackingPoints.subtract(nonUpdatedTrackingPoints.filter{$0.age <= 0})
+        
+    }
+    /**
      Check if observation intersects with any detection rectangles
      */
-    private func checkDetectionForObservation(points: [CGPoint]) -> Side{
-        if self.topDetector.updatePoints(points) != 0{ return .top}
-        else if self.bottomDetector.updatePoints(points) != 0 {return .bottom}
-        else if self.leftDetector.updatePoints(points) != 0 {return .left}
-        else if self.rightDetector.updatePoints(points) != 0 {return .right}
+    private func checkDetectionForObservation(trackingPoints: [TrackingPoint]) -> Side{
+        if self.leftDetector.updateTrackingPoints(trackingPoints).contains(where: {$0.side == .left}) {return .left}
+        else if self.rightDetector.updateTrackingPoints(trackingPoints).contains(where: {$0.side == .right}) {return .right}
         return .none
     }
     
@@ -248,14 +316,6 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
      Draw the detection rectangles on the preview layer 
      */
     private func drawDetectionRectangles(){
-        let topLayer = self.createRoundedRectLayerWithBounds(self.topDetector.rectangle)
-        topLayer.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
-        self.previewLayer.addSublayer(topLayer)
-        
-        let bottomLayer = self.createRoundedRectLayerWithBounds(self.bottomDetector.rectangle)
-        bottomLayer.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
-        self.previewLayer.addSublayer(bottomLayer)
-        
         let leftLayer = self.createRoundedRectLayerWithBounds(self.leftDetector.rectangle)
         leftLayer.backgroundColor = EdgeDetection.UNDETECTED_COLOR.cgColor
         self.previewLayer.addSublayer(leftLayer)
@@ -289,6 +349,13 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         return exifOrientation.rawValue
     }
+        
+    /**
+     Check if two points are relatively close with each other
+    */
+    func isClose(point1: CGPoint, point2: CGPoint) -> Bool{
+        return point1.getEuclideanDistance(point: point2) <= EdgeDetection.CLOSE_THRESHOLD
+    }
     
 }
 
@@ -307,9 +374,7 @@ enum Side {
 
 class Detector {
     let rectangle: CGRect
-    var trackingPoints: Set<CGPoint> = []
-    
-    private static let CLOSE_THRESHOLD = CGFloat(60.0) // How close should the points be to be considered as close
+    var trackingPoints: Set<TrackingPoint> = [] // Tracking Points inside the detector
     
     init (rectangle: CGRect){
         self.rectangle = rectangle
@@ -321,56 +386,29 @@ class Detector {
          - New points which enter the detector will be added to the tracking list.
          - Points which exits from the detector will be removed from the tracking list.
      - Returns:
-         - Number of points that has exited from the detector
+         - Tracking points that has exited from the detector
      */
-    func updatePoints(_ points: [CGPoint]) -> Int{
+    func updateTrackingPoints(_ trackingPoints: [TrackingPoint]) -> [TrackingPoint]{
+        var updatedOldTrackingPoints = Set<TrackingPoint>()
         
-        var newTrackingPoints = Set<CGPoint>()
-        var updatedOldTrackingPoints = Set<CGPoint>()
-        
-        for point in points {
-            let contains = self.rectangle.contains(point)
+        for trackingPoint in trackingPoints {
+            let contains = self.rectangle.contains(trackingPoint.point)
             if contains {
-                //Find any points which is close to this new point which intersects the detector
-                let isCloseToAnyTrackingPoints = trackingPoints.contains(where: {self.isClose(point1: $0, point2: point)})
-                
-                if !isCloseToAnyTrackingPoints{
-                    //If this new point is not close to any tracking points, means it is a new point.
-                    
-                    //Add this new point to the tracking list
-                    newTrackingPoints.insert(point)
-                }else{
-                    //Probably some existing points that has moved.
-                    
-                    //Get the closest point from the old point
-                    let closestTrackingPoint = trackingPoints.sorted(by: {$0.getEuclideanDistance(point: point) < $1.getEuclideanDistance(point: point)}).first!
-                    
-                    //Update the tracking point
-                    updatedOldTrackingPoints.insert(closestTrackingPoint)
-                    newTrackingPoints.insert(point)
+                //Check if there is existing point
+                if !self.trackingPoints.contains(trackingPoint){
+                    //New point enter the detector
+                    self.trackingPoints.insert(trackingPoint)
                     
                 }
-                
+                updatedOldTrackingPoints.insert(trackingPoint)
             }
         }
         
-        
-        
         //Get exited points (points which does not appearing in the new tracking list)
-        let exitedPoints = trackingPoints.subtracting(updatedOldTrackingPoints)
+        let exitedTrackingPoints = self.trackingPoints.subtracting(updatedOldTrackingPoints)
+        self.trackingPoints.subtract(exitedTrackingPoints)
         
-        //Update the old tracking list to the new tracking list
-        self.trackingPoints = newTrackingPoints
-        
-        return exitedPoints.count
-    }
-    
-    
-    /**
-     Check if two points are relatively close with each other
-     */
-    private func isClose(point1: CGPoint, point2: CGPoint) -> Bool{
-        return point1.getEuclideanDistance(point: point2) <= Detector.CLOSE_THRESHOLD
+        return Array(exitedTrackingPoints)
     }
     
 }
@@ -412,7 +450,80 @@ extension EdgeDetection {
     
 }
 
-extension CGPoint : Hashable {
+class TrackingPoint : Hashable{
+    var id: String
+    var rectangle: CGRect
+    var point: CGPoint {
+        get {
+            return CGPoint(x: rectangle.midX, y: rectangle.midY)
+        }
+    }
+    var observation: VNRecognizedObjectObservation
+    
+    var age = MAX_AGE
+    static var MAX_AGE = 3
+    
+    //Left is close to 0
+    //Right is close to 1
+    var direction: CGFloat = 0.5
+    static var DIRECTION_UPDATE_RATE = 0.6
+    
+    var side: Side {
+        get {
+            if direction < 0.3 {
+                return .left
+            }else if direction > 0.7{
+                return .right
+            }else{
+                return .none
+            }
+        }
+    }
+    
+    init(objectBounds: CGRect, observation: VNRecognizedObjectObservation){
+        self.rectangle = objectBounds
+        self.observation = observation
+        self.id = NSUUID().uuidString // Get a random uuid id
+    }
+    
+    /**
+     Update this tracking point with the new coorindates of the moved tracking point.
+     
+     NOTE:
+     - id will still remain the same
+     */
+    func update(movedTrackingPoint newTrackingPoint: TrackingPoint){
+        //MARK: - Determine the direction of where the box is moving
+
+       // Get angle of the old tracking point and the new tracking point
+       let theta = newTrackingPoint.point.getAngle(of: point)
+       if (theta >= 0 && theta < 90) || (theta >= 270) {
+           //Left direction
+        self.direction += CGFloat(TrackingPoint.DIRECTION_UPDATE_RATE) * (0 - self.direction)
+       }else {
+            //Right direction
+        self.direction += CGFloat(TrackingPoint.DIRECTION_UPDATE_RATE) * (1 - self.direction)
+       }
+        
+        self.rectangle = newTrackingPoint.rectangle
+        self.observation = newTrackingPoint.observation
+        
+       
+        
+    }
+    
+    
+    static func == (lhs: TrackingPoint, rhs: TrackingPoint) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+
+extension CGPoint {
     /**
      Get the euclidean distance between this point and the second point.
      */
@@ -450,7 +561,4 @@ extension CGPoint : Hashable {
         return rad * 180 / .pi
     }
     
-    public var hashValue: Int {
-        return x.hashValue ^ y.hashValue
-    }
 }
