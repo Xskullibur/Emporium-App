@@ -12,10 +12,10 @@ import MLKit
 class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var galleryBtn: UIButton!
     
     var scanNumber: String = ""
     var scanDate: String = ""
+    let scan = Scan()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.delegate = self
         
         picker.allowsEditing = true
-        picker.sourceType = .camera
+        picker.sourceType = .photoLibrary
         
         self.present(picker, animated: true)
     }
@@ -42,48 +42,19 @@ class ScanViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             result, error in
             
             if error != nil {
-                print(error ?? "error")
+                
             }else{
                 let resultText = result!.text
                 let resultArray = resultText.components(separatedBy: "\n")
                 
-                for item in resultArray {
-                    let noWhiteSpace = String(item.filter { !" \n\t\r".contains($0)})
-                    let number = noWhiteSpace.filter("0123456789".contains)
-                    
-                    if number.count == 16 {
-                        let pattern = "\\d{16}"
-                        let result = noWhiteSpace.range(of: pattern, options: .regularExpression)
-                        
-                        if result != nil {
-                            print(noWhiteSpace)
-                        }
-                    }
-                    
-                    if noWhiteSpace.contains("/") {
-                        let date = noWhiteSpace.filter("0123456789/".contains)
-                        let dateArray = date.components(separatedBy: "/")
-                        
-                        if dateArray[0] != "" {
-                            if 0...12 ~= Int(dateArray[0])! {
-                                
-                            }
-                        }
-                        
-                        if dateArray[1] != "" {
-                            if 20...70 ~= Int(dateArray[1])! {
-                                
-                            }
-                        }
-                        
-                        print(date)
-                    }
-                    
-                }
-                print(resultText)
+                let details =  self.scan.extractValue(items: resultArray)
+                print("test number " + details.cardNumber)
+                print("test bank " + String(details.bank))
+                self.scan.extractName(results: resultArray)
             }
         }
     }
+    
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print("test")
