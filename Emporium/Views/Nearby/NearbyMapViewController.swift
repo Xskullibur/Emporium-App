@@ -384,76 +384,61 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
                 
-                self.listenerManager.clear()
-                self.navigateBasedOnCapacity(store)
+                self.joinQueue(store: store)
                 
             }))
             
             self.present(alert, animated: true)
         }
         else {
-            listenerManager.clear()
-            performSegue(withIdentifier: "ShowQueue", sender: self)
+            joinQueue(store: store)
         }
     }
     
-    func navigateBasedOnCapacity(_ store: GroceryStore) {
+    func joinQueue(store: GroceryStore) {
         
-        if store.isFull() {
+        // Clear Listeners
+        self.listenerManager.clear()
+        
+        // Show Spinner
+        showSpinner(onView: self.view)
+        
+        // Error Alert
+        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        errorAlert.addAction(okAction)
+        
+        // Join Queue
+        queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
             
-            // Show Spinner
-            showSpinner(onView: self.view)
-            
-            // Error Alert
-            let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            errorAlert.addAction(okAction)
-            
-            // Join Queue
-            queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
-                
-                // Guard queueId
-                guard let queueId = data["queueId"] as? String else {
-                    self.removeSpinner()
-                    self.present(errorAlert, animated: true, completion: nil)
-                    return
-                }
-                
-                self.queueId = queueId
-                
-                // Get QueueInfo
-                let queueDataManager = QueueDataManager()
-                queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
-                    
-                    // Remove Spinnter
-                    self.removeSpinner()
-                    
-                    // Set Globals for navigation
-                    self.currentlyServing = currentlyServing
-                    self.queueLength = queueLength
-                    
-                    // Navigate to QueueVC
-                    self.performSegue(withIdentifier: "ShowQueue", sender: self)
-                    
-                }
-            }) { (error) in
+            // Guard queueId
+            guard let queueId = data["queueId"] as? String else {
                 self.removeSpinner()
                 self.present(errorAlert, animated: true, completion: nil)
+                return
             }
             
+            self.queueId = queueId
+            
+            // Get QueueInfo
+            let queueDataManager = QueueDataManager()
+            queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
+                
+                // Remove Spinnter
+                self.removeSpinner()
+                
+                // Set Globals for navigation
+                self.currentlyServing = currentlyServing
+                self.queueLength = queueLength
+                
+                // Navigate to QueueVC
+                self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                
+            }
+        }) { (error) in
+            self.removeSpinner()
+            self.present(errorAlert, animated: true, completion: nil)
         }
-        else {
-            
-            // Update Visitor Count
-            
-            // Navigate to Entry
-            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-            entryVC.store = store
-            
-            self.present(entryVC, animated: true, completion: nil)
-        }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
