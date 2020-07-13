@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -649,8 +649,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fx-nr-kjB">
-                                <rect key="frame" x="330" y="136" width="67" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fx-nr-kjB">
+                                <rect key="frame" x="334" y="136" width="67" height="30"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="2Yz-Ut-M4r" userLabel="width = 67"/>
@@ -663,10 +663,21 @@
                                     <action selector="searchBtnPressed:" destination="pSg-bj-D98" eventType="touchUpInside" id="fTS-mt-sqo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMS-eD-LOj">
+                                <rect key="frame" x="347" y="81" width="35" height="30"/>
+                                <state key="normal" title="Filter">
+                                    <color key="titleColor" name="Primary"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterBtnPressed:" destination="pSg-bj-D98" eventType="touchUpInside" id="0nI-UE-v8e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="dMS-eD-LOj" secondAttribute="trailing" constant="32" id="6MX-Ve-zwQ"/>
                             <constraint firstItem="l68-gk-005" firstAttribute="trailing" secondItem="fHp-GE-cmJ" secondAttribute="trailing" id="83U-lt-grM"/>
+                            <constraint firstItem="dMS-eD-LOj" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="347" id="Bux-l8-OBh"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="1fx-nr-kjB" secondAttribute="trailing" constant="13" id="C2W-WP-vay"/>
                             <constraint firstItem="fq1-pJ-KKw" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="13" id="V9Q-5Y-LBa"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="s30-X8-KCf" secondAttribute="trailing" constant="29" id="W8P-DP-8BO"/>
@@ -674,6 +685,8 @@
                             <constraint firstItem="s30-X8-KCf" firstAttribute="top" secondItem="fq1-pJ-KKw" secondAttribute="bottom" constant="11" id="b52-TJ-0fc"/>
                             <constraint firstItem="l68-gk-005" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" id="ii7-vZ-JKM"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="bottom" secondItem="l68-gk-005" secondAttribute="bottom" constant="11" id="nqX-TV-Yzu"/>
+                            <constraint firstItem="1fx-nr-kjB" firstAttribute="top" secondItem="dMS-eD-LOj" secondAttribute="bottom" constant="25" id="pEk-Tc-08h"/>
+                            <constraint firstItem="dMS-eD-LOj" firstAttribute="top" secondItem="fHp-GE-cmJ" secondAttribute="top" constant="37" id="qAi-U6-Kat"/>
                             <constraint firstItem="fq1-pJ-KKw" firstAttribute="top" secondItem="fHp-GE-cmJ" secondAttribute="top" constant="91" id="rfF-9u-hSR"/>
                             <constraint firstItem="s30-X8-KCf" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="20" id="y3D-Kn-6nd"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="leading" secondItem="fq1-pJ-KKw" secondAttribute="trailing" constant="18" id="yVD-hC-gbx"/>
@@ -701,8 +714,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" catalog="system" width="64" height="50"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="Light">
             <color red="1" green="0.68999999761581421" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

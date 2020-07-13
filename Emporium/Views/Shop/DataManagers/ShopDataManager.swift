@@ -43,6 +43,37 @@ class ShopDataManager
         }
     }
     
+    static func loadCategory(selectedCategory: [String], onComplete: (([Product]) -> Void)?)
+    {
+        db.collection("emporium").document("globals").collection("products").getDocuments()
+            {
+            (querySnapshot, err) in
+            
+            var productData: [Product] = []
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    if selectedCategory.contains(doc.get("category") as! String) {
+                        let productID: String = String(doc.documentID)
+                        let name = doc.get("name") as! String
+                        let price = doc.get("price") as! Double
+                        let category = doc.get("category") as! String
+                        let image = doc.get("image") as! String
+                        
+                        productData.append(Product(productID, name, price, image, category))
+                    }
+                }
+            }
+                
+            onComplete?(productData)
+        }
+    }
+    
     static func loadHistory(onComplete: (([String]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
         {

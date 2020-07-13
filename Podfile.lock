@@ -499,6 +499,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
+  - RSSelectionMenu (7.0.0)
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
@@ -519,6 +520,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
+  - RSSelectionMenu
   - Stripe
   - SwiftProtobuf
 
@@ -566,6 +568,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - RSSelectionMenu
     - SDWebImage
     - Stripe
     - SwiftProtobuf
@@ -613,10 +616,11 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
+  RSSelectionMenu: 096db1676b37214a2c447383e80733599b74a052
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
   SwiftProtobuf: bfafffa9e26d1561c3bd0045e188c4fab5f527ae
 
-PODFILE CHECKSUM: d0f94b48a566ccb8c40e586202932c652838bffe
+PODFILE CHECKSUM: d09abf193dbcf0dfa01052d2c6fbc1e2e52cfaea
 
 COCOAPODS: 1.9.3
