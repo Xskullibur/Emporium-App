@@ -45,20 +45,30 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa4-gV-wOi">
-                                                <rect key="frame" x="15" y="10" width="344" height="21"/>
+                                                <rect key="frame" x="15" y="10" width="324" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XNe-HR-WQx">
+                                                <rect key="frame" x="339" y="11.999999999999998" width="20" height="18.666666666666664"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="YLD-1g-50w"/>
+                                                    <constraint firstAttribute="height" constant="20" id="hf4-YM-f4X"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="M5r-pa-Fs8" firstAttribute="top" secondItem="sa4-gV-wOi" secondAttribute="bottom" constant="5" id="39O-V4-NyK"/>
                                             <constraint firstItem="M5r-pa-Fs8" firstAttribute="leading" secondItem="sa4-gV-wOi" secondAttribute="leading" id="4gO-pj-fek"/>
                                             <constraint firstItem="sa4-gV-wOi" firstAttribute="top" secondItem="wzz-03-aD0" secondAttribute="top" constant="10" id="GJ5-qT-cRc"/>
-                                            <constraint firstItem="M5r-pa-Fs8" firstAttribute="trailing" secondItem="sa4-gV-wOi" secondAttribute="trailing" id="O6E-X2-aMW"/>
                                             <constraint firstItem="M5r-pa-Fs8" firstAttribute="leading" secondItem="wzz-03-aD0" secondAttribute="leading" constant="15" id="VL8-Rb-qEu"/>
+                                            <constraint firstItem="XNe-HR-WQx" firstAttribute="trailing" secondItem="M5r-pa-Fs8" secondAttribute="trailing" id="agC-cO-EL4"/>
                                             <constraint firstAttribute="trailing" secondItem="M5r-pa-Fs8" secondAttribute="trailing" constant="15" id="dKM-N0-og9"/>
+                                            <constraint firstItem="XNe-HR-WQx" firstAttribute="leading" secondItem="sa4-gV-wOi" secondAttribute="trailing" id="f3v-Q5-JBJ"/>
+                                            <constraint firstItem="XNe-HR-WQx" firstAttribute="bottom" secondItem="sa4-gV-wOi" secondAttribute="bottom" id="sgH-YB-QGn"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -66,6 +76,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="3xM-6v-ZHa" appends="YES" id="6E2-Uv-paX"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" name="Primary"/>
@@ -175,6 +188,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SfW-4R-gmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3xM-6v-ZHa">
+                    <connections>
+                        <action selector="onPointInfoTap:" destination="IL4-BM-Jhk" id="zhZ-c0-73w"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="672.46376811594212" y="128.57142857142856"/>
         </scene>
@@ -468,6 +486,7 @@
     </scenes>
     <resources>
         <image name="Coupon" width="512" height="512"/>
+        <image name="info.circle.fill" catalog="system" width="64" height="60"/>
         <namedColor name="Primary">
             <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

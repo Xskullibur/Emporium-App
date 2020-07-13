@@ -129,7 +129,16 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         self.present(bottomSheet, animated: true, completion: nil)
     }
     
+    @IBAction func onPointInfoTap(_ sender: Any) {
+        //Show point info
+        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+        let data = Plist.readPlist(url!)!
+        let infoDescription = data["Points Info Description"] as! String
+        self.showAlert(title: "Info", message: infoDescription)
+    }
+    
 
+        
     /*
     // MARK: - Navigation
 
