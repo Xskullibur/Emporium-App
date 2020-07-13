@@ -61,6 +61,13 @@ class AddCardViewController: UIViewController {
         expDatePickerView.layer.borderWidth = 1
         expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
         
+        self.view.addSubview(cardAnimation)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openScan(_:)))
+        self.cardAnimation.addGestureRecognizer(gesture)
+    }
+    
+    @objc func openScan(_ send: UITapGestureRecognizer) {
+        showActionSheet()
     }
     
     
