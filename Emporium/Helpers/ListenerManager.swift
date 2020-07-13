@@ -17,14 +17,18 @@ class ListenerManager {
         listenerList = []
     }
     
+    func add(_ listener: ListenerRegistration) {
+        listenerList.append(listener)
+    }
+    
     func clear() {
         
         if listenerList.count > 0 {
-            listenerList.removeAll()
-            
             for listener in listenerList {
                 listener.remove()
             }
+            
+            listenerList.removeAll()
         }
         
     }

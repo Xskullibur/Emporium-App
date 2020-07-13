@@ -45,7 +45,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var storeList_moreThan2: [GroceryStore] = []
     var visitorCountListiners: [ListenerRegistration] = []
     
-    var listenerHelper = ListenerManager()
+    var listenerManager = ListenerManager()
     var selectedStore: GroceryStore?
     var queueId: String?
     var currentlyServing: String?
@@ -296,6 +296,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     self.updateAnnotationWithStore(store)
                 }
                 
+                listenerManager.add(listener)
+                
             }
         }
         
@@ -304,7 +306,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
@@ -315,6 +317,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     store.maxVisitorCapacity = maxCapacity
                     self.updateAnnotationWithStore(store)
                 }
+                
+                listenerManager.add(listener)
                 
             }
         }
@@ -324,7 +328,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
@@ -335,6 +339,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     store.maxVisitorCapacity = maxCapacity
                     self.updateAnnotationWithStore(store)
                 }
+                
+                listenerManager.add(listener)
                 
             }
         }
@@ -378,6 +384,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
                 
+                self.listenerManager.clear()
                 self.navigateBasedOnCapacity(store)
                 
             }))
@@ -385,6 +392,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.present(alert, animated: true)
         }
         else {
+            listenerManager.clear()
             performSegue(withIdentifier: "ShowQueue", sender: self)
         }
     }
