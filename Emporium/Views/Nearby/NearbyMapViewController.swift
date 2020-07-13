@@ -461,6 +461,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         // NearbyList
         if segue.identifier == "ShowNearbyList" {
             let nearbyListVC = segue.destination as! NearbyListViewController
+            nearbyListVC.storeSelectDelegate = self
             nearbyListVC.storeList_lessThan1 = storeList_lessThan1
             nearbyListVC.storeList_lessThan2 = storeList_lessThan2
             nearbyListVC.storeList_moreThan2 = storeList_moreThan2
