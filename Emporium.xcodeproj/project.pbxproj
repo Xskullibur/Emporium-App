@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B31A8B24BBECF100459A57 /* ListenerManager.swift */; };
 		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
@@ -134,6 +135,7 @@
 /* Begin PBXFileReference section */
 		032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
+		34B31A8B24BBECF100459A57 /* ListenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
 		34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresTableViewController.swift; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				ACED1E02249CA19700094284 /* LoginManager.swift */,
 				ED57F79B249CA2380013A133 /* Toast.swift */,
 				ACAEE67024A1DC9100C286BF /* Spinner.swift */,
+				34B31A8B24BBECF100459A57 /* ListenerManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1022,6 +1025,7 @@
 				AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */,
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
+				34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */,
 				ED61104D24A34A3F00FFD408 /* Cart2.swift in Sources */,
 				ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */,
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,

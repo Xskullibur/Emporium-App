@@ -45,6 +45,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var storeList_moreThan2: [GroceryStore] = []
     var visitorCountListiners: [ListenerRegistration] = []
     
+    var listenerHelper = ListenerManager()
     var selectedStore: GroceryStore?
     var queueId: String?
     var currentlyServing: String?
@@ -130,7 +131,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         // Crowd Level
         let crowdColor = annotation.store.getCrowdLevelColor()
-        let crowdLevel = annotation.store.getCrowdLevel()
         
         // Custom Marker
         view.markerTintColor = crowdColor
@@ -284,7 +284,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 // Add listiner to update annotation
-                storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
