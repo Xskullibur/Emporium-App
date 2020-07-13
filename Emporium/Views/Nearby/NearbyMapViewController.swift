@@ -361,11 +361,11 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         selectedStore = store
         
         if Auth.auth().currentUser != nil {
-            navigate(store)
+            joinQueueAndNavigate(store)
         }
         else {
             loginManager!.setLoginComplete { (user) in
-                self.navigate(store)
+                self.joinQueueAndNavigate(store)
             }
             
             loginManager!.showLoginViewController()
@@ -373,7 +373,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
     }
     
-    func navigate(_ store: GroceryStore) {
+    func joinQueueAndNavigate(_ store: GroceryStore) {
         if store.getCrowdLevel() == .high {
             let alert = UIAlertController(
                 title: "Notice",
@@ -383,9 +383,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                
                 self.joinQueue(store: store)
-                
             }))
             
             self.present(alert, animated: true)
@@ -418,8 +416,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 return
             }
             
-            self.queueId = queueId
-            
             // Get QueueInfo
             let queueDataManager = QueueDataManager()
             queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
@@ -427,12 +423,18 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 // Remove Spinnter
                 self.removeSpinner()
                 
-                // Set Globals for navigation
-                self.currentlyServing = currentlyServing
-                self.queueLength = queueLength
-                
                 // Navigate to QueueVC
-                self.performSegue(withIdentifier: "ShowQueue", sender: self)
+                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
+                
+                queueVC.justJoinedQueue = true
+                queueVC.queueId = queueId
+                queueVC.currentlyServing = currentlyServing
+                queueVC.queueLength = queueLength
+                queueVC.store = store
+                
+                let rootVC = self.navigationController?.viewControllers.first
+                self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
                 
             }
         }) { (error) in
@@ -450,21 +452,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             nearbyListVC.storeList_lessThan1 = storeList_lessThan1
             nearbyListVC.storeList_lessThan2 = storeList_lessThan2
             nearbyListVC.storeList_moreThan2 = storeList_moreThan2
-        }
-        
-        // Queue
-        else if segue.identifier == "ShowQueue" {
-            
-            let queueVC = segue.destination as! QueueViewController
-            queueVC.justJoinedQueue = true
-            queueVC.queueId = self.queueId!
-            queueVC.currentlyServing = currentlyServing
-            queueVC.queueLength = queueLength
-            
-            if let store = self.selectedStore {
-                queueVC.store = store
-            }
-            
         }
         
     }

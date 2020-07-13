@@ -114,10 +114,12 @@ class QueueViewController: UIViewController {
                             
                             // Navigate to Entry
                             let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                            
                             let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
                             entryVC.store = self.store
                             
-                            self.present(entryVC, animated: true, completion: nil)
+                            let rootVC = self.navigationController?.viewControllers.first
+                            self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
                             
                         }
                         else {

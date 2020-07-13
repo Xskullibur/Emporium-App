@@ -44,7 +44,14 @@ class EntryViewController: UIViewController {
         annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
-    @IBAction func enteryStoreBtnPressed(_ sender: Any) {
+    @IBAction func enterStoreButtonPressed(_ sender: Any) {
+        // Navigate to InStore
+        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+        
+        let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+        
+        let rootVC = self.navigationController?.viewControllers.first
+        self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
     }
     
     

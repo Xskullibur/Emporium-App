@@ -10,7 +10,7 @@
         <!--Queue View Controller-->
         <scene sceneID="cT9-vy-MrO">
             <objects>
-                <viewController id="a0P-iU-G4O" customClass="QueueViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="queueVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a0P-iU-G4O" customClass="QueueViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zhx-fv-GgF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,8 +199,7 @@ Grocery Store</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Enter Grocery Store"/>
                                                 <connections>
-                                                    <action selector="enteryStoreBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="27d-Z7-Plu"/>
-                                                    <segue destination="Fwo-OH-8q4" kind="show" id="zMC-kS-Bxx"/>
+                                                    <action selector="enterStoreButtonPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="9tQ-yN-vmH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -225,6 +224,7 @@ Grocery Store</string>
                         <outlet property="directionBtn" destination="qUk-ha-Dlv" id="uva-xp-L69"/>
                         <outlet property="enterStoreBtn" destination="EDA-50-lM2" id="XdK-2D-GO4"/>
                         <outlet property="reminderLabel" destination="8iC-LH-vCn" id="AbQ-j8-byT"/>
+                        <segue destination="Fwo-OH-8q4" kind="show" id="hGa-wg-mpU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3l-UI-mTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -252,7 +252,7 @@ Grocery Store</string>
         <!--In Store View Controller-->
         <scene sceneID="lb4-rr-hoT">
             <objects>
-                <viewController id="Fwo-OH-8q4" customClass="InStoreViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inStoreVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fwo-OH-8q4" customClass="InStoreViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ggO-c3-rMU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
