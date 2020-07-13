@@ -13,8 +13,12 @@ class CardCell: UITableViewCell {
     
     @IBOutlet weak var brandImage: UIImageView!
     @IBOutlet weak var cardTypeLabel: UILabel!
-    @IBOutlet weak var last4Label: UILabel!
+    @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var expDateLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var last4Label: UILabel!
+    
     @IBOutlet weak var deleteBtn: UIButton!
     
     override func awakeFromNib() {

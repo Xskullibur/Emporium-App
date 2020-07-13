@@ -106,8 +106,10 @@ class ShopDataManager
                     let last4 = doc.get("last4") as! String
                     let expMonth = "\(doc.get("expMonth") ?? "0")"
                     let expYear = "\(doc.get("expYear") ?? "0000")"
+                    let nickname = doc.get("nickname") as! String
+                    let bank = doc.get("bank") as! String
                     
-                    cardList.append(Card(fp: fp, brand: brand, cardType: cardType, last4: last4, expMonth: expMonth, expYear: expYear))
+                    cardList.append(Card(fp: fp, brand: brand, cardType: cardType, last4: last4, expMonth: expMonth, expYear: expYear, nick: nickname, bank: bank))
                 }
                  onComplete?(cardList)
             }

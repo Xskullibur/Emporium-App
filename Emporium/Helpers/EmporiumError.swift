@@ -19,4 +19,15 @@ enum EmporiumError : Error {
 
 enum StringError : Error {
     case stringError(String)
+    
+    /**
+     Returns a String representation of the error
+     */
+    func get() -> String{
+        switch self {
+        case .stringError(let errorStr):
+            return errorStr
+        }
+    }
+    
 }

@@ -22,9 +22,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
     //Closure called once the login completes
     private var loginComplete: ((User?) -> Void)? = nil
     
-    //Logining as 'User' or 'Merchant'
-    var loginAsUserType: UserType = .user
-    
+
     lazy var functions = Functions.functions()
     
     /**
@@ -66,13 +64,6 @@ class LoginManager : NSObject, FUIAuthDelegate {
     }
     
     /**
-     Set login as 'User' or 'Merchant'
-     */
-    func setLoginAsUserType(userType: UserType){
-        self.loginAsUserType = userType
-    }
-    
-    /**
      After FirebaseUI login completes
      */
     public func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
@@ -95,20 +86,7 @@ class LoginManager : NSObject, FUIAuthDelegate {
                     self.resetEarnedRewardsDataManager()
                 }
             }
-            
-            user.getUserType(){
-                userType, error in
-                
-                if userType != nil && userType == self.loginAsUserType{
-                    //User have the same user type and login is successful
-                    self.loginComplete?(user)
-                }else{
-                    try? Auth.auth().signOut()
-                    Toast.showToast("User is not a \(self.loginAsUserType.rawValue).")
-                    print("User type is not correct. Maybe you are trying to login as a merchant when the account is a user or vice versa.")
-                }
-                
-            }
+            self.loginComplete?(user)
         }
         self.loginComplete?(user)
     }
