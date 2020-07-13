@@ -24,13 +24,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.layer.cornerRadius = 10
         priceLabel.layer.cornerRadius = 10
         
-        priceLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
-        priceLabel.layer.shadowColor = UIColor.darkGray.cgColor
-        priceLabel.layer.shadowRadius = 5
-        priceLabel.layer.shadowOpacity = 0.9
-        priceLabel.layer.masksToBounds = false
-        priceLabel.clipsToBounds = false
-        
         if cartData.count == 0 {
             priceLabel.text = "Total: $0.00"
         }else{
