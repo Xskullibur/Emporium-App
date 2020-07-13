@@ -20,6 +20,7 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var nicknameInput: UITextField!
     @IBOutlet weak var cardAnimation: AnimationView!
+    @IBOutlet weak var showClickLabel: UILabel!
     
     var backendBaseURL: String? = "http://192.168.86.1:5000" //school
     
@@ -64,14 +65,10 @@ class AddCardViewController: UIViewController {
         self.view.addSubview(cardAnimation)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openScan(_:)))
         self.cardAnimation.addGestureRecognizer(gesture)
+        self.cardAnimation.addSubview(showClickLabel)
     }
     
     @objc func openScan(_ send: UITapGestureRecognizer) {
-        showActionSheet()
-    }
-    
-    
-    @IBAction func scanBtnPressed(_ sender: Any) {
         showActionSheet()
     }
     
