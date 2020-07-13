@@ -14,6 +14,7 @@ import MaterialComponents.MaterialBottomSheet
 class VouchersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var pointCard: MDCCard!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var vouchersTableView: UITableView!
     
@@ -33,6 +34,9 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //Setup card shadow
+        pointCard.setShadowElevation(ShadowElevation(6), for: .normal)
         
         self.loginManager = LoginManager(viewController: self)
         
@@ -69,7 +73,7 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         self.pointDataManager = PointDataManager()
         self.pointDataManager?.getPoints(user: self.user){
             points in
-            self.pointsLabel.text = "You have: \(points) Points"
+            self.pointsLabel.text = "\(points) Pt"
         }
     }
     
