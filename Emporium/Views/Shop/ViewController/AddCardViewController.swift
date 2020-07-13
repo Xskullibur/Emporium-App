@@ -60,6 +60,7 @@ class AddCardViewController: UIViewController {
         
         expDatePickerView.layer.borderWidth = 1
         expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
+        
     }
     
     
@@ -132,7 +133,10 @@ class AddCardViewController: UIViewController {
                 for err in error {
                     totalError = totalError + err
                 }
-                Toast.showToast(totalError)
+                let showAlert = UIAlertController(title: "Card not added", message: totalError, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
             }
         
             
@@ -148,21 +152,21 @@ class AddCardViewController: UIViewController {
         format.dateFormat = "MM"
         let currentMonth = format.string(from: date)
         
-        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16) {
+        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16 || Int(number) == nil) {
             error.append("Card number must have exactily 16 digit\n")
         }
         
-        if(Int(number) == nil) {
-            error.append("Card number must only contain numbers\n")
-        }
+//        if(Int(number) == nil) {
+//            error.append("Card number must only contain numbers\n")
+//        }
         
-        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3) {
+        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3 || Int(cvc) == nil) {
             error.append("CVC must have exactily 3 digit\n")
         }
         
-        if(Int(cvc) == nil) {
-            error.append("CVC must only contain numbers\n")
-        }
+//        if(Int(cvc) == nil) {
+//            error.append("CVC must only contain numbers\n")
+//        }
         
         if(Int(currentMonth)! >= month) {
             if Int(currentYear)! >= year {
