@@ -92,7 +92,7 @@
                                                         <color key="backgroundColor" name="Surface"/>
                                                         <size key="customSize" width="100" height="100"/>
                                                         <connections>
-                                                            <segue destination="2bV-D7-cam" kind="show" id="FYd-St-oK5"/>
+                                                            <segue destination="2bV-D7-cam" kind="show" identifier="ShowNearby" id="FYd-St-oK5"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCell" id="tb1-1f-4g7" customClass="MDCCardCollectionCell">
