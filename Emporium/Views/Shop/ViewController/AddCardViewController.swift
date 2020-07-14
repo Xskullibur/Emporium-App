@@ -22,7 +22,7 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var cardAnimation: AnimationView!
     @IBOutlet weak var showClickLabel: UILabel!
     
-    var backendBaseURL: String? = "http://192.168.86.1:5000" //school
+    var backendBaseURL: String? = ServerLocation.getLocation()
     
     let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)

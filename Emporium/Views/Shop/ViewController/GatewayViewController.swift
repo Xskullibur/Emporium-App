@@ -21,9 +21,7 @@ class GatewayViewController: UIViewController {
     @IBOutlet weak var cardAnimation: AnimationView!
     
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://172.27.177.40:5000"
-    //local http://192.168.86.1:5000
-    //web https://hidden-ridge-68133.herokuapp.com
+    var backendBaseURL: String? = ServerLocation.getLocation()
     //visa credit 4242424242424242 cvc: any 3 number
     //visa debit  4000056655665556
     

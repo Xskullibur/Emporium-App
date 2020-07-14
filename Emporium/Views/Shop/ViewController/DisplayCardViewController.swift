@@ -15,7 +15,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     var cardList: [Card] = []
     var cartData: [Cart] = []
     
-    var backendBaseURL: String? = "http://192.168.86.1:5000"
+    var backendBaseURL: String? = ServerLocation.getLocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
