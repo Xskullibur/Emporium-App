@@ -11,6 +11,8 @@ import UIKit
 class HistoryCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var receivedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

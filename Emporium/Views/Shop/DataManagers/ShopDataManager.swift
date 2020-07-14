@@ -74,12 +74,12 @@ class ShopDataManager
         }
     }
     
-    static func loadHistory(onComplete: (([String]) -> Void)?) {
+    static func loadHistory(onComplete: (([History]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
         {
             (querySnapshot, err) in
             
-            var purchaseHistory: [String] = []
+            var purchaseHistory: [History] = []
             
             if let err = err
             {
@@ -89,7 +89,10 @@ class ShopDataManager
             {
                 for doc in querySnapshot!.documents
                 {
-                    purchaseHistory.append(doc.documentID)
+                    let amount: String = doc.get("amount") as! String
+                    let date = String(doc.documentID)
+                    let receive = doc.get("received") as! String
+                    purchaseHistory.append(History(amount: amount, date: date, received: receive))
                 }
             }
             onComplete?(purchaseHistory.reversed())

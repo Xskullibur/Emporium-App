@@ -14,7 +14,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-    var purchaseHistory: [String] = []
+    var purchaseHistory: [History] = []
     var docID: String = ""
     
     override func viewDidLoad() {
@@ -38,23 +38,30 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryCell
+        let history = purchaseHistory[indexPath.row]
+        var total: Double = 0.0
+        total = Double(history.amount)! / 100.0
         
         cell.layer.cornerRadius = 10
-        cell.titleLabel.text = purchaseHistory[indexPath.row]
+        cell.titleLabel.text = history.date
+        cell.totalLabel.text = "$" + String(format: "%.02f", total)
         
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
-        cell.layer.shadowRadius = 5
-        cell.layer.shadowOpacity = 0.9
-        cell.layer.masksToBounds = false
-        cell.clipsToBounds = false
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
+        
+        if history.received == "no" {
+            cell.receivedLabel.text = "No"
+            cell.receivedLabel.textColor = .red
+        }else{
+            cell.receivedLabel.text = "Yes"
+            cell.receivedLabel.textColor = .green
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        docID = purchaseHistory[indexPath.row]
+        docID = purchaseHistory[indexPath.row].date
         showActionSheet()
 
     }
