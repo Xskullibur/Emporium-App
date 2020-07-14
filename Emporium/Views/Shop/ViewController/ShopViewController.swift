@@ -71,8 +71,14 @@ class ShopViewController: UIViewController {
         ShopDataManager.loadProducts() {
             productList in
             for product in productList {
-                if product.productName.lowercased().contains(search.lowercased()) {
-                    sortedList.append(product)
+                if self.selectedCategory.count != 0 && self.selectedCategory.contains(product.category) {
+                    if product.productName.lowercased().contains(search.lowercased()) {
+                        sortedList.append(product)
+                    }
+                }else if self.selectedCategory.count == 0 {
+                    if product.productName.lowercased().contains(search.lowercased()) {
+                        sortedList.append(product)
+                    }
                 }
             }
             self.ProductCateLabel.text = "Product: tap to add (result for " + search + ")"
