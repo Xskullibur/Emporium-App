@@ -428,10 +428,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
                 
                 queueVC.justJoinedQueue = true
-                queueVC.queueId = queueId
-                queueVC.currentlyServing = currentlyServing
-                queueVC.queueLength = queueLength
                 queueVC.store = store
+                queueVC.queueId = queueId
                 
                 let rootVC = self.navigationController?.viewControllers.first
                 self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)

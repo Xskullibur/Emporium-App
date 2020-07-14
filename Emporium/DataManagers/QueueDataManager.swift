@@ -18,11 +18,6 @@ class QueueDataManager {
     let userID = Auth.auth().currentUser!.uid
     let storeCollection: CollectionReference
     
-    enum QueueStatus {
-        case inStore
-        case completed
-    }
-    
     init() {
         
         storeCollection = db
@@ -36,6 +31,68 @@ class QueueDataManager {
             functions.useFunctionsEmulator(origin: functionsHost)
         }
         #endif
+    }
+    
+    func checkExistingQueue(userId: String, onComplete: @escaping (QueueItem?) -> Void, onError: @escaping (String) -> Void){
+        
+        // Get User's Queue Ref
+        let userRef = db.document("users/\(userId)")
+        userRef.getDocument { (userDocumentSnapshot, userError) in
+            if let error = userError {
+                print("Error retreiving collection. (checkExistingQueue.userRef): \(error)")
+                return
+            }
+            
+            guard let userDocument = userDocumentSnapshot else {
+                print("Error fetching document. (checkExistingQueue.userRef): \(userError!)")
+                return
+            }
+            
+            guard let userData = userDocument.data() else {
+                print("Document data was empty. (checkExistingQueue.userRef)")
+                return
+            }
+            
+            // Return Nil if no Ref found
+            guard let queue = userData["queue"] else {
+                onComplete(nil)
+                return
+            }
+            
+            // Get Queue from QueueRef
+            let queueRef = queue as! DocumentReference
+            queueRef.getDocument { (queueDocumentSnapshot, queueError) in
+                if let queueError = queueError {
+                    print("Error retreiving collection. (checkExistingQueue.queueRef): \(queueError)")
+                    return
+                }
+                
+                guard let queueDocument = queueDocumentSnapshot else {
+                    print("Error fetching document. (checkExistingQueue.queueRef): \(queueError!)")
+                    return
+                }
+                
+                guard let data = queueDocument.data() else {
+                    print("Document data was empty. (checkExistingQueue.queueRef)")
+                    return
+                }
+                
+                let storeId = queueDocument.reference.parent.parent!.documentID
+                
+                let queueItem = QueueItem(
+                    id: queueDocument.documentID,
+                    storeId: storeId,
+                    userId: userId,
+                    date: (data["date"] as! Timestamp).dateValue(),
+                    status: QueueStatus(rawValue: data["status"] as! String)!
+                )
+                
+                onComplete(queueItem)
+                
+            }
+            
+        }
+        
     }
     
     /**
@@ -136,4 +193,24 @@ class QueueDataManager {
         }
         
     }
+    
+    func updateQueue(_ queueId: String, withStatus status: QueueStatus, forStoreId storeId: String, onComplete: @escaping (Bool) -> Void) {
+        
+        let queueDocument = storeCollection.document("\(storeId)/queue/\(queueId)")
+        queueDocument.updateData([
+            "status": status.rawValue
+        ]) { (error) in
+            
+            if let error = error {
+                print("Error updating queue: \(error.localizedDescription)")
+                onComplete(false)
+            }
+            else {
+                onComplete(true)
+            }
+            
+        }
+        
+    }
+    
 }

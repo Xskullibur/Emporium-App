@@ -11,12 +11,14 @@ import Foundation
 class QueueItem: NSObject {
     
     let id: String
+    let storeId: String
     let userId: String
     let date: Date
     let status: QueueStatus
     
-    init(id _id: String, userId _userId: String, date _date: Date, status _status: QueueStatus) {
+    init(id _id: String, storeId _storeId: String, userId _userId: String, date _date: Date, status _status: QueueStatus) {
         id = _id
+        storeId = _storeId
         userId = _userId
         date = _date
         status = _status

@@ -68,90 +68,83 @@ class QueueViewController: UIViewController {
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
         // Values
-        guard let queueId = queueId, let queueLength = queueLength, let currentlyServing = currentlyServing else {
-            return
-        }
-        
-        queueNumberLbl.text = QueueItem.hash_id(str: queueId)
-        queueLengthLbl.text = queueLength
-        currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
+        queueNumberLbl.text = QueueItem.hash_id(str: queueId!)
         
         // Setup
         if justJoinedQueue {
-            
-            // Show Volunteer Alert
             showVolunteerAlert()
+        }
+        
+        // Error Alert
+        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        errorAlert.addAction(okAction)
+        
+        // Visitor Count Listener
+        let listener = storeDataManager.visitorCountListenerForStore(store!) { (data) in
             
-            // Error Alert
-            let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            errorAlert.addAction(okAction)
-            
-            // Visitor Count Listener
-            let listener = storeDataManager.visitorCountListenerForStore(store!) { (data) in
-                
-                // Guard Data
-                guard let current_visitor_count = data["current_visitor_count"] as? Int,
-                    let max_capacity_count = data["max_visitor_capacity"] as? Int else {
-                        print("Field data was empty. (VisitorCount.Listener)")
-                        self.present(errorAlert, animated: true, completion: nil)
-                        return
-                }
-                
-                // Check for visitor count change
-                if current_visitor_count < max_capacity_count{
-                    // Get next person in Queue
-                    self.queueDataManager.popQueue(storeId: self.store!.id, queueId: self.queueId!, onComplete: { (data) in
-                            
-                        // Guard Data for nulls
-                        guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {
-                            print("Field data was empty. (popQueue.Functions)")
-                            self.present(errorAlert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        // Navigate if currently serving user
-                        if currentQueueId == self.queueId {
-                            
-                            // Clear Listeners
-                            self.listenerManager.clear()
-                            
-                            // Navigate to Entry
-                            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-                            
-                            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-                            entryVC.store = self.store
-                            
-                            let rootVC = self.navigationController?.viewControllers.first
-                            self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
-                            
-                        }
-                        else {
-                            // Update cards
-                            self.queueLengthLbl.text = queueLength
-                            self.currentlyServingLbl.text = QueueItem.hash_id(str: currentQueueId)
-                        }
-                        
-                    }) { (error) in
-                        // Error
-                        self.present(errorAlert, animated: true, completion: nil)
-                    }
-
-                }
-                else {
-                    
-                    // Get Queue Number and Queue Length
-                    self.queueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
-                        self.currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
-                        self.queueLengthLbl.text = queueLength
-                    }
-
-                }
+            // Guard Data
+            guard let current_visitor_count = data["current_visitor_count"] as? Int,
+                let max_capacity_count = data["max_visitor_capacity"] as? Int else {
+                    print("Field data was empty. (VisitorCount.Listener)")
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
             }
             
-            listenerManager.add(listener)
-            
+            // Check for visitor count change
+            if current_visitor_count < max_capacity_count{
+                // Get next person in Queue
+                self.queueDataManager.popQueue(storeId: self.store!.id, queueId: self.queueId!, onComplete: { (data) in
+                        
+                    // Guard Data for nulls
+                    guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {
+                        print("Field data was empty. (popQueue.Functions)")
+                        self.present(errorAlert, animated: true, completion: nil)
+                        return
+                    }
+                    
+                    // Navigate if currently serving user
+                    if currentQueueId == self.queueId {
+                        
+                        // Clear Listeners
+                        self.listenerManager.clear()
+                        
+                        // Navigate to Entry
+                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                        
+                        let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                        entryVC.store = self.store
+                        entryVC.queueId = self.queueId!
+                        
+                        let rootVC = self.navigationController?.viewControllers.first
+                        self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                        
+                    }
+                    else {
+                        // Update cards
+                        self.queueLengthLbl.text = queueLength
+                        self.currentlyServingLbl.text = QueueItem.hash_id(str: currentQueueId)
+                    }
+                    
+                }) { (error) in
+                    // Error
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+
+            }
+            else {
+                
+                // Get Queue Number and Queue Length
+                self.queueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
+                    self.currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
+                    self.queueLengthLbl.text = queueLength
+                }
+
+            }
         }
+        
+        listenerManager.add(listener)
+        
         
     }
     

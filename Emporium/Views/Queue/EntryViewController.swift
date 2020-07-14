@@ -17,6 +17,7 @@ class EntryViewController: UIViewController {
 
     // MARK: - Variable
     var store: GroceryStore?
+    var queueId: String?
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -45,13 +46,26 @@ class EntryViewController: UIViewController {
     }
     
     @IBAction func enterStoreButtonPressed(_ sender: Any) {
-        // Navigate to InStore
-        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
         
-        let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+        self.showSpinner(onView: self.view)
         
-        let rootVC = self.navigationController?.viewControllers.first
-        self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+        let queueDataManager = QueueDataManager()
+        queueDataManager.updateQueue(queueId!, withStatus: QueueStatus.InStore, forStoreId: store!.id) { (success) in
+            
+            self.removeSpinner()
+            
+            if success {
+                // Navigate to InStore
+                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                
+                let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                
+                let rootVC = self.navigationController?.viewControllers.first
+                self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+            }
+            
+        }
+        
     }
     
     

@@ -91,9 +91,6 @@
                                                         </collectionViewCellContentView>
                                                         <color key="backgroundColor" name="Surface"/>
                                                         <size key="customSize" width="100" height="100"/>
-                                                        <connections>
-                                                            <segue destination="2bV-D7-cam" kind="show" identifier="ShowNearby" id="FYd-St-oK5"/>
-                                                        </connections>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCell" id="tb1-1f-4g7" customClass="MDCCardCollectionCell">
                                                         <rect key="frame" x="110" y="20" width="100" height="100"/>
@@ -329,6 +326,7 @@
                         <outlet property="notificationTableView" destination="R2O-zY-6qV" id="XeE-pi-N7L"/>
                         <outlet property="pointsLabel" destination="c6Q-r2-8nU" id="qie-1s-47M"/>
                         <segue destination="oSk-Xp-OKn" kind="show" identifier="ToAccount" id="aYB-46-rgC"/>
+                        <segue destination="2bV-D7-cam" kind="show" identifier="ShowNearby" id="Qab-j4-LPB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

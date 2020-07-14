@@ -122,6 +122,97 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
+    /// Collection View Selected (Join Queue)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Join Queue Cell
+        if indexPath.row == 0 {
+            
+            if login {
+                
+                let queueDataManager = QueueDataManager()
+                queueDataManager.checkExistingQueue(userId: Auth.auth().currentUser!.uid, onComplete: { (queueItem) in
+                    
+                    // Guard QueueItem
+                    guard let queueItem = queueItem else {
+                        // Navigate to NearbyMart
+                        self.performSegue(withIdentifier: "ShowNearby", sender: self)
+                        return
+                    }
+                    
+                    // Get Store Info
+                    self.showSpinner(onView: self.view)
+                    
+                    let storeDataManager = StoreDataManager()
+                    storeDataManager.getStore(storeId: queueItem.storeId) { (store) in
+                        
+                        self.removeSpinner()
+                        
+                        switch (queueItem.status) {
+                            
+                            case .None:
+                                // Navigate to NearbyMart
+                                self.performSegue(withIdentifier: "ShowNearby", sender: self)
+                                
+                            case .InQueue:
+                                // Navigate to QueueVC
+                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
+                                
+                                queueVC.justJoinedQueue = false
+                                queueVC.store = store
+                                queueVC.queueId = queueItem.id
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
+                                
+                            case .OnTheWay:
+                                // Navigate to Entry
+                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                
+                                let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                                entryVC.store = store
+                                entryVC.queueId = queueItem.id
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                                
+                            case .InStore:
+                                // Navigate to InStore
+                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                
+                                let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                                
+                            case .Completed:
+                                // Navigate to NearbyMart
+                                self.performSegue(withIdentifier: "ShowNearby", sender: self)
+                            
+                        }
+                        
+                    }
+                    
+                }) { (error) in
+                    // Error Alert
+                    let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    errorAlert.addAction(okAction)
+                    
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+                
+            }
+            else {
+                // Navigate to NearbyMart
+                self.performSegue(withIdentifier: "ShowNearby", sender: self)
+            }
+            
+        }
+        
+    }
+    
     /**
      Switch view to login state.
      */

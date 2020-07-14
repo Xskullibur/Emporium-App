@@ -9,6 +9,7 @@
 import Foundation
 
 enum QueueStatus: String {
+    case None = ""
     case InQueue = "In Queue"
     case OnTheWay = "On The Way"
     case InStore = "In Store"
