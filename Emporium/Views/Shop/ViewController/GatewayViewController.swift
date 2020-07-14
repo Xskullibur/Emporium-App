@@ -119,6 +119,8 @@ class GatewayViewController: UIViewController {
                 paymentInfo.year = Int32(year)
                 paymentInfo.cvc = cvc!
                 paymentInfo.userid = Auth.auth().currentUser?.uid as! String
+                paymentInfo.bank = ""
+                paymentInfo.name = ""
                 
                 for cart in cartData {
                     var cartItemAdd = CartItem()
