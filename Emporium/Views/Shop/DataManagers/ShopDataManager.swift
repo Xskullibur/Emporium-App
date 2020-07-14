@@ -74,6 +74,33 @@ class ShopDataManager
         }
     }
     
+    static func loadSelectedHistory(selected: [String], onComplete: (([History]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
+        {
+            (querySnapshot, err) in
+            
+            var purchaseHistory: [History] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    if selected.contains(doc.get("received") as! String) {
+                        let amount: String = doc.get("amount") as! String
+                        let date = String(doc.documentID)
+                        let receive = doc.get("received") as! String
+                        purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                    }
+                }
+            }
+            onComplete?(purchaseHistory.reversed())
+        }
+    }
+    
     static func loadHistory(onComplete: (([History]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
         {

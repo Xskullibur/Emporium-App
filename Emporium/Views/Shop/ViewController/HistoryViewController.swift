@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RSSelectionMenu
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -15,6 +16,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var purchaseHistory: [History] = []
+    let filter: [String] = ["yes", "no"]
+    var selected: [String] = []
     var docID: String = ""
     
     override func viewDidLoad() {
@@ -26,6 +29,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func loadHistory() {
         ShopDataManager.loadHistory() {
+            history in
+            self.purchaseHistory = history
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loadSelectedHistory() {
+        ShopDataManager.loadSelectedHistory(selected: selected) {
             history in
             self.purchaseHistory = history
             self.tableView.reloadData()
@@ -51,10 +62,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if history.received == "no" {
             cell.receivedLabel.text = "No"
-            cell.receivedLabel.textColor = .red
+            cell.receivedLabel.textColor = .systemRed
         }else{
             cell.receivedLabel.text = "Yes"
-            cell.receivedLabel.textColor = .green
+            cell.receivedLabel.textColor = .systemGreen
         }
         
         return cell
@@ -69,6 +80,36 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! HistoryDetailViewController
         destVC.docID = self.docID
+    }
+    
+    
+    @IBAction func filterBtnPressed(_ sender: Any) {
+        showFilter()
+    }
+    
+    func showFilter() {
+        let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: filter)  {
+            (cell, name, indexPath) in
+            cell.textLabel?.text = name
+        }
+        selectionMenu.cellSelectionStyle = .checkbox
+        selectionMenu.show(style: .actionSheet(title: "Received status", action: "Filter", height: nil), from: self)
+        
+        
+        selectionMenu.onDismiss = { [weak self] selectedItems in
+            self?.selected = []
+            self?.selected = selectedItems
+            
+            if self?.selected.count == 0 {
+                self?.loadHistory()
+            }else{
+                self?.loadSelectedHistory()
+            }
+    }
+        
+        selectionMenu.setSelectedItems(items: selected) { [weak self] (item, index, isSelected, selectedItems) in
+            self?.selected = selectedItems
+        }
     }
     
     func showActionSheet() {

@@ -87,7 +87,7 @@ class ShopViewController: UIViewController {
             cell.textLabel?.text = name
         }
         selectionMenu.cellSelectionStyle = .checkbox
-        selectionMenu.show(style: .actionSheet(title: "Category", action: "Done", height: nil), from: self)
+        selectionMenu.show(style: .actionSheet(title: "Category", action: "Filter", height: nil), from: self)
         
         
         selectionMenu.onDismiss = { [weak self] selectedItems in
