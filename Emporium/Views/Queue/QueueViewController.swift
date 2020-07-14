@@ -68,9 +68,13 @@ class QueueViewController: UIViewController {
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
         // Values
-        queueNumberLbl.text = queueId!
-        queueLengthLbl.text = queueLength!
-        currentlyServingLbl.text = currentlyServing!
+        guard let queueId = queueId, let queueLength = queueLength, let currentlyServing = currentlyServing else {
+            return
+        }
+        
+        queueNumberLbl.text = QueueItem.hash_id(str: queueId)
+        queueLengthLbl.text = queueLength
+        currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
         
         // Setup
         if justJoinedQueue {
@@ -125,7 +129,7 @@ class QueueViewController: UIViewController {
                         else {
                             // Update cards
                             self.queueLengthLbl.text = queueLength
-                            self.currentlyServingLbl.text = currentQueueId
+                            self.currentlyServingLbl.text = QueueItem.hash_id(str: currentQueueId)
                         }
                         
                     }) { (error) in
@@ -138,7 +142,7 @@ class QueueViewController: UIViewController {
                     
                     // Get Queue Number and Queue Length
                     self.queueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
-                        self.currentlyServingLbl.text = currentlyServing
+                        self.currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
                         self.queueLengthLbl.text = queueLength
                     }
 

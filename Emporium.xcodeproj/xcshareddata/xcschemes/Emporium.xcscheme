@@ -73,7 +73,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "functions_host"
-            value = "http://172.27.176.212:5000"
+            value = "http://192.168.1.184:5000"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
