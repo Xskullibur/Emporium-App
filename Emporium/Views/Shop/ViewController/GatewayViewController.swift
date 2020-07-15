@@ -11,13 +11,15 @@ import Stripe
 import Firebase
 import Foundation
 import Lottie
+import MLKit
 
 class GatewayViewController: UIViewController {
     
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
-    
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var showClickLabel: UILabel!
     @IBOutlet weak var cardAnimation: AnimationView!
     
     var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
@@ -25,18 +27,22 @@ class GatewayViewController: UIViewController {
     //visa credit 4242424242424242 cvc: any 3 number
     //visa debit  4000056655665556
     
+    let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
-    var labelData: [String] = ["Exp Month", "Exp Year"]
+    var banks: [String] = []
+    var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        banks = scan.getBankList()
+        
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
+        nameInput.placeholder = "Name(Optional)"
         
-        //cardImageView.image = UIImage(named: "noImage")
         
         self.expDatePickerView.dataSource = self
         self.expDatePickerView.delegate = self
@@ -57,6 +63,11 @@ class GatewayViewController: UIViewController {
         
        expDatePickerView.layer.borderWidth = 1
        expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
+        
+       self.view.addSubview(cardAnimation)
+       let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openScan(_:)))
+       self.cardAnimation.addGestureRecognizer(gesture)
+       self.cardAnimation.addSubview(showClickLabel)
         
     }
     
@@ -179,28 +190,111 @@ class GatewayViewController: UIViewController {
             Toast.showToast(totalError)
         }
     }
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let gallery = UIAlertAction(title: "Choose from gallery", style: .default) {
+            action in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            
+            picker.allowsEditing = true
+            picker.sourceType = .photoLibrary
+            
+            self.present(picker, animated: true)
+        }
+        
+        let scan = UIAlertAction(title: "Camera", style: .default) {
+            action in
+            
+            if !(UIImagePickerController.isSourceTypeAvailable( .camera))
+            {
+                let showAlert = UIAlertController(title: "Error", message: "Camera not available!", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
+                
+            }else{
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                
+                self.present(picker, animated: true)
+            }
+        }
+        
+        actionSheet.addAction(gallery)
+        actionSheet.addAction(scan)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc func openScan(_ send: UITapGestureRecognizer) {
+        showActionSheet()
+    }
         
 }
 
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return monthPickerData.count
-        }else{
+        }else if component == 1{
             return yearPickerData.count
+        }else{
+            return banks.count
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
+       if component == 0 {
             return String(monthPickerData[row])
-        }else{
+        }else if component == 1{
             return String(yearPickerData[row])
+        }else{
+            return String(banks[row])
         }
     }
 }
 
+extension GatewayViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        getImageData(imageInput: info[.editedImage] as! UIImage)
+        picker.dismiss(animated: true)
+    }
+    
+    func getImageData(imageInput: UIImage) {
+        let imageInput = VisionImage(image: imageInput)
+        let textRec = TextRecognizer.textRecognizer()
+        
+        textRec.process(imageInput) {
+            result, error in
+            
+            if error != nil {
+                
+            }else{
+                let resultText = result!.text
+                let resultArray = resultText.components(separatedBy: "\n")
+                
+                let details =  self.scan.extractValue(items: resultArray)
+                
+                self.numberInput.text = details.cardNumber
+                self.expDatePickerView.selectRow(details.month, inComponent: 0, animated: true)
+                self.expDatePickerView.selectRow(details.year, inComponent: 1, animated: true)
+                self.expDatePickerView.selectRow(details.bank, inComponent: 2, animated: true)
+                
+                self.nameInput.text = self.scan.extractName(results: resultArray)
+                print("Raw result:\n" + resultText + "\n end of raw result")
+            }
+        }
+    }
+}
