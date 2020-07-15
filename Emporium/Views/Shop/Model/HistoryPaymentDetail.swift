@@ -13,11 +13,13 @@ class HistoryPaymentDetail: NSObject {
     var brand: String = ""
     var type: String = ""
     var last4: String = ""
+    var receipt: String = ""
     
-    init(amount: String, type: String, last4: String, brand: String) {
+    init(amount: String, type: String, last4: String, brand: String, receipt: String) {
         self.amount = amount
         self.type = type
         self.last4 = last4
         self.brand = brand
+        self.receipt = receipt
     }
 }
