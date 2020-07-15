@@ -19,6 +19,7 @@ target 'Emporium' do
   pod 'MaterialComponents/Buttons'
   pod 'MaterialComponents/Buttons+Theming'
   pod 'MaterialComponents/BottomSheet'
+  pod 'MaterialComponents/Chips'
   
   pod 'lottie-ios'
   
@@ -27,6 +28,8 @@ target 'Emporium' do
   pod 'SwiftProtobuf'
   
   pod 'GoogleMLKit/TextRecognition'
+  
+  pod 'RSSelectionMenu'
 
   target 'EmporiumTests' do
     inherit! :search_paths

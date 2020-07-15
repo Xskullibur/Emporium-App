@@ -419,6 +419,18 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Shapes
+  - MaterialComponents/Chips (110.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
   - MaterialComponents/Elevation (110.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
@@ -427,6 +439,7 @@ PODS:
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (110.0.0)
   - MaterialComponents/private/Application (110.0.0)
   - MaterialComponents/private/Color (110.0.0):
     - MaterialComponents/Availability
@@ -467,6 +480,14 @@ PODS:
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (110.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
   - MaterialComponents/Typography (110.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
@@ -499,6 +520,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
+  - RSSelectionMenu (7.0.0)
   - SDWebImage (5.8.1):
     - SDWebImage/Core (= 5.8.1)
   - SDWebImage/Core (5.8.1)
@@ -519,6 +541,8 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
+  - MaterialComponents/Chips
+  - RSSelectionMenu
   - Stripe
   - SwiftProtobuf
 
@@ -566,6 +590,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - RSSelectionMenu
     - SDWebImage
     - Stripe
     - SwiftProtobuf
@@ -613,10 +638,11 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
+  RSSelectionMenu: 096db1676b37214a2c447383e80733599b74a052
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
   SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
-PODFILE CHECKSUM: d0f94b48a566ccb8c40e586202932c652838bffe
+PODFILE CHECKSUM: 8300f350268ac1799e6a406c4142ac9c99846180
 
 COCOAPODS: 1.9.3
