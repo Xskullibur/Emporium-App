@@ -419,6 +419,18 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Shapes
+  - MaterialComponents/Chips (110.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
   - MaterialComponents/Elevation (110.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
@@ -427,6 +439,7 @@ PODS:
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (110.0.0)
   - MaterialComponents/private/Application (110.0.0)
   - MaterialComponents/private/Color (110.0.0):
     - MaterialComponents/Availability
@@ -467,6 +480,14 @@ PODS:
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (110.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
   - MaterialComponents/Typography (110.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
@@ -519,6 +540,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
+  - MaterialComponents/Chips
   - Stripe
   - SwiftProtobuf
 
@@ -617,6 +639,6 @@ SPEC CHECKSUMS:
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
   SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
-PODFILE CHECKSUM: d0f94b48a566ccb8c40e586202932c652838bffe
+PODFILE CHECKSUM: 9f8100749b14588a336335cb9c27ada2080b8be8
 
 COCOAPODS: 1.9.3

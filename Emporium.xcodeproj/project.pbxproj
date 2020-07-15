@@ -75,6 +75,8 @@
 		ACED1E03249CA19700094284 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
 		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
 		ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */; };
+		ED1F17C624BEAD83007CF9C5 /* ItemTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */; };
+		ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
 		ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */; };
@@ -213,6 +215,8 @@
 		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueStatus.swift; sourceTree = "<group>"; };
+		ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableView.swift; sourceTree = "<group>"; };
+		ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
 		ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyListViewController.swift; sourceTree = "<group>"; };
@@ -562,16 +566,26 @@
 			path = DataMangers;
 			sourceTree = "<group>";
 		};
+		ED1F17C224BEAC8B007CF9C5 /* RequestorList */ = {
+			isa = PBXGroup;
+			children = (
+				ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */,
+				ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */,
+				ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */,
+			);
+			path = RequestorList;
+			sourceTree = "<group>";
+		};
 		ED57F794249C98F10013A133 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
+				ED1F17C224BEAC8B007CF9C5 /* RequestorList */,
 				ED61105224A44BAC00FFD408 /* Models */,
 				ED57F7A224A08A810013A133 /* Animation */,
 				ED57F795249C99B50013A133 /* Queue.storyboard */,
 				ED57F797249C9DD90013A133 /* QueueViewController.swift */,
 				ED57F7A724A1CBE70013A133 /* EntryViewController.swift */,
 				ED57F7AB24A1DFC20013A133 /* InStoreViewController.swift */,
-				ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
@@ -1077,12 +1091,14 @@
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
+				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
 				7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */,
 				ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				ED61105124A44BA600FFD408 /* RequestedItem.swift in Sources */,
+				ED1F17C624BEAD83007CF9C5 /* ItemTableView.swift in Sources */,
 				7F0B388624ADDA830003B9D9 /* Card.swift in Sources */,
 				ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */,
 				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,

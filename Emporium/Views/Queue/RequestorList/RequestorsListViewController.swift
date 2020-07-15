@@ -8,20 +8,15 @@
 
 import UIKit
 import Lottie
+import MaterialComponents.MaterialChips
 
-// Order Cell
-class ItemCell: UITableViewCell {
+class RequestorsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var checkView: UIView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-}
-
-class RequestorsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Variables
     var itemList: [RequestedItem] = []
+    var categoryList: [String] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,6 +24,16 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         
         #warning("TODO: Remove test data")
         itemList = RequestedItem.getDebug()
+        
+        let layout = MDCChipCollectionViewFlowLayout()
+        categoryCollectionView.collectionViewLayout = layout
+        
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        
+        // Get Categories
+        let categories = itemList.map { $0.cart.product.category }
+        categoryList = Array(Set(categories))
         
     }
     
@@ -77,7 +82,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemTableViewCell
         
         let item = itemList[row]
         cell.selectionStyle = .none
@@ -114,7 +119,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let row = indexPath.row
-        let cell = tableView.cellForRow(at: indexPath) as! ItemCell
+        let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
         if itemList[row].status == .NotPickedUp {
             
@@ -184,7 +189,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         let row = indexPath.row
-        let cell = tableView.cellForRow(at: indexPath) as! ItemCell
+        let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
         if editingStyle == .delete {
             
@@ -211,6 +216,27 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         }
         
     }
+    
+    // MARK: - CollectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! MDCChipCollectionViewCell
+
+        let chipView = cell.chipView
+        chipView.titleLabel.text = categoryList[indexPath.row]
+        chipView.setTitleColor(UIColor.red, for: .normal)
+        chipView.backgroundColor = .magenta
+        chipView.sizeToFit()
+        chipView.invalidateIntrinsicContentSize()
+
+        return cell
+        
+    }
+    
     
     /*
     // MARK: - Navigation
