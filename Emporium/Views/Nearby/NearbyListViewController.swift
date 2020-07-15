@@ -100,6 +100,7 @@ class NearbyListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         // Update Selected Store
+        self.dismiss(animated: true, completion: nil)
         storeSelectDelegate?.storeSelected(store: store)
         
     }

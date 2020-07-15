@@ -16,7 +16,7 @@ class GroceryStore: NSObject {
     let address: String
     let location: GeoPoint
     
-     var distance: Double?
+    var distance: Double?
     
     var currentVisitorCount: Int
     var maxVisitorCapacity: Int

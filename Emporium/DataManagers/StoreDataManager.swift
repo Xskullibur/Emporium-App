@@ -101,5 +101,38 @@ class StoreDataManager {
             }
         }
         
-    }    
+    }
+    
+    func getStore(storeId: String, onComplete: @escaping (GroceryStore) -> Void) {
+        
+        storeCollection.document(storeId).getDocument { (documentSnapshot, error) in
+            if let error = error {
+                print("Error retreiving collection. (VisitorCount.Listener): \(error)")
+                return
+            }
+            
+            guard let document = documentSnapshot else {
+                print("Error fetching document. (VisitorCount.Listener): \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document data was empty. (VisitorCount.Listener)")
+                return
+            }
+            
+            let store = GroceryStore(
+                id: storeId,
+                name: data["name"] as! String,
+                address: data["address"] as! String,
+                location: data["coordinates"] as! GeoPoint,
+                currentVisitorCount: data["current_visitor_count"] as! Int,
+                maxVisitorCapacity: data["max_visitor_capacity"] as! Int
+            )
+            
+            onComplete(store)
+            
+        }
+        
+    }
 }
