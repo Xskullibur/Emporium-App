@@ -73,16 +73,12 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "functions_host"
-<<<<<<< HEAD
             value = "http://192.168.1.1:5000"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "backend_server_host"
             value = "http://192.168.1.1:5001"
-=======
-            value = "http://169.254.69.228:5000"
->>>>>>> 5f1b7dc980688a8cdfac8368ae4fbd2ce5a4c5cd
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
