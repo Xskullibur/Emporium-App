@@ -16,6 +16,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     var cartData: [Cart] = []
+   
     
     
     override func viewDidLoad() {
@@ -23,13 +24,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.layer.cornerRadius = 10
         priceLabel.layer.cornerRadius = 10
-        
-        priceLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
-        priceLabel.layer.shadowColor = UIColor.darkGray.cgColor
-        priceLabel.layer.shadowRadius = 5
-        priceLabel.layer.shadowOpacity = 0.9
-        priceLabel.layer.masksToBounds = false
-        priceLabel.clipsToBounds = false
         
         if cartData.count == 0 {
             priceLabel.text = "Total: $0.00"
@@ -74,6 +68,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             selectedItem.quantity = selectedItem.quantity - 1
             Toast.showToast(selectedItem.productName + " quantity left " + String(selectedItem.quantity))
         }
+        var total = 0.0
+        for item in cartData {
+            total = total + (item.price * Double(item.quantity))
+        }
+        priceLabel.text = "Total: $" + String(format: "%.02f", total)
         tableView.reloadData()
     }
     

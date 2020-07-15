@@ -43,12 +43,43 @@ class ShopDataManager
         }
     }
     
-    static func loadHistory(onComplete: (([String]) -> Void)?) {
+    static func loadCategory(selectedCategory: [String], onComplete: (([Product]) -> Void)?)
+    {
+        db.collection("emporium").document("globals").collection("products").getDocuments()
+            {
+            (querySnapshot, err) in
+            
+            var productData: [Product] = []
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    if selectedCategory.contains(doc.get("category") as! String) {
+                        let productID: String = String(doc.documentID)
+                        let name = doc.get("name") as! String
+                        let price = doc.get("price") as! Double
+                        let category = doc.get("category") as! String
+                        let image = doc.get("image") as! String
+                        
+                        productData.append(Product(productID, name, price, image, category))
+                    }
+                }
+            }
+                
+            onComplete?(productData)
+        }
+    }
+    
+    static func loadSelectedHistory(selected: [String], onComplete: (([History]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
         {
             (querySnapshot, err) in
             
-            var purchaseHistory: [String] = []
+            var purchaseHistory: [History] = []
             
             if let err = err
             {
@@ -58,7 +89,37 @@ class ShopDataManager
             {
                 for doc in querySnapshot!.documents
                 {
-                    purchaseHistory.append(doc.documentID)
+                    if selected.contains(doc.get("received") as! String) {
+                        let amount: String = doc.get("amount") as! String
+                        let date = String(doc.documentID)
+                        let receive = doc.get("received") as! String
+                        purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                    }
+                }
+            }
+            onComplete?(purchaseHistory.reversed())
+        }
+    }
+    
+    static func loadHistory(onComplete: (([History]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").getDocuments()
+        {
+            (querySnapshot, err) in
+            
+            var purchaseHistory: [History] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    let amount: String = doc.get("amount") as! String
+                    let date = String(doc.documentID)
+                    let receive = doc.get("received") as! String
+                    purchaseHistory.append(History(amount: amount, date: date, received: receive))
                 }
             }
             onComplete?(purchaseHistory.reversed())
@@ -80,6 +141,30 @@ class ShopDataManager
             else
             {
                 details = document?.get("cartDetail") as! [String]
+            }
+            onComplete?(details)
+        }
+    }
+    
+    static func loadHistoryPaymentDetail(docID: String, onComplete: ((HistoryPaymentDetail) -> Void)?) {
+        
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").document(docID).getDocument
+        {
+            (document, err) in
+            
+            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: "", type: "", last4: "", brand: "", receipt: "")
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                details.amount = document?.get("amount") as! String
+                details.type = document?.get("cardType") as! String
+                details.brand = document?.get("cardbrand") as! String
+                details.last4 = document?.get("last4") as! String
+                details.receipt = document?.get("receipt") as! String
             }
             onComplete?(details)
         }

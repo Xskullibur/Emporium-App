@@ -20,6 +20,7 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var nicknameInput: UITextField!
     @IBOutlet weak var cardAnimation: AnimationView!
+    @IBOutlet weak var showClickLabel: UILabel!
     
     let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)
@@ -58,10 +59,14 @@ class AddCardViewController: UIViewController {
         
         expDatePickerView.layer.borderWidth = 1
         expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
+        
+        self.view.addSubview(cardAnimation)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openScan(_:)))
+        self.cardAnimation.addGestureRecognizer(gesture)
+        self.cardAnimation.addSubview(showClickLabel)
     }
     
-    
-    @IBAction func scanBtnPressed(_ sender: Any) {
+    @objc func openScan(_ send: UITapGestureRecognizer) {
         showActionSheet()
     }
     
@@ -130,7 +135,10 @@ class AddCardViewController: UIViewController {
                 for err in error {
                     totalError = totalError + err
                 }
-                Toast.showToast(totalError)
+                let showAlert = UIAlertController(title: "Card not added", message: totalError, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
             }
         
             
@@ -146,25 +154,17 @@ class AddCardViewController: UIViewController {
         format.dateFormat = "MM"
         let currentMonth = format.string(from: date)
         
-        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16) {
-            error.append("Card number must have exactily 16 digit\n")
+        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16 || Int(number) == nil) {
+            error.append("Card number - 16 digits\n")
         }
         
-        if(Int(number) == nil) {
-            error.append("Card number must only contain numbers\n")
-        }
-        
-        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3) {
-            error.append("CVC must have exactily 3 digit\n")
-        }
-        
-        if(Int(cvc) == nil) {
-            error.append("CVC must only contain numbers\n")
+        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3 || Int(cvc) == nil) {
+            error.append("CVC - 3 digits\n")
         }
         
         if(Int(currentMonth)! >= month) {
             if Int(currentYear)! >= year {
-                error.append("Card Expiry Date must be next month or longer\n")
+                error.append("Expiry Date - next month or longer\n")
             }
         }
         

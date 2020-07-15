@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import WebKit
 
 class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var last4Label: UILabel!
     
+    @IBOutlet weak var typeLabel: UILabel!
     var docID: String = ""
     var cartData: [HistoryItem] = []
+    var receipt: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +26,16 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 10
-        
-        totalLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
-        totalLabel.layer.shadowColor = UIColor.darkGray.cgColor
-        totalLabel.layer.shadowRadius = 5
-        totalLabel.layer.shadowOpacity = 0.9
-        totalLabel.layer.masksToBounds = false
-        totalLabel.clipsToBounds = false
 
         loadHistoryDetail()
+    }
+    
+    
+    @IBAction func showBtnPressed(_ sender: Any) {
+        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        self.view.addSubview(webView)
+        let url = URL(string: self.receipt)
+        webView.load(URLRequest(url: url!))
     }
     
     func loadHistoryDetail() {
@@ -53,7 +58,15 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
                 total = total + (Double(price)! * Double(quantity)!)
             }
-            self.totalLabel.text = "Total: $" + String(format: "%.02f", total)
+            self.totalLabel.text = "$" + String(format: "%.02f", total)
+            
+            ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
+                Detail in
+                self.typeLabel.text = Detail.brand.capitalizingFirstLetter() + " " + Detail.type.capitalizingFirstLetter()
+                self.last4Label.text = "(*" + Detail.last4 + ")"
+                self.receipt = Detail.receipt
+            }
+            
             self.tableView.reloadData()
         }
         
@@ -80,3 +93,5 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
 }
+
+

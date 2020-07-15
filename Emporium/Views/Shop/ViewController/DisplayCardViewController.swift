@@ -59,13 +59,13 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         if cardDetail.bank == "OCBC" {
-            cell.brandImage.image = UIImage(named: "OCBC")
+            cell.brandImage.image = UIImage(named: "ocbc")
         }else if cardDetail.bank == "POSB" {
-            cell.brandImage.image = UIImage(named: "POSB")
+            cell.brandImage.image = UIImage(named: "posb")
         }else if cardDetail.bank == "DBS" {
-            cell.brandImage.image = UIImage(named: "DBS")
+            cell.brandImage.image = UIImage(named: "dbs")
         }else if cardDetail.bank == "UOB" {
-            cell.brandImage.image = UIImage(named: "UOB")
+            cell.brandImage.image = UIImage(named: "uob")
         }else{
             cell.brandImage.image = UIImage(named: "noImage")
         }
@@ -113,6 +113,8 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         paymentInfo.cvc = ""
         paymentInfo.month = 0
         paymentInfo.year = 0
+        paymentInfo.bank = ""
+        paymentInfo.name = ""
         
         for cart in cartData {
             var cartItemAdd = CartItem()
