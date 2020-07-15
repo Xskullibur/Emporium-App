@@ -146,6 +146,29 @@ class ShopDataManager
         }
     }
     
+    static func loadHistoryPaymentDetail(docID: String, onComplete: ((HistoryPaymentDetail) -> Void)?) {
+        
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").document(docID).getDocument
+        {
+            (document, err) in
+            
+            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: "", type: "", last4: "", brand: "")
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                details.amount = document?.get("amount") as! String
+                details.type = document?.get("cardType") as! String
+                details.brand = document?.get("cardbrand") as! String
+                details.last4 = document?.get("last4") as! String
+            }
+            onComplete?(details)
+        }
+    }
+    
     static func loadCards(onComplete: (([Card]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("cards").getDocuments()
         {

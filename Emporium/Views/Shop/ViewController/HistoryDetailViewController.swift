@@ -12,7 +12,9 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var last4Label: UILabel!
     
+    @IBOutlet weak var typeLabel: UILabel!
     var docID: String = ""
     var cartData: [HistoryItem] = []
 
@@ -22,13 +24,6 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.layer.cornerRadius = 10
-        
-        totalLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
-        totalLabel.layer.shadowColor = UIColor.darkGray.cgColor
-        totalLabel.layer.shadowRadius = 5
-        totalLabel.layer.shadowOpacity = 0.9
-        totalLabel.layer.masksToBounds = false
-        totalLabel.clipsToBounds = false
 
         loadHistoryDetail()
     }
@@ -53,7 +48,14 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
                 total = total + (Double(price)! * Double(quantity)!)
             }
-            self.totalLabel.text = "Total: $" + String(format: "%.02f", total)
+            self.totalLabel.text = "$" + String(format: "%.02f", total)
+            
+            ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
+                Detail in
+                self.typeLabel.text = Detail.brand.capitalizingFirstLetter() + " " + Detail.type.capitalizingFirstLetter()
+                self.last4Label.text = "(*" + Detail.last4 + ")"
+            }
+            
             self.tableView.reloadData()
         }
         
@@ -80,3 +82,5 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
 }
+
+
