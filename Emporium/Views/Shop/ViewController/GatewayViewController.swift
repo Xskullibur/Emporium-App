@@ -81,25 +81,17 @@ class GatewayViewController: UIViewController {
         format.dateFormat = "MM"
         let currentMonth = format.string(from: date)
         
-        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16) {
-            error.append("Card number must have exactily 16 digit\n")
+       if(String(number.filter { !" \n\t\r".contains($0) }).count != 16 || Int(number) == nil) {
+            error.append("Card number - 16 digits\n")
         }
         
-        if(Int(number) == nil) {
-            error.append("Card number must only contain numbers\n")
-        }
-        
-        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3) {
-            error.append("CVC must have exactily 3 digit\n")
-        }
-        
-        if(Int(cvc) == nil) {
-            error.append("CVC must only contain numbers\n")
+        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3 || Int(cvc) == nil) {
+            error.append("CVC - 3 digits\n")
         }
         
         if(Int(currentMonth)! >= month) {
             if Int(currentYear)! >= year {
-                error.append("Card Expiry Date must be next month or longer\n")
+                error.append("Expiry Date - next month or longer\n")
             }
         }
         
