@@ -4,6 +4,8 @@
 <dict>
 	<key>PlacesAPI Secret</key>
 	<string>Z3DL0OY05L2CJSJ3UFFIXHQRYIXLSS4IHTXPS1PAVQBW33QH</string>
+	<key>Points Info Description</key>
+	<string>You can earn points by vounteering to help others to purchase their groceries or simply making purchases using this app.</string>
 	<key>PlacesAPI ID</key>
 	<string>SC55WRP0JGOSO0A2Q2LHPBPXNAJYXFCHVAWHBSJVML3BGP24</string>
 </dict>

@@ -154,7 +154,7 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             captureConnection?.isEnabled = true
             do {
                 try videoDevice!.lockForConfiguration()
-                let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)
+//                let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)
                 bufferSize = self.delegate.createBufferSize()
 //    //            let ratio = self.previewView.frame.width / CGFloat(dimensions.width)
 //    //            previewViewHeightConstraint.constant = CGFloat(dimensions.height) * ratio
