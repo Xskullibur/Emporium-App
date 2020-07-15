@@ -20,7 +20,7 @@ class ShopViewController: UIViewController {
     
     var productData: [Product] = []
     var cartData: [Cart] = []
-    let category: [String] = ["Snack", "Beverage", "Dairy", "Meat"]
+    let category: [String] = ["Snack", "Beverage", "Dairy", "Meat", "Dry Goods", "Canned", "Produce"]
     var selectedCategory: [String] = []
     
     override func viewDidLoad() {
