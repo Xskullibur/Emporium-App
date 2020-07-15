@@ -15,8 +15,6 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     var cardList: [Card] = []
     var cartData: [Cart] = []
     
-    var backendBaseURL: String? = "http://192.168.86.1:5000"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +110,6 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         var message = ""
         
         paymentInfo.number = docID
-        paymentInfo.userid = Auth.auth().currentUser?.uid as! String
         paymentInfo.cvc = ""
         paymentInfo.month = 0
         paymentInfo.year = 0
@@ -127,7 +124,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         let data = try? paymentInfo.serializedData()
         
         let session  = URLSession.shared
-        let url = URL(string: backendBaseURL! + "/cardPayment")
+        let url = URL(string: Global.BACKEND_SERVER_HOST + "/cardPayment")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
@@ -178,7 +175,6 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         var message = ""
         
         paymentInfo.number = docID
-        paymentInfo.userid = Auth.auth().currentUser?.uid as! String
         paymentInfo.cvc = ""
         paymentInfo.month = 0
         paymentInfo.year = 0
@@ -186,7 +182,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         let data = try? paymentInfo.serializedData()
         
         let session  = URLSession.shared
-        let url = URL(string: backendBaseURL! + "/removeCard")
+        let url = URL(string: Global.BACKEND_SERVER_HOST + "/removeCard")
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")

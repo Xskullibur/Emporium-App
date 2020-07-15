@@ -20,13 +20,6 @@ class GatewayViewController: UIViewController {
     
     @IBOutlet weak var cardAnimation: AnimationView!
     
-    var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://172.27.177.40:5000"
-    //local http://192.168.86.1:5000
-    //web https://hidden-ridge-68133.herokuapp.com
-    //visa credit 4242424242424242 cvc: any 3 number
-    //visa debit  4000056655665556
-    
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
     var labelData: [String] = ["Exp Month", "Exp Year"]
@@ -108,7 +101,6 @@ class GatewayViewController: UIViewController {
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
         let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
-        var message = ""
         
         let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
@@ -128,49 +120,10 @@ class GatewayViewController: UIViewController {
                     cartItemAdd.quantity = Int32(cart.quantity)
                     paymentInfo.cartItems.append(cartItemAdd)
                 }
-                
-                let data = try? paymentInfo.serializedData()
-                
-                let session  = URLSession.shared
-                let url = URL(string: backendBaseURL! + "/oneTimeCharge")
-                var request = URLRequest(url: url!)
-                request.httpMethod = "POST"
-                request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-                
-                session.uploadTask(with: request, from: data) {
-                    data, response, error in
-                    if let httpResponse = response as? HTTPURLResponse {
-                        
-                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                            message = datastring
-                        }
-                        
-                        if httpResponse.statusCode == 200 {
-                            DispatchQueue.main.async
-                            {
-                                self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
-                                let back = UIAlertAction(title: "OK", style: .default) {
-                                    action in
-                                    self.navigationController?.popToRootViewController(animated: true)
-                                }
-                                showAlert.addAction(back)
-                                self.present(showAlert, animated: true, completion: nil)
-                            }
-                        }
-                        else
-                        {
-                            DispatchQueue.main.async
-                            {
-                                self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
-                                let cancel = UIAlertAction(title: "OK", style: .cancel)
-                                showAlert.addAction(cancel)
-                                self.present(showAlert, animated: true, completion: nil)
-                            }
-                        }
-                    }
-                }.resume()
+            
+            self.sendPaymentInfo(paymentInfo: paymentInfo)
+            
+        
         }else{
             var totalError: String = ""
             for err in error {
@@ -180,6 +133,61 @@ class GatewayViewController: UIViewController {
         }
     }
         
+    
+    private func sendPaymentInfo(paymentInfo: PaymentInfo){
+        
+        Auth.auth().currentUser?.getIDToken(completion: {
+            token, error in
+            
+           let data = try? paymentInfo.serializedData()
+               
+           let session  = URLSession.shared
+           let url = URL(string: Global.BACKEND_SERVER_HOST + "/oneTimeCharge")
+           var request = URLRequest(url: url!)
+           request.httpMethod = "POST"
+           request.setValue("Bearer \(token!)", forHTTPHeaderField:"Authorization")
+           request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+           
+           var message = ""
+           session.uploadTask(with: request, from: data) {
+               data, response, error in
+               if let httpResponse = response as? HTTPURLResponse {
+                   
+                   if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                       message = datastring
+                   }
+                   
+                   if httpResponse.statusCode == 200 {
+                       DispatchQueue.main.async
+                       {
+                           self.removeSpinner()
+                           let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
+                           let back = UIAlertAction(title: "OK", style: .default) {
+                               action in
+                               self.navigationController?.popToRootViewController(animated: true)
+                           }
+                           showAlert.addAction(back)
+                           self.present(showAlert, animated: true, completion: nil)
+                       }
+                   }
+                   else
+                   {
+                       DispatchQueue.main.async
+                       {
+                           self.removeSpinner()
+                           let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
+                           let cancel = UIAlertAction(title: "OK", style: .cancel)
+                           showAlert.addAction(cancel)
+                           self.present(showAlert, animated: true, completion: nil)
+                       }
+                   }
+               }
+           }.resume()
+        })
+        
+       
+    }
+    
 }
 
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
