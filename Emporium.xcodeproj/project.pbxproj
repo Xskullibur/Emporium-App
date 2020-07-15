@@ -75,7 +75,6 @@
 		ACED1E03249CA19700094284 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
 		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
 		ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */; };
-		ED1F17C624BEAD83007CF9C5 /* ItemTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */; };
 		ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
 		ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */; };
@@ -215,7 +214,6 @@
 		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueStatus.swift; sourceTree = "<group>"; };
-		ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableView.swift; sourceTree = "<group>"; };
 		ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
 		ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapViewController.swift; sourceTree = "<group>"; };
@@ -570,7 +568,6 @@
 			isa = PBXGroup;
 			children = (
 				ED61104E24A34D8800FFD408 /* RequestorsListViewController.swift */,
-				ED1F17C524BEAD83007CF9C5 /* ItemTableView.swift */,
 				ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */,
 			);
 			path = RequestorList;
@@ -1098,7 +1095,6 @@
 				ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
 				ED61105124A44BA600FFD408 /* RequestedItem.swift in Sources */,
-				ED1F17C624BEAD83007CF9C5 /* ItemTableView.swift in Sources */,
 				7F0B388624ADDA830003B9D9 /* Card.swift in Sources */,
 				ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */,
 				ACAEE67B24A4223300C286BF /* YOLOv3TinyFP16.mlmodel in Sources */,
