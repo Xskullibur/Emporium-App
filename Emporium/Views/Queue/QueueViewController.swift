@@ -172,16 +172,8 @@ class QueueViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        listenerManager.clear()
-        
-        if segue.identifier == "debug.entryVC" {
-            let entryVC = segue.destination as! EntryViewController
-            entryVC.store = store
-        }
-        
-    }
+//    // MARK: - Navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    }
 
 }
