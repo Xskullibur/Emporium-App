@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import FirebaseFunctions
+import FirebaseFirestore
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
@@ -15,18 +17,37 @@ import MaterialComponents.MaterialButtons_Theming
 class QueueViewController: UIViewController {
 
     // MARK: - Variable
+    var queueDataManager = QueueDataManager()
+    var storeDataManager = StoreDataManager()
+    
     var justJoinedQueue = false
     var store: GroceryStore?
+    var queueId: String?
+    var queueLength: String?
+    var currentlyServing: String?
+    var listenerManager: ListenerManager = ListenerManager()
+    
+    var functions = Functions.functions()
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
+    @IBOutlet weak var currentlyServingLbl: UILabel!
+    @IBOutlet weak var queueLengthLbl: UILabel!
+    @IBOutlet weak var queueNumberLbl: UILabel!
     
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        #if DEBUG
+        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
+        if let functionsHost = functionsHost {
+            functions.useFunctionsEmulator(origin: functionsHost)
+        }
+        #endif
+        
         // User Interface
         /// Title
         navigationItem.title = "\(store!.name) (\(store!.address))"
@@ -46,43 +67,113 @@ class QueueViewController: UIViewController {
         cardView.layer.masksToBounds = false
         cardView.setShadowElevation(ShadowElevation(6), for: .normal)
         
-        // Volunteer Prompt
+        // Values
+        queueNumberLbl.text = QueueItem.hash_id(str: queueId!)
+        
+        // Setup
         if justJoinedQueue {
-            
-            let alert = UIAlertController(
-                title: "Would you like to volunteer?",
-                message: "Volunteer to help your fellow neighbours get groceries",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                
-                let thanksAlert = UIAlertController(
-                    title: "Thank you!",
-                    message: "You will be notified when there is a request.",
-                    preferredStyle: .alert
-                )
-                thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(thanksAlert, animated: true)
-                
-            }))
-            
-            self.present(alert, animated: true)
-            
+            showVolunteerAlert()
         }
+        
+        // Error Alert
+        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        errorAlert.addAction(okAction)
+        
+        // Visitor Count Listener
+        let listener = storeDataManager.visitorCountListenerForStore(store!) { (data) in
+            
+            // Guard Data
+            guard let current_visitor_count = data["current_visitor_count"] as? Int,
+                let max_capacity_count = data["max_visitor_capacity"] as? Int else {
+                    print("Field data was empty. (VisitorCount.Listener)")
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+            }
+            
+            // Check for visitor count change
+            if current_visitor_count < max_capacity_count{
+                // Get next person in Queue
+                self.queueDataManager.popQueue(storeId: self.store!.id, queueId: self.queueId!, onComplete: { (data) in
+                        
+                    // Guard Data for nulls
+                    guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {
+                        print("Field data was empty. (popQueue.Functions)")
+                        self.present(errorAlert, animated: true, completion: nil)
+                        return
+                    }
+                    
+                    // Navigate if currently serving user
+                    if currentQueueId == self.queueId {
+                        
+                        // Clear Listeners
+                        self.listenerManager.clear()
+                        
+                        // Navigate to Entry
+                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                        
+                        let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                        entryVC.store = self.store
+                        entryVC.queueId = self.queueId!
+                        
+                        let rootVC = self.navigationController?.viewControllers.first
+                        self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                        
+                    }
+                    else {
+                        // Update cards
+                        self.queueLengthLbl.text = queueLength
+                        self.currentlyServingLbl.text = QueueItem.hash_id(str: currentQueueId)
+                    }
+                    
+                }) { (error) in
+                    // Error
+                    self.present(errorAlert, animated: true, completion: nil)
+                }
+
+            }
+            else {
+                
+                // Get Queue Number and Queue Length
+                self.queueDataManager.getQueueInfo(storeId: self.store!.id) { (currentlyServing, queueLength) in
+                    self.currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
+                    self.queueLengthLbl.text = queueLength
+                }
+
+            }
+        }
+        
+        listenerManager.add(listener)
+        
         
     }
     
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Custom Functions
+    func showVolunteerAlert() {
+        let alert = UIAlertController(
+            title: "Would you like to volunteer?",
+            message: "Volunteer to help your fellow neighbours get groceries",
+            preferredStyle: .alert
+        )
         
-        if segue.identifier == "debug.entryVC" {
-            let entryVC = segue.destination as! EntryViewController
-            entryVC.store = store
-        }
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            
+            let thanksAlert = UIAlertController(
+                title: "Thank you!",
+                message: "You will be notified when there is a request.",
+                preferredStyle: .alert
+            )
+            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(thanksAlert, animated: true)
+            
+        }))
         
+        self.present(alert, animated: true)
     }
+
+//    // MARK: - Navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    }
 
 }

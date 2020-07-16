@@ -72,17 +72,15 @@ class VoucherBottomSheetViewController: UIViewController {
             switch status {
             case .success:
                 Toast.showToast("Voucher claimed!")
-                self.viewController?.removeSpinner()
                 break
             case .notEnoughPoints:
                 Toast.showToast("Not enough points to claim this voucher!")
-                self.viewController?.removeSpinner()
                 break
             default:
+                self.viewController?.showAlert(title: "Error", message: "Unable to claim the vouchers.")
                 break
             }
-            
-        }
+        self.viewController?.removeSpinner()        }
         self.dismiss(animated: true)
     }
     

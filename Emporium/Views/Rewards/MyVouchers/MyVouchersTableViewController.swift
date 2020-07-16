@@ -44,6 +44,7 @@ class MyVouchersTableViewController: UITableViewController {
                    completion in
                    switch completion {
                    case .failure( _):
+                    self.showAlert(title: "Error", message: "Error getting claimed vouchers")
                        print("Error getting claimed vouchers")
                        break;
                    case .finished:
@@ -55,6 +56,16 @@ class MyVouchersTableViewController: UITableViewController {
                    self.tableView.reloadData()
                }).store(in: &cancellables)
        }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if self.myVouchers.count > 0 {
+            tableView.restore()
+            return 1
+        } else {
+            tableView.setEmptyMessage("Oops no voucher to show here!")
+            return 0
+        }
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myVouchers.count

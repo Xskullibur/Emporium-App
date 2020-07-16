@@ -373,9 +373,9 @@ PODS:
     - GTMSessionFetcher/Core (= 1.4.0)
   - leveldb-library (1.22)
   - lottie-ios (3.1.8)
-  - MaterialComponents/AnimationTiming (110.2.0)
-  - MaterialComponents/Availability (110.2.0)
-  - MaterialComponents/BottomSheet (110.2.0):
+  - MaterialComponents/AnimationTiming (110.0.0)
+  - MaterialComponents/Availability (110.0.0)
+  - MaterialComponents/BottomSheet (110.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/private/KeyboardWatcher
     - MaterialComponents/private/Math
@@ -383,7 +383,7 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/Buttons (110.2.0):
+  - MaterialComponents/Buttons (110.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -395,23 +395,23 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - "MaterialComponents/Buttons+ColorThemer (110.2.0)":
+  - "MaterialComponents/Buttons+ColorThemer (110.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Color
-  - "MaterialComponents/Buttons+ShapeThemer (110.2.0)":
+  - "MaterialComponents/Buttons+ShapeThemer (110.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Shape
-  - "MaterialComponents/Buttons+Theming (110.2.0)":
+  - "MaterialComponents/Buttons+Theming (110.0.0)":
     - MaterialComponents/Buttons
     - "MaterialComponents/Buttons+ColorThemer"
     - "MaterialComponents/Buttons+ShapeThemer"
     - "MaterialComponents/Buttons+TypographyThemer"
     - MaterialComponents/schemes/Container
     - MaterialComponents/ShadowElevations
-  - "MaterialComponents/Buttons+TypographyThemer (110.2.0)":
+  - "MaterialComponents/Buttons+TypographyThemer (110.0.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/Cards (110.2.0):
+  - MaterialComponents/Cards (110.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Icons/ic_check_circle
@@ -419,55 +419,76 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Shapes
-  - MaterialComponents/Elevation (110.2.0):
+  - MaterialComponents/Chips (110.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Elevation (110.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (110.2.0):
+  - MaterialComponents/Ink (110.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/private/Application (110.2.0)
-  - MaterialComponents/private/Color (110.2.0):
+  - MaterialComponents/Palettes (110.0.0)
+  - MaterialComponents/private/Application (110.0.0)
+  - MaterialComponents/private/Color (110.0.0):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (110.2.0)
-  - MaterialComponents/private/Icons/ic_check_circle (110.2.0):
+  - MaterialComponents/private/Icons/Base (110.0.0)
+  - MaterialComponents/private/Icons/ic_check_circle (110.0.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/KeyboardWatcher (110.2.0):
+  - MaterialComponents/private/KeyboardWatcher (110.0.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/private/Math (110.2.0)
-  - MaterialComponents/Ripple (110.2.0):
+  - MaterialComponents/private/Math (110.0.0)
+  - MaterialComponents/Ripple (110.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (110.2.0):
+  - MaterialComponents/schemes/Color (110.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Container (110.2.0):
+  - MaterialComponents/schemes/Container (110.0.0):
     - MaterialComponents/schemes/Color
     - MaterialComponents/schemes/Shape
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/schemes/Shape (110.2.0):
+  - MaterialComponents/schemes/Shape (110.0.0):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (110.2.0):
+  - MaterialComponents/schemes/Typography (110.0.0):
     - "MaterialComponents/schemes/Typography+BasicFontScheme"
     - "MaterialComponents/schemes/Typography+Scheming"
     - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (110.2.0)"
-  - "MaterialComponents/schemes/Typography+Scheming (110.2.0)"
-  - MaterialComponents/ShadowElevations (110.2.0)
-  - MaterialComponents/ShadowLayer (110.2.0):
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (110.0.0)"
+  - "MaterialComponents/schemes/Typography+Scheming (110.0.0)"
+  - MaterialComponents/ShadowElevations (110.0.0)
+  - MaterialComponents/ShadowLayer (110.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (110.2.0):
+  - MaterialComponents/ShapeLibrary (110.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (110.2.0):
+  - MaterialComponents/Shapes (110.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (110.2.0):
+  - MaterialComponents/TextFields (110.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (110.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
@@ -500,11 +521,11 @@ PODS:
   - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
   - RSSelectionMenu (7.0.0)
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
   - Stripe (19.3.0)
-  - SwiftProtobuf (1.10.0)
+  - SwiftProtobuf (1.9.0)
 
 DEPENDENCIES:
   - Firebase
@@ -520,6 +541,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - "MaterialComponents/Buttons+Theming"
   - MaterialComponents/Cards
+  - MaterialComponents/Chips
   - RSSelectionMenu
   - Stripe
   - SwiftProtobuf
@@ -607,7 +629,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
-  MaterialComponents: 7a6468f225881fe81f8a68cc49727209687f7b1e
+  MaterialComponents: 8de2f7a102ae37bf276a558ac88086780f6d1b5f
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MLKitCommon: 820fbd1d5af7bb75c4d697ed44397e0ba7443ccb
@@ -617,10 +639,10 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   RSSelectionMenu: 096db1676b37214a2c447383e80733599b74a052
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
-  SwiftProtobuf: bfafffa9e26d1561c3bd0045e188c4fab5f527ae
+  SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
-PODFILE CHECKSUM: d09abf193dbcf0dfa01052d2c6fbc1e2e52cfaea
+PODFILE CHECKSUM: 8300f350268ac1799e6a406c4142ac9c99846180
 
 COCOAPODS: 1.9.3

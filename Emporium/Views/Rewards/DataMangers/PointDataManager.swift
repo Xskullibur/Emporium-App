@@ -13,7 +13,7 @@ class PointDataManager {
     /**
      Get the current points that the user has
      */
-    func getPoints(user: User,  completion: @escaping (Int) -> Void){
+    func getPoints(user: User, completion: @escaping (Int) -> Void){
         let db = Firestore.firestore()
         
         //Get reference to user

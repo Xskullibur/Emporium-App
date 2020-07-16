@@ -8,20 +8,22 @@
 
 import UIKit
 import Lottie
+import MaterialComponents.MaterialChips
 
-// Order Cell
-class ItemCell: UITableViewCell {
+class RequestorsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var quantityLabel: UILabel!
-    @IBOutlet weak var checkView: UIView!
+    // MARK: - Outlets
+    @IBOutlet weak var itemTableView: UITableView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-}
-
-class RequestorsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // MARK: - Variables
     var itemList: [RequestedItem] = []
+    
+    var defaultCategoryList: [String] = []
+    var categoryList: [String] = []
+    
+    var data: [[RequestedItem]] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -29,6 +31,33 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         
         #warning("TODO: Remove test data")
         itemList = RequestedItem.getDebug()
+        
+        // CategoryView
+        let layout = MDCChipCollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.estimatedItemSize = CGSize(width: 60, height: 33)
+        categoryCollectionView.collectionViewLayout = layout
+        
+        categoryCollectionView.backgroundColor = .white
+        categoryCollectionView.contentInset = UIEdgeInsets(top:20,left: 20,bottom: 20,right: 20)
+        categoryCollectionView.register(MDCChipCollectionViewCell.self,
+                forCellWithReuseIdentifier:"categoryCell")
+        categoryCollectionView.allowsMultipleSelection = true
+        
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        
+        // Get Categories
+        let categories = itemList.map { $0.cart.product.category }
+        categoryList = Array(Set(categories))
+        defaultCategoryList = Array(Set(categories))
+        
+        // Split by Category
+        for category in categoryList {
+            let items = itemList.filter{ $0.cart.product.category == category }
+            data.append(items)
+        }
         
     }
     
@@ -70,16 +99,25 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - TableView
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemList.count
+        return data[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return categoryList[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let section = indexPath.section
         let row = indexPath.row
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemTableViewCell
         
-        let item = itemList[row]
+        let item = data[section][row]
         cell.selectionStyle = .none
         cell.productImage.loadImage(url: item.cart.product.image)
         cell.nameLabel.text = item.cart.product.productName
@@ -114,31 +152,41 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let row = indexPath.row
-        let cell = tableView.cellForRow(at: indexPath) as! ItemCell
+        let section = indexPath.section
+        let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
-        if itemList[row].status == .NotPickedUp {
+        if data[section][row].status == .NotPickedUp {
             
             // Update .NotPickedUp to .PickedUp
-            itemList[row].status = .PickedUp
+            let item = data[section][row]
+            item.status = .PickedUp
+            updateRequestedItem(item: item, status: .PickedUp)
+            
             let view = animationView(type: .Check, frame: cell.checkView.bounds)
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
             view.play()
             
         }
-        else if itemList[row].status == .PickedUp {
+        else if data[section][row].status == .PickedUp {
             
             // Update .PickedUp to .NotPickedUp
-            itemList[row].status = .NotPickedUp
+            let item = data[section][row]
+            item.status = .NotPickedUp
+            updateRequestedItem(item: item, status: .NotPickedUp)
+            
             let view = emptyView()
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
             
         }
-        else if itemList[row].status == .NotAvailable {
+        else if data[section][row].status == .NotAvailable {
             
             // Update .NotAvailable to .PickedUp
-            itemList[row].status = .PickedUp
+            let item = data[section][row]
+            item.status = .PickedUp
+            updateRequestedItem(item: item, status: .PickedUp)
+            
             let view = animationView(type: .Check, frame: cell.checkView.bounds)
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
@@ -155,9 +203,10 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let row = indexPath.row
+        let section = indexPath.section
         var customBtn: UIContextualAction
         
-        if itemList[row].status == .NotAvailable {
+        if data[section][row].status == .NotAvailable {
             customBtn = UIContextualAction(style: .normal, title: "Available", handler: { (action, view, success) in
                 
                 tableView.dataSource?.tableView?(tableView, commit: .delete, forRowAt: indexPath)
@@ -184,14 +233,19 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         let row = indexPath.row
-        let cell = tableView.cellForRow(at: indexPath) as! ItemCell
+        let section = indexPath.section
+        
+        let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
         if editingStyle == .delete {
             
-            if itemList[row].status == .NotAvailable {
+            if data[section][row].status == .NotAvailable {
                 
                 // Update NotAvailable => .PickedUp
-                itemList[row].status = .PickedUp
+                let item = data[section][row]
+                item.status = .PickedUp
+                updateRequestedItem(item: item, status: .PickedUp)
+                
                 let view = animationView(type: .Check, frame: cell.checkView.bounds)
                 cell.checkView.subviews[0].removeFromSuperview()
                 cell.checkView.addSubview(view)
@@ -200,7 +254,10 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             } else {
                 
                 // Update Any => .NotAvailable
-                itemList[row].status = .NotAvailable
+                let item = data[section][row]
+                item.status = .NotAvailable
+                updateRequestedItem(item: item, status: .NotAvailable)
+                
                 let view = animationView(type: .Cross, frame: cell.checkView.bounds)
                 cell.checkView.subviews[0].removeFromSuperview()
                 cell.checkView.addSubview(view)
@@ -209,6 +266,70 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             }
             
         }
+        
+    }
+    
+    // MARK: - CollectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! MDCChipCollectionViewCell
+
+        let chipView = cell.chipView
+        chipView.titleLabel.text = categoryList[indexPath.row]
+        chipView.sizeToFit()
+        chipView.invalidateIntrinsicContentSize()
+        cell.chipView.setBackgroundColor(UIColor(named: "Light"), for: .selected)
+
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        updateTableViewDataSource()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        updateTableViewDataSource()
+    }
+    
+    // MARK: - Custom Functions
+    func updateRequestedItem(item: RequestedItem, status: RequestedItem.ItemStatus) {
+        itemList.first{ $0.cart.product.id == item.cart.product.id }!.status = status
+    }
+    
+    func updateTableViewDataSource() {
+        
+        // Get Selected Categories
+        guard let selectedIndexPath = categoryCollectionView.indexPathsForSelectedItems else {
+            return
+        }
+        
+        // Update Categories
+        if selectedIndexPath.count > 0 {
+            categoryList = []
+            
+            // Add items based on selected category into data
+            for index in selectedIndexPath {
+                let row = index.row
+                categoryList.append(defaultCategoryList[row])
+            }
+        }
+        else {
+            categoryList = defaultCategoryList
+        }
+        
+        // Update Data
+        data = []
+        
+        for category in categoryList {
+            data.append(itemList.filter{ $0.cart.product.category == category })
+        }
+        
+        itemTableView.reloadData()
         
     }
     

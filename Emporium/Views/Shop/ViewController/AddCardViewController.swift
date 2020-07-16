@@ -22,8 +22,6 @@ class AddCardViewController: UIViewController {
     @IBOutlet weak var cardAnimation: AnimationView!
     @IBOutlet weak var showClickLabel: UILabel!
     
-    var backendBaseURL: String? = ServerLocation.getLocation()
-    
     let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
@@ -92,7 +90,7 @@ class AddCardViewController: UIViewController {
                 self.showSpinner(onView: self.view)
                 
                     let session  = URLSession.shared
-                    let url = URL(string: backendBaseURL! + "/createCard")
+                let url = URL(string: Global.BACKEND_SERVER_HOST + "/createCard")
                     var request = URLRequest(url: url!)
                     request.httpMethod = "POST"
                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -17,6 +17,7 @@ class EntryViewController: UIViewController {
 
     // MARK: - Variable
     var store: GroceryStore?
+    var queueId: String?
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -44,7 +45,27 @@ class EntryViewController: UIViewController {
         annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
-    @IBAction func enteryStoreBtnPressed(_ sender: Any) {
+    @IBAction func enterStoreButtonPressed(_ sender: Any) {
+        
+        self.showSpinner(onView: self.view)
+        
+        let queueDataManager = QueueDataManager()
+        queueDataManager.updateQueue(queueId!, withStatus: QueueStatus.InStore, forStoreId: store!.id) { (success) in
+            
+            self.removeSpinner()
+            
+            if success {
+                // Navigate to InStore
+                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                
+                let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                
+                let rootVC = self.navigationController?.viewControllers.first
+                self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+            }
+            
+        }
+        
     }
     
     
@@ -65,7 +86,6 @@ class EntryViewController: UIViewController {
         // Animation
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
-        animationView.play()
         
         // Button
         let containerScheme = MDCContainerScheme()
@@ -77,17 +97,29 @@ class EntryViewController: UIViewController {
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
+        // onResume
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(playAnimation),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        animationView.play()
     }
-    */
+    
+    @objc func playAnimation() {
+        animationView.play()
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        NotificationCenter.default.removeObserver(self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
 
 }

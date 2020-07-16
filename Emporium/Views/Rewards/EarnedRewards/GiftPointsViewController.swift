@@ -16,7 +16,6 @@ class GiftPointsViewController: UIViewController {
     @IBOutlet weak var pointsLabel: UILabel!
     
     // MARK: - Variables
-    private var earnedRewardsDataManager: EarnedRewardsDataManager? = nil
     private var earnedReward: EarnedReward? = nil
     
     // MARK: - Lifecycle
@@ -34,14 +33,6 @@ class GiftPointsViewController: UIViewController {
         giftAnimationView.play()
         
     }
-    
-    /**
-        Set the Earned Rewards DataManager use for updating the 'displayed' value inside the Firebase.
-            Note: Setting the DataManager is more memory friendly than to create a new DataManager
-     */
-    func setEarnedRewardsDataManager(dataManager: EarnedRewardsDataManager){
-        self.earnedRewardsDataManager = dataManager
-    }
 
     /**
         Set the EarnedReward variable to be displayed
@@ -53,7 +44,21 @@ class GiftPointsViewController: UIViewController {
     @IBAction func okPressed(_ sender: Any) {
         
         //Send message to server as seen
-        self.earnedRewardsDataManager?.seenEarnedRewards(self.earnedReward!, completion: nil)
+        let earnedRewardsDataManager = EarnedRewardsDataManager.shared
+        earnedRewardsDataManager.seenEarnedRewards(self.earnedReward!){
+            earnedRewardStatus in
+            switch earnedRewardStatus {
+                case .failure:
+                    self.showAlert(title: "Error", message: "An error has occured when communicating with server.")
+                    break
+                case .error(let error):
+                    let sError = error as? StringError
+                    self.showAlert(title: "Error", message: sError?.get() ?? "An error has occured when communicating with server.")
+                    break;
+                default:
+                    break
+            }
+        }
         
         self.dismiss(animated: true, completion: nil)
     }

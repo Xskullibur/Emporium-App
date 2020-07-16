@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qso-6v-gbt">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qso-6v-gbt">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
             <objects>
                 <navigationController id="Ak8-2U-YrL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mGI-dk-hiN">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -28,15 +28,15 @@
             <objects>
                 <tableViewController id="qso-6v-gbt" customClass="GroceryStoresTableViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tjg-Us-XhM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroceryStoreCell" id="fbk-Ix-Cv7">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="768" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbk-Ix-Cv7" id="ty3-Pn-izI">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -57,18 +57,18 @@
             <objects>
                 <viewController storyboardIdentifier="CrowdTrackingViewController" id="x0P-yt-fsr" customClass="CrowdTrackingViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MdY-hg-wru">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFj-em-VPh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="3qj-02-bcB"/>
+                                    <constraint firstAttribute="height" constant="300" id="veR-fi-R1H"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UmA-pT-BkQ" customClass="MDCCard">
-                                <rect key="frame" x="82" y="359" width="250" height="273.5"/>
+                                <rect key="frame" x="259" y="315" width="250" height="273.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-QJ-6mX">
                                         <rect key="frame" x="15" y="30" width="220" height="228.5"/>
@@ -119,9 +119,9 @@
                         <constraints>
                             <constraint firstItem="nFj-em-VPh" firstAttribute="top" secondItem="TIj-xI-eyy" secondAttribute="top" id="6Go-iv-SRY"/>
                             <constraint firstItem="UmA-pT-BkQ" firstAttribute="top" secondItem="nFj-em-VPh" secondAttribute="bottom" constant="15" id="7fG-Fe-8Vc"/>
+                            <constraint firstItem="TIj-xI-eyy" firstAttribute="trailing" secondItem="nFj-em-VPh" secondAttribute="trailing" id="TWH-Jr-Rcf"/>
                             <constraint firstItem="nFj-em-VPh" firstAttribute="leading" secondItem="TIj-xI-eyy" secondAttribute="leading" id="cVv-Hv-8no"/>
                             <constraint firstItem="UmA-pT-BkQ" firstAttribute="centerX" secondItem="MdY-hg-wru" secondAttribute="centerX" id="gh7-Ny-1Vr"/>
-                            <constraint firstItem="TIj-xI-eyy" firstAttribute="trailing" secondItem="nFj-em-VPh" secondAttribute="trailing" id="iVA-fq-uMG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TIj-xI-eyy"/>
                     </view>
@@ -130,6 +130,7 @@
                         <outlet property="cardView" destination="UmA-pT-BkQ" id="7je-Xv-XRO"/>
                         <outlet property="noOfShopperLabel" destination="kpm-mX-qfQ" id="bH1-3c-unu"/>
                         <outlet property="previewView" destination="nFj-em-VPh" id="dET-nB-npV"/>
+                        <outlet property="previewViewHeightConstraint" destination="veR-fi-R1H" id="OGX-To-jGn"/>
                         <outlet property="stepper" destination="BVg-7F-spW" id="PZG-yx-gEr"/>
                     </connections>
                 </viewController>

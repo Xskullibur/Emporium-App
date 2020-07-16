@@ -76,6 +76,11 @@
             value = "http://192.168.1.1:5000"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "backend_server_host"
+            value = "http://192.168.1.1:5001"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

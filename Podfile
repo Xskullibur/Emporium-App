@@ -19,6 +19,7 @@ target 'Emporium' do
   pod 'MaterialComponents/Buttons'
   pod 'MaterialComponents/Buttons+Theming'
   pod 'MaterialComponents/BottomSheet'
+  pod 'MaterialComponents/Chips'
   
   pod 'lottie-ios'
   

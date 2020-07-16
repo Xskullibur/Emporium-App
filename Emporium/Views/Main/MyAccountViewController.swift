@@ -67,6 +67,11 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         AccountDataManager.getUserProfileImage(user: self.user!){
             image, error in
             
+            //Display error
+            if error != nil {
+                self.showAlert(title: "Error", message: "Unable to get profile image from the server.")
+            }
+            
             guard let image = image else {
                 self.profileImageView.image = UIImage(named: "no-profile")
                 return
@@ -117,7 +122,8 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
         AccountDataManager.setUserProfileImage(user: self.user!, image: image){
             error in
             if error != nil {
-                print("Error has occur!")
+                print("Unable to set user profile image!")
+                self.showAlert(title: "Error", message: "Unable to set user profile image.")
             }
         }
         
