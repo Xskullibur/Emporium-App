@@ -23,6 +23,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     var defaultCategoryList: [String] = []
     var categoryList: [String] = []
     
+    var defaultData: [[RequestedItem]] = []
     var data: [[RequestedItem]] = []
     
     // MARK: - Lifecycle
@@ -57,6 +58,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         for category in categoryList {
             let items = itemList.filter{ $0.cart.product.category == category }
             data.append(items)
+            defaultData.append(items)
         }
         
     }
@@ -304,22 +306,18 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         // Update Categories
         if selectedIndexPath.count > 0 {
             categoryList = []
+            data = []
             
             // Add items based on selected category into data
             for index in selectedIndexPath {
                 let row = index.row
                 categoryList.append(defaultCategoryList[row])
+                data.append(defaultData[row])
             }
         }
         else {
             categoryList = defaultCategoryList
-        }
-        
-        // Update Data
-        data = []
-        
-        for category in categoryList {
-            data.append(itemList.filter{ $0.cart.product.category == category })
+            data = defaultData
         }
         
         itemTableView.reloadData()
