@@ -18,7 +18,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - Variables
     var queueId: String?
-    var storeId: String?
+    var store: GroceryStore?
     var itemList: [RequestedItem] = []
     
     var defaultCategoryList: [String] = []
@@ -344,7 +344,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             // Update Queue Status
             showSpinner(onView: self.view)
             let queueDataManager = QueueDataManager()
-            queueDataManager.updateQueue(queueId!, withStatus: .Delivery, forStoreId: storeId!) { (success) in
+            queueDataManager.updateQueue(queueId!, withStatus: .Delivery, forStoreId: store!.id) { (success) in
                 
                 self.removeSpinner()
                 

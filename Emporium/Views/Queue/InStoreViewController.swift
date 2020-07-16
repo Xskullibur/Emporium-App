@@ -15,7 +15,7 @@ class InStoreViewController: UIViewController {
 
     // MARK: - Variables
     var queueId: String?
-    var storeId: String?
+    var store: GroceryStore?
     
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
@@ -26,8 +26,9 @@ class InStoreViewController: UIViewController {
     @IBAction func exitBtnPressed(_ sender: Any) {
         
         showSpinner(onView: self.view)
+        
         let queueDataManager = QueueDataManager()
-        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: storeId!) { (success) in
+        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: store!.id) { (success) in
             
             self.removeSpinner()
             
@@ -79,7 +80,7 @@ class InStoreViewController: UIViewController {
         
         if segue.identifier == "ShowRequestorList" {
             let requestorListVC = segue.destination as! RequestorsListViewController
-            requestorListVC.storeId = storeId!
+            requestorListVC.store = store!
             requestorListVC.queueId = queueId!
         }
         

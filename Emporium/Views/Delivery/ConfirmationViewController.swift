@@ -8,10 +8,13 @@
 
 import UIKit
 import AVFoundation
+import MapKit
 
 class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - Variables
+    var queueId: String?
+    var store: GroceryStore?
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -22,6 +25,25 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Confirm Delivery Description"] as! String
         self.showAlert(title: "Info", message: infoDescription)
+    }
+    
+    @IBAction func directionBtnPressed(_ sender: Any) {
+        let annotation = StoreAnnotation(
+            coords: CLLocationCoordinate2D(
+                latitude: store!.location.latitude,
+                longitude: store!.location.longitude
+            ),
+            store: store!
+        )
+        annotation.title = store!.name
+        annotation.subtitle = store!.address
+        
+        // Show Directions
+        let launchOptions = [
+            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
+        ]
+        
+        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
     // MARK: - Lifecycle

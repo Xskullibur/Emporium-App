@@ -60,7 +60,7 @@ class EntryViewController: UIViewController {
                 
                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
                 inStoreVC.queueId = self.queueId
-                inStoreVC.storeId = self.store!.id
+                inStoreVC.store = self.store
                 
                 let rootVC = self.navigationController?.viewControllers.first
                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)

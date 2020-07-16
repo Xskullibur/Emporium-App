@@ -183,7 +183,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 
                                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
                                     inStoreVC.queueId = queueItem.id
-                                    inStoreVC.storeId = store.id
+                                    inStoreVC.store = store
                                 
                                 let rootVC = self.navigationController?.viewControllers.first
                                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
@@ -193,6 +193,8 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
                                 
                                 let confirmVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+                                confirmVC.queueId = queueItem.id
+                                confirmVC.store = store
                                 
                                 let rootVC = self.navigationController?.viewControllers.first
                                 self.navigationController?.setViewControllers([rootVC!, confirmVC], animated: true)
