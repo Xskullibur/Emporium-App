@@ -94,7 +94,7 @@ class QueueViewController: UIViewController {
             // Check for visitor count change
             if current_visitor_count < max_capacity_count{
                 // Get next person in Queue
-                self.queueDataManager.popQueue(storeId: self.store!.id, queueId: self.queueId!, onComplete: { (data) in
+                self.queueDataManager.popQueue(storeId: self.store!.id, onComplete: { (data) in
                         
                     // Guard Data for nulls
                     guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {

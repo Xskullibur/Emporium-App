@@ -353,6 +353,9 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                     let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
                     let confirmationVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
                     
+                    confirmationVC.queueId = self.queueId!
+                    confirmationVC.store = self.store!
+                    
                     let rootVC = self.navigationController?.viewControllers.first
                     self.navigationController?.setViewControllers([rootVC!, confirmationVC], animated: true)
                 }
