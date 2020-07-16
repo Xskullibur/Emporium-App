@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Confirm Delivery Description</key>
+	<string>Scan the QR code located at the requester&apos;s receipt screen to complete the delivery.</string>
 	<key>PlacesAPI Secret</key>
 	<string>Z3DL0OY05L2CJSJ3UFFIXHQRYIXLSS4IHTXPS1PAVQBW33QH</string>
 	<key>Points Info Description</key>

@@ -323,6 +323,37 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    // MARK: - IBAction
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        
+        // Check itemList
+        let unCheckItems = itemList.filter{ $0.status == .NotPickedUp }
+        if unCheckItems.count > 0 {
+            
+            // Alert
+            let alert = UIAlertController(
+                title: "Oops!",
+                message: "Some items are not picked up yet. Please mark the unavailable items as Not Available.",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            
+        }
+        else {
+            
+            // Navigate
+            let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+            let confirmationVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+            
+            let rootVC = self.navigationController?.viewControllers.first
+            self.navigationController?.setViewControllers([rootVC!, confirmationVC], animated: true)
+            
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

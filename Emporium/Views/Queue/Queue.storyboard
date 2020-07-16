@@ -446,7 +446,13 @@ Grocery Store</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4gH-ab-xdh"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OUb-l8-blo"/>
+                    <navigationItem key="navigationItem" id="OUb-l8-blo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ML4-Vw-gph">
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="p6F-T7-R2l" id="9si-2Q-YZI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryCollectionView" destination="XBP-8k-tPT" id="FEI-fJ-cHr"/>
                         <outlet property="itemTableView" destination="wLn-v1-wSX" id="OSx-6c-DVY"/>
