@@ -1065,7 +1065,6 @@
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
-				7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */,
 				ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				FE0BE38824BF5E4D00F9C3FA /* Global.swift in Sources */,

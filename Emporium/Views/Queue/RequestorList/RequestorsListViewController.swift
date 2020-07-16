@@ -120,8 +120,14 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         let item = data[section][row]
         cell.selectionStyle = .none
         cell.productImage.loadImage(url: item.cart.product.image)
-        cell.nameLabel.text = item.cart.product.productName
-        cell.quantityLabel.text = "\(item.cart.quantity)"
+        cell.nameLabel.text = "\(item.cart.product.productName) x\(item.cart.quantity)"
+        cell.quantityLabel.text = "$\(String(format: "%.2f", item.cart.product.price))"
+        
+        if cell.checkView.subviews.count > 0 {
+            for view in cell.checkView.subviews {
+                view.removeFromSuperview()
+            }
+        }
         
         switch item.status {
             
@@ -155,22 +161,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         let section = indexPath.section
         let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
-        if data[section][row].status == .NotPickedUp {
-            
-            // Update .NotPickedUp to .PickedUp
-            let item = data[section][row]
-            item.status = .PickedUp
-            updateRequestedItem(item: item, status: .PickedUp)
-            
-            let view = animationView(type: .Check, frame: cell.checkView.bounds)
-            cell.checkView.subviews[0].removeFromSuperview()
-            cell.checkView.addSubview(view)
-            view.play()
-            
-        }
-        else if data[section][row].status == .PickedUp {
-            
-            // Update .PickedUp to .NotPickedUp
+        if data[section][row].status == .PickedUp {
+            // Update .NotPickedUp
             let item = data[section][row]
             item.status = .NotPickedUp
             updateRequestedItem(item: item, status: .NotPickedUp)
@@ -178,11 +170,9 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             let view = emptyView()
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
-            
         }
-        else if data[section][row].status == .NotAvailable {
-            
-            // Update .NotAvailable to .PickedUp
+        else {
+            // Update .PickedUp (.NotPickedUp / .NotAvailable)
             let item = data[section][row]
             item.status = .PickedUp
             updateRequestedItem(item: item, status: .PickedUp)
@@ -191,7 +181,6 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
             view.play()
-            
         }
         
     }
@@ -207,6 +196,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         var customBtn: UIContextualAction
         
         if data[section][row].status == .NotAvailable {
+            
+            // .NotAvailable => .Available
             customBtn = UIContextualAction(style: .normal, title: "Available", handler: { (action, view, success) in
                 
                 tableView.dataSource?.tableView?(tableView, commit: .delete, forRowAt: indexPath)
@@ -216,6 +207,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             customBtn.backgroundColor = .systemBlue
         }
         else {
+            
+            // .Available => .NotAvailable
             customBtn = UIContextualAction(style: .normal, title: "Not Available", handler: { (action, view, success) in
                 
                 tableView.dataSource?.tableView?(tableView, commit: .delete, forRowAt: indexPath)
@@ -241,7 +234,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             
             if data[section][row].status == .NotAvailable {
                 
-                // Update NotAvailable => .PickedUp
+                // Update .NotAvailable => .PickedUp
                 let item = data[section][row]
                 item.status = .PickedUp
                 updateRequestedItem(item: item, status: .PickedUp)
@@ -253,7 +246,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                 
             } else {
                 
-                // Update Any => .NotAvailable
+                // Update .Any => .NotAvailable
                 let item = data[section][row]
                 item.status = .NotAvailable
                 updateRequestedItem(item: item, status: .NotAvailable)
