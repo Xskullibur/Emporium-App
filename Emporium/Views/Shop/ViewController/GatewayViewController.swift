@@ -115,7 +115,6 @@ class GatewayViewController: UIViewController {
                 paymentInfo.month = Int32(month)
                 paymentInfo.year = Int32(year)
                 paymentInfo.cvc = cvc!
-                paymentInfo.userid = Auth.auth().currentUser?.uid as! String
                 paymentInfo.bank = ""
                 paymentInfo.name = ""
                 

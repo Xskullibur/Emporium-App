@@ -92,15 +92,6 @@ struct PaymentInfo {
   /// Clears the value of `cvc`. Subsequent reads from it will return its default value.
   mutating func clearCvc() {self._cvc = nil}
 
-  var userid: String {
-    get {return _userid ?? String()}
-    set {_userid = newValue}
-  }
-  /// Returns true if `userid` has been explicitly set.
-  var hasUserid: Bool {return self._userid != nil}
-  /// Clears the value of `userid`. Subsequent reads from it will return its default value.
-  mutating func clearUserid() {self._userid = nil}
-
   var bank: String {
     get {return _bank ?? String()}
     set {_bank = newValue}
@@ -129,7 +120,6 @@ struct PaymentInfo {
   fileprivate var _month: Int32? = nil
   fileprivate var _year: Int32? = nil
   fileprivate var _cvc: String? = nil
-  fileprivate var _userid: String? = nil
   fileprivate var _bank: String? = nil
   fileprivate var _name: String? = nil
 }
@@ -184,10 +174,9 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     2: .same(proto: "month"),
     3: .same(proto: "year"),
     4: .same(proto: "cvc"),
-    5: .same(proto: "userid"),
-    6: .same(proto: "bank"),
-    7: .same(proto: "name"),
-    8: .same(proto: "cartItems"),
+    5: .same(proto: "bank"),
+    6: .same(proto: "name"),
+    7: .same(proto: "cartItems"),
   ]
 
   public var isInitialized: Bool {
@@ -195,7 +184,6 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     if self._month == nil {return false}
     if self._year == nil {return false}
     if self._cvc == nil {return false}
-    if self._userid == nil {return false}
     if self._bank == nil {return false}
     if self._name == nil {return false}
     if !SwiftProtobuf.Internal.areAllInitialized(self.cartItems) {return false}
@@ -209,10 +197,9 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
       case 2: try decoder.decodeSingularInt32Field(value: &self._month)
       case 3: try decoder.decodeSingularInt32Field(value: &self._year)
       case 4: try decoder.decodeSingularStringField(value: &self._cvc)
-      case 5: try decoder.decodeSingularStringField(value: &self._userid)
-      case 6: try decoder.decodeSingularStringField(value: &self._bank)
-      case 7: try decoder.decodeSingularStringField(value: &self._name)
-      case 8: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
+      case 5: try decoder.decodeSingularStringField(value: &self._bank)
+      case 6: try decoder.decodeSingularStringField(value: &self._name)
+      case 7: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
       default: break
       }
     }
@@ -231,17 +218,14 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     if let v = self._cvc {
       try visitor.visitSingularStringField(value: v, fieldNumber: 4)
     }
-    if let v = self._userid {
+    if let v = self._bank {
       try visitor.visitSingularStringField(value: v, fieldNumber: 5)
     }
-    if let v = self._bank {
+    if let v = self._name {
       try visitor.visitSingularStringField(value: v, fieldNumber: 6)
     }
-    if let v = self._name {
-      try visitor.visitSingularStringField(value: v, fieldNumber: 7)
-    }
     if !self.cartItems.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 8)
+      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -251,7 +235,6 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     if lhs._month != rhs._month {return false}
     if lhs._year != rhs._year {return false}
     if lhs._cvc != rhs._cvc {return false}
-    if lhs._userid != rhs._userid {return false}
     if lhs._bank != rhs._bank {return false}
     if lhs._name != rhs._name {return false}
     if lhs.cartItems != rhs.cartItems {return false}

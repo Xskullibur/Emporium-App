@@ -115,7 +115,6 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         paymentInfo.year = 0
         paymentInfo.bank = ""
         paymentInfo.name = ""
-        paymentInfo.userid = ""
         
         for cart in cartData {
             var cartItemAdd = CartItem()
