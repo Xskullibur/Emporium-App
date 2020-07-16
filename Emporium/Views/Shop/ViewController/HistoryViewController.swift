@@ -8,13 +8,16 @@
 
 import UIKit
 import Firebase
+import RSSelectionMenu
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var tableView: UITableView!
     
-    var purchaseHistory: [String] = []
+    var purchaseHistory: [History] = []
+    let filter: [String] = ["yes", "no"]
+    var selected: [String] = []
     var docID: String = ""
     
     override func viewDidLoad() {
@@ -32,29 +35,44 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func loadSelectedHistory() {
+        ShopDataManager.loadSelectedHistory(selected: selected) {
+            history in
+            self.purchaseHistory = history
+            self.tableView.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return purchaseHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryCell
+        let history = purchaseHistory[indexPath.row]
+        var total: Double = 0.0
+        total = Double(history.amount)! / 100.0
         
         cell.layer.cornerRadius = 10
-        cell.titleLabel.text = purchaseHistory[indexPath.row]
+        cell.titleLabel.text = history.date
+        cell.totalLabel.text = "$" + String(format: "%.02f", total)
         
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowOffset = CGSize(width: 0, height: 3)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
-        cell.layer.shadowRadius = 5
-        cell.layer.shadowOpacity = 0.9
-        cell.layer.masksToBounds = false
-        cell.clipsToBounds = false
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.gray.cgColor
+        
+        if history.received == "no" {
+            cell.receivedLabel.text = "No"
+            cell.receivedLabel.textColor = .systemRed
+        }else{
+            cell.receivedLabel.text = "Yes"
+            cell.receivedLabel.textColor = .systemGreen
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        docID = purchaseHistory[indexPath.row]
+        docID = purchaseHistory[indexPath.row].date
         showActionSheet()
 
     }
@@ -62,6 +80,36 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! HistoryDetailViewController
         destVC.docID = self.docID
+    }
+    
+    
+    @IBAction func filterBtnPressed(_ sender: Any) {
+        showFilter()
+    }
+    
+    func showFilter() {
+        let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: filter)  {
+            (cell, name, indexPath) in
+            cell.textLabel?.text = name
+        }
+        selectionMenu.cellSelectionStyle = .checkbox
+        selectionMenu.show(style: .actionSheet(title: "Received status", action: "Filter", height: nil), from: self)
+        
+        
+        selectionMenu.onDismiss = { [weak self] selectedItems in
+            self?.selected = []
+            self?.selected = selectedItems
+            
+            if self?.selected.count == 0 {
+                self?.loadHistory()
+            }else{
+                self?.loadSelectedHistory()
+            }
+    }
+        
+        selectionMenu.setSelectedItems(items: selected) { [weak self] (item, index, isSelected, selectedItems) in
+            self?.selected = selectedItems
+        }
     }
     
     func showActionSheet() {

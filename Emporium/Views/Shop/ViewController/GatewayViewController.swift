@@ -11,34 +11,33 @@ import Stripe
 import Firebase
 import Foundation
 import Lottie
+import MLKit
 
 class GatewayViewController: UIViewController {
     
     @IBOutlet weak var numberInput: UITextField!
     @IBOutlet weak var cvcInput: UITextField!
     @IBOutlet weak var expDatePickerView: UIPickerView!
-    
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var showClickLabel: UILabel!
     @IBOutlet weak var cardAnimation: AnimationView!
     
-    var stripePublishableKey = "pk_test_tFCu0UObLJ3OVCTDNlrnhGSt00vtVeIOvM"
-    var backendBaseURL: String? = "http://172.27.177.40:5000"
-    //local http://192.168.86.1:5000
-    //web https://hidden-ridge-68133.herokuapp.com
-    //visa credit 4242424242424242 cvc: any 3 number
-    //visa debit  4000056655665556
-    
+    let scan = Scan()
     var monthPickerData : [Int] = Array(1...12)
     var yearPickerData: [Int] = Array(2020...2070)
-    var labelData: [String] = ["Exp Month", "Exp Year"]
+    var banks: [String] = []
+    var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        banks = scan.getBankList()
+        
         numberInput.placeholder = "Card Number (16 Digit)"
         cvcInput.placeholder = "CVC"
+        nameInput.placeholder = "Name(Optional)"
         
-        //cardImageView.image = UIImage(named: "noImage")
         
         self.expDatePickerView.dataSource = self
         self.expDatePickerView.delegate = self
@@ -60,6 +59,11 @@ class GatewayViewController: UIViewController {
        expDatePickerView.layer.borderWidth = 1
        expDatePickerView.layer.borderColor = UIColor.darkText.cgColor
         
+       self.view.addSubview(cardAnimation)
+       let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openScan(_:)))
+       self.cardAnimation.addGestureRecognizer(gesture)
+       self.cardAnimation.addSubview(showClickLabel)
+        
     }
     
     func checkPaymentInfo(number: String, cvc: String, month: Int, year: Int) -> [String] {
@@ -72,25 +76,17 @@ class GatewayViewController: UIViewController {
         format.dateFormat = "MM"
         let currentMonth = format.string(from: date)
         
-        if(String(number.filter { !" \n\t\r".contains($0) }).count != 16) {
-            error.append("Card number must have exactily 16 digit\n")
+       if(String(number.filter { !" \n\t\r".contains($0) }).count != 16 || Int(number) == nil) {
+            error.append("Card number - 16 digits\n")
         }
         
-        if(Int(number) == nil) {
-            error.append("Card number must only contain numbers\n")
-        }
-        
-        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3) {
-            error.append("CVC must have exactily 3 digit\n")
-        }
-        
-        if(Int(cvc) == nil) {
-            error.append("CVC must only contain numbers\n")
+        if(String(cvc.filter { !" \n\t\r".contains($0) }).count != 3 || Int(cvc) == nil) {
+            error.append("CVC - 3 digits\n")
         }
         
         if(Int(currentMonth)! >= month) {
             if Int(currentYear)! >= year {
-                error.append("Card Expiry Date must be next month or longer\n")
+                error.append("Expiry Date - next month or longer\n")
             }
         }
         
@@ -108,7 +104,6 @@ class GatewayViewController: UIViewController {
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
         let year = yearPickerData[expDatePickerView.selectedRow(inComponent: 1)]
         let cvc = cvcInput.text
-        var message = ""
         
         let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: month, year: year)
         
@@ -121,6 +116,8 @@ class GatewayViewController: UIViewController {
                 paymentInfo.year = Int32(year)
                 paymentInfo.cvc = cvc!
                 paymentInfo.userid = Auth.auth().currentUser?.uid as! String
+                paymentInfo.bank = ""
+                paymentInfo.name = ""
                 
                 for cart in cartData {
                     var cartItemAdd = CartItem()
@@ -128,49 +125,10 @@ class GatewayViewController: UIViewController {
                     cartItemAdd.quantity = Int32(cart.quantity)
                     paymentInfo.cartItems.append(cartItemAdd)
                 }
-                
-                let data = try? paymentInfo.serializedData()
-                
-                let session  = URLSession.shared
-                let url = URL(string: backendBaseURL! + "/oneTimeCharge")
-                var request = URLRequest(url: url!)
-                request.httpMethod = "POST"
-                request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-                
-                session.uploadTask(with: request, from: data) {
-                    data, response, error in
-                    if let httpResponse = response as? HTTPURLResponse {
-                        
-                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                            message = datastring
-                        }
-                        
-                        if httpResponse.statusCode == 200 {
-                            DispatchQueue.main.async
-                            {
-                                self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
-                                let back = UIAlertAction(title: "OK", style: .default) {
-                                    action in
-                                    self.navigationController?.popToRootViewController(animated: true)
-                                }
-                                showAlert.addAction(back)
-                                self.present(showAlert, animated: true, completion: nil)
-                            }
-                        }
-                        else
-                        {
-                            DispatchQueue.main.async
-                            {
-                                self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
-                                let cancel = UIAlertAction(title: "OK", style: .cancel)
-                                showAlert.addAction(cancel)
-                                self.present(showAlert, animated: true, completion: nil)
-                            }
-                        }
-                    }
-                }.resume()
+            
+            self.sendPaymentInfo(paymentInfo: paymentInfo)
+            
+        
         }else{
             var totalError: String = ""
             for err in error {
@@ -179,28 +137,166 @@ class GatewayViewController: UIViewController {
             Toast.showToast(totalError)
         }
     }
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        let gallery = UIAlertAction(title: "Choose from gallery", style: .default) {
+            action in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            
+            picker.allowsEditing = true
+            picker.sourceType = .photoLibrary
+            
+            self.present(picker, animated: true)
+        }
+        
+        let scan = UIAlertAction(title: "Camera", style: .default) {
+            action in
+            
+            if !(UIImagePickerController.isSourceTypeAvailable( .camera))
+            {
+                let showAlert = UIAlertController(title: "Error", message: "Camera not available!", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "OK", style: .cancel)
+                showAlert.addAction(cancel)
+                self.present(showAlert, animated: true, completion: nil)
+                
+            }else{
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                
+                self.present(picker, animated: true)
+            }
+        }
+        
+        actionSheet.addAction(gallery)
+        actionSheet.addAction(scan)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc func openScan(_ send: UITapGestureRecognizer) {
+        showActionSheet()
+    }
+        
+    
+    private func sendPaymentInfo(paymentInfo: PaymentInfo){
+        
+        Auth.auth().currentUser?.getIDToken(completion: {
+            token, error in
+            
+           let data = try? paymentInfo.serializedData()
+               
+           let session  = URLSession.shared
+           let url = URL(string: Global.BACKEND_SERVER_HOST + "/oneTimeCharge")
+           var request = URLRequest(url: url!)
+           request.httpMethod = "POST"
+           request.setValue("Bearer \(token!)", forHTTPHeaderField:"Authorization")
+           request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+           
+           var message = ""
+           session.uploadTask(with: request, from: data) {
+               data, response, error in
+               if let httpResponse = response as? HTTPURLResponse {
+                   
+                   if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                       message = datastring
+                   }
+                   
+                   if httpResponse.statusCode == 200 {
+                       DispatchQueue.main.async
+                       {
+                           self.removeSpinner()
+                           let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
+                           let back = UIAlertAction(title: "OK", style: .default) {
+                               action in
+                               self.navigationController?.popToRootViewController(animated: true)
+                           }
+                           showAlert.addAction(back)
+                           self.present(showAlert, animated: true, completion: nil)
+                       }
+                   }
+                   else
+                   {
+                       DispatchQueue.main.async
+                       {
+                           self.removeSpinner()
+                           let showAlert = UIAlertController(title: "Payment Failed", message: message, preferredStyle: .alert)
+                           let cancel = UIAlertAction(title: "OK", style: .cancel)
+                           showAlert.addAction(cancel)
+                           self.present(showAlert, animated: true, completion: nil)
+                       }
+                   }
+               }
+           }.resume()
+        })
+        
+       
+    }
+    
 }
 
 extension GatewayViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return monthPickerData.count
-        }else{
+        }else if component == 1{
             return yearPickerData.count
+        }else{
+            return banks.count
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
+       if component == 0 {
             return String(monthPickerData[row])
-        }else{
+        }else if component == 1{
             return String(yearPickerData[row])
+        }else{
+            return String(banks[row])
         }
     }
 }
 
+extension GatewayViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        getImageData(imageInput: info[.editedImage] as! UIImage)
+        picker.dismiss(animated: true)
+    }
+    
+    func getImageData(imageInput: UIImage) {
+        let imageInput = VisionImage(image: imageInput)
+        let textRec = TextRecognizer.textRecognizer()
+        
+        textRec.process(imageInput) {
+            result, error in
+            
+            if error != nil {
+                
+            }else{
+                let resultText = result!.text
+                let resultArray = resultText.components(separatedBy: "\n")
+                
+                let details =  self.scan.extractValue(items: resultArray)
+                
+                self.numberInput.text = details.cardNumber
+                self.expDatePickerView.selectRow(details.month, inComponent: 0, animated: true)
+                self.expDatePickerView.selectRow(details.year, inComponent: 1, animated: true)
+                self.expDatePickerView.selectRow(details.bank, inComponent: 2, animated: true)
+                
+                self.nameInput.text = self.scan.extractName(results: resultArray)
+                print("Raw result:\n" + resultText + "\n end of raw result")
+            }
+        }
+    }
+}
