@@ -103,6 +103,7 @@
 		EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE0BE38824BF5E4D00F9C3FA /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0BE38724BF5E4D00F9C3FA /* Global.swift */; };
+		FE16498D24C0894B00328F50 /* RewardSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */; };
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
 		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
@@ -243,6 +244,7 @@
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStore.swift; sourceTree = "<group>"; };
 		FE0BE38724BF5E4D00F9C3FA /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardSegmentedViewController.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				ACED1DFF249C64A500094284 /* DataMangers */,
 				ACED1DF0249B8D2300094284 /* Models */,
 				ACED1DEA249B72DF00094284 /* Rewards.storyboard */,
+				FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */,
 			);
 			path = Rewards;
 			sourceTree = "<group>";
@@ -1065,7 +1068,6 @@
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
-				7F0B388C24B0BB200003B9D9 /* CartItem.proto in Sources */,
 				ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
 				FE0BE38824BF5E4D00F9C3FA /* Global.swift in Sources */,
@@ -1099,6 +1101,7 @@
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
+				FE16498D24C0894B00328F50 /* RewardSegmentedViewController.swift in Sources */,
 				7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */,
 				ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */,
 				AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */,
