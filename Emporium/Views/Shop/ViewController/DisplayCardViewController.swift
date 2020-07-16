@@ -176,36 +176,23 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     func removeCard(docID: String) {
         
         self.showSpinner(onView: self.view)
-        
-        var paymentInfo = PaymentInfo()
-
-        
+    
         var message = ""
         
-        paymentInfo.number = docID
-        paymentInfo.cvc = ""
-        paymentInfo.month = 0
-        paymentInfo.year = 0
-        
-        //not required
-        paymentInfo.bank = ""
-        paymentInfo.name = ""
-        paymentInfo.userid = ""
-        //not required
-
         Auth.auth().currentUser?.getIDToken(completion: {
             token, error in
-            
-            let data = try? paymentInfo.serializedData()
+
             
             let session  = URLSession.shared
             let url = URL(string: Global.BACKEND_SERVER_HOST + "/removeCard")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
-            request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            let JSON = ["number":docID]
+            let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
             
-            session.uploadTask(with: request, from: data) {
+            session.uploadTask(with: request, from: JSONDATA) {
                 data, response, error in
                 if let httpResponse = response as? HTTPURLResponse {
                     
