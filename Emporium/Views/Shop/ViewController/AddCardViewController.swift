@@ -95,6 +95,7 @@ class AddCardViewController: UIViewController {
                 let url = URL(string: Global.BACKEND_SERVER_HOST + "/createCard")
                 var request = URLRequest(url: url!)
                 request.httpMethod = "POST"
+                request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID, "bank": bank, "name": name, "nickname": nickname]
                 let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
