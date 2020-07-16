@@ -13,5 +13,6 @@ enum QueueStatus: String {
     case InQueue = "In Queue"
     case OnTheWay = "On The Way"
     case InStore = "In Store"
+    case Delivery = "Delivery"
     case Completed = "Completed"
 }

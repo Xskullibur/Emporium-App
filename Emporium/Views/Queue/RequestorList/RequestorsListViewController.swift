@@ -17,6 +17,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     // MARK: - Variables
+    var queueId: String?
+    var storeId: String?
     var itemList: [RequestedItem] = []
     
     var defaultCategoryList: [String] = []
@@ -331,24 +333,38 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         if unCheckItems.count > 0 {
             
             // Alert
-            let alert = UIAlertController(
-                title: "Oops!",
-                message: "Some items are not picked up yet. Please mark the unavailable items as Not Available.",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+            let data = Plist.readPlist(url!)!
+            let infoDescription = data["Checklist Alert"] as! String
+            self.showAlert(title: "Oops!", message: infoDescription)
             
         }
         else {
             
-            // Navigate
-            let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
-            let confirmationVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
-            
-            let rootVC = self.navigationController?.viewControllers.first
-            self.navigationController?.setViewControllers([rootVC!, confirmationVC], animated: true)
+            // Update Queue Status
+            showSpinner(onView: self.view)
+            let queueDataManager = QueueDataManager()
+            queueDataManager.updateQueue(queueId!, withStatus: .Delivery, forStoreId: storeId!) { (success) in
+                
+                self.removeSpinner()
+                
+                if success {
+                    // Navigate
+                    let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                    let confirmationVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+                    
+                    let rootVC = self.navigationController?.viewControllers.first
+                    self.navigationController?.setViewControllers([rootVC!, confirmationVC], animated: true)
+                }
+                else {
+                    // Alert
+                    let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                    let data = Plist.readPlist(url!)!
+                    let infoDescription = data["Error Alert"] as! String
+                    self.showAlert(title: "Oops!", message: infoDescription)
+                }
+                
+            }
             
         }
         

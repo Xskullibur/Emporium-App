@@ -182,9 +182,20 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                 
                                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                                    inStoreVC.queueId = queueItem.id
+                                    inStoreVC.storeId = store.id
                                 
                                 let rootVC = self.navigationController?.viewControllers.first
                                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                                
+                            case .Delivery:
+                                // Navigate to Delivery
+                                let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                                
+                                let confirmVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, confirmVC], animated: true)
                                 
                             case .Completed:
                                 // Navigate to NearbyMart

@@ -13,6 +13,10 @@ import Lottie
 
 class InStoreViewController: UIViewController {
 
+    // MARK: - Variables
+    var queueId: String?
+    var storeId: String?
+    
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
     @IBOutlet weak var requestorListBtn: MDCButton!
@@ -50,14 +54,15 @@ class InStoreViewController: UIViewController {
         animationView.play()
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ShowRequestorList" {
+            let requestorListVC = segue.destination as! RequestorsListViewController
+            requestorListVC.storeId = storeId!
+            requestorListVC.queueId = queueId!
+        }
+        
     }
-    */
 
 }
