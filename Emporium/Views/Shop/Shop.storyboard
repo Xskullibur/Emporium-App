@@ -567,7 +567,11 @@
                         <viewLayoutGuide key="safeArea" id="kGz-D7-8gN"/>
                     </view>
                     <navigationItem key="navigationItem" id="IPM-vN-oyO">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="mfX-rA-chw"/>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="mfX-rA-chw">
+                            <connections>
+                                <action selector="filterBtnPressed:" destination="vvm-9f-VrL" id="9n5-k4-NQ3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Lrq-md-g2P" id="9xt-Mb-T3F"/>
@@ -649,7 +653,7 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJT-ke-4IX">
                                                             <rect key="frame" x="0.0" y="89.5" width="259" height="21.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" name="Primary"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
