@@ -15,10 +15,14 @@ class InStoreViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
+    @IBOutlet weak var requestorListBtn: MDCButton!
     @IBOutlet weak var animationView: AnimationView!
     
     // MARK: - IBActions
     @IBAction func exitBtnPressed(_ sender: Any) {
+    }
+    @IBAction func requestorListBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "ShowRequestorList", sender: self)
     }
     
     // MARK: - Lifecycle
@@ -36,6 +40,9 @@ class InStoreViewController: UIViewController {
         
         exitStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         exitStoreBtn.applyContainedTheme(withScheme: containerScheme)
+        
+        requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
+        requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
         
     }
     

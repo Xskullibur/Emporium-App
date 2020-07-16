@@ -16,7 +16,6 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var itemTableView: UITableView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-    
     // MARK: - Variables
     var itemList: [RequestedItem] = []
     
