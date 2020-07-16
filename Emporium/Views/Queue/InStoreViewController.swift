@@ -24,7 +24,27 @@ class InStoreViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func exitBtnPressed(_ sender: Any) {
+        
+        showSpinner(onView: self.view)
+        let queueDataManager = QueueDataManager()
+        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: storeId!) { (success) in
+            
+            self.removeSpinner()
+            
+            if success {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            else {
+                // Alert
+                let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                let data = Plist.readPlist(url!)!
+                let infoDescription = data["Error Alert"] as! String
+                self.showAlert(title: "Oops!", message: infoDescription)
+            }
+            
+        }
     }
+    
     @IBAction func requestorListBtnPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "ShowRequestorList", sender: self)
     }
