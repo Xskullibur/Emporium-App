@@ -42,6 +42,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle.fill" catalog="system" id="gNc-q4-rNU">
                             <connections>
                                 <action selector="infoBtnPressed:" destination="D0M-yV-G8E" id="xOL-ZD-bEq"/>
+                                <segue destination="rva-VO-wNO" kind="show" identifier="ShowQR" id="pXM-Na-iR0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,6 +50,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egr-6Q-3nK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1008.6956521739131" y="150.66964285714286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iW8-3o-F7s">
+            <objects>
+                <viewController id="rva-VO-wNO" customClass="QRViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oUY-kn-fPg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4L-oE-aVM">
+                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="VpH-oT-5Dv"/>
+                                    <constraint firstAttribute="height" constant="240" id="ljC-LB-7hD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="d4L-oE-aVM" firstAttribute="centerX" secondItem="oUY-kn-fPg" secondAttribute="centerX" id="6X1-aa-UJP"/>
+                            <constraint firstItem="d4L-oE-aVM" firstAttribute="centerY" secondItem="oUY-kn-fPg" secondAttribute="centerY" id="HPU-c7-N8m"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5VX-yd-xle"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xPe-71-edT"/>
+                    <connections>
+                        <outlet property="qrImageView" destination="d4L-oE-aVM" id="rq8-xZ-0FC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mv8-vZ-0r4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1783" y="152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9QG-mh-nh2">

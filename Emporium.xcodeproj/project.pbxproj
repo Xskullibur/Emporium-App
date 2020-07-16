@@ -105,6 +105,7 @@
 		EDD6581E24BFFF8700201B30 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */; };
 		EDD6582024C0042D00201B30 /* QRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6581F24C0042D00201B30 /* QRManager.swift */; };
 		EDD6582224C0097700201B30 /* DeliveryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6582124C0097700201B30 /* DeliveryDataManager.swift */; };
+		EDD6582824C030C700201B30 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6582724C030C700201B30 /* QRViewController.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE0BE38824BF5E4D00F9C3FA /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0BE38724BF5E4D00F9C3FA /* Global.swift */; };
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
@@ -250,6 +251,7 @@
 		EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		EDD6581F24C0042D00201B30 /* QRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRManager.swift; sourceTree = "<group>"; };
 		EDD6582124C0097700201B30 /* DeliveryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDataManager.swift; sourceTree = "<group>"; };
+		EDD6582724C030C700201B30 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		FE0BE38724BF5E4D00F9C3FA /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 			children = (
 				EDD6581B24BFFEE300201B30 /* Delivery.storyboard */,
 				EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */,
+				EDD6582724C030C700201B30 /* QRViewController.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -1115,6 +1118,7 @@
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
+				EDD6582824C030C700201B30 /* QRViewController.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,

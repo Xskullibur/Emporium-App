@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import MapKit
+import MaterialComponents.MaterialBottomSheet
 
 class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -20,11 +21,13 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     
     // MARK: - IBActions
     @IBAction func infoBtnPressed(_ sender: Any) {
+        
         //Show point info
         let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Confirm Delivery Description"] as! String
         self.showAlert(title: "Info", message: infoDescription)
+        
     }
     
     @IBAction func directionBtnPressed(_ sender: Any) {
@@ -139,6 +142,7 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
             // Verify and update server
+            self.showAlert(title: "Success!", message: stringVal)
             let deliveryDataManager = DeliveryDataManager()
             deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal)
             
@@ -173,14 +177,19 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         self.present(alert, animated: true)
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
+        if segue.identifier == "ShowQR" {
+            
+            guard let qrImage = QRManager.generateQRCode(from: queueId!) else {
+                return
+            }
+            
+            let qrVC = segue.destination as! QRViewController
+            qrVC.image = qrImage
+            
+        }
+        
+    }
 }
