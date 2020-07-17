@@ -40,16 +40,19 @@ class QueueDataManager {
         userRef.getDocument { (userDocumentSnapshot, userError) in
             if let error = userError {
                 print("Error retreiving collection. (checkExistingQueue.userRef): \(error)")
+                onError(error.localizedDescription)
                 return
             }
             
             guard let userDocument = userDocumentSnapshot else {
                 print("Error fetching document. (checkExistingQueue.userRef): \(userError!)")
+                onComplete(nil)
                 return
             }
             
             guard let userData = userDocument.data() else {
                 print("Document data was empty. (checkExistingQueue.userRef)")
+                onComplete(nil)
                 return
             }
             
@@ -167,9 +170,9 @@ class QueueDataManager {
      Returns:
      - data ([String: Any])
      */
-    func popQueue(storeId: String, queueId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
+    func popQueue(storeId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
         
-        self.functions.httpsCallable("popQueue").call(["queueId": queueId, "storeId": storeId]) { (result, error) in
+        self.functions.httpsCallable("popQueue").call(["storeId": storeId]) { (result, error) in
             
             // Error
             if let error = error as NSError? {

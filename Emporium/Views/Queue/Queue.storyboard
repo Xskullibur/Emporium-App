@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fbE-Um-Fsg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVw-P5-kfn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -287,13 +287,16 @@ Grocery Store</string>
                                                     <action selector="exitBtnPressed:" destination="Fwo-OH-8q4" eventType="touchUpInside" id="aJt-3U-LEa"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-Pb-d9H">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-Pb-d9H" customClass="MDCButton">
                                                 <rect key="frame" x="0.0" y="68" width="364" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="STi-Uv-ZxQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                                 <state key="normal" title="Requestor's List"/>
+                                                <connections>
+                                                    <action selector="requestorListBtnPressed:" destination="Fwo-OH-8q4" eventType="touchUpInside" id="qoV-QA-tlk"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -315,11 +318,13 @@ Grocery Store</string>
                     <connections>
                         <outlet property="animationView" destination="1Kn-QP-mCA" id="oOh-Kb-UZX"/>
                         <outlet property="exitStoreBtn" destination="xu8-l8-N3L" id="aC5-OK-P9v"/>
+                        <outlet property="requestorListBtn" destination="Zbw-Pb-d9H" id="Z5z-ub-oih"/>
+                        <segue destination="p6F-T7-R2l" kind="show" identifier="ShowRequestorList" id="p9q-bo-QQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Txf-W1-MTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2001" y="919"/>
+            <point key="canvasLocation" x="2790" y="919"/>
         </scene>
         <!--Requestors List View Controller-->
         <scene sceneID="0CO-qw-p1i">
@@ -329,11 +334,11 @@ Grocery Store</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-LQ-FEW">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-LQ-FEW">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="wLn-v1-wSX">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="656.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="665.5"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="bSg-wo-dtd" customClass="ItemTableViewCell" customModule="Emporium" customModuleProvider="target">
@@ -382,14 +387,21 @@ Grocery Store</string>
                                             <outlet property="delegate" destination="p6F-T7-R2l" id="FY5-kw-sDC"/>
                                         </connections>
                                     </tableView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Y-Aw-np9" userLabel="Category Stack View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVd-nn-fME" userLabel="Separator Line">
+                                        <rect key="frame" x="0.0" y="665.5" width="414" height="1"/>
+                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="h1w-cB-Df7"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Y-Aw-np9" userLabel="Category Stack View">
                                         <rect key="frame" x="0.0" y="666.5" width="414" height="107.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFW-N4-48e" userLabel="Label View">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="39.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMJ-hL-5X3">
-                                                        <rect key="frame" x="20" y="0.0" width="394" height="39.5"/>
+                                                        <rect key="frame" x="20" y="0.0" width="394" height="47.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -434,7 +446,13 @@ Grocery Store</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4gH-ab-xdh"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OUb-l8-blo"/>
+                    <navigationItem key="navigationItem" id="OUb-l8-blo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ML4-Vw-gph">
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="p6F-T7-R2l" id="9si-2Q-YZI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryCollectionView" destination="XBP-8k-tPT" id="FEI-fJ-cHr"/>
                         <outlet property="itemTableView" destination="wLn-v1-wSX" id="OSx-6c-DVY"/>
@@ -442,25 +460,25 @@ Grocery Store</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4r-zF-iEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3840.579710144928" y="918.75"/>
+            <point key="canvasLocation" x="3761" y="919"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="UaC-hh-5Gw">
+        <scene sceneID="M1K-R0-ccs">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fbE-Um-Fsg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EOQ-UH-HI0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xFi-hv-O5H">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ebv-K4-2xG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="p6F-T7-R2l" kind="relationship" relationship="rootViewController" id="IhD-y1-xGx"/>
+                        <segue destination="Fwo-OH-8q4" kind="relationship" relationship="rootViewController" id="E2q-wa-MBh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cah-Lc-asF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Po7-2S-JV1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2930.434782608696" y="918.75"/>
+            <point key="canvasLocation" x="1880" y="919"/>
         </scene>
     </scenes>
 </document>

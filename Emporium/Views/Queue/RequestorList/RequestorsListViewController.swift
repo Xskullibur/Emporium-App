@@ -16,13 +16,15 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var itemTableView: UITableView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
-    
     // MARK: - Variables
+    var queueId: String?
+    var store: GroceryStore?
     var itemList: [RequestedItem] = []
     
     var defaultCategoryList: [String] = []
     var categoryList: [String] = []
     
+    var defaultData: [[RequestedItem]] = []
     var data: [[RequestedItem]] = []
     
     // MARK: - Lifecycle
@@ -57,6 +59,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         for category in categoryList {
             let items = itemList.filter{ $0.cart.product.category == category }
             data.append(items)
+            defaultData.append(items)
         }
         
     }
@@ -120,8 +123,14 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         let item = data[section][row]
         cell.selectionStyle = .none
         cell.productImage.loadImage(url: item.cart.product.image)
-        cell.nameLabel.text = item.cart.product.productName
-        cell.quantityLabel.text = "\(item.cart.quantity)"
+        cell.nameLabel.text = "\(item.cart.product.productName) x\(item.cart.quantity)"
+        cell.quantityLabel.text = "$\(String(format: "%.2f", item.cart.product.price))"
+        
+        if cell.checkView.subviews.count > 0 {
+            for view in cell.checkView.subviews {
+                view.removeFromSuperview()
+            }
+        }
         
         switch item.status {
             
@@ -155,22 +164,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         let section = indexPath.section
         let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
         
-        if data[section][row].status == .NotPickedUp {
-            
-            // Update .NotPickedUp to .PickedUp
-            let item = data[section][row]
-            item.status = .PickedUp
-            updateRequestedItem(item: item, status: .PickedUp)
-            
-            let view = animationView(type: .Check, frame: cell.checkView.bounds)
-            cell.checkView.subviews[0].removeFromSuperview()
-            cell.checkView.addSubview(view)
-            view.play()
-            
-        }
-        else if data[section][row].status == .PickedUp {
-            
-            // Update .PickedUp to .NotPickedUp
+        if data[section][row].status == .PickedUp {
+            // Update .NotPickedUp
             let item = data[section][row]
             item.status = .NotPickedUp
             updateRequestedItem(item: item, status: .NotPickedUp)
@@ -178,11 +173,9 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             let view = emptyView()
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
-            
         }
-        else if data[section][row].status == .NotAvailable {
-            
-            // Update .NotAvailable to .PickedUp
+        else {
+            // Update .PickedUp (.NotPickedUp / .NotAvailable)
             let item = data[section][row]
             item.status = .PickedUp
             updateRequestedItem(item: item, status: .PickedUp)
@@ -191,7 +184,6 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             cell.checkView.subviews[0].removeFromSuperview()
             cell.checkView.addSubview(view)
             view.play()
-            
         }
         
     }
@@ -207,6 +199,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         var customBtn: UIContextualAction
         
         if data[section][row].status == .NotAvailable {
+            
+            // .NotAvailable => .Available
             customBtn = UIContextualAction(style: .normal, title: "Available", handler: { (action, view, success) in
                 
                 tableView.dataSource?.tableView?(tableView, commit: .delete, forRowAt: indexPath)
@@ -216,6 +210,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             customBtn.backgroundColor = .systemBlue
         }
         else {
+            
+            // .Available => .NotAvailable
             customBtn = UIContextualAction(style: .normal, title: "Not Available", handler: { (action, view, success) in
                 
                 tableView.dataSource?.tableView?(tableView, commit: .delete, forRowAt: indexPath)
@@ -241,7 +237,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             
             if data[section][row].status == .NotAvailable {
                 
-                // Update NotAvailable => .PickedUp
+                // Update .NotAvailable => .PickedUp
                 let item = data[section][row]
                 item.status = .PickedUp
                 updateRequestedItem(item: item, status: .PickedUp)
@@ -253,7 +249,7 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                 
             } else {
                 
-                // Update Any => .NotAvailable
+                // Update .Any => .NotAvailable
                 let item = data[section][row]
                 item.status = .NotAvailable
                 updateRequestedItem(item: item, status: .NotAvailable)
@@ -311,25 +307,69 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         // Update Categories
         if selectedIndexPath.count > 0 {
             categoryList = []
+            data = []
             
             // Add items based on selected category into data
             for index in selectedIndexPath {
                 let row = index.row
                 categoryList.append(defaultCategoryList[row])
+                data.append(defaultData[row])
             }
         }
         else {
             categoryList = defaultCategoryList
-        }
-        
-        // Update Data
-        data = []
-        
-        for category in categoryList {
-            data.append(itemList.filter{ $0.cart.product.category == category })
+            data = defaultData
         }
         
         itemTableView.reloadData()
+        
+    }
+    
+    // MARK: - IBAction
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        
+        // Check itemList
+        let unCheckItems = itemList.filter{ $0.status == .NotPickedUp }
+        if unCheckItems.count > 0 {
+            
+            // Alert
+            let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+            let data = Plist.readPlist(url!)!
+            let infoDescription = data["Checklist Alert"] as! String
+            self.showAlert(title: "Oops!", message: infoDescription)
+            
+        }
+        else {
+            
+            // Update Queue Status
+            showSpinner(onView: self.view)
+            let queueDataManager = QueueDataManager()
+            queueDataManager.updateQueue(queueId!, withStatus: .Delivery, forStoreId: store!.id) { (success) in
+                
+                self.removeSpinner()
+                
+                if success {
+                    // Navigate
+                    let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                    let confirmationVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+                    
+                    confirmationVC.queueId = self.queueId!
+                    confirmationVC.store = self.store!
+                    
+                    let rootVC = self.navigationController?.viewControllers.first
+                    self.navigationController?.setViewControllers([rootVC!, confirmationVC], animated: true)
+                }
+                else {
+                    // Alert
+                    let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                    let data = Plist.readPlist(url!)!
+                    let infoDescription = data["Error Alert"] as! String
+                    self.showAlert(title: "Oops!", message: infoDescription)
+                }
+                
+            }
+            
+        }
         
     }
     

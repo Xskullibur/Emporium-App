@@ -72,8 +72,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
         
-        // Spinner
-        showSpinner(onView: self.view)
     }
     
     // MARK: - IBAction
@@ -234,8 +232,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
                 
                     // Display and Unload Spinner
                     self.addAnnotations()
-                    self.removeSpinner()
-                    self.locationManager?.stopUpdatingLocation()
             }
 
         })
