@@ -14,7 +14,7 @@ class ServerLocation: NSObject {
     static func getLocation() -> String
     {
         let web = "https://hidden-ridge-68133.herokuapp.com"
-        let home = "http://192.168.86.1:5000"
+        let home = "http://192.168.86.1:5001"
         
         return home
     }
