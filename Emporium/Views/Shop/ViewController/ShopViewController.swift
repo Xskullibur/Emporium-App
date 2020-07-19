@@ -125,7 +125,18 @@ class ShopViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if self.cartData.count == 0 {
             Toast.showToast("Cart is empty")
+        }else{
+            var toDelete: [Int] = []
+            for index in 0..<cartData.count {
+                if cartData[index].quantity < 1 {
+                    toDelete.append(index)
+                }
+            }
+            for index in toDelete {
+                cartData.remove(at: index)
+            }
         }
+        
         let destVC = segue.destination as! CheckOutViewController
         destVC.cartData = self.cartData
     }

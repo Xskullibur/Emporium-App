@@ -38,8 +38,6 @@
 		AC0A18FA2495EAC4009FFD93 /* NotificationTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */; };
 		AC0A18FC2495EE8D009FFD93 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */; };
 		AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */; };
-		AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E908249CE83300DA2A7F /* PickupViewController.swift */; };
-		AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */; };
 		AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90C249CE84400DA2A7F /* ShopViewController.swift */; };
 		AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */; };
 		AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */; };
@@ -178,8 +176,6 @@
 		AC0A18F92495EAC4009FFD93 /* NotificationTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableView.xib; sourceTree = "<group>"; };
 		AC0A18FB2495EE8D009FFD93 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
 		AC0A18FD2495F2C5009FFD93 /* EmporiumNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumNotificationViewController.swift; sourceTree = "<group>"; };
-		AC13E908249CE83300DA2A7F /* PickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
-		AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		AC13E90C249CE84400DA2A7F /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutViewController.swift; sourceTree = "<group>"; };
 		AC18C2E9249CFF270033F4C4 /* VoucherStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherStatus.swift; sourceTree = "<group>"; };
@@ -341,8 +337,6 @@
 			children = (
 				AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */,
 				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
-				AC13E908249CE83300DA2A7F /* PickupViewController.swift */,
-				AC13E909249CE83400DA2A7F /* ReceiptViewController.swift */,
 				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
 				7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */,
 				7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */,
@@ -1053,7 +1047,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC13E90A249CE83400DA2A7F /* PickupViewController.swift in Sources */,
 				34BCD52F24C1486300CBF2D2 /* CartItem.pb.swift in Sources */,
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
 				7F37653624BDD10E00CC27F3 /* History.swift in Sources */,
@@ -1077,7 +1070,6 @@
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
-				AC13E90B249CE83400DA2A7F /* ReceiptViewController.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
 				ACED1DEF249B8C7F00094284 /* VoucherTableViewCell.swift in Sources */,
 				7F37653824BEF52700CC27F3 /* HistoryPaymentDetail.swift in Sources */,

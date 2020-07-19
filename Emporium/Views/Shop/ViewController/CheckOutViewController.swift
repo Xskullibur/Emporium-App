@@ -50,8 +50,10 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.priceLabel.text = "$" + String(format: "%.02f", cartDetail.price)
         cell.quantityLabel.text = String(cartDetail.quantity)
         cell.cartImage.loadImage(url: cartDetail.image)
-        cell.removeBtn.tag = indexPath.row
-        cell.removeBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
+        
+        cell.stepper.tag = indexPath.row
+        cell.stepper.value = Double(cartDetail.quantity)
+        cell.stepper.addTarget(self, action: #selector(changeQuantity(sender:)), for: .valueChanged)
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -59,15 +61,15 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    @objc func removeClick(sender: UIButton) {
+    @objc func changeQuantity(sender: UIStepper) {
         let selectedItem = cartData[sender.tag]
-        if selectedItem.quantity == 1 {
+        selectedItem.quantity = Int(sender.value)
+        
+        if selectedItem.quantity == 0 {
             cartData.remove(at: sender.tag)
             Toast.showToast("Item is removed")
-        }else{
-            selectedItem.quantity = selectedItem.quantity - 1
-            Toast.showToast(selectedItem.productName + " quantity left " + String(selectedItem.quantity))
         }
+        
         var total = 0.0
         for item in cartData {
             total = total + (item.price * Double(item.quantity))
@@ -76,7 +78,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-    
     @IBAction func PayBtnPressed(_ sender: Any) {
         if self.cartData.count == 0 {
             Toast.showToast("Cart is empty select something first!")
@@ -84,7 +85,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                //performSegue(withIdentifier: "toGateway", sender: nil)
                 showActionSheet()
             }
         }
@@ -125,7 +125,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
 
 extension CheckOutViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ShopViewController)?.cartData = cartData 
+        (viewController as? ShopViewController)?.cartData = cartData
     }
 }
 
