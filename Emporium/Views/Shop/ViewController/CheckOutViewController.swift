@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -49,7 +50,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.text = cartDetail.productName
         cell.priceLabel.text = "$" + String(format: "%.02f", cartDetail.price)
         cell.quantityLabel.text = String(cartDetail.quantity)
-        cell.cartImage.loadImage(url: cartDetail.image)
+        cell.cartImage.sd_setImage(with: URL(string: cartDetail.image))
         
         cell.stepper.tag = indexPath.row
         cell.stepper.value = Double(cartDetail.quantity)

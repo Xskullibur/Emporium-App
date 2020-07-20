@@ -8,6 +8,7 @@
 
 import UIKit
 import MaterialComponents.MaterialCards
+import SDWebImage
 
 class ProductViewCell: MDCCardCollectionCell {
     
@@ -27,7 +28,7 @@ class ProductViewCell: MDCCardCollectionCell {
         self.nameLabel.text = name
         self.priceLabel.text = "$" + price
         if(image != "") {
-            productImageView.loadImage(url: image)
+            productImageView.sd_setImage(with: URL(string: image))
         }
     }
 
