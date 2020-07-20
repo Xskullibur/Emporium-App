@@ -32,6 +32,51 @@ class StoreDataManager {
     }
     
     /**
+     Get stores by merchant Id
+     */
+    func getStoreByMerchantId(_ merchantId: String, onComplete: @escaping ([GroceryStore]) -> Void, onError: @escaping (String) -> Void) {
+        
+        storeCollection.whereField("merchant", isEqualTo: merchantId)
+            .getDocuments { (querySnapshot, error) in
+                
+                if let error = error {
+                    onError(error.localizedDescription)
+                }
+                else {
+                    
+                    guard let documents = querySnapshot?.documents else {
+                        onError("Document not found")
+                        return
+                    }
+                    
+                    if documents.count > 0 {
+                        
+                        var storeList: [GroceryStore] = []
+                        for document in documents {
+                            let data = document.data()
+                            let store = GroceryStore(
+                                id: document.documentID,
+                                name: data["name"] as! String,
+                                address: data["address"] as! String,
+                                location: data["coordinates"] as! GeoPoint
+                            )
+                            storeList.append(store)
+                        }
+                        onComplete(storeList)
+                        
+                    }
+                    else {
+                        onComplete([])
+                    }
+                    
+                }
+                
+                
+        }
+        
+    }
+    
+    /**
      Firestore **storeId** listener
      
      Returns:

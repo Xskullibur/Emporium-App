@@ -64,6 +64,23 @@ class GroceryStore: NSObject {
         
     }
     
+    init(
+        id _id: String,
+        name _name: String,
+        address _address: String,
+        location _location: GeoPoint
+    ) {
+        
+        id = _id
+        name = _name
+        address = _address
+        distance = nil
+        location = _location
+        currentVisitorCount = 0
+        maxVisitorCapacity = 0
+        
+    }
+    
     enum CrowdLevel {
         case low
         case medium

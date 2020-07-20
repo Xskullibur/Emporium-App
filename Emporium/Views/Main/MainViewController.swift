@@ -36,7 +36,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     private let userCells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
 
     //Merchant Reuseable Cell Ids
-    private let merchantCells = ["CrowdTrackingCell"]
+    private let merchantCells = ["CrowdTrackingCell", "StoreLocationCell"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -217,7 +217,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                 }
                 
             }
-            else {
+            else if !login && loginAsUserType == .user {
                 // Navigate to NearbyMart
                 self.performSegue(withIdentifier: "ShowNearby", sender: self)
             }
