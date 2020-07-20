@@ -98,7 +98,8 @@ class GatewayViewController: UIViewController {
         
         var paymentInfo = PaymentInfo()
         
-        paymentInfo.cartItems = []
+        paymentInfo.order = Order()
+        paymentInfo.order.cartItems = []
         
         let number = numberInput.text
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
@@ -122,7 +123,7 @@ class GatewayViewController: UIViewController {
                     var cartItemAdd = CartItem()
                     cartItemAdd.productID = cart.productID
                     cartItemAdd.quantity = Int32(cart.quantity)
-                    paymentInfo.cartItems.append(cartItemAdd)
+                    paymentInfo.order.cartItems.append(cartItemAdd)
                 }
             
             self.sendPaymentInfo(paymentInfo: paymentInfo)

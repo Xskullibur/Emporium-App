@@ -105,7 +105,8 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         self.showSpinner(onView: self.view)
         
         var paymentInfo = PaymentInfo()
-        paymentInfo.cartItems = []
+        paymentInfo.order = Order()
+        paymentInfo.order.cartItems = []
         
         var message = ""
         
@@ -120,7 +121,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
             var cartItemAdd = CartItem()
             cartItemAdd.productID = cart.productID
             cartItemAdd.quantity = Int32(cart.quantity)
-            paymentInfo.cartItems.append(cartItemAdd)
+            paymentInfo.order.cartItems.append(cartItemAdd)
         }
         
         Auth.auth().currentUser?.getIDToken(completion: {

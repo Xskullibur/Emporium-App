@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		34A74EED24BBFC1100A03EBD /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A74EEC24BBFC1100A03EBD /* Plist.swift */; };
 		34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B31A8B24BBECF100459A57 /* ListenerManager.swift */; };
-		34BCD52F24C1486300CBF2D2 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCD52E24C1486300CBF2D2 /* CartItem.pb.swift */; };
+		34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */; };
+		34B3D15324C53CB400D32FE3 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */; };
 		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
@@ -142,7 +143,8 @@
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
 		34A74EEC24BBFC1100A03EBD /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
 		34B31A8B24BBECF100459A57 /* ListenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
-		34BCD52E24C1486300CBF2D2 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
+		34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryOrder.pb.swift; sourceTree = "<group>"; };
+		34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
 		34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresTableViewController.swift; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -390,10 +392,11 @@
 			children = (
 				AC21B9D0249767630058EE50 /* Product.swift */,
 				7FD0263824976FA200BAA2F1 /* Cart.swift */,
+				34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */,
+				34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */,
 				7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */,
 				7F37653324BDB8ED00CC27F3 /* CartItem.proto */,
 				7F0B388524ADDA830003B9D9 /* Card.swift */,
-				34BCD52E24C1486300CBF2D2 /* CartItem.pb.swift */,
 				7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */,
 				7F37653524BDD10E00CC27F3 /* History.swift */,
 				7F37653724BEF52700CC27F3 /* HistoryPaymentDetail.swift */,
@@ -1036,7 +1039,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34BCD52F24C1486300CBF2D2 /* CartItem.pb.swift in Sources */,
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
 				7F37653624BDD10E00CC27F3 /* History.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
@@ -1054,9 +1056,11 @@
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
+				34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
 				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
+				34B3D15324C53CB400D32FE3 /* CartItem.pb.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,

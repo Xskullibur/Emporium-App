@@ -90,7 +90,7 @@ class ShopDataManager
                 for doc in querySnapshot!.documents
                 {
                     if selected.contains(doc.get("received") as! String) {
-                        let amount: String = doc.get("amount") as! String
+                        let amount: Int = doc.get("amount") as! Int
                         let date = String(doc.documentID)
                         let receive = doc.get("received") as! String
                         purchaseHistory.append(History(amount: amount, date: date, received: receive))
@@ -116,7 +116,7 @@ class ShopDataManager
             {
                 for doc in querySnapshot!.documents
                 {
-                    let amount: String = doc.get("amount") as! String
+                    let amount: Int = doc.get("amount") as! Int
                     let date = String(doc.documentID)
                     let receive = doc.get("received") as! String
                     purchaseHistory.append(History(amount: amount, date: date, received: receive))
@@ -126,13 +126,13 @@ class ShopDataManager
         }
     }
     
-    static func loadHistoryDetail(docID: String, onComplete: (([String]) -> Void)?) {
+    static func loadHistoryDetail(docID: String, onComplete: (([DocumentReference]) -> Void)?) {
         
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").document(docID).getDocument
         {
             (document, err) in
             
-            var details: [String] = []
+            var details: [DocumentReference] = []
             
             if let err = err
             {
@@ -140,7 +140,8 @@ class ShopDataManager
             }
             else
             {
-                details = document?.get("cartDetail") as! [String]
+                details = document?.get("cartDetailItems") as! [DocumentReference]
+                
             }
             onComplete?(details)
         }

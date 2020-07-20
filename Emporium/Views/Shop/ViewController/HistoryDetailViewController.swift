@@ -48,16 +48,21 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
             rawCart = cartDetail
             
             for i in stride(from: 0, to: rawCart.count - 1, by: 5) {
-                
+
                 let productID = rawCart[i]
                 let quantity = rawCart[i+1]
                 let name = rawCart[i+2]
                 let price = rawCart[i+3]
                 let image = rawCart[i+4]
-                
+
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
                 total = total + (Double(price)! * Double(quantity)!)
             }
+            
+//            for item in cartDetail {
+//                let productID = item.get
+//            }
+//
             self.totalLabel.text = "$" + String(format: "%.02f", total)
             
             ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
