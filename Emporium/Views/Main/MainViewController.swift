@@ -128,7 +128,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         // Join Queue Cell
         if indexPath.row == 0 {
             
-            if login {
+            if login && loginAsUserType == .user {
                 
                 let queueDataManager = QueueDataManager()
                 queueDataManager.checkExistingQueue(userId: Auth.auth().currentUser!.uid, onComplete: { (queueItem) in

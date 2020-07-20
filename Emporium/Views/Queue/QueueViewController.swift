@@ -75,13 +75,29 @@ class QueueViewController: UIViewController {
             showVolunteerAlert()
         }
         
+        // Visitor Count Listener
+        let listener = createListener()
+        listenerManager.add(listener)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        listenerManager.clear()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let listener = createListener()
+        listenerManager.add(listener)
+    }
+    
+    // MARK: - Custom Functions
+    func createListener() -> ListenerRegistration {
         // Error Alert
         let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         errorAlert.addAction(okAction)
         
-        // Visitor Count Listener
-        let listener = storeDataManager.visitorCountListenerForStore(store!) { (data) in
+        return storeDataManager.visitorCountListenerForStore(store!) { (data) in
             
             // Guard Data
             guard let current_visitor_count = data["current_visitor_count"] as? Int,
@@ -142,13 +158,8 @@ class QueueViewController: UIViewController {
 
             }
         }
-        
-        listenerManager.add(listener)
-        
-        
     }
     
-    // MARK: - Custom Functions
     func showVolunteerAlert() {
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
