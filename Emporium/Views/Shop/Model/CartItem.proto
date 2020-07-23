@@ -1,0 +1,19 @@
+
+syntax = "proto2";
+
+message CartItem {
+  required string productID = 1;
+  required int32 quantity = 2;
+}
+
+message PaymentInfo {
+  required string number = 1;
+  required int32 month = 2;
+  required int32 year = 3;
+  required string cvc = 4;
+  required string bank = 5;
+  required string name = 6;
+
+  repeated CartItem cartItems = 7;
+
+}
