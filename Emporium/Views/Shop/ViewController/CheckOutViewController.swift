@@ -15,11 +15,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
     
-    
     var cartData: [Cart] = []
    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,9 +83,14 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                showActionSheet()
+                showActionSheet(sender as! UIView)
             }
         }
+    }
+    
+    
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        saveActionSheet()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,7 +103,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func showActionSheet() {
+    func showActionSheet(_ sender: UIView) {
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -118,6 +121,22 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         actionSheet.addAction(card)
         actionSheet.addAction(payment)
         actionSheet.addAction(cancel)
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        present(actionSheet, animated: true, completion: nil)
+        
+        //present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func saveActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(cancel)
+        actionSheet.addTextField()
         
         present(actionSheet, animated: true, completion: nil)
     }

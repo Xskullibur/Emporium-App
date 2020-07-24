@@ -45,7 +45,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         ShopDataManager.loadHistoryDetail(docID: docID) {
             cartDetail in
-            rawCart = cartDetail
+            //rawCart = cartDetail
             
             for i in stride(from: 0, to: rawCart.count - 1, by: 5) {
 
