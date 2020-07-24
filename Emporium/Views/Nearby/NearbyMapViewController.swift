@@ -17,20 +17,6 @@ protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
 }
 
-class StoreButton: UIButton {
-    
-    var store: GroceryStore?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-}
-
 // MARK: - ViewController
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
@@ -150,6 +136,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         view.rightCalloutAccessoryView = rightButton
         
+        
+        // Left Callout
         let pointSize: CGFloat = 24
         let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light).fontDescriptor
         let fractionFontDesc = systemFontDesc.addingAttributes([
@@ -197,7 +185,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     /// Uses PlacesAPI to get **GroceryStores** based on provided coordinates
     func getStores(lat latitude: Double, long longitude: Double) {
         
-        // Do any additional setup after loading the view.
         let placesAPI = PlacesAPI()
         placesAPI.getNearbyGroceryStore(lat: latitude, long: longitude, radius: 2500, completionHandler: { (_storeList, error) in
             

@@ -11,6 +11,9 @@ import MaterialComponents.MaterialButtons
 
 class AddStoreViewController: UIViewController, UITextFieldDelegate {
 
+    // MARK: - Variables
+    var store: GroceryStore?
+    
     // MARK: - IBOutlets
     @IBOutlet weak var nameTxt: MDCTextField!
     @IBOutlet weak var addressTxt: MDCTextField!
@@ -21,12 +24,22 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Hide keyboard
+        self.hideKeyboardWhenTappedAround()
+        
+        // Fill data
+        if let store = store {
+            nameTxt.text = store.name
+            addressTxt.text = store.address
+            longitudeTxt.text = String(store.location.longitude)
+            latitudeTxt.text = String(store.location.latitude)
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if let nxtField = textField.superview?.viewWithTag(textField.tag + 1) as? MDCTextField {
+        if let nxtField = self.view.viewWithTag(textField.tag + 1) as? MDCTextField {
             nxtField.becomeFirstResponder()
         }
         else {
@@ -47,4 +60,16 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

@@ -36,17 +36,26 @@ class PlacesAPI {
     }
     
     // MARK: - Functions
-    func getNearbyGroceryStore(lat: Double, long: Double, radius: Int, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
+    func getNearbyGroceryStore(lat: Double?, long: Double?, radius: Int?, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
         
         // Set API parameters
         let SUPERMARKET_ID = "52f2ab2ebcbc57f1066b8b46"
         var storeList: [GroceryStore] = []
-        
-        let parameter: [String: String] = [
-            "ll": String(lat) + "," + String(long),
-            "radius": String(radius),
-            "categoryId": SUPERMARKET_ID
+        var parameter: [String: String] = [
+            "categoryId": SUPERMARKET_ID,
+            "limit": "50",
         ]
+        
+        if let radius = radius {
+            parameter["radius"] = String(radius)
+        }
+        
+        if let lat = lat, let long = long {
+            parameter["ll"] = String(lat) + "," + String(long)
+        }
+        else {
+            parameter["near"] = "Singapore"
+        }
         
         // Call API for data
         client.request(path: "venues/search", parameter: parameter) { (result) in
@@ -62,9 +71,9 @@ class PlacesAPI {
                         id: venue["id"].string!,
                         name: venue["name"].string!,
                         address: venue["location"]["formattedAddress"][0].string!,
-                        distance: venue["location"]["distance"].double! / 1000,
-                        latitude: venue["location"]["labeledLatLngs"][0]["lat"].double!,
-                        logitude: venue["location"]["labeledLatLngs"][0]["lng"].double!
+                        distance: ((venue["location"]["distance"].double ?? 0) / 1000),
+                        latitude: venue["location"]["lat"].double!,
+                        logitude: venue["location"]["lng"].double!
                     )
                     
                     storeList.append(store)
