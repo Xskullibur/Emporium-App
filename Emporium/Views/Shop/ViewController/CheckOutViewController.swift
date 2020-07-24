@@ -131,9 +131,15 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func saveActionSheet() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Give it a name!", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        let save = UIAlertAction(title: "Save", style: .default) {
+            action in
+            //let name = actionSheet.textFields![0]
+        }
+        
+        actionSheet.addAction(save)
         actionSheet.addAction(cancel)
         actionSheet.addTextField()
         
