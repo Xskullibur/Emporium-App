@@ -30,7 +30,7 @@ class GroceryStore: NSObject {
         logitude _longitude: Double,
         
         maxCount _maxCount: Int = 40,
-        crowdCount _crowdCount: Int = 0
+        crowdCount _crowdCount: Int = Int.random(in: 0...40)
     ) {
         
         id = _id

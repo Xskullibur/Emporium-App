@@ -112,7 +112,7 @@ class StoreDataManager {
      Firestore update store contents
      */
     func updateStore(store: GroceryStore) {
-        storeCollection.document(store.id).updateData([
+        storeCollection.document(store.id).setData([
             "id": store.id,
             "name": store.name,
             "address": store.address,
