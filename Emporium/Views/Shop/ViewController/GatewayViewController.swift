@@ -178,6 +178,8 @@ class GatewayViewController: UIViewController {
         actionSheet.addAction(scan)
         actionSheet.addAction(cancel)
         
+        actionSheet.popoverPresentationController?.sourceRect = self.accessibilityFrame
+        actionSheet.popoverPresentationController?.sourceView = self.view
         present(actionSheet, animated: true, completion: nil)
     }
     

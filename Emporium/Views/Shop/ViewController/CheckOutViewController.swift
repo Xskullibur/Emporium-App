@@ -128,7 +128,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         }
         present(actionSheet, animated: true, completion: nil)
         
-        //present(actionSheet, animated: true, completion: nil)
     }
     
     func saveActionSheet() {

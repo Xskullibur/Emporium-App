@@ -467,7 +467,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEh-aE-FVX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-962" y="119"/>
+            <point key="canvasLocation" x="-860" y="97"/>
         </scene>
         <!--Purchase History-->
         <scene sceneID="9e9-qF-F6q">
@@ -790,7 +790,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xur-dl-4uX">
-                                <rect key="frame" x="35" y="954.5" width="699" height="56"/>
+                                <rect key="frame" x="35" y="918.5" width="699" height="56"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="FTl-tT-cbP"/>
@@ -810,7 +810,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V4-pC-Tjq">
-                                <rect key="frame" x="20" y="698.5" width="270" height="34"/>
+                                <rect key="frame" x="20" y="662.5" width="270" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="1lO-70-LQG"/>
                                 </constraints>
@@ -818,19 +818,19 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DdB-IN-fGq">
-                                <rect key="frame" x="298" y="698.5" width="450" height="34"/>
+                                <rect key="frame" x="298" y="662.5" width="450" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAE-Ok-7cM">
-                                <rect key="frame" x="20" y="769.5" width="728" height="159"/>
+                                <rect key="frame" x="20" y="733.5" width="728" height="159"/>
                                 <color key="backgroundColor" name="Background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="159" id="vxc-ea-one"/>
                                 </constraints>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXV-FC-cK2" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="35" y="105" width="699" height="518.5"/>
+                                <rect key="frame" x="35" y="69" width="699" height="518.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Click to Scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX5-Ns-Bb4">
                                         <rect key="frame" x="64" y="174.33333333333348" width="215" height="26.666666666666657"/>
@@ -851,7 +851,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-N3-8aU">
-                                <rect key="frame" x="19" y="647" width="729" height="34"/>
+                                <rect key="frame" x="19" y="611" width="729" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -871,7 +871,7 @@
                             <constraint firstItem="mUa-N3-8aU" firstAttribute="top" secondItem="yXV-FC-cK2" secondAttribute="bottom" constant="23.5" id="sDF-qF-d0v"/>
                             <constraint firstItem="DdB-IN-fGq" firstAttribute="leading" secondItem="9V4-pC-Tjq" secondAttribute="trailing" constant="8" id="sKk-Fu-QEw"/>
                             <constraint firstItem="PAE-Ok-7cM" firstAttribute="leading" secondItem="cPU-go-72U" secondAttribute="leading" constant="20" id="sdc-SB-fjE"/>
-                            <constraint firstItem="yXV-FC-cK2" firstAttribute="top" secondItem="cPU-go-72U" secondAttribute="top" constant="55" id="tKU-7J-jUP"/>
+                            <constraint firstItem="yXV-FC-cK2" firstAttribute="top" secondItem="cPU-go-72U" secondAttribute="top" constant="19" id="tKU-7J-jUP"/>
                             <constraint firstItem="9V4-pC-Tjq" firstAttribute="leading" secondItem="cPU-go-72U" secondAttribute="leading" constant="20" id="uzr-s7-nA4"/>
                             <constraint firstItem="DdB-IN-fGq" firstAttribute="bottom" secondItem="9V4-pC-Tjq" secondAttribute="bottom" id="vRv-lw-Ouy"/>
                             <constraint firstItem="mUa-N3-8aU" firstAttribute="leading" secondItem="cPU-go-72U" secondAttribute="leading" constant="19" id="xRA-1G-cco"/>
