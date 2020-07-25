@@ -44,6 +44,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="10" left="8" bottom="10" right="8"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
