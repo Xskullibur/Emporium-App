@@ -21,7 +21,6 @@ class StoreListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStores()
     }
 
     override func viewDidAppear(_ animated: Bool) {

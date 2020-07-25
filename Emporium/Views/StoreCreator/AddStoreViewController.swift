@@ -76,26 +76,22 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
         // Add to FireStore
         self.showSpinner(onView: self.view)
         let storeDataManager = StoreDataManager()
-        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude) { (success) in
+        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude, onComplete:
+        {
+            self.removeSpinner()
+            
+            let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                let VCs = self.navigationController!.viewControllers
+                self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
+            }))
+            
+            self.present(alert, animated: true)
+            
+        }) { (errorMsg) in
             
             self.removeSpinner()
-            if success {
-                
-                let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (ok) in
-                    let VCs = self.navigationController!.viewControllers
-                    self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
-                }))
-                
-                self.present(alert, animated: true)
-                
-            }
-            else {
-                let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
-                let data = Plist.readPlist(url!)!
-                let infoDescription = data["Error Alert"] as! String
-                self.showAlert(title: "Oops!", message: infoDescription)
-            }
+            self.showAlert(title: "Error", message: errorMsg)
             
         }
         
