@@ -385,9 +385,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         showSpinner(onView: self.view)
         
         // Error Alert
-        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        errorAlert.addAction(okAction)
+        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+        let data = Plist.readPlist(url!)!
+        let infoDescription = data["Error Alert"] as! String
         
         // Join Queue
         queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
@@ -395,7 +395,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             // Guard queueId
             guard let queueId = data["queueId"] as? String else {
                 self.removeSpinner()
-                self.present(errorAlert, animated: true, completion: nil)
+                self.showAlert(title: "Oops!", message: infoDescription)
                 return
             }
             
@@ -420,7 +420,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             }
         }) { (error) in
             self.removeSpinner()
-            self.present(errorAlert, animated: true, completion: nil)
+            self.showAlert(title: "Oops!", message: infoDescription)
         }
     }
     

@@ -9,6 +9,20 @@
 import UIKit
 import MaterialComponents.MaterialButtons
 
+extension String {
+    struct NumFormatter {
+     static let instance = NumberFormatter()
+    }
+
+    var doubleValue: Double? {
+     return NumFormatter.instance.number(from: self)?.doubleValue
+    }
+
+    var integerValue: Int? {
+     return NumFormatter.instance.number(from: self)?.intValue
+    }
+}
+
 class AddStoreViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Variables
@@ -20,7 +34,7 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var latitudeTxt: MDCTextField!
     @IBOutlet weak var longitudeTxt: MDCTextField!
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +51,57 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // MARK: - IBActions
+    @IBAction func addButtonPressed(_ sender: Any) {
+        
+        var storeId: String? = nil
+        
+        // Guard missing values
+        guard let name = nameTxt.text else {
+            return
+        }
+        guard let address = addressTxt.text else {
+            return
+        }
+        guard let latitude = latitudeTxt.text?.doubleValue else {
+            return
+        }
+        guard let longitude = longitudeTxt.text?.doubleValue else {
+            return
+        }
+        if let store = store {
+            storeId = store.id
+        }
+        
+        // Add to FireStore
+        self.showSpinner(onView: self.view)
+        let storeDataManager = StoreDataManager()
+        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude) { (success) in
+            
+            self.removeSpinner()
+            if success {
+                
+                let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (ok) in
+                    let VCs = self.navigationController!.viewControllers
+                    self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
+                }))
+                
+                self.present(alert, animated: true)
+                
+            }
+            else {
+                let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                let data = Plist.readPlist(url!)!
+                let infoDescription = data["Error Alert"] as! String
+                self.showAlert(title: "Oops!", message: infoDescription)
+            }
+            
+        }
+        
+    }
+    
+    // MARK: - Custom Function
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let nxtField = self.view.viewWithTag(textField.tag + 1) as? MDCTextField {

@@ -9,12 +9,14 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFunctions
+import FirebaseAuth
 
 class StoreDataManager {
     
     let functions = Functions.functions()
     let db = Firestore.firestore()
     let storeCollection: CollectionReference
+    let uid = Auth.auth().currentUser!.uid
     
     init() {
         
@@ -131,18 +133,32 @@ class StoreDataManager {
     /**
      Firestore add store
      */
-    func addStore(store: GroceryStore) {
+    func addStore(id _id: String?, name _name: String, address _address: String, lat _lat: Double, long _long: Double, onComplete: @escaping (Bool) -> Void) {
         
-        storeCollection.document(store.id).setData([
-            "id": store.id,
-            "name": store.name,
-            "address": store.address,
-            "coordinates": store.location
+        let storeDocument: DocumentReference
+        
+        if let id = _id {
+            storeDocument = storeCollection.document(id)
+        }
+        else {
+            storeDocument = storeCollection.document()
+        }
+        
+        storeDocument.setData([
+            "id": storeDocument.documentID,
+            "name": _name,
+            "address": _address,
+            "coordinates": GeoPoint(latitude: _lat, longitude: _long),
+            "current_visitor_count": 0,
+            "max_visitor_capacity": 40,
+            "merchant": uid
         ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
+                onComplete(false)
             } else {
                 print("Document successfully written!")
+                onComplete(true)
             }
         }
         

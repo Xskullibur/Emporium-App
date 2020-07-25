@@ -21,9 +21,19 @@ class StoreListViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadStores()
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        loadStores()
+    }
+    
+    // MARK: - Custom Functions
+    func loadStores() {
+        // Get UserId
         merchantId = Auth.auth().currentUser?.uid
         
+        // Get Merchant Stores
         showSpinner(onView: self.view)
         let storeDataManager = StoreDataManager()
         storeDataManager.getStoreByMerchantId(merchantId!, onComplete: { (storeList) -> Void in
@@ -36,9 +46,8 @@ class StoreListViewController: UIViewController, UITableViewDelegate, UITableVie
         }, onError: { (error) -> Void in
             print("Error getting merchant stores \(error)")
         })
-        
     }
-
+    
     // MARK: - TableViews
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if storeList.count == 0 {

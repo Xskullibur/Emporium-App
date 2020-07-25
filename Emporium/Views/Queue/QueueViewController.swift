@@ -93,9 +93,9 @@ class QueueViewController: UIViewController {
     // MARK: - Custom Functions
     func createListener() -> ListenerRegistration {
         // Error Alert
-        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        errorAlert.addAction(okAction)
+        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+        let data = Plist.readPlist(url!)!
+        let infoDescription = data["Error Alert"] as! String
         
         return storeDataManager.visitorCountListenerForStore(store!) { (data) in
             
@@ -103,7 +103,7 @@ class QueueViewController: UIViewController {
             guard let current_visitor_count = data["current_visitor_count"] as? Int,
                 let max_capacity_count = data["max_visitor_capacity"] as? Int else {
                     print("Field data was empty. (VisitorCount.Listener)")
-                    self.present(errorAlert, animated: true, completion: nil)
+                    self.showAlert(title: "Oops!", message: infoDescription)
                     return
             }
             
@@ -115,7 +115,7 @@ class QueueViewController: UIViewController {
                     // Guard Data for nulls
                     guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {
                         print("Field data was empty. (popQueue.Functions)")
-                        self.present(errorAlert, animated: true, completion: nil)
+                        self.showAlert(title: "Oops!", message: infoDescription)
                         return
                     }
                     
@@ -144,7 +144,7 @@ class QueueViewController: UIViewController {
                     
                 }) { (error) in
                     // Error
-                    self.present(errorAlert, animated: true, completion: nil)
+                    self.showAlert(title: "Oops!", message: infoDescription)
                 }
 
             }

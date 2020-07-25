@@ -8,6 +8,7 @@
 
 import Foundation
 import FoursquareAPIClient
+import FirebaseFirestore
 
 class PlacesAPI {
     
@@ -67,13 +68,17 @@ class PlacesAPI {
                 for i in 0..<venueCount {
                     let venue = jsonResult["response"]["venues"][i]
                     
+                    let location = GeoPoint(
+                        latitude: venue["location"]["lat"].double!,
+                        longitude: venue["location"]["lng"].double!
+                    )
+                    
                     let store = GroceryStore(
                         id: venue["id"].string!,
                         name: venue["name"].string!,
                         address: venue["location"]["formattedAddress"][0].string!,
                         distance: ((venue["location"]["distance"].double ?? 0) / 1000),
-                        latitude: venue["location"]["lat"].double!,
-                        logitude: venue["location"]["lng"].double!
+                        location: location
                     )
                     
                     storeList.append(store)
