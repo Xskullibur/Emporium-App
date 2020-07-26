@@ -97,7 +97,7 @@ class QueueViewController: UIViewController {
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Error Alert"] as! String
         
-        return storeDataManager.visitorCountListenerForStore(store!) { (data) in
+        return storeDataManager.storeListener(store!) { (data) in
             
             // Guard Data
             guard let current_visitor_count = data["current_visitor_count"] as? Int,

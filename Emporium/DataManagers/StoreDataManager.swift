@@ -10,16 +10,15 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFunctions
 import FirebaseAuth
+import CoreLocation
 
 class StoreDataManager {
     
     let functions = Functions.functions()
     let db = Firestore.firestore()
     let storeCollection: CollectionReference
-    let uid = Auth.auth().currentUser!.uid
     
     init() {
-        
         storeCollection = db
            .collection("emporium")
            .document("globals")
@@ -33,9 +32,96 @@ class StoreDataManager {
         #endif
     }
     
+    // MARK: - Get Store
+    func getStore(storeId: String, onComplete: @escaping (GroceryStore) -> Void) {
+        
+        storeCollection.document(storeId).getDocument { (documentSnapshot, error) in
+            if let error = error {
+                print("Error retreiving collection. (VisitorCount.Listener): \(error)")
+                return
+            }
+            
+            guard let document = documentSnapshot else {
+                print("Error fetching document. (VisitorCount.Listener): \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document data was empty. (VisitorCount.Listener)")
+                return
+            }
+            
+            let store = GroceryStore(
+                id: storeId,
+                name: data["name"] as! String,
+                address: data["address"] as! String,
+                location: data["coordinates"] as! GeoPoint,
+                currentVisitorCount: data["current_visitor_count"] as! Int,
+                maxVisitorCapacity: data["max_visitor_capacity"] as! Int
+            )
+            
+            onComplete(store)
+            
+        }
+        
+    }
+    
+    // MARK: - Get Stores by Distance
+    func getStoreByDistance(lat _lat: Double, long _long: Double, radius _radius: Double, onComplete: @escaping ([GroceryStore]) -> Void, onError: @escaping () -> Void) {
+        
+        let center = CLLocation(latitude: _lat, longitude: _long)
+        
+        storeCollection.getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                // return Error
+                print("Error retrieving documents: \(error.localizedDescription)")
+                onError()
+            }
+            else {
+                
+                var storeList: [GroceryStore] = []
+                guard let documents = querySnapshot?.documents else {
+                    // return Error
+                    onError()
+                    return
+                }
+                
+                for document in documents {
+                    let data = document.data()
+                    
+                    let storeLocation = data["coordinates"] as! GeoPoint
+                    let storeLocationCL = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
+                    
+                    let distance = center.distance(from: storeLocationCL)
+                    
+                    if distance < _radius {
+                        let store = GroceryStore(
+                            id: document.documentID,
+                            name: data["name"] as! String,
+                            address: data["address"] as! String,
+                            location: data["coordinates"] as! GeoPoint,
+                            currentVisitorCount: data["current_visitor_count"] as! Int,
+                            maxVisitorCapacity: data["max_visitor_capacity"] as! Int
+                        )
+                        
+                        store.distance = distance
+                        storeList.append(store)
+                    }
+                }
+                
+                onComplete(storeList)
+                
+            }
+            
+        }
+        
+    }
+    
     /**
      Get stores by merchant Id
      */
+    // MARK: - Get Store by MerchantId
     func getStoreByMerchantId(_ merchantId: String, onComplete: @escaping ([GroceryStore]) -> Void, onError: @escaping (String) -> Void) {
         
         storeCollection.whereField("merchant", isEqualTo: merchantId)
@@ -84,7 +170,8 @@ class StoreDataManager {
      Returns:
      - data ([String: Any])
      */
-    func visitorCountListenerForStore(_ store: GroceryStore, onUpdate: @escaping ([String: Any]) -> Void) -> ListenerRegistration {
+    // MARK: - Store Listener
+    func storeListener(_ store: GroceryStore, onUpdate: @escaping ([String: Any]) -> Void) -> ListenerRegistration {
         
         return storeCollection.document(store.id)
             .addSnapshotListener { (documentSnapshot, error) in
@@ -113,6 +200,7 @@ class StoreDataManager {
     /**
      Firestore update store contents
      */
+    // MARK: - Update Stores
     func updateStore(store: GroceryStore) {
         storeCollection.document(store.id).setData([
             "id": store.id,
@@ -130,6 +218,7 @@ class StoreDataManager {
         }
     }
     
+    // MARK: - Check for Store
     func storeExist(lat _lat: Double, long _long: Double, onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void) {
         
         let coordinates = GeoPoint(latitude: _lat, longitude: _long)
@@ -162,7 +251,8 @@ class StoreDataManager {
     /**
      Firestore add store
      */
-    func addStore(id _id: String?, name _name: String, address _address: String, lat _lat: Double, long _long: Double, onComplete: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    // MARK: - Add Store
+    func addStore(id _id: String?, name _name: String, address _address: String, lat _lat: Double, long _long: Double, merchantId _merchantId: String, onComplete: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         // Get Error Msg
         let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
@@ -192,7 +282,7 @@ class StoreDataManager {
                     "coordinates": GeoPoint(latitude: _lat, longitude: _long),
                     "current_visitor_count": 0,
                     "max_visitor_capacity": 40,
-                    "merchant": self.uid
+                    "merchant": _merchantId
                 ]) { error in
                     if let error = error {
                         print("Error writing document: \(error)")
@@ -215,36 +305,4 @@ class StoreDataManager {
         
     }
     
-    func getStore(storeId: String, onComplete: @escaping (GroceryStore) -> Void) {
-        
-        storeCollection.document(storeId).getDocument { (documentSnapshot, error) in
-            if let error = error {
-                print("Error retreiving collection. (VisitorCount.Listener): \(error)")
-                return
-            }
-            
-            guard let document = documentSnapshot else {
-                print("Error fetching document. (VisitorCount.Listener): \(error!)")
-                return
-            }
-            
-            guard let data = document.data() else {
-                print("Document data was empty. (VisitorCount.Listener)")
-                return
-            }
-            
-            let store = GroceryStore(
-                id: storeId,
-                name: data["name"] as! String,
-                address: data["address"] as! String,
-                location: data["coordinates"] as! GeoPoint,
-                currentVisitorCount: data["current_visitor_count"] as! Int,
-                maxVisitorCapacity: data["max_visitor_capacity"] as! Int
-            )
-            
-            onComplete(store)
-            
-        }
-        
-    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import MaterialComponents.MaterialButtons
 
 extension String {
@@ -54,6 +55,7 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     @IBAction func addButtonPressed(_ sender: Any) {
         
+        let uid = Auth.auth().currentUser!.uid
         var storeId: String? = nil
         
         // Guard missing values
@@ -76,7 +78,7 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
         // Add to FireStore
         self.showSpinner(onView: self.view)
         let storeDataManager = StoreDataManager()
-        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude, onComplete:
+        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude, merchantId: uid, onComplete:
         {
             self.removeSpinner()
             
