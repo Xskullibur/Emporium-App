@@ -51,7 +51,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryCell
         let history = purchaseHistory[indexPath.row]
         var total: Double = 0.0
-        total = Double(history.amount)! / 100.0
+        total = Double(history.amount) / 100.0
         
         cell.layer.cornerRadius = 10
         cell.titleLabel.text = history.date

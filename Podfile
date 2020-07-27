@@ -30,6 +30,7 @@ target 'Emporium' do
   pod 'GoogleMLKit/TextRecognition'
   
   pod 'RSSelectionMenu'
+  pod 'SDWebImage'
 
   target 'EmporiumTests' do
     inherit! :search_paths
