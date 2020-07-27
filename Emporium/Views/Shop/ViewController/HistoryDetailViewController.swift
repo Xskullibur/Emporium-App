@@ -53,8 +53,8 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
             
             ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
                 Detail in
-                self.typeLabel.text = Detail.brand.capitalizingFirstLetter() + " " + Detail.type.capitalizingFirstLetter()
-                self.last4Label.text = "(*" + Detail.last4 + ")"
+                //self.typeLabel.text = Detail.brand.capitalizingFirstLetter() + " " + Detail.type.capitalizingFirstLetter()
+                //self.last4Label.text = "(*" + Detail.last4 + ")"
                 self.receipt = Detail.receipt
             }
             
