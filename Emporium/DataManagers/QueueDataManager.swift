@@ -32,6 +32,7 @@ class QueueDataManager {
         #endif
     }
     
+    // MARK: - Check Existing Queue
     func checkExistingQueue(userId: String, onComplete: @escaping (QueueItem?) -> Void, onError: @escaping (String) -> Void){
         
         // Get User's Queue Ref
@@ -104,6 +105,7 @@ class QueueDataManager {
      - currentlyServing (String)
      - queueLength (String)
      */
+    // MARK: - Get Queue Info
     func getQueueInfo(storeId: String, onComplete: @escaping (String, String) -> Void) {
         
         functions.httpsCallable("queueInfo").call(["storeId": storeId]) { (result, error) in
@@ -139,6 +141,7 @@ class QueueDataManager {
      Returns:
      - data ([String : Any])
      */
+    // MARK: - Join Queue
     func joinQueue(storeId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
         functions.httpsCallable("joinQueue").call(["storeId": storeId]) { (result, error) in
          
@@ -169,6 +172,7 @@ class QueueDataManager {
      Returns:
      - data ([String: Any])
      */
+    // MARK: - Pop Queue
     func popQueue(storeId: String, onComplete: @escaping ([String: Any]) -> Void, onError: @escaping (String) -> Void) {
         
         self.functions.httpsCallable("popQueue").call(["storeId": storeId]) { (result, error) in
@@ -196,6 +200,7 @@ class QueueDataManager {
         
     }
     
+    // MARK: - Update Queue Status
     func updateQueue(_ queueId: String, withStatus status: QueueStatus, forStoreId storeId: String, onComplete: @escaping (Bool) -> Void) {
         
         let queueDocument = storeCollection.document("\(storeId)/queue/\(queueId)")
@@ -209,6 +214,47 @@ class QueueDataManager {
             }
             else {
                 onComplete(true)
+            }
+            
+        }
+        
+    }
+    
+    // MARK: - Clear Current Queue Status
+    func clearQueueStatus(userId _userId: String, onComplete: @escaping (Bool) -> Void) {
+        
+        db.document("users/\(_userId)")
+            .updateData(["queue": FieldValue.delete()]) { (error) in
+
+                if let error = error {
+                    print("Error Clearing Queue Status (\(_userId)): \(error.localizedDescription)")
+                    onComplete(false)
+                }
+                else {
+                    onComplete(true)
+                }
+        }
+        
+    }
+    
+    // MARK: - Remove Queue from Store and Clear Status from User
+    func leaveQueue(storeId _storeId: String, queueId _queueId: String, userId _userId: String, onComplete: @escaping (Bool) -> Void) {
+        
+        storeCollection.document("\(_storeId)/queue/\(_queueId)").delete { (error) in
+            
+            if let error = error {
+                print("Error Clearing Queue in Store: \(error.localizedDescription)")
+                onComplete(false)
+            }
+            else {
+                self.clearQueueStatus(userId: _userId) { (success) in
+                    if success {
+                        onComplete (true)
+                    }
+                    else {
+                        onComplete(false)
+                    }
+                }
             }
             
         }

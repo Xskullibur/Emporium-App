@@ -8,8 +8,11 @@
 
 import UIKit
 import MapKit
+
 import FirebaseFunctions
 import FirebaseFirestore
+import FirebaseAuth
+
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
@@ -36,6 +39,58 @@ class QueueViewController: UIViewController {
     @IBOutlet weak var queueLengthLbl: UILabel!
     @IBOutlet weak var queueNumberLbl: UILabel!
     
+    // MARK: - IBAction
+    @IBAction func leaveBtnPressed(_ sender: Any) {
+        
+        // Confirm Alert
+        let alert = UIAlertController(
+            title: "Are you sure",
+            message: "Are you sure you would like to leave the queue?",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            
+            // Remove Queue
+            let userId = Auth.auth().currentUser!.uid
+            self.showSpinner(onView: self.view)
+            self.queueDataManager.leaveQueue(storeId: self.store!.id, queueId: self.queueId!, userId: userId) { (success) in
+                
+                self.removeSpinner()
+                if success {
+
+                    // Show Success Alert and Navigate
+                    let successAlert = UIAlertController(
+                        title: "Alert",
+                        message: "Successfully Left Queue!",
+                        preferredStyle: .alert
+                    )
+                    successAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                        
+                        self.navigationController?.popToRootViewController(animated: true)
+                        
+                    }))
+                    self.present(successAlert, animated: true)
+                    
+                }
+                else {
+                    
+                    // Error Alert
+                    let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                    let data = Plist.readPlist(url!)!
+                    let infoDescription = data["Error Alert"] as! String
+                    self.showAlert(title: "Oops", message: infoDescription)
+                    
+                }
+                
+            }
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

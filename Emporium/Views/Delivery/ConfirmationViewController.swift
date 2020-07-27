@@ -143,6 +143,10 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             
             // Verify and update server
             self.showAlert(title: "Success!", message: stringVal)
+            
+            // Navigate to completed screen
+            self.performSegue(withIdentifier: "showCompleteVC", sender: self)
+            
             let deliveryDataManager = DeliveryDataManager()
             deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal)
             
@@ -188,6 +192,13 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             
             let qrVC = segue.destination as! QRViewController
             qrVC.image = qrImage
+            
+        }
+        else if segue.identifier == "showCompleteVC" {
+            
+            let completeVC = segue.destination
+            let rootVC = self.navigationController?.viewControllers.first
+            self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
             
         }
         
