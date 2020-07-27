@@ -10,12 +10,12 @@ import UIKit
 
 class HistoryItem: NSObject {
     var productID: String
-    var quantity: String
+    var quantity: Int
     var productName: String
-    var price: String
+    var price: Double
     var image: String
     
-    init(_ id: String, _ quantity: String, _ name: String, _ price: String, _ image: String){
+    init(_ id: String, _ quantity: Int, _ name: String, _ price: Double, _ image: String){
         self.productID = id
         self.quantity = quantity
         self.price = price
