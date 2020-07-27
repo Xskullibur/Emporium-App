@@ -36,7 +36,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     private let userCells = ["JoinQueueCell", "ShopCell", "RewardsCell"]
 
     //Merchant Reuseable Cell Ids
-    private let merchantCells = ["CrowdTrackingCell"]
+    private let merchantCells = ["CrowdTrackingCell", "StoreLocationCell"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -128,7 +128,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         // Join Queue Cell
         if indexPath.row == 0 {
             
-            if login {
+            if login && loginAsUserType == .user {
                 
                 let queueDataManager = QueueDataManager()
                 queueDataManager.checkExistingQueue(userId: Auth.auth().currentUser!.uid, onComplete: { (queueItem) in
@@ -182,9 +182,22 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                 
                                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                                    inStoreVC.queueId = queueItem.id
+                                    inStoreVC.store = store
                                 
                                 let rootVC = self.navigationController?.viewControllers.first
                                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                                
+                            case .Delivery:
+                                // Navigate to Delivery
+                                let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                                
+                                let confirmVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
+                                confirmVC.queueId = queueItem.id
+                                confirmVC.store = store
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, confirmVC], animated: true)
                                 
                             case .Completed:
                                 // Navigate to NearbyMart
@@ -204,7 +217,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                 }
                 
             }
-            else {
+            else if !login && loginAsUserType == .user {
                 // Navigate to NearbyMart
                 self.performSegue(withIdentifier: "ShowNearby", sender: self)
             }

@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SDWebImage
 
 class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -44,20 +45,24 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         ShopDataManager.loadHistoryDetail(docID: docID) {
             cartDetail in
-            rawCart = cartDetail
+            //rawCart = cartDetail
             
             for i in stride(from: 0, to: rawCart.count - 1, by: 5) {
-                
+
                 let productID = rawCart[i]
                 let quantity = rawCart[i+1]
                 let name = rawCart[i+2]
                 let price = rawCart[i+3]
                 let image = rawCart[i+4]
-                
-                //total = total + (Double(quantity!)*Double(price!))
+
                 self.cartData.append(HistoryItem(productID, quantity, name, price, image))
                 total = total + (Double(price)! * Double(quantity)!)
             }
+            
+//            for item in cartDetail {
+//                let productID = item.get
+//            }
+//
             self.totalLabel.text = "$" + String(format: "%.02f", total)
             
             ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
@@ -84,7 +89,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         cell.nameLabel.text = cartDetail.productName
         cell.priceLabel.text = "$" + String(format: "%.02f", Double(cartDetail.price)!)
         cell.quantityLabel.text = cartDetail.quantity
-        cell.cartImage.loadImage(url: cartDetail.image)
+        cell.cartImage.sd_setImage(with: URL(string: cartDetail.image))
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor

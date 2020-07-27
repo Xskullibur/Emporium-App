@@ -1,19 +1,23 @@
 //
-//  PickupViewController.swift
+//  QRViewController.swift
 //  Emporium
 //
-//  Created by hsienxiang on 31/5/20.
+//  Created by Xskullibur on 16/7/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
 
-class PickupViewController: UIViewController {
+class QRViewController: UIViewController {
 
+    @IBOutlet weak var qrImageView: UIImageView!
+    var image: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        qrImageView.image = image!
+        
     }
     
 

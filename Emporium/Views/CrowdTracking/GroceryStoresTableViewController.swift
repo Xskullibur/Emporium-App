@@ -10,10 +10,11 @@ import UIKit
 
 class GroceryStoresTableViewController: UITableViewController {
 
+    // MARK: - Variables
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
-    
     private var groceryStores: [GroceryStore] = []
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

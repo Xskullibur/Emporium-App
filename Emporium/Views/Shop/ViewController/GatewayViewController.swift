@@ -98,7 +98,8 @@ class GatewayViewController: UIViewController {
         
         var paymentInfo = PaymentInfo()
         
-        paymentInfo.cartItems = []
+        paymentInfo.order = Order()
+        paymentInfo.order.cartItems = []
         
         let number = numberInput.text
         let month = monthPickerData[expDatePickerView.selectedRow(inComponent: 0)]
@@ -115,7 +116,6 @@ class GatewayViewController: UIViewController {
                 paymentInfo.month = Int32(month)
                 paymentInfo.year = Int32(year)
                 paymentInfo.cvc = cvc!
-                paymentInfo.userid = Auth.auth().currentUser?.uid as! String
                 paymentInfo.bank = ""
                 paymentInfo.name = ""
                 
@@ -123,7 +123,7 @@ class GatewayViewController: UIViewController {
                     var cartItemAdd = CartItem()
                     cartItemAdd.productID = cart.productID
                     cartItemAdd.quantity = Int32(cart.quantity)
-                    paymentInfo.cartItems.append(cartItemAdd)
+                    paymentInfo.order.cartItems.append(cartItemAdd)
                 }
             
             self.sendPaymentInfo(paymentInfo: paymentInfo)
@@ -178,6 +178,8 @@ class GatewayViewController: UIViewController {
         actionSheet.addAction(scan)
         actionSheet.addAction(cancel)
         
+        actionSheet.popoverPresentationController?.sourceRect = self.accessibilityFrame
+        actionSheet.popoverPresentationController?.sourceView = self.view
         present(actionSheet, animated: true, completion: nil)
     }
     

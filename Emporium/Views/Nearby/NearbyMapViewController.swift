@@ -17,20 +17,6 @@ protocol StoreSelectedDelegate: class {
     func storeSelected(store: GroceryStore)
 }
 
-class StoreButton: UIButton {
-    
-    var store: GroceryStore?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-}
-
 // MARK: - ViewController
 class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, StoreSelectedDelegate  {
 
@@ -72,8 +58,6 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.startUpdatingLocation()
         
-        // Spinner
-        showSpinner(onView: self.view)
     }
     
     // MARK: - IBAction
@@ -152,6 +136,8 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         view.rightCalloutAccessoryView = rightButton
         
+        
+        // Left Callout
         let pointSize: CGFloat = 24
         let systemFontDesc = UIFont.systemFont(ofSize: pointSize, weight: UIFont.Weight.light).fontDescriptor
         let fractionFontDesc = systemFontDesc.addingAttributes([
@@ -194,53 +180,42 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
     }
     
-    // MARK: - Custom MapView Functions
+    // MARK: - Data Managers
     
     /// Uses PlacesAPI to get **GroceryStores** based on provided coordinates
     func getStores(lat latitude: Double, long longitude: Double) {
         
-        // Do any additional setup after loading the view.
-        let placesAPI = PlacesAPI()
-        placesAPI.getNearbyGroceryStore(lat: latitude, long: longitude, radius: 2500, completionHandler: { (_storeList, error) in
+        storeDataManager.getStoreByDistance(lat: latitude, long: longitude, radius: 2500, onComplete: { (_storeList) in
             
-            #warning("TODO: - Handle Errors")
-            // TODO: - Handle Errors
-            switch error {
-                case let .connectionError(connectionError):
-                    print(connectionError)
-                    
-                case let .responseParseError(responseParseError):
-                    print(responseParseError)   // e.g. JSON text did not start with array or object and option to allow fragments not set.
-                    
-                case let .apiError(apiError):
-                    print(apiError.errorType)   // e.g. endpoint_error
-                    print(apiError.errorDetail) // e.g. The requested path does not exist.
-                    
-                case .none:
-                    // Prep Data
-                    let storeList = _storeList.sorted(by: { $0.distance! < $1.distance! })
-                    
-                    self.storeList_lessThan1 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance! <= 1
-                    })
-                    
-                    self.storeList_lessThan2 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance! > 1 && groceryStore.distance! <= 2
-                    })
-                    
-                    self.storeList_moreThan2 = storeList.filter({ (groceryStore) -> Bool in
-                        groceryStore.distance! > 2
-                    })
-                
-                    // Display and Unload Spinner
-                    self.addAnnotations()
-                    self.removeSpinner()
-                    self.locationManager?.stopUpdatingLocation()
-            }
-
-        })
+            // Prep Data
+            let storeList = _storeList.sorted(by: { $0.distance! < $1.distance! })
+            
+            self.storeList_lessThan1 = storeList.filter({ (groceryStore) -> Bool in
+                groceryStore.distance! <= 1000
+            })
+            
+            self.storeList_lessThan2 = storeList.filter({ (groceryStore) -> Bool in
+                groceryStore.distance! > 1000 && groceryStore.distance! <= 2000
+            })
+            
+            self.storeList_moreThan2 = storeList.filter({ (groceryStore) -> Bool in
+                groceryStore.distance! > 2000
+            })
+        
+            // Display and Unload Spinner
+            self.addAnnotations()
+            
+        }) {
+            // Error Alert
+            let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+            let data = Plist.readPlist(url!)!
+            let infoDescription = data["Error Alert"] as! String
+            self.showAlert(title: "Oops", message: infoDescription)
+        }
         
     }
+    
+    // MARK: - Custom MapView Functions
     
     /// Create a **StoreAnnotation** and add it into the mapView
     func createAnnotationWithStore(_ store: GroceryStore) {
@@ -284,7 +259,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan1 {
                 
                 // Add listiner to update annotation
-                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.storeListener(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
@@ -306,7 +281,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_lessThan2 {
                 
                 // Add listiner to update annotation
-                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.storeListener(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
@@ -328,7 +303,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             for store in storeList_moreThan2 {
                 
                 // Add listiner to update annotation
-                let listener = storeDataManager.visitorCountListenerForStore(store) { (data) in
+                let listener = storeDataManager.storeListener(store) { (data) in
                     guard let visitorCount = data["current_visitor_count"] as? Int,
                         let maxCapacity = data["max_visitor_capacity"] as? Int else {
                             print("Field data was empty. (VisitorCount.Listener)")
@@ -402,9 +377,9 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         showSpinner(onView: self.view)
         
         // Error Alert
-        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        errorAlert.addAction(okAction)
+        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+        let data = Plist.readPlist(url!)!
+        let infoDescription = data["Error Alert"] as! String
         
         // Join Queue
         queueDataManager.joinQueue(storeId: store.id, onComplete: { (data) in
@@ -412,7 +387,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             // Guard queueId
             guard let queueId = data["queueId"] as? String else {
                 self.removeSpinner()
-                self.present(errorAlert, animated: true, completion: nil)
+                self.showAlert(title: "Oops!", message: infoDescription)
                 return
             }
             
@@ -437,7 +412,7 @@ class NearbyMapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             }
         }) { (error) in
             self.removeSpinner()
-            self.present(errorAlert, animated: true, completion: nil)
+            self.showAlert(title: "Oops!", message: infoDescription)
         }
     }
     

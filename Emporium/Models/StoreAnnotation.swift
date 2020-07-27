@@ -43,3 +43,17 @@ class StoreAnnotation: NSObject, MKAnnotation {
     }
 
 }
+
+class StoreButton: UIButton {
+    
+    var store: GroceryStore?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+}

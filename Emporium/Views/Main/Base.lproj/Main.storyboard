@@ -216,6 +216,49 @@
                                                             <segue destination="v4V-Kt-lp1" kind="show" id="0zb-pe-fKo"/>
                                                         </connections>
                                                     </collectionViewCell>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoreLocationCell" id="92u-Rg-PLa" userLabel="StoreLocationCell" customClass="MDCCardCollectionCell">
+                                                        <rect key="frame" x="466" y="20" width="126" height="100"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S1R-4B-YAr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="126" height="100"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-t2-Ib5">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="100"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop-location" translatesAutoresizingMaskIntoConstraints="NO" id="fsr-br-iwN">
+                                                                            <rect key="frame" x="0.0" y="8" width="126" height="59"/>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xb9-Bd-cZt">
+                                                                            <rect key="frame" x="0.0" y="72" width="126" height="20"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="20" id="Vle-bD-KZP"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <color key="textColor" name="Primary"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="126" id="GeU-rH-npy"/>
+                                                                        <constraint firstAttribute="height" constant="100" id="mD3-GI-5Sb"/>
+                                                                    </constraints>
+                                                                    <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="QhU-t2-Ib5" secondAttribute="trailing" id="26x-8L-cwf"/>
+                                                                <constraint firstItem="QhU-t2-Ib5" firstAttribute="top" secondItem="S1R-4B-YAr" secondAttribute="top" id="Aww-So-b5m"/>
+                                                                <constraint firstItem="QhU-t2-Ib5" firstAttribute="leading" secondItem="S1R-4B-YAr" secondAttribute="leading" id="Kp9-dK-Jan"/>
+                                                                <constraint firstAttribute="bottom" secondItem="QhU-t2-Ib5" secondAttribute="bottom" id="swb-zI-fys"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <color key="backgroundColor" name="Surface"/>
+                                                        <size key="customSize" width="126" height="100"/>
+                                                        <connections>
+                                                            <segue destination="f0F-C5-MmY" kind="show" identifier="ShowStoreList" id="QNJ-kd-6RK"/>
+                                                        </connections>
+                                                    </collectionViewCell>
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m42-ja-Fz7">
@@ -332,6 +375,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="515.94202898550725" y="62.276785714285708"/>
+        </scene>
+        <!--StoreCreator-->
+        <scene sceneID="sUI-Zi-lea">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StoreCreator" id="f0F-C5-MmY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uNB-fc-v0m"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47Q-4T-GSX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1652" y="-8"/>
         </scene>
         <!--CrowdTracking-->
         <scene sceneID="0jA-HJ-JIe">
@@ -578,6 +631,7 @@
         <image name="Queue" width="512" height="512"/>
         <image name="Voucher" width="512" height="512"/>
         <image name="no-profile" width="512" height="512"/>
+        <image name="shop-location" width="512" height="512"/>
         <namedColor name="Background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

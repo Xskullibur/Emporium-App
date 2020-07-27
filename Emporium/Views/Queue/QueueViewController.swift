@@ -75,31 +75,47 @@ class QueueViewController: UIViewController {
             showVolunteerAlert()
         }
         
-        // Error Alert
-        let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        errorAlert.addAction(okAction)
-        
         // Visitor Count Listener
-        let listener = storeDataManager.visitorCountListenerForStore(store!) { (data) in
+        let listener = createListener()
+        listenerManager.add(listener)
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        listenerManager.clear()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let listener = createListener()
+        listenerManager.add(listener)
+    }
+    
+    // MARK: - Custom Functions
+    func createListener() -> ListenerRegistration {
+        // Error Alert
+        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+        let data = Plist.readPlist(url!)!
+        let infoDescription = data["Error Alert"] as! String
+        
+        return storeDataManager.storeListener(store!) { (data) in
             
             // Guard Data
             guard let current_visitor_count = data["current_visitor_count"] as? Int,
                 let max_capacity_count = data["max_visitor_capacity"] as? Int else {
                     print("Field data was empty. (VisitorCount.Listener)")
-                    self.present(errorAlert, animated: true, completion: nil)
+                    self.showAlert(title: "Oops!", message: infoDescription)
                     return
             }
             
             // Check for visitor count change
             if current_visitor_count < max_capacity_count{
                 // Get next person in Queue
-                self.queueDataManager.popQueue(storeId: self.store!.id, queueId: self.queueId!, onComplete: { (data) in
+                self.queueDataManager.popQueue(storeId: self.store!.id, onComplete: { (data) in
                         
                     // Guard Data for nulls
                     guard let currentQueueId = data["currentQueueId"] as? String, let queueLength = data["queueLength"] as? String else {
                         print("Field data was empty. (popQueue.Functions)")
-                        self.present(errorAlert, animated: true, completion: nil)
+                        self.showAlert(title: "Oops!", message: infoDescription)
                         return
                     }
                     
@@ -128,7 +144,7 @@ class QueueViewController: UIViewController {
                     
                 }) { (error) in
                     // Error
-                    self.present(errorAlert, animated: true, completion: nil)
+                    self.showAlert(title: "Oops!", message: infoDescription)
                 }
 
             }
@@ -142,13 +158,8 @@ class QueueViewController: UIViewController {
 
             }
         }
-        
-        listenerManager.add(listener)
-        
-        
     }
     
-    // MARK: - Custom Functions
     func showVolunteerAlert() {
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
