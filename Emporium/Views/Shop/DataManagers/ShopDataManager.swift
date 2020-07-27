@@ -145,8 +145,8 @@ class ShopDataManager
                 cartDetailItems = document?.get("cartDetailItems") as! [[String: Any]]
                 
                 for cartDetailItem in cartDetailItems {
-                    let productID = (cartDetailItem["array"] as! [Any])[0] as! String
-                    let quantity = (cartDetailItem["array"] as! [Any])[1] as! Int
+                    let productID = ((cartDetailItem["cartItem"] as! [String:Any])["array"] as! [Any])[0] as! String
+                    let quantity = ((cartDetailItem["cartItem"] as! [String:Any])["array"] as! [Any])[1] as! Int
                     let name = cartDetailItem["name"] as! String
                     let price = cartDetailItem["price"] as! Double
                     let image = cartDetailItem["image"] as! String
