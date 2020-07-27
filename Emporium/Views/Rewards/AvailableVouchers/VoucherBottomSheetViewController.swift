@@ -21,7 +21,7 @@ class VoucherBottomSheetViewController: UIViewController {
     
     private var voucherDataManager: VoucherDataManager? = nil
     
-    private var viewController: UIViewController? = nil
+    private var spinnerView: UIView!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -56,17 +56,17 @@ class VoucherBottomSheetViewController: UIViewController {
     }
     
     /**
-     Set the view controller to be use for showing spinner
+     Set the view to be use for showing spinner
      */
-    func setViewController(viewController: UIViewController){
-        self.viewController = viewController
+    func setViewForSpinner(view: UIView){
+        self.spinnerView = view
     }
     
     /**
      Set voucher to be claimed after pressed the claim button
      */
     @IBAction func claimPressed(_ sender: Any) {
-        self.viewController?.showSpinner(onView: self.viewController!.view)
+        self.showSpinner(onView: self.spinnerView)
         self.voucherDataManager?.setClaimVoucher(voucher: self.voucher!){
             status in
             switch status {
@@ -77,10 +77,10 @@ class VoucherBottomSheetViewController: UIViewController {
                 Toast.showToast("Not enough points to claim this voucher!")
                 break
             default:
-                self.viewController?.showAlert(title: "Error", message: "Unable to claim the vouchers.")
+                self.showAlert(title: "Error", message: "Unable to claim the vouchers.")
                 break
             }
-        self.viewController?.removeSpinner()        }
+        self.removeSpinner()        }
         self.dismiss(animated: true)
     }
     

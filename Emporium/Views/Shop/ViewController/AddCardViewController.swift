@@ -86,26 +86,29 @@ class AddCardViewController: UIViewController {
         
             let error: [String] = checkPaymentInfo(number: number!, cvc: cvc!, month: Int(month)!, year: Int(year)!)
         
-            if error.count == 0 {
-                self.showSpinner(onView: self.view)
-                
-                    let session  = URLSession.shared
+        if error.count == 0 {
+            self.showSpinner(onView: self.view)
+            
+            Auth.auth().currentUser?.getIDToken(completion: {
+                token, error in
+                let session  = URLSession.shared
                 let url = URL(string: Global.BACKEND_SERVER_HOST + "/createCard")
-                    var request = URLRequest(url: url!)
-                    request.httpMethod = "POST"
-                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID, "bank": bank, "name": name, "nickname": nickname]
-                    let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+                var request = URLRequest(url: url!)
+                request.httpMethod = "POST"
+                request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                let JSON = ["number":number, "month": month, "year": year, "cvc": cvc, "userid": userID, "bank": bank, "name": name, "nickname": nickname]
+                let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
                 
-                    session.uploadTask(with: request, from: JSONDATA) {
-                        data, response, error in
-                        if let httpResponse = response as? HTTPURLResponse {
-                            if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                                message = datastring
-                            }
-                            
-                            if httpResponse.statusCode == 200 {
-                                DispatchQueue.main.async
+                session.uploadTask(with: request, from: JSONDATA) {
+                    data, response, error in
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                            message = datastring
+                        }
+                        
+                        if httpResponse.statusCode == 200 {
+                            DispatchQueue.main.async
                                 {
                                     self.removeSpinner()
                                     let showAlert = UIAlertController(title: "Result", message: "Card added successfully", preferredStyle: .alert)
@@ -115,21 +118,23 @@ class AddCardViewController: UIViewController {
                                     }
                                     showAlert.addAction(back)
                                     self.present(showAlert, animated: true, completion: nil)
-                                }
                             }
-                            else
-                            {
-                                DispatchQueue.main.async
+                        }
+                        else
+                        {
+                            DispatchQueue.main.async
                                 {
                                     self.removeSpinner()
                                     let showAlert = UIAlertController(title: "Card not added", message: message, preferredStyle: .alert)
                                     let cancel = UIAlertAction(title: "OK", style: .cancel)
                                     showAlert.addAction(cancel)
                                     self.present(showAlert, animated: true, completion: nil)
-                                }
                             }
                         }
-                    }.resume()
+                    }
+                }.resume()
+            })
+                   
             }else{
                 var totalError: String = ""
                 for err in error {
@@ -211,6 +216,9 @@ class AddCardViewController: UIViewController {
         actionSheet.addAction(gallery)
         actionSheet.addAction(scan)
         actionSheet.addAction(cancel)
+        
+        actionSheet.popoverPresentationController?.sourceRect = self.accessibilityFrame
+        actionSheet.popoverPresentationController?.sourceView = self.view
         
         present(actionSheet, animated: true, completion: nil)
     }

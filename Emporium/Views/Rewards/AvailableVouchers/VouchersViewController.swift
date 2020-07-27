@@ -9,25 +9,20 @@
 import UIKit
 import Combine
 import Firebase
-import MaterialComponents.MaterialBottomSheet
+import MaterialComponents
 
-class VouchersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK: - Outlets
-    @IBOutlet weak var pointCard: MDCCard!
-    @IBOutlet weak var pointsLabel: UILabel!
-    @IBOutlet weak var vouchersTableView: UITableView!
+class VouchersViewController: UITableViewController {
     
     // MARK: - Variables
     private var cancellables = Set<AnyCancellable>()
     private var vouchers: [Voucher] = []
     
-    private var pointDataManager: PointDataManager? = nil
     private var voucherDataManager: VoucherDataManager? = nil
     
-    private var user: User!
+    private var user: User? = nil
     
-    private var loginManager: LoginManager? = nil
+    private var authListener: AuthStateDidChangeListenerHandle!
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -35,46 +30,19 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
 
         // Do any additional setup after loading the view.
         
-        //Setup card shadow
-        pointCard.setShadowElevation(ShadowElevation(6), for: .normal)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
-        self.loginManager = LoginManager(viewController: self)
-        
-        vouchersTableView.dataSource = self
-        vouchersTableView.delegate = self
-        
-        if let user = Auth.auth().currentUser {
+        self.authListener = Auth.auth().addStateDidChangeListener{
+            (auth, user)  in
             self.user = user
-            self.setupPoints()
             self.setupVouchers()
-        }else{
-            self.loginManager?.setLoginComplete{
-                user in
-                
-                guard let user = user else {
-                    self.navigationController?.popViewController(animated: true)
-                    return
-                }
-                
-                self.user = user
-                self.setupPoints()
-                self.setupVouchers()
-            }
-            
-            self.loginManager?.showLoginViewController()
         }
-        
+
     }
     
-    /**
-     Setup the Point Data Manager
-     */
-    func setupPoints(){
-        self.pointDataManager = PointDataManager()
-        self.pointDataManager?.getPoints(user: self.user){
-            points in
-            self.pointsLabel.text = "\(points) Pt"
-        }
+    override func viewDidDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(self.authListener)
     }
     
     /**
@@ -97,15 +65,15 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
             }, receiveValue: {
                 availableVouchers in
                 self.vouchers = availableVouchers
-                self.vouchersTableView.reloadData()
+                self.tableView.reloadData()
             }).store(in: &cancellables)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vouchers.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "VoucherCell", for: indexPath) as! VoucherTableViewCell
         
@@ -114,28 +82,23 @@ class VouchersViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //Show bottom sheet
         let storyboard = UIStoryboard.init(name: "Rewards", bundle: Bundle.init(for: VoucherBottomSheetViewController.self))
         let viewController = storyboard.instantiateViewController(identifier: "VoucherBottomSheetViewControllerID") as VoucherBottomSheetViewController
         let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: viewController)
         
-        bottomSheet.preferredContentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 3)
+        let screenRect = UIScreen.main.bounds
+        
+        bottomSheet.preferredContentSize = CGSize(width: screenRect.size.width, height: screenRect.size.height / 3)
         
         viewController.setVoucher(voucher: vouchers[indexPath.row])
-        viewController.setViewController(viewController: self)
+        viewController.setViewForSpinner(view: self.view.superview!.superview!)
         viewController.setVoucherDataManager(dataManager: self.voucherDataManager!)
         self.present(bottomSheet, animated: true, completion: nil)
     }
-    
-    @IBAction func onPointInfoTap(_ sender: Any) {
-        //Show point info
-        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
-        let data = Plist.readPlist(url!)!
-        let infoDescription = data["Points Info Description"] as! String
-        self.showAlert(title: "Info", message: infoDescription)
-    }
+
     
 
         

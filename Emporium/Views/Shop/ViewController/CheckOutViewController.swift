@@ -8,17 +8,15 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
     
-    
     var cartData: [Cart] = []
    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,9 +47,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.text = cartDetail.productName
         cell.priceLabel.text = "$" + String(format: "%.02f", cartDetail.price)
         cell.quantityLabel.text = String(cartDetail.quantity)
-        cell.cartImage.loadImage(url: cartDetail.image)
-        cell.removeBtn.tag = indexPath.row
-        cell.removeBtn.addTarget(self, action:  #selector(removeClick(sender:)), for: .touchUpInside)
+        cell.cartImage.sd_setImage(with: URL(string: cartDetail.image))
+        
+        cell.stepper.tag = indexPath.row
+        cell.stepper.value = Double(cartDetail.quantity)
+        cell.stepper.addTarget(self, action: #selector(changeQuantity(sender:)), for: .valueChanged)
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -59,15 +59,15 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    @objc func removeClick(sender: UIButton) {
+    @objc func changeQuantity(sender: UIStepper) {
         let selectedItem = cartData[sender.tag]
-        if selectedItem.quantity == 1 {
+        selectedItem.quantity = Int(sender.value)
+        
+        if selectedItem.quantity == 0 {
             cartData.remove(at: sender.tag)
             Toast.showToast("Item is removed")
-        }else{
-            selectedItem.quantity = selectedItem.quantity - 1
-            Toast.showToast(selectedItem.productName + " quantity left " + String(selectedItem.quantity))
         }
+        
         var total = 0.0
         for item in cartData {
             total = total + (item.price * Double(item.quantity))
@@ -76,7 +76,6 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-    
     @IBAction func PayBtnPressed(_ sender: Any) {
         if self.cartData.count == 0 {
             Toast.showToast("Cart is empty select something first!")
@@ -84,10 +83,14 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                //performSegue(withIdentifier: "toGateway", sender: nil)
-                showActionSheet()
+                showActionSheet(sender as! UIView)
             }
         }
+    }
+    
+    
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        saveActionSheet()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,7 +103,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func showActionSheet() {
+    func showActionSheet(_ sender: UIView) {
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -118,6 +122,27 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         actionSheet.addAction(payment)
         actionSheet.addAction(cancel)
         
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func saveActionSheet() {
+        let actionSheet = UIAlertController(title: "Give it a name!", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let save = UIAlertAction(title: "Save", style: .default) {
+            action in
+            //let name = actionSheet.textFields![0]
+        }
+        
+        actionSheet.addAction(save)
+        actionSheet.addAction(cancel)
+        actionSheet.addTextField()
+        
         present(actionSheet, animated: true, completion: nil)
     }
     
@@ -125,7 +150,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
 
 extension CheckOutViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ShopViewController)?.cartData = cartData 
+        (viewController as? ShopViewController)?.cartData = cartData
     }
 }
 

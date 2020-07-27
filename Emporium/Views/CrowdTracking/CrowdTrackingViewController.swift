@@ -29,6 +29,8 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     private var currentVisitorCount = 0
     
     private var edgeDetection: EdgeDetection!
+    private var currentEdgeDetectionVisitorCount = 0
+    private var direction: Direction = .leftToRight
     
     // MARK: - Firebase
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
@@ -104,9 +106,32 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         switch side {
         case .left:
             print("Left")
+            
+            //Might overwrite the server updated value (dirty write)
+            switch self.direction{
+            case .leftToRight:
+                self.changeVisitorValue(self.currentVisitorCount+1)
+                break
+            case .rightToLeft:
+                self.changeVisitorValue(self.currentVisitorCount-1)
+                break
+            }
+            
+            
             break
         case .right:
             print("Right")
+            
+            //Might overwrite the server updated value (dirty write)
+            switch self.direction{
+            case .leftToRight:
+                self.changeVisitorValue(self.currentVisitorCount-1)
+                break
+            case .rightToLeft:
+                self.changeVisitorValue(self.currentVisitorCount+1)
+                break
+            }
+            
             break
         default:
             break
@@ -118,14 +143,37 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
      */
     @IBAction func changeNoOfShoppersStepper(_ sender: Any) {
         let visitorValue = Int(self.stepper.value)
+        self.changeVisitorValue(visitorValue)
+    }
+    
+    private func changeVisitorValue(_ visitorValue: Int){
         self.diffVisitorValue = visitorValue - self.currentVisitorCount
         
         //Send arbitrary value to publisher (signaling only)
         self.visitorCountPublisher.send(0)
         
         self.noOfShopperLabel.text = String(visitorValue)
+
     }
     
+    
+    @IBAction func chooseDirectionPressed(_ sender: Any) {
+        let actionSheet = UIAlertController.init(title: "Direction", message: nil, preferredStyle: .actionSheet)
+        
+        let leftToRightButton = UIAlertAction.init(title: "Left to Right", style: .default, handler: {
+            _ in
+            self.direction = .leftToRight
+        })
+        let rightToLeftButton = UIAlertAction.init(title: "Right to Left", style: .default, handler: {
+            _ in
+            self.direction = .rightToLeft
+        })
+        
+        actionSheet.addAction(leftToRightButton)
+        actionSheet.addAction(rightToLeftButton)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
     
     
     /*

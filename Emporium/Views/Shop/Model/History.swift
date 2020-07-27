@@ -9,11 +9,11 @@
 import UIKit
 
 class History: Codable {
-    var amount: String = ""
+    var amount: Int = 0
     var date: String = ""
     var received: String = ""
     
-    init(amount: String, date: String, received: String) {
+    init(amount: Int, date: String, received: String) {
         self.amount = amount
         self.date = date
         self.received = received

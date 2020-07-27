@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import SDWebImage
 import MaterialComponents.MaterialChips
 
 class RequestorsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -122,7 +123,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         
         let item = data[section][row]
         cell.selectionStyle = .none
-        cell.productImage.loadImage(url: item.cart.product.image)
+
+        cell.productImage.sd_setImage(with: URL(string: item.cart.product.image))
         cell.nameLabel.text = "\(item.cart.product.productName) x\(item.cart.quantity)"
         cell.quantityLabel.text = "$\(String(format: "%.2f", item.cart.product.price))"
         

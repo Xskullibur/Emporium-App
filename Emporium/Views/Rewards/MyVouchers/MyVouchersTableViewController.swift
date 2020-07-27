@@ -27,16 +27,26 @@ class MyVouchersTableViewController: UITableViewController {
 
         // Do any additional setup after loading the view.
         
-        self.user = Auth.auth().currentUser
+        Auth.auth().addStateDidChangeListener{
+            (auth, user)  in
+            self.user = user
+            self.setupClaimedVouchers()
+        }
         
-        setupClaimedVouchers()
+        
         
     }
+    
+
     /**
         Setup the claimed voucher DataManager
      */
     func setupClaimedVouchers(){
-           self.voucherDataManager = VoucherDataManager(user: self.user)
+        guard user != nil else{
+            return
+        }
+        
+        self.voucherDataManager = VoucherDataManager(user: self.user)
            
            //Get available vouchers
         self.voucherDataManager?.getClaimedVoucher()!
@@ -78,10 +88,6 @@ class MyVouchersTableViewController: UITableViewController {
         
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Claimed Vouchers"
-    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -90,7 +96,9 @@ class MyVouchersTableViewController: UITableViewController {
         let viewController = storyboard.instantiateViewController(identifier: "MyVoucherBottomSheetViewControllerID") as MyVoucherBottomSheetViewController
         let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: viewController)
         
-        bottomSheet.preferredContentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 3)
+        let screenRect = UIScreen.main.bounds
+        
+        bottomSheet.preferredContentSize = CGSize(width: screenRect.size.width, height: screenRect.size.height / 3)
         
         viewController.setVoucher(voucher: myVouchers[indexPath.row])
         self.present(bottomSheet, animated: true, completion: nil)
