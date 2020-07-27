@@ -46,6 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationHandler.create()
         notificationHandler.start()
         
+        // Local Notification
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (didAllow, error) in
+            
+            if !didAllow {
+                print("User has declined notifications")
+            }
+            
+        }
+        
         //Listen for rewards
         let earnedRewardsDataManager = EarnedRewardsDataManager.shared
         earnedRewardsDataManager.getEarnedRewards()

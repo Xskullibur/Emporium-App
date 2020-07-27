@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		343CA41224CE69A400BF7F95 /* delivery-complete.json in Resources */ = {isa = PBXBuildFile; fileRef = 343CA41124CE69A400BF7F95 /* delivery-complete.json */; };
+		343CA41424CE87C400BF7F95 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */; };
 		34A74EED24BBFC1100A03EBD /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A74EEC24BBFC1100A03EBD /* Plist.swift */; };
 		34A7BEBA24C5418400FEF0BA /* StoreCreator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A7BEB924C5418400FEF0BA /* StoreCreator.storyboard */; };
 		34A7BEBC24C5430A00FEF0BA /* StoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7BEBB24C5430A00FEF0BA /* StoreListViewController.swift */; };
@@ -156,6 +157,7 @@
 		032A23C71ADA721B83CE2895 /* Pods-Emporium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.release.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.release.xcconfig"; sourceTree = "<group>"; };
 		0E29FA4271D2B1A5BFDF0B9A /* Pods-EmporiumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmporiumTests.release.xcconfig"; path = "Target Support Files/Pods-EmporiumTests/Pods-EmporiumTests.release.xcconfig"; sourceTree = "<group>"; };
 		343CA41124CE69A400BF7F95 /* delivery-complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "delivery-complete.json"; sourceTree = "<group>"; };
+		343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
 		34A74EEC24BBFC1100A03EBD /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
 		34A7BEB924C5418400FEF0BA /* StoreCreator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreCreator.storyboard; sourceTree = "<group>"; };
 		34A7BEBB24C5430A00FEF0BA /* StoreListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListViewController.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 				34A74EEC24BBFC1100A03EBD /* Plist.swift */,
 				34B31A8B24BBECF100459A57 /* ListenerManager.swift */,
 				EDD6581F24C0042D00201B30 /* QRManager.swift */,
+				343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1128,6 +1131,7 @@
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
 				34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
+				343CA41424CE87C400BF7F95 /* LocalNotificationHelper.swift in Sources */,
 				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
 				34B3D15324C53CB400D32FE3 /* CartItem.pb.swift in Sources */,
