@@ -15,7 +15,6 @@ class QueueDataManager {
     
     let functions = Functions.functions()
     let db = Firestore.firestore()
-    let userID = Auth.auth().currentUser!.uid
     let storeCollection: CollectionReference
     
     init() {

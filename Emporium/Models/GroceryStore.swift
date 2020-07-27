@@ -11,36 +11,29 @@ import Firebase
 import UIKit.UIColor
 
 class GroceryStore: NSObject {
-    let id: String
+    var id: String
     let name: String
     let address: String
     let location: GeoPoint
     
-    var distance: Double?
+    var distance: Double? = nil
     
-    var currentVisitorCount: Int
-    var maxVisitorCapacity: Int
+    var currentVisitorCount: Int = 40
+    var maxVisitorCapacity: Int = Int.random(in: 0...40)
     
     init(
         id _id: String,
         name _name: String,
         address _address: String,
         distance _distance: Double,
-        latitude _latitude: Double,
-        logitude _longitude: Double,
-        
-        maxCount _maxCount: Int = 40,
-        crowdCount _crowdCount: Int = 0
+        location _location: GeoPoint
     ) {
         
         id = _id
         name = _name
         address = _address
         distance = _distance
-        location = GeoPoint(latitude: _latitude, longitude: _longitude)
-        
-        currentVisitorCount = _crowdCount
-        maxVisitorCapacity = _maxCount
+        location = _location
         
     }
     
@@ -56,12 +49,23 @@ class GroceryStore: NSObject {
         id = _id
         name = _name
         address = _address
-        distance = nil
         location = _location
         
         currentVisitorCount = _currentVisitorCount
         maxVisitorCapacity = _maxVisitorCapacity
         
+    }
+    
+    init(
+        id _id: String,
+        name _name: String,
+        address _address: String,
+        location _location: GeoPoint
+    ) {
+        id = _id
+        name = _name
+        address = _address
+        location = _location
     }
     
     enum CrowdLevel {
@@ -82,6 +86,7 @@ class GroceryStore: NSObject {
     }
     
     func getCrowdLevel() -> CrowdLevel {
+        
         if currentVisitorCount >= (maxVisitorCapacity / 3 * 2) {
             return .high
         }
