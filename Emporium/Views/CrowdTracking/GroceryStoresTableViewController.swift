@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class GroceryStoresTableViewController: UITableViewController {
 
     // MARK: - Variables
+    private var storeDataManager: StoreDataManager!
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
     private var groceryStores: [GroceryStore] = []
     
@@ -24,14 +26,17 @@ class GroceryStoresTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        self.crowdTrackingDataManager = CrowdTrackingDataManager()
+        let uid = Auth.auth().currentUser!.uid
         
-        self.crowdTrackingDataManager.getGroceryStores{
-            groceryStores, error in
+        self.storeDataManager = StoreDataManager()
+        self.storeDataManager.getStoreByMerchantId(uid, onComplete: { (groceryStores) in
             
             //Update table view when there are results from data manager
             self.groceryStores = groceryStores
             self.tableView.reloadData()
+            
+        }) { (error) in
+            print(error)
         }
         
     }
@@ -52,6 +57,7 @@ class GroceryStoresTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = groceryStores[indexPath.row].name
+        cell.detailTextLabel?.text = groceryStores[indexPath.row].address
         
         return cell
     }
@@ -67,6 +73,11 @@ class GroceryStoresTableViewController: UITableViewController {
         self.navigationController?.pushViewController(crowdTrackingViewController, animated: true)
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 80
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
