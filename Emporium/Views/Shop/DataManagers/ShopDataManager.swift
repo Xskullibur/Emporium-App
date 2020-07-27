@@ -126,13 +126,15 @@ class ShopDataManager
         }
     }
     
-    static func loadHistoryDetail(docID: String, onComplete: (([DocumentReference]) -> Void)?) {
+    static func loadHistoryDetail(docID: String, onComplete: (([HistoryItem]) -> Void)?) {
         
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("order").document(docID).getDocument
         {
             (document, err) in
             
-            var details: [DocumentReference] = []
+            var cartDetailItems: [[String: Any]] = []
+            var histories: [HistoryItem] = []
+
             
             if let err = err
             {
@@ -140,10 +142,19 @@ class ShopDataManager
             }
             else
             {
-                details = document?.get("cartDetailItems") as! [DocumentReference]
+                cartDetailItems = document?.get("cartDetailItems") as! [[String: Any]]
+                
+                for cartDetailItem in cartDetailItems {
+                    let productID = (cartDetailItem["array"] as! [Any])[0] as! String
+                    let quantity = (cartDetailItem["array"] as! [Any])[1] as! Int
+                    let name = cartDetailItem["name"] as! String
+                    let price = cartDetailItem["price"] as! Double
+                    let image = cartDetailItem["image"] as! String
+                    histories.append(HistoryItem(productID, quantity, name, price, image))
+                }
                 
             }
-            onComplete?(details)
+            onComplete?(histories)
         }
     }
     
