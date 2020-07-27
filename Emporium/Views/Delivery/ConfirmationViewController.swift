@@ -115,8 +115,11 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         super.viewWillDisappear(animated)
         
         if captureSession.isRunning == true {
-            captureSession.stopRunning()
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.stopRunning()
+            }
         }
+        
     }
     
     // AVCapture
@@ -142,13 +145,21 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
             // Verify and update server
-            self.showAlert(title: "Success!", message: stringVal)
-            
-            // Navigate to completed screen
-            self.performSegue(withIdentifier: "showCompleteVC", sender: self)
-            
             let deliveryDataManager = DeliveryDataManager()
-            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal)
+            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
+                
+                if success {
+                    // Show alert and navigate
+                    self.showAlert(title: "Success!", message: stringVal)
+                    self.performSegue(withIdentifier: "showCompleteVC", sender: self)
+                }
+                else {
+                    self.showErrorAlert()
+                }
+                
+            }) { (error) in
+                self.showAlert(title: "Oops", message: error)
+            }
             
         }
         
