@@ -12,7 +12,7 @@ import MaterialComponents.MaterialCards
 import Firebase
 
 class MainViewController: EmporiumNotificationViewController,
-UICollectionViewDataSource, UICollectionViewDelegate, UNUserNotificationCenterDelegate {
+UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -261,12 +261,6 @@ UICollectionViewDataSource, UICollectionViewDelegate, UNUserNotificationCenterDe
         }else{
              self.loginManager.showLoginViewController()
         }
-    }
- 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        completionHandler([.alert, .badge, .sound])
-        
     }
     
 }

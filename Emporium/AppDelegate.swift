@@ -14,7 +14,7 @@ import FirebaseUI
 import Stripe
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     private var cancellables: Set<AnyCancellable>? = Set<AnyCancellable>()
     
@@ -47,12 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationHandler.start()
         
         // Local Notification
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (didAllow, error) in
-            
             if !didAllow {
                 print("User has declined notifications")
             }
-            
         }
         
         //Listen for rewards
@@ -144,5 +143,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // MARK: - Local Notifications
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("\n\nRECEIVED!\n\n")
+        completionHandler()
+    }
+    
 }
 
