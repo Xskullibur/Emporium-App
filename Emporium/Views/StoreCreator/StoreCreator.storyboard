@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bgN-xe-d23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bgN-xe-d23">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -81,15 +81,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hb2-Le-pXD">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="yoE-1W-hz1">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="gxF-fD-zbD" id="h8W-bl-W94"/>
-                                </connections>
-                            </mapView>
+                                <subviews>
+                                    <searchBar contentMode="redraw" placeholder="Search for a location" translatesAutoresizingMaskIntoConstraints="NO" id="MzW-bs-d0I">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MzW-bs-d0I" secondAttribute="height" multiplier="207:28" id="Eee-tW-F9W"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gxF-fD-zbD" id="F8s-rl-iYz"/>
+                                        </connections>
+                                    </searchBar>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hb2-Le-pXD">
+                                        <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hb2-Le-pXD" secondAttribute="height" multiplier="207:376" id="ewa-lu-wFm"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="delegate" destination="gxF-fD-zbD" id="h8W-bl-W94"/>
+                                        </connections>
+                                    </mapView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yoE-1W-hz1" secondAttribute="bottom" id="AIb-gE-V8o"/>
+                            <constraint firstItem="yoE-1W-hz1" firstAttribute="leading" secondItem="S4a-0D-yGF" secondAttribute="leading" id="L5d-sf-Iff"/>
+                            <constraint firstItem="yoE-1W-hz1" firstAttribute="top" secondItem="S4a-0D-yGF" secondAttribute="top" id="No4-e8-0Np"/>
+                            <constraint firstItem="S4a-0D-yGF" firstAttribute="trailing" secondItem="yoE-1W-hz1" secondAttribute="trailing" id="hzw-YT-esY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="S4a-0D-yGF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Store Selector" id="73m-OO-2Vy">
@@ -101,6 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="hb2-Le-pXD" id="4cq-Rg-Qpi"/>
+                        <outlet property="searchBar" destination="MzW-bs-d0I" id="LQQ-yQ-AyX"/>
                         <segue destination="apZ-Gj-Igd" kind="show" identifier="showStoreEdit" id="Wcm-CT-vY8"/>
                     </connections>
                 </viewController>
@@ -242,6 +266,9 @@
             <point key="canvasLocation" x="366.66666666666669" y="132.58928571428572"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="9UO-QK-XdZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="Background Text Color">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -250,7 +277,4 @@
             <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9UO-QK-XdZ"/>
-    </inferredMetricsTieBreakers>
 </document>
