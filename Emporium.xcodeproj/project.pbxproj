@@ -132,6 +132,11 @@
 		FE90236F2473B9C900CE6B3A /* EmporiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE90236E2473B9C900CE6B3A /* EmporiumTests.swift */; };
 		FE90237A2473B9C900CE6B3A /* EmporiumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */; };
 		FEB741BD24CBFD4300512C73 /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB741BC24CBFD4300512C73 /* OrderManager.swift */; };
+		FEB741BF24CE762800512C73 /* AddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB741BE24CE762800512C73 /* AddressTableViewController.swift */; };
+		FEB741C124CE770000512C73 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB741C024CE770000512C73 /* Address.swift */; };
+		FEB741C324CE7CD900512C73 /* GeocoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */; };
+		FEE5538224D4143200472C57 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5538124D4143200472C57 /* AddressTableViewCell.swift */; };
+		FEE5538424D41A6A00472C57 /* AddOrEditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE5538324D41A6A00472C57 /* AddOrEditAddressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +294,11 @@
 		FE9023792473B9C900CE6B3A /* EmporiumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmporiumUITests.swift; sourceTree = "<group>"; };
 		FE90237B2473B9C900CE6B3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEB741BC24CBFD4300512C73 /* OrderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
+		FEB741BE24CE762800512C73 /* AddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewController.swift; sourceTree = "<group>"; };
+		FEB741C024CE770000512C73 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderHelper.swift; sourceTree = "<group>"; };
+		FEE5538124D4143200472C57 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		FEE5538324D41A6A00472C57 /* AddOrEditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditAddressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,8 +456,8 @@
 		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
-				ACB27A9624A5D32C00DE966B /* Models */,
 				ACB27A9324A5D13600DE966B /* DataManager */,
+				ACB27A9624A5D32C00DE966B /* Models */,
 				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
@@ -549,6 +559,9 @@
 				FE9023582473B9C700CE6B3A /* MainViewController.swift */,
 				FE90235A2473B9C700CE6B3A /* Main.storyboard */,
 				ACD286372498F2D100497BD9 /* MyAccountViewController.swift */,
+				FEB741BE24CE762800512C73 /* AddressTableViewController.swift */,
+				FEE5538124D4143200472C57 /* AddressTableViewCell.swift */,
+				FEE5538324D41A6A00472C57 /* AddOrEditAddressViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -629,6 +642,7 @@
 				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
 				ED61105A24B6EBB800FFD408 /* QueueItem.swift */,
 				ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */,
+				FEB741C024CE770000512C73 /* Address.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -685,6 +699,7 @@
 				34A74EEC24BBFC1100A03EBD /* Plist.swift */,
 				34B31A8B24BBECF100459A57 /* ListenerManager.swift */,
 				EDD6581F24C0042D00201B30 /* QRManager.swift */,
+				FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1107,6 +1122,8 @@
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				FEE5538224D4143200472C57 /* AddressTableViewCell.swift in Sources */,
+				FEE5538424D41A6A00472C57 /* AddOrEditAddressViewController.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
 				ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */,
 				ACDA8ED0249F2BE5009887A7 /* EarnedRewardsDataManager.swift in Sources */,
@@ -1136,7 +1153,6 @@
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
-				7FD02645249A0EF300BAA2F1 /* UIImageView.swift in Sources */,
 				EDD6582824C030C700201B30 /* QRViewController.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
@@ -1174,7 +1190,9 @@
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,
 				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
+				FEB741BF24CE762800512C73 /* AddressTableViewController.swift in Sources */,
 				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
+				FEB741C124CE770000512C73 /* Address.swift in Sources */,
 				FE56B17224B58A71000274A1 /* Alert.swift in Sources */,
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
@@ -1186,6 +1204,7 @@
 				FE6303CD24AD93E200BF7976 /* EmptyTableViewExtension.swift in Sources */,
 				ED57F7AC24A1DFC20013A133 /* InStoreViewController.swift in Sources */,
 				ACED1E03249CA19700094284 /* LoginManager.swift in Sources */,
+				FEB741C324CE7CD900512C73 /* GeocoderHelper.swift in Sources */,
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE56492524C54C890001CA4F /* Direction.swift in Sources */,
 				FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */,

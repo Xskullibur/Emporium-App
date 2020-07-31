@@ -68,6 +68,82 @@ class AccountDataManager
         
     }
     
+    /**
+     Get the user delivery addresses
+     */
+    static func getUserAddresses(_ user: User, completion: @escaping ([Address]?, EmporiumError?) -> Void){
+        let database = Firestore.firestore()
+        
+        let addressesRef = database.collection("users/\(user.uid)/delivery_addresses")
+        
+        addressesRef.addSnapshotListener{
+            (querySnapshot, error) in
+            if let error = error {
+                completion([], .firebaseError(error))
+            }
+            
+             var datas: [Address] = []
+             
+             if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    let data = document.data()
+                    
+                    let location = data["location"] as! GeoPoint
+                    let address = data["address"] as! String
+                    let postal = data["postal"] as! String
+                    let name = data["name"] as! String
+                    
+                    datas.append(Address(id: document.documentID, location: location, postal: postal, address: address, name: name))
+                }
+            }
+            completion(datas, nil)
+        }
+    }
+    
+    /**
+     Get the user delivery addresses
+     */
+    static func addUserAddresses(user: User, address: Address){
+        let database = Firestore.firestore()
+        
+        let addressesRef = database.collection("users/\(user.uid)/delivery_addresses")
+        
+        addressesRef.addDocument(data: [
+            "name":address.name,
+            "location":address.location,
+            "postal": address.postal,
+            "address": address.address])
+    }
+    
+    /**
+     Get the user delivery addresses
+     */
+    static func updateUserAddresses(user: User, address_id id: String, address: Address){
+        let database = Firestore.firestore()
+        
+        let addressesRef = database.document("users/\(user.uid)/delivery_addresses/\(id)")
+        
+        addressesRef.updateData([
+            "name":address.name,
+            "location":address.location,
+            "postal": address.postal,
+            "address": address.address], completion: nil)
+    }
+    
+    /**
+     Get the user delivery addresses
+     */
+    static func deleteUserAddresses(user: User, address: Address){
+        let database = Firestore.firestore()
+        
+        let addressesRef = database.collection("users/\(user.uid)/delivery_addresses")
+        
+//        addressesRef.(data: [
+//            "name":address.name,
+//            "location":address.location,
+//            "address": address.address])
+    }
+    
     private static func getUserStorageReference(_ user: User) -> StorageReference {
         let storage = Storage.storage()
         let storageRef = storage.reference().child("users/\(user.uid)")

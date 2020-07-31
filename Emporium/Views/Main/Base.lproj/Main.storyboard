@@ -560,7 +560,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Delivery Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNA-Jl-j6H">
-                                <rect key="frame" x="0.0" y="353" width="414" height="40.666666666666686"/>
+                                <rect key="frame" x="15" y="353" width="414" height="40.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -575,9 +575,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="AXo-IY-jwg" firstAttribute="trailing" secondItem="Xw6-67-ry3" secondAttribute="trailing" id="9AJ-sx-syE"/>
-                            <constraint firstItem="Xw6-67-ry3" firstAttribute="trailing" secondItem="QNA-Jl-j6H" secondAttribute="trailing" id="E4g-AZ-5vs"/>
+                            <constraint firstItem="QNA-Jl-j6H" firstAttribute="leading" secondItem="Xw6-67-ry3" secondAttribute="leading" constant="15" id="cX0-xK-ctN"/>
                             <constraint firstItem="QNA-Jl-j6H" firstAttribute="top" secondItem="ri4-bb-UqO" secondAttribute="bottom" constant="15" id="dHk-8N-wqT"/>
-                            <constraint firstItem="QNA-Jl-j6H" firstAttribute="leading" secondItem="Xw6-67-ry3" secondAttribute="leading" id="enW-9o-aww"/>
+                            <constraint firstItem="QNA-Jl-j6H" firstAttribute="trailing" secondItem="Xw6-67-ry3" secondAttribute="trailing" constant="15" id="ewk-MG-27f"/>
                             <constraint firstItem="ri4-bb-UqO" firstAttribute="trailing" secondItem="Xw6-67-ry3" secondAttribute="trailing" id="lXD-5c-ZvD"/>
                             <constraint firstAttribute="bottom" secondItem="AXo-IY-jwg" secondAttribute="bottom" id="mwi-f8-0Ux"/>
                             <constraint firstItem="ri4-bb-UqO" firstAttribute="top" secondItem="Xw6-67-ry3" secondAttribute="top" id="vWr-WS-iOu"/>
@@ -641,16 +641,16 @@
             </objects>
             <point key="canvasLocation" x="-359" y="63"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Address Table View Controller-->
         <scene sceneID="OSy-XJ-Yav">
             <objects>
-                <tableViewController id="TWc-AX-oOh" sceneMemberID="viewController">
+                <tableViewController id="TWc-AX-oOh" customClass="AddressTableViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i61-xd-xah">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="492.33333333333331"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="vxo-Lj-swN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addressCell" rowHeight="98" id="vxo-Lj-swN" customClass="AddressTableViewCell" customModule="Emporium" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vxo-Lj-swN" id="1VN-3t-iqh">
@@ -658,7 +658,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home" translatesAutoresizingMaskIntoConstraints="NO" id="AsJ-YI-QPW">
-                                            <rect key="frame" x="30" y="21" width="55" height="55"/>
+                                            <rect key="frame" x="30" y="21" width="55" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="55" id="tDB-ZM-7lH"/>
                                                 <constraint firstAttribute="height" constant="55" id="xhS-TQ-nd2"/>
@@ -687,6 +687,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="naP-KT-69g" firstAttribute="top" secondItem="1VN-3t-iqh" secondAttribute="topMargin" id="I4U-yT-r0b"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="AsJ-YI-QPW" secondAttribute="bottom" constant="10" id="JNR-P1-g9r"/>
                                         <constraint firstItem="naP-KT-69g" firstAttribute="leading" secondItem="AsJ-YI-QPW" secondAttribute="trailing" constant="15" id="THr-Cx-sc7"/>
                                         <constraint firstItem="AsJ-YI-QPW" firstAttribute="leading" secondItem="1VN-3t-iqh" secondAttribute="leadingMargin" constant="10" id="VbS-VH-7fy"/>
                                         <constraint firstItem="naP-KT-69g" firstAttribute="bottom" secondItem="1VN-3t-iqh" secondAttribute="bottomMargin" id="WHi-QP-xJb"/>
@@ -694,30 +695,32 @@
                                         <constraint firstItem="naP-KT-69g" firstAttribute="trailing" secondItem="1VN-3t-iqh" secondAttribute="trailingMargin" id="x0a-mc-gWU"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addressLabel" destination="tga-lg-lga" id="ANT-f0-gMv"/>
+                                    <outlet property="addressNameLabel" destination="jX5-RZ-4ol" id="Jvf-5q-xwU"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="yOs-Ll-zSX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addAddressCell" rowHeight="98" id="yOs-Ll-zSX">
                                 <rect key="frame" x="0.0" y="126" width="414" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yOs-Ll-zSX" id="Gdm-pr-UEN">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bfK-vT-oCB">
-                                            <rect key="frame" x="352.33333333333326" y="11" width="41.666666666666686" height="76"/>
-                                        </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUq-RS-cC5">
                                             <rect key="frame" x="143" y="29" width="128" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                             <state key="normal" title="Add Address">
                                                 <color key="titleColor" name="Primary"/>
                                             </state>
+                                            <connections>
+                                                <action selector="onAddAddressPressed:" destination="RJW-qa-pgu" eventType="touchUpInside" id="HsT-fx-S1o"/>
+                                                <segue destination="vZ1-eg-u8A" kind="show" id="qRh-3y-bhw"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XUq-RS-cC5" firstAttribute="centerX" secondItem="Gdm-pr-UEN" secondAttribute="centerX" id="5je-P9-fFO"/>
-                                        <constraint firstItem="bfK-vT-oCB" firstAttribute="bottom" secondItem="Gdm-pr-UEN" secondAttribute="bottomMargin" id="WL9-YQ-kVd"/>
-                                        <constraint firstItem="bfK-vT-oCB" firstAttribute="trailing" secondItem="Gdm-pr-UEN" secondAttribute="trailingMargin" id="a27-6E-r2u"/>
-                                        <constraint firstItem="bfK-vT-oCB" firstAttribute="top" secondItem="Gdm-pr-UEN" secondAttribute="topMargin" id="bmV-6V-xxu"/>
                                         <constraint firstItem="XUq-RS-cC5" firstAttribute="centerY" secondItem="Gdm-pr-UEN" secondAttribute="centerY" id="uIM-Ry-kR4"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -730,8 +733,87 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NqC-Cp-v2x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="RJW-qa-pgu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2328.985507246377" y="996.42857142857133"/>
+        </scene>
+        <!--New Delivery Address-->
+        <scene sceneID="sl5-bD-zaX">
+            <objects>
+                <viewController storyboardIdentifier="AddOrEditAddressViewController" title="New Delivery Address" id="vZ1-eg-u8A" customClass="AddOrEditAddressViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h0a-4o-Gyx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="438.33333333333326"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home" translatesAutoresizingMaskIntoConstraints="NO" id="Ccd-en-JCJ">
+                                <rect key="frame" x="87" y="20" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="aMK-ln-jB4"/>
+                                    <constraint firstAttribute="width" constant="240" id="eTV-P0-gGC"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Yeb-en-0Sr">
+                                <rect key="frame" x="15" y="163" width="384" height="234"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5B-DE-qEe">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My new address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80w-Z5-FVh">
+                                        <rect key="frame" x="0.0" y="25.333333333333343" width="384" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-cC-9pj">
+                                        <rect key="frame" x="0.0" y="64.333333333333343" width="384" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nia-rp-p1w">
+                                        <rect key="frame" x="0.0" y="89.666666666666657" width="384" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="yco-kb-0ib"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96Q-0d-e3Q">
+                                        <rect key="frame" x="0.0" y="174.66666666666669" width="384" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CSe-F0-F8G">
+                                        <rect key="frame" x="0.0" y="200" width="384" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ccd-en-JCJ" firstAttribute="top" secondItem="1bp-hn-wgb" secondAttribute="top" constant="20" id="H04-ZU-LcP"/>
+                            <constraint firstItem="1bp-hn-wgb" firstAttribute="trailing" secondItem="Yeb-en-0Sr" secondAttribute="trailing" constant="15" id="Hzv-l4-M4y"/>
+                            <constraint firstItem="Ccd-en-JCJ" firstAttribute="centerX" secondItem="h0a-4o-Gyx" secondAttribute="centerX" id="JRJ-CA-NN9"/>
+                            <constraint firstItem="Yeb-en-0Sr" firstAttribute="top" secondItem="Ccd-en-JCJ" secondAttribute="bottom" constant="15" id="Kv0-i6-nCa"/>
+                            <constraint firstItem="Yeb-en-0Sr" firstAttribute="leading" secondItem="1bp-hn-wgb" secondAttribute="leading" constant="15" id="U0d-4J-Mqp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1bp-hn-wgb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qRF-VK-QFi"/>
+                    <connections>
+                        <outlet property="addressNameTextField" destination="80w-Z5-FVh" id="OSf-EI-Hny"/>
+                        <outlet property="addressTextField" destination="nia-rp-p1w" id="5eF-pH-gI9"/>
+                        <outlet property="postalTextField" destination="CSe-F0-F8G" id="RhL-nc-vsm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9km-PC-ls7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3263.7681159420295" y="891.96428571428567"/>
         </scene>
     </scenes>
     <resources>
