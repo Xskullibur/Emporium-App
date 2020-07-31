@@ -305,4 +305,17 @@ class StoreDataManager {
         
     }
     
+    // MARK: - Remove Store
+    func removeStore(storeId _storeId: String, onComplete: @escaping (Bool) -> Void) {        
+        storeCollection.document(_storeId).delete { (error) in
+            if let error = error {
+                print("Error removing store: \(error.localizedDescription)")
+                onComplete(false)
+            }
+            else {
+                onComplete(true)
+            }
+        }
+    }
+    
 }

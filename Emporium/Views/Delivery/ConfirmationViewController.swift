@@ -115,8 +115,11 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         super.viewWillDisappear(animated)
         
         if captureSession.isRunning == true {
-            captureSession.stopRunning()
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.stopRunning()
+            }
         }
+        
     }
     
     // AVCapture
@@ -142,9 +145,21 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
             // Verify and update server
-            self.showAlert(title: "Success!", message: stringVal)
             let deliveryDataManager = DeliveryDataManager()
-            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal)
+            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
+                
+                if success {
+                    // Show alert and navigate
+                    self.showAlert(title: "Success!", message: stringVal)
+                    self.performSegue(withIdentifier: "showCompleteVC", sender: self)
+                }
+                else {
+                    self.showErrorAlert()
+                }
+                
+            }) { (error) in
+                self.showAlert(title: "Oops", message: error)
+            }
             
         }
         
@@ -188,6 +203,13 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             
             let qrVC = segue.destination as! QRViewController
             qrVC.image = qrImage
+            
+        }
+        else if segue.identifier == "showCompleteVC" {
+            
+            let completeVC = segue.destination
+            let rootVC = self.navigationController?.viewControllers.first
+            self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
             
         }
         

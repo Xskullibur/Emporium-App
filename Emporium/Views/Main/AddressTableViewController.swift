@@ -1,44 +1,41 @@
 //
-//  GroceryStoresTableViewController.swift
+//  AddressTableViewController.swift
 //  Emporium
 //
-//  Created by Peh Zi Heng on 29/6/20.
+//  Created by Peh Zi Heng on 27/7/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
-class GroceryStoresTableViewController: UITableViewController {
+class AddressTableViewController: UITableViewController {
 
-    // MARK: - Variables
-    private var storeDataManager: StoreDataManager!
-    private var crowdTrackingDataManager: CrowdTrackingDataManager!
-    private var groceryStores: [GroceryStore] = []
+    private var addresses: [Address] = []
     
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.loadAddresses()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        let uid = Auth.auth().currentUser!.uid
-        
-        self.storeDataManager = StoreDataManager()
-        self.storeDataManager.getStoreByMerchantId(uid, onComplete: { (groceryStores) in
+    }
+    
+    func loadAddresses(){
+        let user = Auth.auth().currentUser!
+        AccountDataManager.getUserAddresses(user, completion: {
+            addresses, error in
             
-            //Update table view when there are results from data manager
-            self.groceryStores = groceryStores
+            guard let addresses = addresses else{
+                return
+            }
+            self.addresses = addresses
             self.tableView.reloadData()
             
-        }) { (error) in
-            print(error)
-        }
-        
+        })
     }
 
     // MARK: - Table view data source
@@ -48,36 +45,34 @@ class GroceryStoresTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.groceryStores.count
+        return self.addresses.count + 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroceryStoreCell", for: indexPath)
+        if indexPath.row == self.addresses.count {
+            //Add cell button
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addAddressCell", for: indexPath)
+            
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addressCell", for: indexPath) as! AddressTableViewCell
 
-        // Configure the cell...
-        cell.textLabel?.text = groceryStores[indexPath.row].name
-        cell.detailTextLabel?.text = groceryStores[indexPath.row].address
-        
-        return cell
+            cell.setAddress(self.addresses[indexPath.row])
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the grocery store
-        let groceryStore = groceryStores[indexPath.row]
+        let selectedAddress = self.addresses[indexPath.row]
         
-        let crowdTrackingViewController = storyboard?.instantiateViewController(identifier: "CrowdTrackingViewController") as! CrowdTrackingViewController
-        crowdTrackingViewController.groceryStoreId = groceryStore.id
-        
-        //Show view controller
-        self.navigationController?.pushViewController(crowdTrackingViewController, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let addOrEditAddressViewController = storyBoard.instantiateViewController(withIdentifier: "AddOrEditAddressViewController") as! AddOrEditAddressViewController
+                
+        addOrEditAddressViewController.setAddress(selectedAddress)
+        self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 80
-    }
-    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

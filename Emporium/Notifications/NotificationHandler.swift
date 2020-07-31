@@ -97,6 +97,18 @@ class NotificationHandler {
             }
             
             self.userNotificationPublisher?.send(datas)
+            
+            // local notifications
+            for data in datas {
+                let content = LocalNotificationHelper.createNotificationContent(
+                    title: data["title"] as! String,
+                    body: data["message"] as! String,
+                    subtitle: data["sender"] as? String,
+                    others: nil
+                )
+                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".user", content: content)
+            }
+            
         }
         //global notifications
         self.globalNotificationRef?.addSnapshotListener{
@@ -117,6 +129,17 @@ class NotificationHandler {
             
             //This is to make sure global notification get receive
             self.globalNotificationPublisher?.send(datas)
+            
+            // local notifications
+            for data in datas {
+                let content = LocalNotificationHelper.createNotificationContent(
+                    title: data["title"] as! String,
+                    body: data["message"] as! String,
+                    subtitle: data["sender"] as? String,
+                    others: nil
+                )
+                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".global", content: content)
+            }
         }
     }
     
@@ -129,6 +152,11 @@ class NotificationHandler {
         let title = data["title"] as? String ?? ""
         let message = data["message"] as? String ?? ""
         let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
+        
+        // Local Notification
+        let content = LocalNotificationHelper.createNotificationContent(title: title, body: message, subtitle: sender, others: nil)
+        LocalNotificationHelper.addNotification(identifier: "\(sender).notification", content: content)
+        
         return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1)
     }
     
