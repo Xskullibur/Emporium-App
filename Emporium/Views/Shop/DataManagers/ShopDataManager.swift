@@ -214,9 +214,25 @@ class ShopDataManager
     }
     
     static func addShoppingList(list: [Any], name: String) {
-        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).setData([
-            "list": list
-        ])
+        
+        let ref = db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name)
+        
+        ref.getDocument
+        {
+            (doc, err) in
+            
+            if let doc = doc
+            {
+                if doc.exists {
+                    Toast.showToast(name + " already exist")
+                }else{
+                    ref.setData([
+                        "list": list
+                    ])
+                    Toast.showToast("Shopping List Saved!")
+                }
+            }
+        }
     }
-     
+    
 }
