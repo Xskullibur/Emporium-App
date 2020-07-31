@@ -137,7 +137,10 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             
             let save = UIAlertAction(title: "Save", style: .default) {
                 action in
-                //let name = actionSheet.textFields![0]
+                let name = actionSheet.textFields![0]
+                if name.text != "" {
+                    self.createShoppingList(name: name.text!)
+                }
             }
             
             actionSheet.addAction(save)
@@ -156,7 +159,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             sList.append(cart.productID)
             sList.append(cart.quantity)
         }
-        
+        ShopDataManager.addShoppingList(list: sList, name: name)
     }
     
 }

@@ -212,5 +212,11 @@ class ShopDataManager
             }
         }
     }
+    
+    static func addShoppingList(list: [Any], name: String) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).setData([
+            "list": list
+        ])
+    }
      
 }
