@@ -13,6 +13,10 @@ import FirebaseFirestore
 class PlacesAPI {
     
     let client: FoursquareAPIClient
+    var parameters = [
+        "categoryId": "52f2ab2ebcbc57f1066b8b46",       // Supermarket ID
+        "limit": "50"
+    ]
     
     // MARK: - Init
     init() {
@@ -37,29 +41,71 @@ class PlacesAPI {
     }
     
     // MARK: - Functions
-    func getNearbyGroceryStore(lat: Double?, long: Double?, radius: Int?, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
+    func getNearbyGroceryStore(near _near: String?, radius _radius: Int?, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
         
-        // Set API parameters
-        let SUPERMARKET_ID = "52f2ab2ebcbc57f1066b8b46"
         var storeList: [GroceryStore] = []
-        var parameter: [String: String] = [
-            "categoryId": SUPERMARKET_ID,
-            "limit": "50",
-        ]
         
-        if let radius = radius {
-            parameter["radius"] = String(radius)
+        // radius
+        if let radius = _radius {
+            parameters["radius"] = String(radius)
         }
         
-        if let lat = lat, let long = long {
-            parameter["ll"] = String(lat) + "," + String(long)
+        // near
+        if let near = _near {
+            parameters["near"] = near
+            parameters["radius"] = "2500"
         }
         else {
-            parameter["near"] = "Singapore"
+            parameters["near"] = "Singapore"
+        }
+        
+        client.request(path: "venues/search", parameter: parameters) { (result) in
+            switch result {
+            case let .success(data):
+                let jsonResult = JSON(data)
+                
+                let venueCount = jsonResult["response"]["venues"].count
+                for i in 0..<venueCount {
+                    let venue = jsonResult["response"]["venues"][i]
+                    
+                    let location = GeoPoint(
+                        latitude: venue["location"]["lat"].double!,
+                        longitude: venue["location"]["lng"].double!
+                    )
+                    
+                    let store = GroceryStore(
+                        id: venue["id"].string!,
+                        name: venue["name"].string!,
+                        address: venue["location"]["formattedAddress"][0].string!,
+                        distance: ((venue["location"]["distance"].double ?? 0) / 1000),
+                        location: location
+                    )
+                    
+                    storeList.append(store)
+                }
+                
+                completionHandler(storeList, .none)
+            
+            case let .failure(error):
+                completionHandler(storeList, error)
+
+            }
+        }
+        
+    }
+    
+    func getNearbyGroceryStore(lat: Double, long: Double, radius: Int?, completionHandler: @escaping([GroceryStore], FoursquareClientError?) -> Void) {
+        
+        // Set API parameters
+        var storeList: [GroceryStore] = []
+        parameters["ll"] = String(lat) + "," + String(long)
+        
+        if let radius = radius {
+            parameters["radius"] = String(radius)
         }
         
         // Call API for data
-        client.request(path: "venues/search", parameter: parameter) { (result) in
+        client.request(path: "venues/search", parameter: parameters) { (result) in
             switch result {
             case let .success(data):
                 let jsonResult = JSON(data)

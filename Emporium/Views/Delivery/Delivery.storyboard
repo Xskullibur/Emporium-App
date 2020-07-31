@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,10 +47,60 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="iLm-1c-6BL" kind="show" identifier="showCompleteVC" id="JqO-He-ufR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egr-6Q-3nK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1008.6956521739131" y="150.66964285714286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eBE-CY-Jzp">
+            <objects>
+                <viewController id="iLm-1c-6BL" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r9P-8y-tKx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-Dn-2Ao">
+                                <rect key="frame" x="25" y="208" width="364" height="534"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHP-Xn-x38" customClass="AnimationView" customModule="Lottie">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="534"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="delivery-complete"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSW-gr-bFE" customClass="MDCButton">
+                                        <rect key="frame" x="0.0" y="534" width="364" height="0.0"/>
+                                        <color key="backgroundColor" name="Primary"/>
+                                        <state key="normal" title="Return to Menu">
+                                            <color key="titleColor" name="Secondary Text Color"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rHP-Xn-x38" firstAttribute="centerY" secondItem="zLa-Dn-2Ao" secondAttribute="centerY" id="hag-m9-L7m"/>
+                                    <constraint firstItem="rHP-Xn-x38" firstAttribute="centerX" secondItem="zLa-Dn-2Ao" secondAttribute="centerX" id="o3K-NW-Hpz"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zLa-Dn-2Ao" firstAttribute="leading" secondItem="d22-w6-DMB" secondAttribute="leading" constant="25" id="AxG-QF-aQG"/>
+                            <constraint firstItem="zLa-Dn-2Ao" firstAttribute="top" secondItem="d22-w6-DMB" secondAttribute="top" constant="120" id="Bz3-G5-ayh"/>
+                            <constraint firstItem="d22-w6-DMB" firstAttribute="bottom" secondItem="zLa-Dn-2Ao" secondAttribute="bottom" constant="120" id="MJx-2A-inz"/>
+                            <constraint firstItem="d22-w6-DMB" firstAttribute="trailing" secondItem="zLa-Dn-2Ao" secondAttribute="trailing" constant="25" id="SPl-Cn-2qZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="d22-w6-DMB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lmn-Fm-01v"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k4y-DJ-Bxi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008.6956521739131" y="890.625"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="iW8-3o-F7s">
@@ -81,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mv8-vZ-0r4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1783" y="152"/>
+            <point key="canvasLocation" x="2049" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9QG-mh-nh2">
@@ -103,6 +154,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="info.circle.fill" catalog="system" width="64" height="60"/>
+        <namedColor name="Primary">
+            <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Secondary Text Color">
+            <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -10,10 +10,11 @@ import Foundation
 
 class DeliveryDataManager {
     
-    func verifyAndCompleteDelivery(deliveryId: String) {
+    func verifyAndCompleteDelivery(deliveryId: String, onComplete: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         
-        print(deliveryId)
-        
+        let errorMsg = "Invalid Delivery Number, please try again."
+        onComplete(true)
+    
     }
     
 }

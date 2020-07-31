@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class StoreSelectViewController: UIViewController, MKMapViewDelegate {
+class StoreSelectViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate {
 
     // MARK: - Variables
     var selectedStore: GroceryStore?
@@ -18,17 +18,25 @@ class StoreSelectViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        showSpinner(onView: self.view)
+        
+        // Hide keyboard
+        self.hideKeyboardWhenTappedAround()
+        
+        // Load default annotations
+        setAnnotations(near: nil)
+        
+    }
+    
+    // MARK: - Custom
+    func setAnnotations(near _near: String?) {
         
         let placesAPI = PlacesAPI()
-        placesAPI.getNearbyGroceryStore(lat: nil, long: nil, radius: nil, completionHandler: { (_storeList, error) in
-            
-            self.removeSpinner()
+        placesAPI.getNearbyGroceryStore(near: _near, radius: nil, completionHandler: { (_storeList, error) in
             
             #warning("TODO: - Handle Errors")
             // TODO: - Handle Errors
@@ -44,6 +52,8 @@ class StoreSelectViewController: UIViewController, MKMapViewDelegate {
                     print(apiError.errorDetail) // e.g. The requested path does not exist.
                     
                 case .none:
+                    self.clearAnnotations()
+                    
                     for store in _storeList {
                         let annotation = StoreAnnotation(
                             coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
@@ -52,18 +62,52 @@ class StoreSelectViewController: UIViewController, MKMapViewDelegate {
                         self.mapView.addAnnotation(annotation)
                     }
                 
+                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                
             }
 
         })
+
+    }
+    
+    // MARK: - SearchBar
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        view.endEditing(true)
+        
+        if searchBar.text == "" {
+            setAnnotations(near: nil)
+        }
+        else {
+            setAnnotations(near: searchBar.text)
+        }
+        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        if searchBar.text == "" {
+            setAnnotations(near: nil)
+        }
         
     }
     
     // MARK: - Map View
+    
+    /// Function when annotation pressed
     @objc func annotationPressed(sender: StoreButton!) {
         selectedStore = sender.store!
         self.performSegue(withIdentifier: "showStoreEdit", sender: self)
     }
     
+    /// Clear all annotations on MapView
+    func clearAnnotations() {
+        if mapView.annotations.count > 0 {
+            mapView.removeAnnotations(mapView.annotations)
+        }
+    }
+    
+    /// Load custom annotations
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         // Check for custom annotaion
@@ -109,7 +153,7 @@ class StoreSelectViewController: UIViewController, MKMapViewDelegate {
         return view
         
     }
-
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStoreEdit" {
