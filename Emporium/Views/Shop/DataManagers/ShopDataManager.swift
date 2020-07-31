@@ -93,7 +93,8 @@ class ShopDataManager
                         let amount: Int = doc.get("amount") as! Int
                         let date = String(doc.documentID)
                         let receive = doc.get("received") as! String
-                        purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                        let id = doc.documentID
+                        purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))
                     }
                 }
             }
@@ -119,7 +120,8 @@ class ShopDataManager
                     let amount: Int = doc.get("amount") as! Int
                     let date = String(doc.documentID)
                     let receive = doc.get("received") as! String
-                    purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                    let id = doc.documentID
+                    purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))
                 }
             }
             onComplete?(purchaseHistory.reversed())
