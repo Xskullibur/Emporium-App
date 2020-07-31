@@ -23,6 +23,7 @@ class AddOrEditAddressViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         if let editAddress = self.editAddress {
+            self.title = "Edit Delivery Address"
             self.addressNameTextField.text = editAddress.name
             self.addressTextField.text = editAddress.address
             self.postalTextField.text = editAddress.postal
@@ -31,21 +32,22 @@ class AddOrEditAddressViewController: UIViewController {
             deleteButton.tintColor = .red
             navigationItem.rightBarButtonItems = [deleteButton, editButton]
         }else{
+            self.title = "New Delivery Address"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
         }
     }
     
     @objc func onAddOrEditAddressPressed() {
         
-        guard let addressName = addressNameTextField.text else {
+        guard let addressName = addressNameTextField.text, !addressName.isEmpty else {
             self.showAlert(title: "Incomplete field", message: "No address name!")
             return
         }
-        guard let address = addressTextField.text else {
+        guard let address = addressTextField.text, !address.isEmpty else {
             self.showAlert(title: "Incomplete field", message: "No address given")
             return
         }
-        guard let postal = postalTextField.text else {
+        guard let postal = postalTextField.text, !postal.isEmpty else {
             self.showAlert(title: "Incomplete field", message: "No postal given")
             return
         }
@@ -86,7 +88,6 @@ class AddOrEditAddressViewController: UIViewController {
      */
     func setAddress(_ address: Address){
         self.editAddress = address
-        self.title = "Edit Delivery Address"
     }
     
 
