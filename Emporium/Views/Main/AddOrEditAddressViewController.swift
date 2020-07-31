@@ -26,7 +26,10 @@ class AddOrEditAddressViewController: UIViewController {
             self.addressNameTextField.text = editAddress.name
             self.addressTextField.text = editAddress.address
             self.postalTextField.text = editAddress.postal
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
+            let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
+            let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(onDeletePressed))
+            deleteButton.tintColor = .red
+            navigationItem.rightBarButtonItems = [deleteButton, editButton]
         }else{
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
         }
@@ -69,6 +72,15 @@ class AddOrEditAddressViewController: UIViewController {
 
     }
     
+    @objc func onDeletePressed(){
+        guard let editAddress = self.editAddress else {
+            return
+        }
+        
+        AccountDataManager.deleteUserAddresses(user: Auth.auth().currentUser!, address: editAddress)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     /**
      Set the address to be displayed
      */
@@ -76,6 +88,8 @@ class AddOrEditAddressViewController: UIViewController {
         self.editAddress = address
         self.title = "Edit Delivery Address"
     }
+    
+
     
     /*
     // MARK: - Navigation
