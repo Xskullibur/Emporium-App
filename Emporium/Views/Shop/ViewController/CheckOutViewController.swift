@@ -131,19 +131,35 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func saveActionSheet() {
-        let actionSheet = UIAlertController(title: "Give it a name!", message: nil, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        let save = UIAlertAction(title: "Save", style: .default) {
-            action in
-            //let name = actionSheet.textFields![0]
+        if cartData.count > 0 {
+            let actionSheet = UIAlertController(title: "Give it a name!", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            let save = UIAlertAction(title: "Save", style: .default) {
+                action in
+                let name = actionSheet.textFields![0]
+                if name.text != "" {
+                    self.createShoppingList(name: name.text!)
+                }
+            }
+            
+            actionSheet.addAction(save)
+            actionSheet.addAction(cancel)
+            actionSheet.addTextField()
+            
+            present(actionSheet, animated: true, completion: nil)
+        }else{
+            Toast.showToast("Cart is empty select something first!")
         }
-        
-        actionSheet.addAction(save)
-        actionSheet.addAction(cancel)
-        actionSheet.addTextField()
-        
-        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func createShoppingList(name: String) {
+        var sList : [Any] = []
+        for cart in cartData {
+            sList.append(cart.productID)
+            sList.append(cart.quantity)
+        }
+        ShopDataManager.addShoppingList(list: sList, name: name)
     }
     
 }

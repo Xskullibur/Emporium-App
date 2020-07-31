@@ -95,7 +95,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
 
     func createBufferSize() -> CGSize {
         var bufferSize = CGSize()
-        previewViewHeightConstraint.constant = self.previewView.frame.width * 0.5
+        previewViewHeightConstraint.constant = self.view.frame.width * 0.5
         previewView.layoutIfNeeded()
         bufferSize.width = self.previewView.frame.width
         bufferSize.height = self.previewView.frame.height
