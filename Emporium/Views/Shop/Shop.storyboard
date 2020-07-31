@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -733,6 +733,49 @@
             </objects>
             <point key="canvasLocation" x="3258" y="879"/>
         </scene>
+        <!--Shopping List-->
+        <scene sceneID="3in-Tr-pIr">
+            <objects>
+                <viewController id="IAX-B9-t3U" customClass="ShoppingListViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zsp-Dx-7OI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qSN-R6-2xh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="ZMA-bC-x2e">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZMA-bC-x2e" id="Ywq-hX-irh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qSN-R6-2xh" firstAttribute="trailing" secondItem="Ie7-Bm-IUa" secondAttribute="trailing" id="AKq-yg-V0B"/>
+                            <constraint firstAttribute="bottom" secondItem="qSN-R6-2xh" secondAttribute="bottom" id="afX-Jq-N7q"/>
+                            <constraint firstItem="qSN-R6-2xh" firstAttribute="leading" secondItem="Ie7-Bm-IUa" secondAttribute="leading" id="dPw-Tr-e7L"/>
+                            <constraint firstItem="qSN-R6-2xh" firstAttribute="top" secondItem="Ie7-Bm-IUa" secondAttribute="top" id="zpK-AL-omX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ie7-Bm-IUa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shopping List" id="5AU-Il-OYz">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Lqa-wZ-0LZ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableview" destination="qSN-R6-2xh" id="TOe-G3-Isa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5u-Jj-tJn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2.8985507246376816" y="878.57142857142856"/>
+        </scene>
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">
             <objects>
@@ -906,12 +949,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVH-we-Ut8">
+                                <rect key="frame" x="13" y="103" width="94" height="30"/>
+                                <state key="normal" title="Shopping List">
+                                    <color key="titleColor" name="Primary"/>
+                                </state>
+                                <connections>
+                                    <segue destination="IAX-B9-t3U" kind="show" identifier="toShoppingList" id="xEk-wl-pr1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="dMS-eD-LOj" secondAttribute="trailing" constant="32" id="6MX-Ve-zwQ"/>
                             <constraint firstItem="l68-gk-005" firstAttribute="trailing" secondItem="fHp-GE-cmJ" secondAttribute="trailing" id="83U-lt-grM"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="1fx-nr-kjB" secondAttribute="trailing" constant="13" id="C2W-WP-vay"/>
+                            <constraint firstItem="dVH-we-Ut8" firstAttribute="top" secondItem="fHp-GE-cmJ" secondAttribute="top" constant="15" id="QW9-BU-oH7"/>
                             <constraint firstItem="fq1-pJ-KKw" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="13" id="V9Q-5Y-LBa"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="s30-X8-KCf" secondAttribute="trailing" constant="29" id="W8P-DP-8BO"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="firstBaseline" secondItem="fq1-pJ-KKw" secondAttribute="firstBaseline" id="Xgd-Ji-MZR"/>
@@ -922,6 +975,7 @@
                             <constraint firstItem="dMS-eD-LOj" firstAttribute="top" secondItem="fHp-GE-cmJ" secondAttribute="top" constant="25" id="qAi-U6-Kat"/>
                             <constraint firstItem="fq1-pJ-KKw" firstAttribute="top" secondItem="fHp-GE-cmJ" secondAttribute="top" constant="60" id="rfF-9u-hSR"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="top" secondItem="fq1-pJ-KKw" secondAttribute="top" id="t1J-3j-7kf"/>
+                            <constraint firstItem="dVH-we-Ut8" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="13" id="wbs-4s-vhL"/>
                             <constraint firstItem="s30-X8-KCf" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="20" id="y3D-Kn-6nd"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="leading" secondItem="fq1-pJ-KKw" secondAttribute="trailing" constant="18" id="yVD-hC-gbx"/>
                             <constraint firstItem="l68-gk-005" firstAttribute="top" secondItem="s30-X8-KCf" secondAttribute="bottom" constant="20" id="yuR-eu-PcP"/>
@@ -931,7 +985,7 @@
                     <navigationItem key="navigationItem" title="Shop" id="ezN-2W-PIf">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="cart" catalog="system" id="bsy-2x-gad">
                             <connections>
-                                <segue destination="Eti-EX-wKZ" kind="show" id="Oy0-2A-1Y3"/>
+                                <segue destination="Eti-EX-wKZ" kind="show" identifier="toCheckOut" id="Oy0-2A-1Y3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -948,9 +1002,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" catalog="system" width="64" height="50"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="Background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

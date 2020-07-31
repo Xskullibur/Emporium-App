@@ -213,6 +213,28 @@ class ShopDataManager
         }
     }
     
+    static func loadShoppingList(onComplete: (([String]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").getDocuments()
+        {
+            (querySnapshot, err) in
+            
+            var namelist: [String] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    namelist.append(doc.documentID)
+                }
+                onComplete?(namelist)
+            }
+        }
+    }
+    
     static func addShoppingList(list: [Any], name: String) {
         
         let ref = db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name)
@@ -234,5 +256,6 @@ class ShopDataManager
             }
         }
     }
+    
     
 }
