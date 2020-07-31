@@ -71,6 +71,47 @@ class StoreListViewController: UIViewController, UITableViewDelegate, UITableVie
         return 80
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            //  Ask for confirmation
+            let alert = UIAlertController(
+                title: "Warning",
+                message: "Are you sure you want to remove this store, there is no turning back!",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                
+                // Remove from firebase
+                let storeDataManager = StoreDataManager()
+                storeDataManager.removeStore(storeId: self.storeList[indexPath.row].id) { (success) in
+                    
+                    if success {
+                        // Remove from local ds
+                        self.storeList.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .left)
+                    }
+                    else {
+                        // Error Alert
+                        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                        let data = Plist.readPlist(url!)!
+                        let infoDescription = data["Error Alert"] as! String
+                        
+                        self.showAlert(title: "Oops", message: infoDescription)
+                    }
+                    
+                }
+            }))
+            
+            self.present(alert, animated: true)
+            
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

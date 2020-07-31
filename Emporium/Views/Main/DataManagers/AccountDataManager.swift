@@ -121,9 +121,9 @@ class AccountDataManager
     static func updateUserAddresses(user: User, address_id id: String, address: Address){
         let database = Firestore.firestore()
         
-        let addressesRef = database.document("users/\(user.uid)/delivery_addresses/\(id)")
+        let addressRef = database.document("users/\(user.uid)/delivery_addresses/\(id)")
         
-        addressesRef.updateData([
+        addressRef.updateData([
             "name":address.name,
             "location":address.location,
             "postal": address.postal,
@@ -136,12 +136,8 @@ class AccountDataManager
     static func deleteUserAddresses(user: User, address: Address){
         let database = Firestore.firestore()
         
-        let addressesRef = database.collection("users/\(user.uid)/delivery_addresses")
-        
-//        addressesRef.(data: [
-//            "name":address.name,
-//            "location":address.location,
-//            "address": address.address])
+        let addressRef = database.document("users/\(user.uid)/delivery_addresses/\(address.id!)")
+        addressRef.delete()
     }
     
     private static func getUserStorageReference(_ user: User) -> StorageReference {
