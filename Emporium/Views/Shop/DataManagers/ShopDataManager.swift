@@ -164,7 +164,7 @@ class ShopDataManager
         {
             (document, err) in
             
-            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: "", type: "", last4: "", brand: "", receipt: "")
+            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: 0, type: "", last4: "", brand: "", receipt: "")
             
             if let err = err
             {
@@ -172,9 +172,9 @@ class ShopDataManager
             }
             else
             {
-                details.amount = document?.get("amount") as! String
+                details.amount = document?.get("amount") as! Int
                 details.type = document?.get("cardType") as! String
-                details.brand = document?.get("cardbrand") as! String
+                details.brand = document?.get("cardBrand") as! String
                 details.last4 = document?.get("last4") as! String
                 details.receipt = document?.get("receipt") as! String
             }
@@ -212,5 +212,50 @@ class ShopDataManager
             }
         }
     }
-     
+    
+    static func loadShoppingList(onComplete: (([String]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").getDocuments()
+        {
+            (querySnapshot, err) in
+            
+            var namelist: [String] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    namelist.append(doc.documentID)
+                }
+                onComplete?(namelist)
+            }
+        }
+    }
+    
+    static func addShoppingList(list: [Any], name: String) {
+        
+        let ref = db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name)
+        
+        ref.getDocument
+        {
+            (doc, err) in
+            
+            if let doc = doc
+            {
+                if doc.exists {
+                    Toast.showToast(name + " already exist")
+                }else{
+                    ref.setData([
+                        "list": list
+                    ])
+                    Toast.showToast("Shopping List Saved!")
+                }
+            }
+        }
+    }
+    
+    
 }
