@@ -154,10 +154,10 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func createShoppingList(name: String) {
-        var sList : [Any] = []
+        var sList : [String] = []
         for cart in cartData {
             sList.append(cart.productID)
-            sList.append(cart.quantity)
+            sList.append(String(cart.quantity))
         }
         ShopDataManager.addShoppingList(list: sList, name: name)
     }

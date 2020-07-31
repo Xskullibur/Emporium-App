@@ -13,14 +13,16 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableview: UITableView!
     
     var cartData: [Cart] = []
-    var list: [ShoppingList] = []
+    var itemList: [ShoppingList] = []
     var listName: [String] = []
+    var productData: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
         tableview.delegate = self
         loadList()
+        loadProducts()
     }
     
     func loadList() {
@@ -28,6 +30,13 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
             name in
             self.listName = name
             self.tableview.reloadData()
+        }
+    }
+    
+    func loadProducts() {
+        ShopDataManager.loadProducts() {
+            productList in
+            self.productData = productList
         }
     }
     
@@ -39,5 +48,49 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
         cell.textLabel?.text = listName[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        addListToCart(name: listName[indexPath.row])
+    }
+    
+    func addListToCart(name: String) {
+        ShopDataManager.loadShoppingListItems(name: name) {
+            item in
+            self.itemList = item
+            
+            for item in self.itemList
+            {
+                var found = false
+                for cart in self.cartData
+                {
+                    if cart.productID == item.productID
+                    {
+                        cart.quantity = cart.quantity + Int(item.quantity)
+                        found = true
+                        break
+                    }
+                }
+                
+                if found == false
+                {
+                    for product in self.productData
+                    {
+                        if product.id == item.productID
+                        {
+                            self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
+                            break
+                        }
+                    }
+                }
+            }
+            print(self.cartData.count)
+        }
+    }
+}
+
+extension ShoppingListViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        (viewController as? ShopViewController)?.cartData = cartData
     }
 }

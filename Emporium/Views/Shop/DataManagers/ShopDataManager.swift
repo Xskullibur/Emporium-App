@@ -257,5 +257,27 @@ class ShopDataManager
         }
     }
     
-    
+    static func loadShoppingListItems(name: String, onComplete: (([ShoppingList]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).getDocument
+        {
+            (doc, err) in
+            
+            var itemlist: [ShoppingList] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                if let doc = doc {
+                    let rawList: [String] = doc.get("list") as! [String]
+                    for index in stride(from: 0, to: rawList.count - 1, by: 2) {
+                        itemlist.append(ShoppingList(id: rawList[index], quan: Int(rawList[index + 1])!))
+                    }
+                    onComplete?(itemlist)
+                }
+            }
+        }
+    }
 }
