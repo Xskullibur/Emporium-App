@@ -759,13 +759,13 @@
         <!--Shopping List-->
         <scene sceneID="3in-Tr-pIr">
             <objects>
-                <viewController id="IAX-B9-t3U" customClass="ShoppingListViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopListVC" id="IAX-B9-t3U" customClass="ShoppingListViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zsp-Dx-7OI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qSN-R6-2xh">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="ZMA-bC-x2e">
@@ -978,7 +978,7 @@
                                     <color key="titleColor" name="Primary"/>
                                 </state>
                                 <connections>
-                                    <segue destination="IAX-B9-t3U" kind="show" identifier="toShoppingList" id="xEk-wl-pr1"/>
+                                    <action selector="toShopList:" destination="pSg-bj-D98" eventType="touchUpInside" id="9wc-nD-bnp"/>
                                 </connections>
                             </button>
                         </subviews>

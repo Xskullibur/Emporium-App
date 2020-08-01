@@ -12,6 +12,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableview: UITableView!
     
+    var delegate: DataDelegate?
     var cartData: [Cart] = []
     var itemList: [ShoppingList] = []
     var listName: [String] = []
@@ -85,6 +86,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
             print(self.cartData.count)
+            self.delegate?.setCartData(cartData: self.cartData)
         }
     }
 }

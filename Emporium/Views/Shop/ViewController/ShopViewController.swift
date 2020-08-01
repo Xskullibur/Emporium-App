@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents.MaterialCards
 import RSSelectionMenu
 
-class ShopViewController: UIViewController {
+class ShopViewController: UIViewController, DataDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -142,8 +142,15 @@ class ShopViewController: UIViewController {
         }else if segue.identifier == "toShoppingList" {
             let destVC = segue.destination as! ShoppingListViewController
             destVC.cartData = self.cartData
+            let vc = ShoppingListViewController()
+            vc.delegate = self
         }
         
+    }
+    
+    func setCartData(cartData: [Cart]) {
+        self.cartData = cartData
+        print("received")
     }
     
     @IBAction func searchBtnPressed(_ sender: Any) {
@@ -156,6 +163,17 @@ class ShopViewController: UIViewController {
     
     @IBAction func filterBtnPressed(_ sender: Any) {
         showFilter()
+    }
+    
+    
+    @IBAction func toShopList(_ sender: Any) {
+//        let vc = ShoppingListViewController()
+//        vc.delegate = self
+//        present(vc, animated: true, completion: nil)
+        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+        let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -219,5 +237,7 @@ extension ShopViewController: UICollectionViewDelegate {
     }
 }
 
-
+protocol DataDelegate {
+    func setCartData(cartData: [Cart])
+}
 
