@@ -74,7 +74,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         docID = purchaseHistory[indexPath.row].id
-        showActionSheet()
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
+        //showActionSheet()
 
     }
     
