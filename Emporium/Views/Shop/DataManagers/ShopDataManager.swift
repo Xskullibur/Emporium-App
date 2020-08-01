@@ -166,7 +166,7 @@ class ShopDataManager
         {
             (document, err) in
             
-            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: 0, type: "", last4: "", brand: "", receipt: "")
+            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: 0, type: "", last4: "", brand: "", receipt: "", received: "", id: "")
             
             if let err = err
             {
@@ -174,11 +174,15 @@ class ShopDataManager
             }
             else
             {
-                details.amount = document?.get("amount") as! Int
-                details.type = document?.get("cardType") as! String
-                details.brand = document?.get("cardBrand") as! String
-                details.last4 = document?.get("last4") as! String
-                details.receipt = document?.get("receipt") as! String
+                if let document = document {
+                    details.amount = document.get("amount") as! Int
+                    details.type = document.get("cardType") as! String
+                    details.brand = document.get("cardBrand") as! String
+                    details.last4 = document.get("last4") as! String
+                    details.receipt = document.get("receipt") as! String
+                    details.received = document.get("received") as! String
+                    details.id = document.documentID
+                }
             }
             onComplete?(details)
         }

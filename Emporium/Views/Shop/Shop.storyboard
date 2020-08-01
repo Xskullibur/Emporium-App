@@ -622,7 +622,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-ls-sUa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="715"/>
+                                <rect key="frame" x="0.0" y="345" width="414" height="458"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCartCell" rowHeight="145" id="hPj-yw-cK3" customClass="HistoryCartCell" customModule="Emporium" customModuleProvider="target">
@@ -715,17 +715,26 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mKC-np-NCC">
+                                <rect key="frame" x="87" y="94" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="H62-bW-aYS"/>
+                                    <constraint firstAttribute="height" constant="240" id="U6D-jh-fn7"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="mKC-np-NCC" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" constant="87" id="0z3-zc-mlW"/>
                             <constraint firstItem="Ohz-ls-sUa" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" id="CqD-Qh-BSp"/>
-                            <constraint firstItem="Ohz-ls-sUa" firstAttribute="top" secondItem="d1v-2j-1dQ" secondAttribute="top" id="I6o-zo-4YY"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="top" secondItem="Ohz-ls-sUa" secondAttribute="bottom" constant="8" symbolic="YES" id="NTK-2B-y5W"/>
-                            <constraint firstItem="Ohz-ls-sUa" firstAttribute="top" secondItem="d1v-2j-1dQ" secondAttribute="top" id="Nhx-eB-HZl"/>
+                            <constraint firstItem="d1v-2j-1dQ" firstAttribute="trailing" secondItem="mKC-np-NCC" secondAttribute="trailing" constant="87" id="Q6L-lf-PZz"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="centerX" secondItem="8je-9H-GzH" secondAttribute="centerX" id="VYz-Ph-vsL"/>
+                            <constraint firstItem="mKC-np-NCC" firstAttribute="top" secondItem="d1v-2j-1dQ" secondAttribute="top" constant="6" id="aGT-qf-xvt"/>
                             <constraint firstItem="d1v-2j-1dQ" firstAttribute="bottom" secondItem="T3N-Rb-CTs" secondAttribute="bottom" constant="10" id="fNE-pr-ixW"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" constant="10" id="jLr-NR-pw5"/>
                             <constraint firstItem="Ohz-ls-sUa" firstAttribute="trailing" secondItem="d1v-2j-1dQ" secondAttribute="trailing" id="sgL-ko-Agl"/>
+                            <constraint firstItem="Ohz-ls-sUa" firstAttribute="top" secondItem="mKC-np-NCC" secondAttribute="bottom" constant="11" id="xXy-7J-wzd"/>
                             <constraint firstItem="d1v-2j-1dQ" firstAttribute="trailing" secondItem="T3N-Rb-CTs" secondAttribute="trailing" constant="10" id="zND-L2-U1L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d1v-2j-1dQ"/>
@@ -738,13 +747,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="qrCode" destination="mKC-np-NCC" id="fba-pQ-XXz"/>
                         <outlet property="tableView" destination="Ohz-ls-sUa" id="yL3-xJ-clD"/>
                         <outlet property="totalLabel" destination="VWk-Yn-WyV" id="e5L-Sx-J0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ee0-T8-Xat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3258" y="879"/>
+            <point key="canvasLocation" x="3257.971014492754" y="878.57142857142856"/>
         </scene>
         <!--Shopping List-->
         <scene sceneID="3in-Tr-pIr">
