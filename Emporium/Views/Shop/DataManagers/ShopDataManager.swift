@@ -91,7 +91,7 @@ class ShopDataManager
                 {
                     if selected.contains(doc.get("received") as! String) {
                         let amount: Int = doc.get("amount") as! Int
-                        let date = String(doc.documentID)
+                        let date = doc.get("time") as! String
                         let receive = doc.get("received") as! String
                         let id = doc.documentID
                         purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))
@@ -118,7 +118,7 @@ class ShopDataManager
                 for doc in querySnapshot!.documents
                 {
                     let amount: Int = doc.get("amount") as! Int
-                    let date = String(doc.documentID)
+                    let date = doc.get("time") as! String
                     let receive = doc.get("received") as! String
                     let id = doc.documentID
                     purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))

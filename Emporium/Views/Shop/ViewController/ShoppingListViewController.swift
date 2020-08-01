@@ -91,6 +91,6 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
 
 extension ShoppingListViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ShopViewController)?.cartData = cartData
+        (viewController as? ShopViewController)?.cartData = self.cartData
     }
 }
