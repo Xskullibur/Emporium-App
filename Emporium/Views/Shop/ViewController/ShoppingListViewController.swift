@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ShoppingListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,6 +18,8 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     var itemList: [ShoppingList] = []
     var listName: [String] = []
     var productData: [Product] = []
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +55,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        addListToCart(name: listName[indexPath.row])
+        showActionSheet(row: indexPath.row)
     }
     
     func addListToCart(name: String) {
@@ -71,8 +74,45 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
                     }
                 }
             }
-            print(self.cartData.count)
             self.delegate?.setCartData(newCartData: self.cartData)
+        }
+    }
+    
+    func showActionSheet(row: Int) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let addList = UIAlertAction(title: "Add To Cart", style: .default) {
+            action in
+            self.addListToCart(name: self.listName[row])
+        }
+        
+        let editList = UIAlertAction(title: "View/Edit", style: .default) {
+            action in
+            
+        }
+        
+        let deleteList = UIAlertAction(title: "Delete List", style: .default) {
+            action in
+            self.deleteShoppingList(name: self.listName[row])
+        }
+        
+        actionSheet.addAction(addList)
+        actionSheet.addAction(editList)
+        actionSheet.addAction(deleteList)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func deleteShoppingList(name: String) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).delete() {
+            err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                self.loadList()
+            }
         }
     }
 }
