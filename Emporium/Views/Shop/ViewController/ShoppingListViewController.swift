@@ -59,34 +59,20 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         ShopDataManager.loadShoppingListItems(name: name) {
             item in
             self.itemList = item
-            
+            print(self.cartData.count)
             for item in self.itemList
             {
-                var found = false
-                for cart in self.cartData
+                for product in self.productData
                 {
-                    if cart.productID == item.productID
+                    if product.id == item.productID
                     {
-                        cart.quantity = cart.quantity + Int(item.quantity)
-                        found = true
+                        self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
                         break
-                    }
-                }
-                
-                if found == false
-                {
-                    for product in self.productData
-                    {
-                        if product.id == item.productID
-                        {
-                            self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
-                            break
-                        }
                     }
                 }
             }
             print(self.cartData.count)
-            self.delegate?.setCartData(cartData: self.cartData)
+            self.delegate?.setCartData(newCartData: self.cartData)
         }
     }
 }

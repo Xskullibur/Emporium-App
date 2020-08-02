@@ -148,8 +148,35 @@ class ShopViewController: UIViewController, DataDelegate {
         
     }
     
-    func setCartData(cartData: [Cart]) {
-        self.cartData = cartData
+    func setCartData(newCartData: [Cart]) {
+        
+        for item in newCartData
+        {
+            var found = false
+            for cart in self.cartData
+            {
+                if cart.productID == item.productID
+                {
+                    cart.quantity = cart.quantity + Int(item.quantity)
+                    found = true
+                    break
+                }
+            }
+            
+            if found == false
+            {
+                for product in self.productData
+                {
+                    if product.id == item.productID
+                    {
+                        self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
+                        break
+                    }
+                }
+            }
+        }
+        
+        //self.cartData = cartData
         print("received")
     }
     
@@ -167,9 +194,6 @@ class ShopViewController: UIViewController, DataDelegate {
     
     
     @IBAction func toShopList(_ sender: Any) {
-//        let vc = ShoppingListViewController()
-//        vc.delegate = self
-//        present(vc, animated: true, completion: nil)
         let baseSB = UIStoryboard(name: "Shop", bundle: nil)
         let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
         vc.delegate = self
@@ -238,6 +262,6 @@ extension ShopViewController: UICollectionViewDelegate {
 }
 
 protocol DataDelegate {
-    func setCartData(cartData: [Cart])
+    func setCartData(newCartData: [Cart])
 }
 
