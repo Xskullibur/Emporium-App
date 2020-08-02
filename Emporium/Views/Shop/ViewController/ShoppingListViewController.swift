@@ -19,6 +19,8 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     var listName: [String] = []
     var productData: [Product] = []
     
+    var editCartData: [Cart] = []
+    
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -62,7 +64,6 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         ShopDataManager.loadShoppingListItems(name: name) {
             item in
             self.itemList = item
-            print(self.cartData.count)
             for item in self.itemList
             {
                 for product in self.productData
@@ -78,6 +79,26 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func editListToCart(name: String) {
+        self.editCartData = []
+        ShopDataManager.loadShoppingListItems(name: name) {
+            item in
+            self.itemList = item
+            for item in self.itemList
+            {
+                for product in self.productData
+                {
+                    if product.id == item.productID
+                    {
+                        self.editCartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
+                        break
+                    }
+                }
+            }
+            self.performSegue(withIdentifier: "toEdit", sender: nil)
+        }
+    }
+    
     func showActionSheet(row: Int) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -89,7 +110,8 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         
         let editList = UIAlertAction(title: "View/Edit", style: .default) {
             action in
-            
+            //self.performSegue(withIdentifier: "toEdit", sender: nil)
+            self.editListToCart(name: self.listName[row])
         }
         
         let deleteList = UIAlertAction(title: "Delete List", style: .default) {
@@ -113,6 +135,13 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
             } else {
                 self.loadList()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEdit" {
+            let destVC = segue.destination as! CheckOutViewController
+            destVC.cartData = self.editCartData
         }
     }
 }

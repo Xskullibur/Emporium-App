@@ -14,6 +14,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var toPaymentBtn: UIButton!
     
     var cartData: [Cart] = []
    
@@ -32,7 +33,14 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             }
             priceLabel.text = "Total: $" + String(format: "%.02f", total)
         }
-
+        
+        if(!fromShop()) {
+            toPaymentBtn.isHidden = true
+            priceLabel.isHidden = true
+        }else{
+            toPaymentBtn.isHidden = false
+            priceLabel.isHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,6 +168,18 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             sList.append(String(cart.quantity))
         }
         ShopDataManager.addShoppingList(list: sList, name: name)
+    }
+    
+    func fromShop() -> Bool {
+        if let vcs = self.navigationController?.viewControllers {
+            let previousVC = vcs[vcs.count - 2]
+            if previousVC is ShoppingListViewController {
+                return false
+            }else{
+                return true
+            }
+        }
+        return true
     }
     
 }
