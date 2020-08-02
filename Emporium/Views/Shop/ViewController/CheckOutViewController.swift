@@ -36,10 +36,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         if(!fromShop()) {
             toPaymentBtn.isHidden = true
-            priceLabel.isHidden = true
         }else{
             toPaymentBtn.isHidden = false
-            priceLabel.isHidden = false
         }
     }
     
