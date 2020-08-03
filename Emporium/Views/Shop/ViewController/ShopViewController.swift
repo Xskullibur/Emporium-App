@@ -46,10 +46,13 @@ class ShopViewController: UIViewController, DataDelegate {
         
         if(fromShopList()) {
             cartBtn.isEnabled = false
-            self.shopListBtn.setTitle("Save", for: .normal)
+            self.shopListBtn.isHidden = true
+            self.title = "Add Item"
+            self.ProductCateLabel.text = "Add Item to Shopping List"
         }else{
             cartBtn.isEnabled = true
-            self.shopListBtn.setTitle("Shopping List", for: .normal)
+            self.shopListBtn.isHidden = false
+            self.ProductCateLabel.text = "Product: tap to add"
         }
     }
     
@@ -59,7 +62,6 @@ class ShopViewController: UIViewController, DataDelegate {
             productList in
             
             self.productData = productList
-            self.ProductCateLabel.text = "Product: tap to add"
             self.collectionView.reloadData()
             self.removeSpinner()
         }
@@ -219,7 +221,7 @@ class ShopViewController: UIViewController, DataDelegate {
     
     @IBAction func toShopList(_ sender: Any) {
         if(fromShopList()){
-            self.delegate?.setListCartData(newCartData: cartData)
+            //self.delegate?.setListCartData(newCartData: cartData)
         }else{
             let baseSB = UIStoryboard(name: "Shop", bundle: nil)
             let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
@@ -268,20 +270,25 @@ extension ShopViewController: UICollectionViewDelegate {
             let image = self.productData[indexPath.row].image
             var newItem = true
             
-            
-            for cartItem in cartData {
-                if cartItem.productID == id {
-                    cartItem.quantity = cartItem.quantity + 1
-                    Toast.showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
-                    newItem = false
-                    return
+            if(fromShopList()) {//from shoplist
+               self.delegate?.setListCartData(newCartData: Cart(id, 1, name, price, image))
+            }else{//default
+                for cartItem in cartData {
+                    if cartItem.productID == id {
+                        cartItem.quantity = cartItem.quantity + 1
+                        Toast.showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
+                        newItem = false
+                        return
+                    }
+                }
+                
+                if newItem == true {
+                    cartData.append(Cart(id, 1, name, price, image))
+                    Toast.showToast(String(name) + " added")
                 }
             }
             
-            if newItem == true {
-                cartData.append(Cart(id, 1, name, price, image))
-                Toast.showToast(String(name) + " added")
-            }
+            
             
         }else{
             

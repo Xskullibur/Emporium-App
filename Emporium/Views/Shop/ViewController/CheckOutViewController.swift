@@ -83,32 +83,32 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func setListCartData(newCartData: [Cart]) {
-        for item in newCartData
+    func setListCartData(newCartData: Cart) {
+        
+        let item = newCartData
+        var found = false
+        for cart in self.cartData
         {
-            var found = false
-            for cart in self.cartData
+            if cart.productID == item.productID
             {
-                if cart.productID == item.productID
+                cart.quantity = cart.quantity + Int(item.quantity)
+                found = true
+                break
+            }
+        }
+        
+        if found == false
+        {
+            for product in self.productData
+            {
+                if product.id == item.productID
                 {
-                    cart.quantity = cart.quantity + Int(item.quantity)
-                    found = true
+                    self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
                     break
                 }
             }
-            
-            if found == false
-            {
-                for product in self.productData
-                {
-                    if product.id == item.productID
-                    {
-                        self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
-                        break
-                    }
-                }
-            }
         }
+        
         
         //self.cartData = cartData
         self.tableView.reloadData()
@@ -260,7 +260,7 @@ extension CheckOutViewController: UINavigationControllerDelegate {
 }
 
 protocol ShopListDelegate {
-    func setListCartData(newCartData: [Cart])
+    func setListCartData(newCartData: Cart)
 }
 
 
