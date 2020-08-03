@@ -15,6 +15,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var toPaymentBtn: UIButton!
+    @IBOutlet weak var addItemBtn: UIButton!
     
     var cartData: [Cart] = []
     var listName: String = ""
@@ -38,9 +39,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         if(!fromShop()) {
             toPaymentBtn.isHidden = true
             self.title = self.listName
+            self.addItemBtn.isHidden = false
         }else{
             toPaymentBtn.isHidden = false
             self.title = "Order"
+            self.addItemBtn.isHidden = true
         }
     }
     
@@ -104,6 +107,13 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             saveActionSheet()
         }
+    }
+    
+    
+    @IBAction func addItemBtnPressed(_ sender: Any) {
+        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+        let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

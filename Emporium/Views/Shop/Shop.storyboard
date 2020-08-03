@@ -14,11 +14,11 @@
             <objects>
                 <viewController title="Order" id="Eti-EX-wKZ" customClass="CheckOutViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xGI-Jo-c6d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nxk-FX-co3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="636.5"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="602.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CartCell" rowHeight="145" id="G5l-le-Evi" customClass="CartCell" customModule="Emporium" customModuleProvider="target">
@@ -102,7 +102,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JD-Rf-zB7">
-                                <rect key="frame" x="30" y="695" width="345" height="56"/>
+                                <rect key="frame" x="30" y="749" width="345" height="56"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="uw7-dW-ATO"/>
@@ -121,7 +121,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: $0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akk-Cd-XB4">
-                                <rect key="frame" x="219" y="644.5" width="180" height="33.5"/>
+                                <rect key="frame" x="219" y="698.5" width="180" height="33.5"/>
                                 <color key="backgroundColor" name="Background"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="27K-Lj-INx"/>
@@ -130,6 +130,15 @@
                                 <color key="textColor" name="Primary"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHa-xj-IES">
+                                <rect key="frame" x="15" y="700" width="62" height="30"/>
+                                <state key="normal" title="Add Item">
+                                    <color key="titleColor" name="Primary"/>
+                                </state>
+                                <connections>
+                                    <action selector="addItemBtnPressed:" destination="Eti-EX-wKZ" eventType="touchUpInside" id="e1P-5g-LHu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -140,6 +149,8 @@
                             <constraint firstItem="nxk-FX-co3" firstAttribute="trailing" secondItem="mvK-Q0-BBC" secondAttribute="trailing" id="Emh-bY-Lyk"/>
                             <constraint firstItem="nxk-FX-co3" firstAttribute="leading" secondItem="mvK-Q0-BBC" secondAttribute="leading" id="JrK-Wh-4ri"/>
                             <constraint firstItem="akk-Cd-XB4" firstAttribute="top" secondItem="nxk-FX-co3" secondAttribute="bottom" constant="8" id="Jym-nA-7M4"/>
+                            <constraint firstItem="UHa-xj-IES" firstAttribute="leading" secondItem="mvK-Q0-BBC" secondAttribute="leading" constant="15" id="OMe-Jp-Xcf"/>
+                            <constraint firstItem="UHa-xj-IES" firstAttribute="top" secondItem="nxk-FX-co3" secondAttribute="bottom" constant="9.5" id="OXP-aO-ySs"/>
                             <constraint firstItem="akk-Cd-XB4" firstAttribute="top" secondItem="nxk-FX-co3" secondAttribute="bottom" constant="8" id="WAu-2K-jIC"/>
                             <constraint firstItem="nxk-FX-co3" firstAttribute="top" secondItem="mvK-Q0-BBC" secondAttribute="top" id="XyX-rb-GTz"/>
                             <constraint firstItem="4JD-Rf-zB7" firstAttribute="top" secondItem="akk-Cd-XB4" secondAttribute="bottom" constant="17" id="uWY-0p-RCU"/>
@@ -155,6 +166,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addItemBtn" destination="UHa-xj-IES" id="3Qt-Gu-t2h"/>
                         <outlet property="priceLabel" destination="akk-Cd-XB4" id="bes-aS-2i0"/>
                         <outlet property="tableView" destination="nxk-FX-co3" id="wj0-he-o6T"/>
                         <outlet property="toPaymentBtn" destination="4JD-Rf-zB7" id="yJX-fd-WBK"/>
@@ -171,11 +183,11 @@
             <objects>
                 <viewController id="XJa-d4-DZQ" customClass="DisplayCardViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ZL-D6-SLn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eit-pV-VnJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CardCell" rowHeight="145" id="wEc-rs-Pzx" customClass="CardCell" customModule="Emporium" customModuleProvider="target">
@@ -927,7 +939,7 @@
         <!--Shop-->
         <scene sceneID="Xh7-SX-8Af">
             <objects>
-                <viewController title="Shop" id="pSg-bj-D98" customClass="ShopViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopVC" title="Shop" id="pSg-bj-D98" customClass="ShopViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJT-t5-Obt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1050,6 +1062,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ywE-Wp-iPX"/>
+        <segue reference="Oy0-2A-1Y3"/>
     </inferredMetricsTieBreakers>
 </document>
