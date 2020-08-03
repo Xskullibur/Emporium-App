@@ -16,6 +16,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var last4Label: UILabel!
     @IBOutlet weak var qrCode: UIImageView!
+    @IBOutlet weak var deliveryLabel: UILabel!
     
     @IBOutlet weak var typeLabel: UILabel!
     var docID: String = ""
@@ -54,16 +55,18 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
             
             ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
                 Detail in
-                //self.typeLabel.text = Detail.brand.capitalizingFirstLetter() + " " + Detail.type.capitalizingFirstLetter()
-                //self.last4Label.text = "(*" + Detail.last4 + ")"
                 self.receipt = Detail.receipt
                 if Detail.received == "yes" {
                     self.qrCode.heightAnchor.constraint(equalToConstant: 0).isActive = true
+                    self.deliveryLabel.heightAnchor.constraint(equalToConstant: 0).isActive = true
                     self.qrCode.isHidden = true
+                    self.deliveryLabel.isHidden = true
                 }else{
                     self.qrCode.image = QRManager.generateQRCode(from: Detail.id)
+                    self.deliveryLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
                     self.qrCode.heightAnchor.constraint(equalToConstant: 240).isActive = true
                     self.qrCode.isHidden = false
+                    self.deliveryLabel.isHidden = false
                 }
             }
             

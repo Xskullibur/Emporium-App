@@ -761,6 +761,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deliveryLabel" destination="F2H-Vy-8AK" id="8Kz-rB-6Bh"/>
                         <outlet property="qrCode" destination="mKC-np-NCC" id="fba-pQ-XXz"/>
                         <outlet property="tableView" destination="Ohz-ls-sUa" id="yL3-xJ-clD"/>
                         <outlet property="totalLabel" destination="VWk-Yn-WyV" id="e5L-Sx-J0a"/>
