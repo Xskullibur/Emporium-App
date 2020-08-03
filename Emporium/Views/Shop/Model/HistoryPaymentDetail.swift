@@ -9,13 +9,13 @@
 import UIKit
 
 class HistoryPaymentDetail: NSObject {
-    var amount: String = ""
+    var amount: Int = 0
     var brand: String = ""
     var type: String = ""
     var last4: String = ""
     var receipt: String = ""
     
-    init(amount: String, type: String, last4: String, brand: String, receipt: String) {
+    init(amount: Int, type: String, last4: String, brand: String, receipt: String) {
         self.amount = amount
         self.type = type
         self.last4 = last4

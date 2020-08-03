@@ -136,9 +136,14 @@ class ShopViewController: UIViewController {
                 cartData.remove(at: index)
             }
         }
+        if segue.identifier == "toCheckOut" {
+            let destVC = segue.destination as! CheckOutViewController
+            destVC.cartData = self.cartData
+        }else if segue.identifier == "toShoppingList" {
+            let destVC = segue.destination as! ShoppingListViewController
+            destVC.cartData = self.cartData
+        }
         
-        let destVC = segue.destination as! CheckOutViewController
-        destVC.cartData = self.cartData
     }
     
     @IBAction func searchBtnPressed(_ sender: Any) {
