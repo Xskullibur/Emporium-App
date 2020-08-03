@@ -18,10 +18,15 @@ class ShopViewController: UIViewController, DataDelegate {
     @IBOutlet weak var ProductCateLabel: UILabel!
     
     
+    @IBOutlet weak var shopListBtn: UIButton!
+    @IBOutlet weak var cartBtn: UIBarButtonItem!
+    
     var productData: [Product] = []
     var cartData: [Cart] = []
     let category: [String] = ["Snack", "Beverage", "Dairy", "Meat", "Dry Goods", "Canned", "Produce"]
     var selectedCategory: [String] = []
+    
+    var delegate: ShopListDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +42,15 @@ class ShopViewController: UIViewController, DataDelegate {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
+        
+        if(fromShopList()) {
+            cartBtn.isEnabled = false
+            self.shopListBtn.setTitle("Save", for: .normal)
+        }else{
+            cartBtn.isEnabled = true
+            self.shopListBtn.setTitle("Shopping List", for: .normal)
+        }
     }
     
     func loadProducts() {
@@ -180,6 +192,18 @@ class ShopViewController: UIViewController, DataDelegate {
         print("received")
     }
     
+    func fromShopList() -> Bool {
+        if let vcs = self.navigationController?.viewControllers {
+            let previousVC = vcs[vcs.count - 2]
+            if previousVC is CheckOutViewController {
+                return true
+            }else{
+                return false
+            }
+        }
+        return false
+    }
+    
     @IBAction func searchBtnPressed(_ sender: Any) {
         if searchTextField.text == "" {
             loadProducts()
@@ -194,10 +218,14 @@ class ShopViewController: UIViewController, DataDelegate {
     
     
     @IBAction func toShopList(_ sender: Any) {
-        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-        let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        if(fromShopList()){
+            self.delegate?.setListCartData(newCartData: cartData)
+        }else{
+            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+            let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

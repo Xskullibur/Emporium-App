@@ -1040,9 +1040,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ProductCateLabel" destination="s30-X8-KCf" id="3bf-Gz-U3I"/>
+                        <outlet property="cartBtn" destination="bsy-2x-gad" id="Lad-vq-IFF"/>
                         <outlet property="collectionView" destination="l68-gk-005" id="oda-eR-5Su"/>
                         <outlet property="searchBtn" destination="1fx-nr-kjB" id="6If-Mr-0jC"/>
                         <outlet property="searchTextField" destination="fq1-pJ-KKw" id="UHQ-cf-HCB"/>
+                        <outlet property="shopListBtn" destination="dVH-we-Ut8" id="30f-BG-mtm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaP-Na-4X5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
