@@ -50,7 +50,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         
         // iBeacon
         bluetoothManager = CBPeripheralManager(delegate: self, queue: nil)
-        let beacon = createBeaconRegion(id: groceryStoreId!, major: 0, minor: 0, identifier: "com.nyp.emporium.beacon")
+        let beacon = createBeaconRegion(major: 0, minor: 0, identifier: groceryStoreId!)
         advertiseDevice(region: beacon!)
         
         // User Interface
@@ -201,11 +201,9 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
 // MARK: - iBeacon
 extension CrowdTrackingViewController: CBPeripheralManagerDelegate {
     
-    func createBeaconRegion(id: String, major: Int, minor: Int, identifier: String) -> CLBeaconRegion? {
+    func createBeaconRegion(major: Int, minor: Int, identifier: String) -> CLBeaconRegion? {
         
-        guard let proximityUUID = UUID(uuidString: id) else {
-            return nil
-        }
+        let proximityUUID = UUID()
         
         return CLBeaconRegion(
             uuid: proximityUUID,
