@@ -12,7 +12,7 @@ import Firebase
 class AddOrEditAddressViewController: UIViewController {
     //MARK: - Outlets
     @IBOutlet weak var addressNameTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var addressTextView: UITextView!
     @IBOutlet weak var postalTextField: UITextField!
     
     //MARK: - For editing existing address
@@ -22,18 +22,24 @@ class AddOrEditAddressViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        self.addressTextView.layer.borderWidth = 1.0
+        self.addressTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        self.addressTextView.layer.cornerRadius = 5;
+        self.addressTextView.clipsToBounds = true;
+        
+        
         if let editAddress = self.editAddress {
             self.title = "Edit Delivery Address"
             self.addressNameTextField.text = editAddress.name
-            self.addressTextField.text = editAddress.address
+            self.addressTextView.text = editAddress.address
             self.postalTextField.text = editAddress.postal
             let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
-            let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(onDeletePressed))
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(onDeletePressed))
             deleteButton.tintColor = .red
             navigationItem.rightBarButtonItems = [deleteButton, editButton]
         }else{
             self.title = "New Delivery Address"
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(onAddOrEditAddressPressed))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddOrEditAddressPressed))
         }
     }
     
@@ -43,7 +49,7 @@ class AddOrEditAddressViewController: UIViewController {
             self.showAlert(title: "Incomplete field", message: "No address name!")
             return
         }
-        guard let address = addressTextField.text, !address.isEmpty else {
+        guard let address = addressTextView.text, !address.isEmpty else {
             self.showAlert(title: "Incomplete field", message: "No address given")
             return
         }

@@ -64,13 +64,15 @@ class AddressTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedAddress = self.addresses[indexPath.row]
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let addOrEditAddressViewController = storyBoard.instantiateViewController(withIdentifier: "AddOrEditAddressViewController") as! AddOrEditAddressViewController
-                
-        addOrEditAddressViewController.setAddress(selectedAddress)
-        self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
+        if indexPath.row < self.addresses.count{
+            let selectedAddress = self.addresses[indexPath.row]
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let addOrEditAddressViewController = storyBoard.instantiateViewController(withIdentifier: "AddOrEditAddressViewController") as! AddOrEditAddressViewController
+                    
+            addOrEditAddressViewController.setAddress(selectedAddress)
+            self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
+        }
     }
 
     /*
