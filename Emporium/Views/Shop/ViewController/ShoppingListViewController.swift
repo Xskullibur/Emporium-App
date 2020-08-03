@@ -21,6 +21,8 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     
     var editCartData: [Cart] = []
     
+    var passListName: String = ""
+    
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -111,7 +113,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         
         let editList = UIAlertAction(title: "View/Edit", style: .default) {
             action in
-            //self.performSegue(withIdentifier: "toEdit", sender: nil)
+            self.passListName = self.listName[row]
             self.editListToCart(name: self.listName[row])
         }
         
@@ -143,6 +145,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         if segue.identifier == "toEdit" {
             let destVC = segue.destination as! CheckOutViewController
             destVC.cartData = self.editCartData
+            destVC.listName = self.passListName
         }
     }
 }

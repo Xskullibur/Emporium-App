@@ -803,9 +803,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ie7-Bm-IUa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Shopping List" id="5AU-Il-OYz">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Lqa-wZ-0LZ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Shopping List" id="5AU-Il-OYz"/>
                     <connections>
                         <outlet property="tableview" destination="qSN-R6-2xh" id="TOe-G3-Isa"/>
                         <segue destination="Eti-EX-wKZ" kind="show" identifier="toEdit" id="ywE-Wp-iPX"/>

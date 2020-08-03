@@ -263,6 +263,15 @@ class ShopDataManager
         }
     }
     
+    static func editShoppingList(list: [Any], name: String) {
+        
+       let ref = db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name)
+        
+       ref.setData([
+           "list": list
+       ])
+    }
+    
     static func loadShoppingListItems(name: String, onComplete: (([ShoppingList]) -> Void)?) {
         db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).getDocument
         {
