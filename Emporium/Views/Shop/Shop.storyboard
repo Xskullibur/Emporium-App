@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -623,7 +623,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-ls-sUa">
-                                <rect key="frame" x="0.0" y="345" width="414" height="458"/>
+                                <rect key="frame" x="0.0" y="374" width="414" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCartCell" rowHeight="145" id="hPj-yw-cK3" customClass="HistoryCartCell" customModule="Emporium" customModuleProvider="target">
@@ -723,19 +723,32 @@
                                     <constraint firstAttribute="height" constant="240" id="U6D-jh-fn7"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For Delivery To Scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2H-Vy-8AK">
+                                <rect key="frame" x="127" y="344" width="161" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1Lz-yD-GIR"/>
+                                    <constraint firstAttribute="width" constant="161" id="iLl-M5-SfP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="mKC-np-NCC" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" constant="87" id="0z3-zc-mlW"/>
+                            <constraint firstItem="d1v-2j-1dQ" firstAttribute="trailing" secondItem="F2H-Vy-8AK" secondAttribute="trailing" constant="126" id="3vk-99-An4"/>
                             <constraint firstItem="Ohz-ls-sUa" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" id="CqD-Qh-BSp"/>
+                            <constraint firstItem="F2H-Vy-8AK" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" constant="127" id="DUs-lc-7TA"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="top" secondItem="Ohz-ls-sUa" secondAttribute="bottom" constant="8" symbolic="YES" id="NTK-2B-y5W"/>
                             <constraint firstItem="d1v-2j-1dQ" firstAttribute="trailing" secondItem="mKC-np-NCC" secondAttribute="trailing" constant="87" id="Q6L-lf-PZz"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="centerX" secondItem="8je-9H-GzH" secondAttribute="centerX" id="VYz-Ph-vsL"/>
                             <constraint firstItem="mKC-np-NCC" firstAttribute="top" secondItem="d1v-2j-1dQ" secondAttribute="top" constant="6" id="aGT-qf-xvt"/>
                             <constraint firstItem="d1v-2j-1dQ" firstAttribute="bottom" secondItem="T3N-Rb-CTs" secondAttribute="bottom" constant="10" id="fNE-pr-ixW"/>
                             <constraint firstItem="T3N-Rb-CTs" firstAttribute="leading" secondItem="d1v-2j-1dQ" secondAttribute="leading" constant="10" id="jLr-NR-pw5"/>
+                            <constraint firstItem="Ohz-ls-sUa" firstAttribute="top" secondItem="F2H-Vy-8AK" secondAttribute="bottom" constant="9" id="klA-9u-U2j"/>
+                            <constraint firstItem="F2H-Vy-8AK" firstAttribute="top" secondItem="mKC-np-NCC" secondAttribute="bottom" constant="10" id="pMT-7O-dd1"/>
                             <constraint firstItem="Ohz-ls-sUa" firstAttribute="trailing" secondItem="d1v-2j-1dQ" secondAttribute="trailing" id="sgL-ko-Agl"/>
-                            <constraint firstItem="Ohz-ls-sUa" firstAttribute="top" secondItem="mKC-np-NCC" secondAttribute="bottom" constant="11" id="xXy-7J-wzd"/>
                             <constraint firstItem="d1v-2j-1dQ" firstAttribute="trailing" secondItem="T3N-Rb-CTs" secondAttribute="trailing" constant="10" id="zND-L2-U1L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d1v-2j-1dQ"/>
@@ -1026,13 +1039,10 @@
             <point key="canvasLocation" x="2.8985507246376816" y="97.767857142857139"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ywE-Wp-iPX"/>
-    </inferredMetricsTieBreakers>
     <resources>
-        <image name="cart" catalog="system" width="128" height="102"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="cart" catalog="system" width="64" height="50"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
         <namedColor name="Background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1040,4 +1050,7 @@
             <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ywE-Wp-iPX"/>
+    </inferredMetricsTieBreakers>
 </document>
