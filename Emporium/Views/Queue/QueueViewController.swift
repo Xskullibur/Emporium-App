@@ -52,7 +52,7 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
-            // Remove Queue
+            // MARK: [Leave Queue]
             let userId = Auth.auth().currentUser!.uid
             self.showSpinner(onView: self.view)
             self.queueDataManager.leaveQueue(storeId: self.store!.id, queueId: self.queueId!, userId: userId) { (success) in
@@ -152,6 +152,7 @@ class QueueViewController: UIViewController {
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Error Alert"] as! String
         
+        // MARK: [Store Listener]
         return storeDataManager.storeListener(store!) { (data) in
             
             // Guard Data
@@ -179,6 +180,15 @@ class QueueViewController: UIViewController {
                         
                         // Clear Listeners
                         self.listenerManager.clear()
+                        
+                        // Add Local Notification
+                        let notificationContent = LocalNotificationHelper.createNotificationContent(
+                            title: "Welcome to \(self.store!.name)",
+                            body: "Enjoy Shopping!",
+                            subtitle: nil,
+                            others: nil
+                        )
+                        LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
                         
                         // Navigate to Entry
                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
