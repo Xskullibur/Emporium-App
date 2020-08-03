@@ -85,8 +85,10 @@ class AddOrEditAddressViewController: UIViewController {
             return
         }
         
-        AccountDataManager.deleteUserAddresses(user: Auth.auth().currentUser!, address: editAddress)
-        self.navigationController?.popViewController(animated: true)
+        self.showConfirmation(title: "Warning", message: "Are you sure you want to delete this delivery address?", confirmation: {
+            AccountDataManager.deleteUserAddresses(user: Auth.auth().currentUser!, address: editAddress)
+            self.navigationController?.popViewController(animated: true)
+        })
     }
     
     /**

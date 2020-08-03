@@ -20,6 +20,21 @@ class Alert {
         
         viewController.present(alert, animated: true)
     }
+    /**
+     Simple helper for asking confirmation from the user
+     */
+    static func showConfirmation(title: String, message: String, viewController: UIViewController, confirmation: @escaping () -> Void){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: {
+            action in
+            confirmation()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        viewController.present(alert, animated: true)
+    }
+    
 }
 
 extension UIViewController {
@@ -28,5 +43,12 @@ extension UIViewController {
      */
     func showAlert(title: String, message: String){
         Alert.showAlert(title: title, message: message, viewController: self)
+    }
+    
+    /**
+     Simple helper for asking confirmation from the user
+     */
+    func showConfirmation(title: String, message: String, confirmation: @escaping () -> Void){
+        Alert.showConfirmation(title: title, message: message, viewController: self, confirmation: confirmation)
     }
 }
