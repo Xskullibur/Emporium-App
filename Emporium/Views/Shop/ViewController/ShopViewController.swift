@@ -49,6 +49,7 @@ class ShopViewController: UIViewController, DataDelegate {
             self.shopListBtn.isHidden = true
             self.title = "Add Item"
             self.ProductCateLabel.text = "Add Item to Shopping List"
+            self.ProductCateLabel.textColor = .systemPurple
         }else{
             cartBtn.isEnabled = true
             self.shopListBtn.isHidden = false
@@ -242,6 +243,12 @@ extension ShopViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
         let product = productData[indexPath.row]
         cell.setCell(name: product.productName, price: String(format: "%.02f", product.price), image: product.image)
+        
+        if(fromShopList()) {
+            cell.setColorPurple()
+        }else{
+            
+        }
         
         cell.cornerRadius = 13
         cell.contentView.layer.masksToBounds = true
