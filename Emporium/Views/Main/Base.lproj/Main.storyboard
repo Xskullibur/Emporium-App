@@ -715,7 +715,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="onAddAddressPressed:" destination="RJW-qa-pgu" eventType="touchUpInside" id="HsT-fx-S1o"/>
-                                                <segue destination="vZ1-eg-u8A" kind="show" id="qRh-3y-bhw"/>
+                                                <segue destination="vZ1-eg-u8A" kind="show" identifier="ShowAddOrEditAddress" id="599-iP-au3"/>
                                             </connections>
                                         </button>
                                     </subviews>

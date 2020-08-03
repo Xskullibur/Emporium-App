@@ -72,6 +72,8 @@ class AddressTableViewController: UITableViewController {
                     
             addOrEditAddressViewController.setAddress(selectedAddress)
             self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
+        }else{
+            self.performSegue(withIdentifier: "ShowAddOrEditAddress", sender: self)
         }
     }
 
