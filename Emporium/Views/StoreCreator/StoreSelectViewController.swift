@@ -54,15 +54,20 @@ class StoreSelectViewController: UIViewController, MKMapViewDelegate, UISearchBa
                 case .none:
                     self.clearAnnotations()
                     
-                    for store in _storeList {
-                        let annotation = StoreAnnotation(
-                            coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
-                            store: store
-                        )
-                        self.mapView.addAnnotation(annotation)
+                    if _storeList.count > 0 {
+                        for store in _storeList {
+                            let annotation = StoreAnnotation(
+                                coords: CLLocationCoordinate2D(latitude: store.location.latitude, longitude: store.location.longitude),
+                                store: store
+                            )
+                            self.mapView.addAnnotation(annotation)
+                        }
+                    
+                        self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                     }
-                
-                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                    else {
+                        self.showAlert(title: "Error", message: "No stores found, please try entering it manually.")
+                    }
                 
             }
 

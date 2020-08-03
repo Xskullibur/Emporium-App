@@ -726,7 +726,6 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				EDA5990D2484D12000ADD228 /* Apis */,
 				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
 				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
 				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
@@ -790,6 +789,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				EDA5990D2484D12000ADD228 /* Apis */,
 				ED61105724AD938600FFD408 /* DataManagers */,
 				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* Views */,

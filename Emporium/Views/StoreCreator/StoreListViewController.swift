@@ -27,7 +27,7 @@ class StoreListViewController: UIViewController, UITableViewDelegate, UITableVie
         loadStores()
     }
     
-    // MARK: - Custom Functions
+    // MARK: - Load Stores
     func loadStores() {
         // Get UserId
         merchantId = Auth.auth().currentUser?.uid
