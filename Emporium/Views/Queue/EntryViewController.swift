@@ -12,12 +12,14 @@ import CoreLocation
 import Lottie
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
+import CoreBluetooth
 
 class EntryViewController: UIViewController {
 
     // MARK: - Variable
     var store: GroceryStore?
     var queueId: String?
+    var centralManager: CBCentralManager?
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -71,7 +73,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: - Lifecycle
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +101,10 @@ class EntryViewController: UIViewController {
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
+        // BLE
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        startScanning()
+        
         // onResume
         NotificationCenter.default.addObserver(self,
             selector: #selector(playAnimation),
@@ -108,6 +114,7 @@ class EntryViewController: UIViewController {
         
     }
     
+    // MARK: - ViewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         animationView.play()
     }
@@ -124,4 +131,39 @@ class EntryViewController: UIViewController {
         )
     }
 
+}
+
+extension EntryViewController: CBCentralManagerDelegate {
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        
+        if central.state == .poweredOn {
+            startScanning()
+            print("Advertising...")
+        }
+        else if central.state == .poweredOff {
+            centralManager!.stopScan()
+        }
+        else if central.state == .unsupported {
+            self.showAlert(title: "Error", message: "This device is not supported for Scanning")
+        }
+        
+    }
+    
+    func startScanning() {
+        
+        centralManager!.scanForPeripherals(withServices: nil, options: nil)
+        
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        // Enter Store
+        if advertisementData["EntryBeacon"] as! String == store!.id {
+            let content = LocalNotificationHelper.createNotificationContent(title: "Welcome to \(store!.name)", body: "Please enjoy your time here.", subtitle: nil, others: nil)
+            LocalNotificationHelper.addNotification(identifier: "StoreEntry.notification", content: content)
+        }
+        
+    }
+    
 }

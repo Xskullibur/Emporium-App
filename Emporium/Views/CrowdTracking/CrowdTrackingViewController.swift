@@ -34,7 +34,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     private var currentEdgeDetectionVisitorCount = 0
     private var direction: Direction = .leftToRight
     
-    private var bluetoothManager: CBPeripheralManager?
+    private var peripheralManager: CBPeripheralManager?
     private var beaconPeripheralData: [String: Any]?
     
     // MARK: - Firebase
@@ -48,10 +48,9 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
 
         // Do any additional setup after loading the view.
         
-        // iBeacon
-        bluetoothManager = CBPeripheralManager(delegate: self, queue: nil)
-        let beacon = createBeaconRegion(major: 0, minor: 0, identifier: groceryStoreId!)
-        advertiseDevice(region: beacon!)
+        // BLE
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        startAdvertisingDevice(nameKey: "EntryBeacon", uuid: groceryStoreId!)
         
         // User Interface
         /// CardView
@@ -65,8 +64,8 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         self.showSpinner(onView: self.view)
         
         /// Setup edge detection
-        self.edgeDetection = EdgeDetection()
-        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+//        self.edgeDetection = EdgeDetection()
+//        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
         
         ///Setup data manager
         self.setupDataManager()
@@ -79,6 +78,12 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
             self.diffVisitorValue = 0
         }.store(in: &cancellables!)
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.global(qos: .background).async {
+            self.stopAdvertising()
+        }
     }
     
     private func setupDataManager(){
@@ -198,42 +203,32 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
 
 }
 
-// MARK: - iBeacon
+// MARK: - CBPeripheral
 extension CrowdTrackingViewController: CBPeripheralManagerDelegate {
     
-    func createBeaconRegion(major: Int, minor: Int, identifier: String) -> CLBeaconRegion? {
-        
-        let proximityUUID = UUID()
-        
-        return CLBeaconRegion(
-            uuid: proximityUUID,
-            major: CLBeaconMajorValue(major),
-            minor: CLBeaconMinorValue(minor),
-            identifier: identifier
-        )
-        
-    }
-    
-    func advertiseDevice(region: CLBeaconRegion) {
-        
-        let peripheralData = region.peripheralData(withMeasuredPower: nil)
-        beaconPeripheralData = ((peripheralData as NSDictionary) as! [String: Any])
-        bluetoothManager!.startAdvertising(beaconPeripheralData!)
+    // MARK: -- Advertise
+    func startAdvertisingDevice(nameKey: String, uuid: String) {
+        peripheralManager!.startAdvertising([CBAdvertisementDataLocalNameKey : nameKey, CBAdvertisementDataServiceUUIDsKey : uuid])
         print("Advertising...")
-        
     }
     
+    // MARK: -- Stop Advertising
+    func stopAdvertising() {
+        peripheralManager!.stopAdvertising()
+    }
+    
+    // MARK: -- Listener
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         
         if peripheral.state == .poweredOn {
-            bluetoothManager!.startAdvertising(beaconPeripheralData)
+            peripheralManager!.startAdvertising(beaconPeripheralData)
             print("Advertising...")
         }
         else if peripheral.state == .poweredOff {
-            bluetoothManager?.stopAdvertising()
+            peripheralManager!.stopAdvertising()
         }
         else if peripheral.state == .unsupported {
-            self.showAlert(title: "Error", message: "This device is not supported for iBeacon")
+            self.showAlert(title: "Error", message: "This device is not supported for Advertising")
         }
         
     }
