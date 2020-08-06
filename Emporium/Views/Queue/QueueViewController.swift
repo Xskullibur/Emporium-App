@@ -183,8 +183,8 @@ class QueueViewController: UIViewController {
                         
                         // Add Local Notification
                         let notificationContent = LocalNotificationHelper.createNotificationContent(
-                            title: "Welcome to \(self.store!.name)",
-                            body: "Enjoy Shopping!",
+                            title: "Welcome",
+                            body: "Please enjoy your time at \(self.store!.name)!",
                             subtitle: nil,
                             others: nil
                         )
