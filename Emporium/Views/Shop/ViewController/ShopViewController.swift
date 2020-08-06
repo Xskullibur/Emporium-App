@@ -48,7 +48,7 @@ class ShopViewController: UIViewController, DataDelegate {
             cartBtn.isEnabled = false
             self.shopListBtn.isHidden = true
             self.title = "Add Item"
-            self.ProductCateLabel.text = "Add Item to Shopping List"
+            self.ProductCateLabel.text = "You are adding items to Shopping List"
             self.ProductCateLabel.textColor = .systemPurple
         }else{
             cartBtn.isEnabled = true
