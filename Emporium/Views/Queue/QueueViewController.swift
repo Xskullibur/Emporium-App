@@ -61,17 +61,9 @@ class QueueViewController: UIViewController {
                 if success {
 
                     // Show Success Alert and Navigate
-                    let successAlert = UIAlertController(
-                        title: "Alert",
-                        message: "Successfully Left Queue!",
-                        preferredStyle: .alert
-                    )
-                    successAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                        
+                    self.showAlert(title: "Success", message: "Successfully Left Queue") {
                         self.navigationController?.popToRootViewController(animated: true)
-                        
-                    }))
-                    self.present(successAlert, animated: true)
+                    }
                     
                 }
                 else {
