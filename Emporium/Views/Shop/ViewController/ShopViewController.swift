@@ -27,6 +27,7 @@ class ShopViewController: UIViewController, DataDelegate {
     var selectedCategory: [String] = []
     
     var delegate: ShopListDelegate?
+    var listName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +48,9 @@ class ShopViewController: UIViewController, DataDelegate {
         if(fromShopList()) {
             cartBtn.isEnabled = false
             self.shopListBtn.isHidden = true
-            self.title = "Add Item"
-            self.ProductCateLabel.text = "You are adding items to Shopping List"
-            self.ProductCateLabel.textColor = .systemPurple
+            self.title = "Add Item (\(listName))"
+            self.ProductCateLabel.text = "You are adding items to (\(listName))"
+            self.ProductCateLabel.textColor = .systemBlue
         }else{
             cartBtn.isEnabled = true
             self.shopListBtn.isHidden = false

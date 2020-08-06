@@ -33,8 +33,7 @@ class ProductViewCell: MDCCardCollectionCell {
     }
     
     func setColorPurple() {
-        self.nameLabel.textColor = .systemPurple
-        self.priceLabel.textColor = .systemPurple
+        self.priceLabel.textColor = .systemBlue
     }
 
 }

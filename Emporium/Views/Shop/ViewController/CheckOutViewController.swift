@@ -157,6 +157,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addItemBtnPressed(_ sender: Any) {
         let baseSB = UIStoryboard(name: "Shop", bundle: nil)
         let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
+        vc.listName = self.listName
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }

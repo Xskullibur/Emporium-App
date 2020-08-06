@@ -945,7 +945,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product: tap to add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s30-X8-KCf">
-                                <rect key="frame" x="20" y="193" width="365" height="21"/>
+                                <rect key="frame" x="20" y="194" width="365" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -979,7 +979,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l68-gk-005">
-                                <rect key="frame" x="0.0" y="234" width="414" height="614"/>
+                                <rect key="frame" x="0.0" y="222" width="414" height="626"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="10" id="SvC-QP-9gF">
                                     <size key="itemSize" width="170" height="220"/>
@@ -1017,7 +1017,7 @@
                             <constraint firstItem="fq1-pJ-KKw" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="13" id="V9Q-5Y-LBa"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="trailing" secondItem="s30-X8-KCf" secondAttribute="trailing" constant="29" id="W8P-DP-8BO"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="firstBaseline" secondItem="fq1-pJ-KKw" secondAttribute="firstBaseline" id="Xgd-Ji-MZR"/>
-                            <constraint firstItem="s30-X8-KCf" firstAttribute="top" secondItem="fq1-pJ-KKw" secondAttribute="bottom" constant="11" id="b52-TJ-0fc"/>
+                            <constraint firstItem="s30-X8-KCf" firstAttribute="top" secondItem="fq1-pJ-KKw" secondAttribute="bottom" constant="12" id="b52-TJ-0fc"/>
                             <constraint firstItem="l68-gk-005" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" id="ii7-vZ-JKM"/>
                             <constraint firstItem="fHp-GE-cmJ" firstAttribute="bottom" secondItem="l68-gk-005" secondAttribute="bottom" constant="14" id="nqX-TV-Yzu"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="top" secondItem="dMS-eD-LOj" secondAttribute="bottom" constant="25" id="pEk-Tc-08h"/>
@@ -1027,7 +1027,7 @@
                             <constraint firstItem="dVH-we-Ut8" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="13" id="wbs-4s-vhL"/>
                             <constraint firstItem="s30-X8-KCf" firstAttribute="leading" secondItem="fHp-GE-cmJ" secondAttribute="leading" constant="20" id="y3D-Kn-6nd"/>
                             <constraint firstItem="1fx-nr-kjB" firstAttribute="leading" secondItem="fq1-pJ-KKw" secondAttribute="trailing" constant="18" id="yVD-hC-gbx"/>
-                            <constraint firstItem="l68-gk-005" firstAttribute="top" secondItem="s30-X8-KCf" secondAttribute="bottom" constant="20" id="yuR-eu-PcP"/>
+                            <constraint firstItem="l68-gk-005" firstAttribute="top" secondItem="s30-X8-KCf" secondAttribute="bottom" constant="7" id="yuR-eu-PcP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fHp-GE-cmJ"/>
                     </view>
