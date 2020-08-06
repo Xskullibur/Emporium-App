@@ -51,6 +51,8 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
                 postalTxt.text = postal
             }
             
+            postalTxt.isEnabled = false
+            
         }
         
     }
@@ -85,7 +87,7 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
             /// Add to FireStore
             self.showSpinner(onView: self.view)
             let storeDataManager = StoreDataManager()
-            storeDataManager.addStore(id: store.id, name: name, address: address, lat: store.location.latitude, long: store.location.latitude, merchantId: uid, maxCapacity: maxCapacity, onComplete:
+            storeDataManager.addStore(id: store.id, name: name, address: address, lat: store.location.latitude, long: store.location.longitude, merchantId: uid, maxCapacity: maxCapacity, onComplete:
             {
                 self.removeSpinner()
                 
