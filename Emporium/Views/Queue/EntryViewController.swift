@@ -160,8 +160,14 @@ extension EntryViewController: CBCentralManagerDelegate {
         
         // Enter Store
         if advertisementData["EntryBeacon"] as! String == store!.id {
+            
+            // Show Local Notification
             let content = LocalNotificationHelper.createNotificationContent(title: "Welcome to \(store!.name)", body: "Please enjoy your time here.", subtitle: nil, others: nil)
             LocalNotificationHelper.addNotification(identifier: "StoreEntry.notification", content: content)
+            
+            // Update Firestore
+            enterStoreButtonPressed(self)
+            
         }
         
     }
