@@ -99,7 +99,7 @@ extension InStoreViewController: CBCentralManagerDelegate {
         
         if central.state == .poweredOn {
             startScanning()
-            print("Advertising...")
+            print("Scanning...")
         }
         else if central.state == .poweredOff {
             centralManager!.stopScan()
