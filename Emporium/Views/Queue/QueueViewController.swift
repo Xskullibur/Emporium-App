@@ -52,7 +52,7 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
-            // Remove Queue
+            // MARK: [Leave Queue]
             let userId = Auth.auth().currentUser!.uid
             self.showSpinner(onView: self.view)
             self.queueDataManager.leaveQueue(storeId: self.store!.id, queueId: self.queueId!, userId: userId) { (success) in
@@ -61,17 +61,9 @@ class QueueViewController: UIViewController {
                 if success {
 
                     // Show Success Alert and Navigate
-                    let successAlert = UIAlertController(
-                        title: "Alert",
-                        message: "Successfully Left Queue!",
-                        preferredStyle: .alert
-                    )
-                    successAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                        
+                    self.showAlert(title: "Success", message: "Successfully Left Queue") {
                         self.navigationController?.popToRootViewController(animated: true)
-                        
-                    }))
-                    self.present(successAlert, animated: true)
+                    }
                     
                 }
                 else {
@@ -152,6 +144,7 @@ class QueueViewController: UIViewController {
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Error Alert"] as! String
         
+        // MARK: [Store Listener]
         return storeDataManager.storeListener(store!) { (data) in
             
             // Guard Data
@@ -179,6 +172,15 @@ class QueueViewController: UIViewController {
                         
                         // Clear Listeners
                         self.listenerManager.clear()
+                        
+                        // Add Local Notification
+                        let notificationContent = LocalNotificationHelper.createNotificationContent(
+                            title: "Welcome",
+                            body: "Please enjoy your time at \(self.store!.name)!",
+                            subtitle: nil,
+                            others: nil
+                        )
+                        LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
                         
                         // Navigate to Entry
                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)

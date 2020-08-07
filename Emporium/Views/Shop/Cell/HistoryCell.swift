@@ -13,6 +13,7 @@ class HistoryCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var receivedLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

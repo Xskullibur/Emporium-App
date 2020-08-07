@@ -31,5 +31,9 @@ class ProductViewCell: MDCCardCollectionCell {
             productImageView.sd_setImage(with: URL(string: image))
         }
     }
+    
+    func setColorPurple() {
+        self.priceLabel.textColor = .systemBlue
+    }
 
 }

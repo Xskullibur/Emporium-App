@@ -10,12 +10,14 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
 import Lottie
+import CoreBluetooth
 
 class InStoreViewController: UIViewController {
 
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
+    var centralManager: CBCentralManager?
     
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
@@ -69,6 +71,9 @@ class InStoreViewController: UIViewController {
         requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
         requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
         
+        // BLE
+        centralManager = CBCentralManager()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,4 +91,45 @@ class InStoreViewController: UIViewController {
         
     }
 
+}
+
+extension InStoreViewController: CBCentralManagerDelegate {
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        
+        if central.state == .poweredOn {
+            startScanning()
+            print("Advertising...")
+        }
+        else if central.state == .poweredOff {
+            centralManager!.stopScan()
+        }
+        else if central.state == .unsupported {
+            self.showAlert(title: "Error", message: "This device is not supported for Scanning")
+        }
+        
+    }
+    
+    func startScanning() {
+        
+        centralManager!.scanForPeripherals(withServices: nil, options: nil)
+        
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        // Enter Store
+        if advertisementData["EntryBeacon"] as! String == store!.id {
+            
+            // Show Local Notification
+            let content = LocalNotificationHelper.createNotificationContent(title: "Goodbye", body: "Thank you for shopping with us", subtitle: nil, others: nil)
+            LocalNotificationHelper.addNotification(identifier: "StoreEntry.notification", content: content)
+            
+            // Update Firestore
+            exitBtnPressed(self)
+            
+        }
+        
+    }
+    
 }

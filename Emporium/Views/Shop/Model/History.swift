@@ -12,10 +12,12 @@ class History: Codable {
     var amount: Int = 0
     var date: String = ""
     var received: String = ""
+    var id: String = ""
     
-    init(amount: Int, date: String, received: String) {
+    init(amount: Int, date: String, received: String, id: String) {
         self.amount = amount
         self.date = date
         self.received = received
+        self.id = id
     }
 }

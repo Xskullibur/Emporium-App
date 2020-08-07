@@ -81,6 +81,7 @@ class PlacesAPI {
                         location: location
                     )
                     
+                    store.postal = venue["location"]["postalCode"].string
                     storeList.append(store)
                 }
                 

@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents.MaterialCards
 import RSSelectionMenu
 
-class ShopViewController: UIViewController {
+class ShopViewController: UIViewController, DataDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -18,10 +18,16 @@ class ShopViewController: UIViewController {
     @IBOutlet weak var ProductCateLabel: UILabel!
     
     
+    @IBOutlet weak var shopListBtn: UIButton!
+    @IBOutlet weak var cartBtn: UIBarButtonItem!
+    
     var productData: [Product] = []
     var cartData: [Cart] = []
     let category: [String] = ["Snack", "Beverage", "Dairy", "Meat", "Dry Goods", "Canned", "Produce"]
     var selectedCategory: [String] = []
+    
+    var delegate: ShopListDelegate?
+    var listName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +43,19 @@ class ShopViewController: UIViewController {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
+        
+        if(fromShopList()) {
+            cartBtn.isEnabled = false
+            self.shopListBtn.isHidden = true
+            self.title = "Add Item (\(listName))"
+            self.ProductCateLabel.text = "You are adding items to (\(listName))"
+            self.ProductCateLabel.textColor = .systemBlue
+        }else{
+            cartBtn.isEnabled = true
+            self.shopListBtn.isHidden = false
+            self.ProductCateLabel.text = "Product: tap to add"
+        }
     }
     
     func loadProducts() {
@@ -47,7 +64,6 @@ class ShopViewController: UIViewController {
             productList in
             
             self.productData = productList
-            self.ProductCateLabel.text = "Product: tap to add"
             self.collectionView.reloadData()
             self.removeSpinner()
         }
@@ -142,8 +158,54 @@ class ShopViewController: UIViewController {
         }else if segue.identifier == "toShoppingList" {
             let destVC = segue.destination as! ShoppingListViewController
             destVC.cartData = self.cartData
+            let vc = ShoppingListViewController()
+            vc.delegate = self
         }
         
+    }
+    
+    func setCartData(newCartData: [Cart]) {
+        
+        for item in newCartData
+        {
+            var found = false
+            for cart in self.cartData
+            {
+                if cart.productID == item.productID
+                {
+                    cart.quantity = cart.quantity + Int(item.quantity)
+                    found = true
+                    break
+                }
+            }
+            
+            if found == false
+            {
+                for product in self.productData
+                {
+                    if product.id == item.productID
+                    {
+                        self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
+                        break
+                    }
+                }
+            }
+        }
+        
+        //self.cartData = cartData
+        print("received")
+    }
+    
+    func fromShopList() -> Bool {
+        if let vcs = self.navigationController?.viewControllers {
+            let previousVC = vcs[vcs.count - 2]
+            if previousVC is CheckOutViewController {
+                return true
+            }else{
+                return false
+            }
+        }
+        return false
     }
     
     @IBAction func searchBtnPressed(_ sender: Any) {
@@ -158,6 +220,18 @@ class ShopViewController: UIViewController {
         showFilter()
     }
     
+    
+    @IBAction func toShopList(_ sender: Any) {
+        if(fromShopList()){
+            //self.delegate?.setListCartData(newCartData: cartData)
+        }else{
+            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+            let vc = baseSB.instantiateViewController(identifier: "ShopListVC") as! ShoppingListViewController
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
 }
 
 extension ShopViewController: UICollectionViewDataSource {
@@ -170,6 +244,12 @@ extension ShopViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductViewCell", for: indexPath) as! ProductViewCell
         let product = productData[indexPath.row]
         cell.setCell(name: product.productName, price: String(format: "%.02f", product.price), image: product.image)
+        
+        if(fromShopList()) {
+            cell.setColorPurple()
+        }else{
+            
+        }
         
         cell.cornerRadius = 13
         cell.contentView.layer.masksToBounds = true
@@ -198,20 +278,25 @@ extension ShopViewController: UICollectionViewDelegate {
             let image = self.productData[indexPath.row].image
             var newItem = true
             
-            
-            for cartItem in cartData {
-                if cartItem.productID == id {
-                    cartItem.quantity = cartItem.quantity + 1
-                    Toast.showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
-                    newItem = false
-                    return
+            if(fromShopList()) {//from shoplist
+               self.delegate?.setListCartData(newCartData: Cart(id, 1, name, price, image))
+            }else{//default
+                for cartItem in cartData {
+                    if cartItem.productID == id {
+                        cartItem.quantity = cartItem.quantity + 1
+                        Toast.showToast(String(name) + " added, quantity: " + String(cartItem.quantity))
+                        newItem = false
+                        return
+                    }
+                }
+                
+                if newItem == true {
+                    cartData.append(Cart(id, 1, name, price, image))
+                    Toast.showToast(String(name) + " added")
                 }
             }
             
-            if newItem == true {
-                cartData.append(Cart(id, 1, name, price, image))
-                Toast.showToast(String(name) + " added")
-            }
+            
             
         }else{
             
@@ -219,5 +304,7 @@ extension ShopViewController: UICollectionViewDelegate {
     }
 }
 
-
+protocol DataDelegate {
+    func setCartData(newCartData: [Cart])
+}
 

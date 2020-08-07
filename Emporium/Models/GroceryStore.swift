@@ -16,6 +16,7 @@ class GroceryStore: NSObject {
     let address: String
     let location: GeoPoint
     
+    var postal: String? = nil
     var distance: Double? = nil
     
     var currentVisitorCount: Int = 40
