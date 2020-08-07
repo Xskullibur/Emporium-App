@@ -64,8 +64,8 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         self.showSpinner(onView: self.view)
         
         /// Setup edge detection
-//        self.edgeDetection = EdgeDetection()
-//        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+        self.edgeDetection = EdgeDetection()
+        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
         
         ///Setup data manager
         self.setupDataManager()
