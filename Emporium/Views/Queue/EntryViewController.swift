@@ -159,7 +159,9 @@ extension EntryViewController: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         // Enter Store
-        if advertisementData["EntryBeacon"] as! String == store!.id {
+        guard let data = advertisementData["EntryBeacon"] as? String else { return }
+        
+        if data == store!.id {
             
             // Show Local Notification
             let content = LocalNotificationHelper.createNotificationContent(title: "Welcome to \(store!.name)", body: "Please enjoy your time here.", subtitle: nil, others: nil)
