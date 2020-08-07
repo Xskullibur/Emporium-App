@@ -48,12 +48,15 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     /**
      Setup Edge Detection
      */
-    func setup(previewView: UIView, delegate: EdgeDetectionDelegate){        
+    func setup(previewView: UIView, delegate: EdgeDetectionDelegate) -> Bool{        
         self.previewView = previewView
         self.delegate = delegate
         
         ///Setup camera
-        self.setupAVCapture()
+        let ableToSetupCamera = self.setupAVCapture()
+        if(!ableToSetupCamera){
+            return false
+        }
         ///Setup model
         self.setupModel()
         
@@ -62,6 +65,8 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         self.rightDetector = Detector(rectangle: CGRect(x: EdgeDetection.DETECTION_MARGIN, y: 0, width: EdgeDetection.DETECTION_MARGIN, height: previewView.frame.height))
         //Add detection rectangles to layer (visualise the detection bounds)
         self.drawDetectionRectangles()
+        
+        return true
         
     }
     
@@ -112,69 +117,74 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     /**
      Setup the camera to start capturing
+     returns if the camera is setup successfully
      */
-    private func setupAVCapture(){
-            let videoDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
+    private func setupAVCapture() -> Bool{
+        guard let videoDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first else {
+            return false
+        }
             
-            do {
-                deviceInput = try AVCaptureDeviceInput(device: videoDevice!)
-            }catch {
-                print("Error creating video device! \(error)")
-                return
-            }
-            
-            session.beginConfiguration()
-            session.sessionPreset = .vga640x480
-            
-            //Add video input
-            guard session.canAddInput(deviceInput) else {
-                print("Could not add video device input to the session")
-                session.commitConfiguration()
-                return
-            }
-            session.addInput(deviceInput)
-            
-            let videoDataOutputQueue = DispatchQueue(label: "videoDataOutputQueue")
-            //Add video output
-            self.videoDataOutput = AVCaptureVideoDataOutput()
-            if session.canAddOutput(videoDataOutput) {
-                session.addOutput(videoDataOutput)
-                // Add a video data output
-                videoDataOutput.alwaysDiscardsLateVideoFrames = true
-                videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)]
-                videoDataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
-            } else {
-                print("Could not add video data output to the session")
-                session.commitConfiguration()
-                return
-            }
-            
-            let captureConnection = videoDataOutput.connection(with: .video)
-            // Always process the frames
-            captureConnection?.isEnabled = true
-            do {
-                try videoDevice!.lockForConfiguration()
+        do {
+            deviceInput = try AVCaptureDeviceInput(device: videoDevice)
+        }catch {
+            print("Error creating video device! \(error)")
+            return false
+        }
+        
+        session.beginConfiguration()
+        session.sessionPreset = .vga640x480
+        
+        //Add video input
+        guard session.canAddInput(deviceInput) else {
+            print("Could not add video device input to the session")
+            session.commitConfiguration()
+            return false
+        }
+        session.addInput(deviceInput)
+        
+        let videoDataOutputQueue = DispatchQueue(label: "videoDataOutputQueue")
+        //Add video output
+        self.videoDataOutput = AVCaptureVideoDataOutput()
+        if session.canAddOutput(videoDataOutput) {
+            session.addOutput(videoDataOutput)
+            // Add a video data output
+            videoDataOutput.alwaysDiscardsLateVideoFrames = true
+            videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)]
+            videoDataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
+        } else {
+            print("Could not add video data output to the session")
+            session.commitConfiguration()
+            return false
+        }
+        
+        let captureConnection = videoDataOutput.connection(with: .video)
+        // Always process the frames
+        captureConnection?.isEnabled = true
+        do {
+            try videoDevice.lockForConfiguration()
 //                let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)
-                bufferSize = self.delegate.createBufferSize()
+            bufferSize = self.delegate.createBufferSize()
 //    //            let ratio = self.previewView.frame.width / CGFloat(dimensions.width)
 //    //            previewViewHeightConstraint.constant = CGFloat(dimensions.height) * ratio
 //                previewViewHeightConstraint.constant = self.previewView.frame.width * 0.5
 //                previewView.layoutIfNeeded()
 //                bufferSize.width = self.previewView.frame.width
 //                bufferSize.height = self.previewView.frame.height
-                videoDevice!.unlockForConfiguration()
-            } catch {
-                print(error)
-            }
-            session.commitConfiguration()
-            
-            previewLayer = AVCaptureVideoPreviewLayer(session: session)
-            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            previewLayer.frame = previewView.bounds
-            previewView.layer.addSublayer(previewLayer)
-            
-            session.startRunning()
+            videoDevice.unlockForConfiguration()
+        } catch {
+            print(error)
+            return false
         }
+        session.commitConfiguration()
+        
+        previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        previewLayer.frame = previewView.bounds
+        previewView.layer.addSublayer(previewLayer)
+        
+        session.startRunning()
+        return true
+    }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection){
         let pixelBuffer = sampleBuffer.imageBuffer!
