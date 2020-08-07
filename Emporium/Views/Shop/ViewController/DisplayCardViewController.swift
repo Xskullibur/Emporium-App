@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, displayCardDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var cardList: [Card] = []
@@ -98,6 +98,18 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         showAlert.addAction(back)
         showAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(showAlert, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+        let vc = baseSB.instantiateViewController(identifier: "AddCardVC") as! AddCardViewController
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func reloadTableview() {
+        self.loadCards()
     }
     
     func setUpPayment(docID: String) {
@@ -238,4 +250,8 @@ extension String {
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
+}
+
+protocol displayCardDelegate {
+    func reloadTableview()
 }

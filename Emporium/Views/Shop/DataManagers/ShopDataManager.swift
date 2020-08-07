@@ -91,9 +91,10 @@ class ShopDataManager
                 {
                     if selected.contains(doc.get("received") as! String) {
                         let amount: Int = doc.get("amount") as! Int
-                        let date = String(doc.documentID)
+                        let date = doc.get("time") as! String
                         let receive = doc.get("received") as! String
-                        purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                        let id = doc.documentID
+                        purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))
                     }
                 }
             }
@@ -117,9 +118,10 @@ class ShopDataManager
                 for doc in querySnapshot!.documents
                 {
                     let amount: Int = doc.get("amount") as! Int
-                    let date = String(doc.documentID)
+                    let date = doc.get("time") as! String
                     let receive = doc.get("received") as! String
-                    purchaseHistory.append(History(amount: amount, date: date, received: receive))
+                    let id = doc.documentID
+                    purchaseHistory.append(History(amount: amount, date: date, received: receive, id: id))
                 }
             }
             onComplete?(purchaseHistory.reversed())
@@ -164,7 +166,7 @@ class ShopDataManager
         {
             (document, err) in
             
-            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: 0, type: "", last4: "", brand: "", receipt: "")
+            var details: HistoryPaymentDetail = HistoryPaymentDetail(amount: 0, type: "", last4: "", brand: "", receipt: "", received: "", id: "")
             
             if let err = err
             {
@@ -172,11 +174,15 @@ class ShopDataManager
             }
             else
             {
-                details.amount = document?.get("amount") as! Int
-                details.type = document?.get("cardType") as! String
-                details.brand = document?.get("cardBrand") as! String
-                details.last4 = document?.get("last4") as! String
-                details.receipt = document?.get("receipt") as! String
+                if let document = document {
+                    details.amount = document.get("amount") as! Int
+                    details.type = document.get("cardType") as! String
+                    details.brand = document.get("cardBrand") as! String
+                    details.last4 = document.get("last4") as! String
+                    details.receipt = document.get("receipt") as! String
+                    details.received = document.get("received") as! String
+                    details.id = document.documentID
+                }
             }
             onComplete?(details)
         }
@@ -257,5 +263,37 @@ class ShopDataManager
         }
     }
     
+    static func editShoppingList(list: [Any], name: String) {
+        
+       let ref = db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name)
+        
+       ref.setData([
+           "list": list
+       ])
+    }
+    
+    static func loadShoppingListItems(name: String, onComplete: (([ShoppingList]) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).collection("shopping_list").document(name).getDocument
+        {
+            (doc, err) in
+            
+            var itemlist: [ShoppingList] = []
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+            }
+            else
+            {
+                if let doc = doc {
+                    let rawList: [String] = doc.get("list") as! [String]
+                    for index in stride(from: 0, to: rawList.count - 1, by: 2) {
+                        itemlist.append(ShoppingList(id: rawList[index], quan: Int(rawList[index + 1])!))
+                    }
+                    onComplete?(itemlist)
+                }
+            }
+        }
+    }
     
 }
