@@ -20,6 +20,7 @@ class EntryViewController: UIViewController {
     var store: GroceryStore?
     var queueId: String?
     var centralManager: CBCentralManager?
+    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -151,13 +152,14 @@ extension EntryViewController: CBCentralManagerDelegate {
     }
     
     func startScanning() {
-        centralManager!.scanForPeripherals(withServices: nil, options: nil)
+        let cbUUID = CBUUID(string: UUID)
+        centralManager!.scanForPeripherals(withServices: [cbUUID], options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         // Enter Store
-        guard let data = advertisementData["EntryBeacon"] as? String else { return }
+        guard let data = advertisementData["storeId"] as? String else { return }
         
         if data == store!.id {
             

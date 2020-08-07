@@ -42,6 +42,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
     
     var groceryStoreId: String? = nil
+    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -217,7 +218,11 @@ extension CrowdTrackingViewController: CBPeripheralManagerDelegate {
     
     // MARK: -- Advertise
     func startAdvertisingDevice(nameKey: String, uuid: String) {
-        peripheralManager!.startAdvertising([CBAdvertisementDataLocalNameKey : nameKey, CBAdvertisementDataServiceUUIDsKey : uuid])
+        peripheralManager!.startAdvertising([
+            CBAdvertisementDataLocalNameKey : nameKey,
+            CBAdvertisementDataServiceUUIDsKey : UUID,
+            "storeId": uuid
+        ])
         print("Advertising...")
     }
     
