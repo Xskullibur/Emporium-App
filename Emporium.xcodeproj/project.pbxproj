@@ -13,6 +13,7 @@
 		34A7BEBA24C5418400FEF0BA /* StoreCreator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A7BEB924C5418400FEF0BA /* StoreCreator.storyboard */; };
 		34A7BEBC24C5430A00FEF0BA /* StoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7BEBB24C5430A00FEF0BA /* StoreListViewController.swift */; };
 		34A7BEBE24C5566800FEF0BA /* AddStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7BEBD24C5566800FEF0BA /* AddStoreViewController.swift */; };
+		34AFE46324DD0A1100A4AA01 /* CompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */; };
 		34B0519A24CA791400C90A33 /* StoreSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0519924CA791400C90A33 /* StoreSelectViewController.swift */; };
 		34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B31A8B24BBECF100459A57 /* ListenerManager.swift */; };
 		34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */; };
@@ -168,6 +169,7 @@
 		34A7BEB924C5418400FEF0BA /* StoreCreator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoreCreator.storyboard; sourceTree = "<group>"; };
 		34A7BEBB24C5430A00FEF0BA /* StoreListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListViewController.swift; sourceTree = "<group>"; };
 		34A7BEBD24C5566800FEF0BA /* AddStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreViewController.swift; sourceTree = "<group>"; };
+		34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedViewController.swift; sourceTree = "<group>"; };
 		34B0519924CA791400C90A33 /* StoreSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSelectViewController.swift; sourceTree = "<group>"; };
 		34B31A8B24BBECF100459A57 /* ListenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
 		34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryOrder.pb.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				343CA41024CE698300BF7F95 /* Animation */,
 				EDD6581B24BFFEE300201B30 /* Delivery.storyboard */,
 				EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */,
+				34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -1166,6 +1169,7 @@
 				7F37652824B9AF5E00CC27F3 /* ScanDetail.swift in Sources */,
 				ED57F78D2498A0340013A133 /* NearbyMapViewController.swift in Sources */,
 				FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */,
+				34AFE46324DD0A1100A4AA01 /* CompletedViewController.swift in Sources */,
 				ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
