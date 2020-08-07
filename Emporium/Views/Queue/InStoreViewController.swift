@@ -18,6 +18,7 @@ class InStoreViewController: UIViewController {
     var queueId: String?
     var store: GroceryStore?
     var centralManager: CBCentralManager?
+    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
     
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
@@ -111,15 +112,14 @@ extension InStoreViewController: CBCentralManagerDelegate {
     }
     
     func startScanning() {
-        
-        centralManager!.scanForPeripherals(withServices: nil, options: nil)
-        
+        let cbUUID = CBUUID(string: UUID)
+        centralManager!.scanForPeripherals(withServices: [cbUUID], options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         // Enter Store
-        if advertisementData["EntryBeacon"] as! String == store!.id {
+        if advertisementData["storeId"] as! String == store!.id {
             
             // Show Local Notification
             let content = LocalNotificationHelper.createNotificationContent(title: "Goodbye", body: "Thank you for shopping with us", subtitle: nil, others: nil)
