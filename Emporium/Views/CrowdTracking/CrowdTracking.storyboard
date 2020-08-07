@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qso-6v-gbt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qso-6v-gbt">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -163,6 +163,7 @@
                     <navigationItem key="navigationItem" title="Crowd Tracking" id="8AG-JY-cEQ"/>
                     <connections>
                         <outlet property="cardView" destination="UmA-pT-BkQ" id="7je-Xv-XRO"/>
+                        <outlet property="directionBtn" destination="1Ul-Hi-OBq" id="znr-UZ-0mV"/>
                         <outlet property="noOfShopperLabel" destination="kpm-mX-qfQ" id="bH1-3c-unu"/>
                         <outlet property="previewView" destination="nFj-em-VPh" id="dET-nB-npV"/>
                         <outlet property="previewViewHeightConstraint" destination="veR-fi-R1H" id="OGX-To-jGn"/>
@@ -171,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FI-Gw-4ou" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="102"/>
+            <point key="canvasLocation" x="853.60000000000002" y="101.97044334975369"/>
         </scene>
     </scenes>
 </document>

@@ -472,10 +472,10 @@
 		ACAEE67224A22AFF00C286BF /* CrowdTracking */ = {
 			isa = PBXGroup;
 			children = (
-				ACB27A9324A5D13600DE966B /* DataManager */,
 				ACB27A9624A5D32C00DE966B /* Models */,
 				ACAEE67924A4223200C286BF /* MLModel */,
 				ACAEE67324A22CD800C286BF /* CrowdTracking.storyboard */,
+				ACB27A9324A5D13600DE966B /* DataManager */,
 				ACAEE67724A3016500C286BF /* CrowdTrackingViewController.swift */,
 				34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */,
 				FE56B18624B81A9D000274A1 /* EdgeDetection.swift */,

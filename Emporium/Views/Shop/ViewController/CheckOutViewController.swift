@@ -10,12 +10,19 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ShopListDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var toPaymentBtn: UIButton!
+    @IBOutlet weak var addItemBtn: UIButton!
     
     var cartData: [Cart] = []
+    var listName: String = ""
+    
+    //from shoplist
+    var productData: [Product] = []
+    //from shoplist
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +39,24 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             }
             priceLabel.text = "Total: $" + String(format: "%.02f", total)
         }
-
+        
+        if(!fromShop()) {
+            loadProducts()
+            toPaymentBtn.isHidden = true
+            self.title = self.listName
+            self.addItemBtn.isHidden = false
+        }else{
+            toPaymentBtn.isHidden = false
+            self.title = "Order"
+            self.addItemBtn.isHidden = true
+        }
+    }
+    
+    func loadProducts() {
+        ShopDataManager.loadProducts() {
+            productList in
+            self.productData = productList
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +81,38 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.layer.borderColor = UIColor.gray.cgColor
         
         return cell
+    }
+    
+    func setListCartData(newCartData: Cart) {
+        
+        let item = newCartData
+        var found = false
+        for cart in self.cartData
+        {
+            if cart.productID == item.productID
+            {
+                cart.quantity = cart.quantity + Int(item.quantity)
+                found = true
+                break
+            }
+        }
+        
+        if found == false
+        {
+            for product in self.productData
+            {
+                if product.id == item.productID
+                {
+                    self.cartData.append(Cart(product.id, item.quantity, product.productName, product.price, product.image))
+                    break
+                }
+            }
+        }
+        
+        
+        //self.cartData = cartData
+        self.tableView.reloadData()
+        print("updated")
     }
     
     @objc func changeQuantity(sender: UIStepper) {
@@ -90,7 +146,20 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        saveActionSheet()
+        if(!fromShop()) {
+            self.editShoppingList(name: listName)
+        }else{
+            saveActionSheet()
+        }
+    }
+    
+    
+    @IBAction func addItemBtnPressed(_ sender: Any) {
+        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+        let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
+        vc.listName = self.listName
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -154,12 +223,33 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func createShoppingList(name: String) {
-        var sList : [Any] = []
+        var sList : [String] = []
         for cart in cartData {
             sList.append(cart.productID)
-            sList.append(cart.quantity)
+            sList.append(String(cart.quantity))
         }
         ShopDataManager.addShoppingList(list: sList, name: name)
+    }
+    
+    func editShoppingList(name: String) {
+        var sList : [String] = []
+        for cart in cartData {
+            sList.append(cart.productID)
+            sList.append(String(cart.quantity))
+        }
+        ShopDataManager.editShoppingList(list: sList, name: name)
+    }
+    
+    func fromShop() -> Bool {
+        if let vcs = self.navigationController?.viewControllers {
+            let previousVC = vcs[vcs.count - 2]
+            if previousVC is ShoppingListViewController {
+                return false
+            }else{
+                return true
+            }
+        }
+        return true
     }
     
 }
@@ -168,6 +258,10 @@ extension CheckOutViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         (viewController as? ShopViewController)?.cartData = cartData
     }
+}
+
+protocol ShopListDelegate {
+    func setListCartData(newCartData: Cart)
 }
 
 

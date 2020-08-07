@@ -29,6 +29,8 @@ class AddCardViewController: UIViewController {
     var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
+    var delegate: displayCardDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +116,7 @@ class AddCardViewController: UIViewController {
                                     let showAlert = UIAlertController(title: "Result", message: "Card added successfully", preferredStyle: .alert)
                                     let back = UIAlertAction(title: "OK", style: .default) {
                                         action in
+                                        self.delegate?.reloadTableview()
                                         self.navigationController?.popViewController(animated: true)
                                     }
                                     showAlert.addAction(back)

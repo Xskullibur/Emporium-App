@@ -22,6 +22,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var noOfShopperLabel: UILabel!
+    @IBOutlet weak var directionBtn: UIButton!
     
     @IBOutlet weak var previewViewHeightConstraint: NSLayoutConstraint!
     // MARK: - Variables
@@ -172,20 +173,28 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     }
     
     
-    @IBAction func chooseDirectionPressed(_ sender: Any) {
+    @IBAction func chooseDirectionPressed(_ sender: UIView) {
         let actionSheet = UIAlertController.init(title: "Direction", message: nil, preferredStyle: .actionSheet)
         
         let leftToRightButton = UIAlertAction.init(title: "Left to Right", style: .default, handler: {
             _ in
             self.direction = .leftToRight
+            self.directionBtn.setTitle("Left to Right", for: .normal)
+            
         })
         let rightToLeftButton = UIAlertAction.init(title: "Right to Left", style: .default, handler: {
             _ in
             self.direction = .rightToLeft
+             self.directionBtn.setTitle("Right to Left", for: .normal)
         })
         
         actionSheet.addAction(leftToRightButton)
         actionSheet.addAction(rightToLeftButton)
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
         
         self.present(actionSheet, animated: true, completion: nil)
     }

@@ -56,6 +56,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.layer.cornerRadius = 10
         cell.titleLabel.text = history.date
         cell.totalLabel.text = "$" + String(format: "%.02f", total)
+        cell.idLabel.text = history.id
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -72,8 +73,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        docID = purchaseHistory[indexPath.row].date
-        showActionSheet()
+        docID = purchaseHistory[indexPath.row].id
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
+        //showActionSheet()
 
     }
     
