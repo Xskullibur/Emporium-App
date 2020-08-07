@@ -31,6 +31,11 @@ class Alert {
             confirmation()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+    }
+    static func showAlert(title: String, message: String, viewController: UIViewController, onComplete: ((UIAlertAction) -> Void)?){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: onComplete))
         
         viewController.present(alert, animated: true)
     }
@@ -51,4 +56,10 @@ extension UIViewController {
     func showConfirmation(title: String, message: String, confirmation: @escaping () -> Void){
         Alert.showConfirmation(title: title, message: message, viewController: self, confirmation: confirmation)
     }
+    func showAlert(title: String, message: String, onComplete: @escaping () -> Void){
+        Alert.showAlert(title: title, message: message, viewController: self) { (_) in
+            onComplete()
+        }
+    }
+    
 }

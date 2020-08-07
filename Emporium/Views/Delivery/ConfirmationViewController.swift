@@ -150,15 +150,17 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
                 
                 if success {
                     // Show alert and navigate
-                    self.showAlert(title: "Success!", message: stringVal)
-                    self.performSegue(withIdentifier: "showCompleteVC", sender: self)
+                    self.showAlert(title: "Success", message: stringVal) {
+                        self.performSegue(withIdentifier: "showCompleteVC", sender: self)
+                    }
                 }
                 else {
-                    self.showErrorAlert()
+                    self.showNotSupportedAlert()
                 }
                 
             }) { (error) in
-                self.showAlert(title: "Oops", message: error)
+                print("\(error)")
+                self.showErrorAlert()
             }
             
         }
@@ -169,43 +171,20 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         return .portrait
     }
     
-    // MARK: - Custom Function
+    // MARK: - Error Alert
     func showErrorAlert() {
-        let alert = UIAlertController(
-            title: "Oops!",
-            message: "Something went wrong. Please try scanning again.",
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        self.showAlert(title: "Oops", message: "Something went wrong. Please try scanning again.")
     }
     
+    // MARK: - Not Supported Alert
     func showNotSupportedAlert() {
-        let alert = UIAlertController(
-            title: "Oops!",
-            message: "This device does not support this feature",
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        self.showAlert(title: "Oops", message: "This device does not support this feature")
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "ShowQR" {
-            
-            guard let qrImage = QRManager.generateQRCode(from: queueId!) else {
-                return
-            }
-            
-            let qrVC = segue.destination as! QRViewController
-            qrVC.image = qrImage
-            
-        }
-        else if segue.identifier == "showCompleteVC" {
+        if segue.identifier == "showCompleteVC" {
             
             let completeVC = segue.destination
             let rootVC = self.navigationController?.viewControllers.first

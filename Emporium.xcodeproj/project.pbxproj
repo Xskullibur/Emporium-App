@@ -112,7 +112,6 @@
 		EDD6581E24BFFF8700201B30 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */; };
 		EDD6582024C0042D00201B30 /* QRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6581F24C0042D00201B30 /* QRManager.swift */; };
 		EDD6582224C0097700201B30 /* DeliveryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6582124C0097700201B30 /* DeliveryDataManager.swift */; };
-		EDD6582824C030C700201B30 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6582724C030C700201B30 /* QRViewController.swift */; };
 		F2B247F835BC4D954DFE2981 /* Pods_EmporiumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89900AD73B612EB5B4C42AC3 /* Pods_EmporiumTests.framework */; };
 		FE0BE38824BF5E4D00F9C3FA /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0BE38724BF5E4D00F9C3FA /* Global.swift */; };
 		FE16498D24C0894B00328F50 /* RewardSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */; };
@@ -273,7 +272,6 @@
 		EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		EDD6581F24C0042D00201B30 /* QRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRManager.swift; sourceTree = "<group>"; };
 		EDD6582124C0097700201B30 /* DeliveryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDataManager.swift; sourceTree = "<group>"; };
-		EDD6582724C030C700201B30 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		FE0BE38724BF5E4D00F9C3FA /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardSegmentedViewController.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
@@ -726,7 +724,6 @@
 		EDB4683224948BDF000DE5F0 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				EDA5990D2484D12000ADD228 /* Apis */,
 				ED57F78824989E8C0013A133 /* NearbyMart.storyboard */,
 				ED57F78C2498A0340013A133 /* NearbyMapViewController.swift */,
 				ED57F78E2498AAD60013A133 /* NearbyListViewController.swift */,
@@ -740,7 +737,6 @@
 				343CA41024CE698300BF7F95 /* Animation */,
 				EDD6581B24BFFEE300201B30 /* Delivery.storyboard */,
 				EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */,
-				EDD6582724C030C700201B30 /* QRViewController.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -790,6 +786,7 @@
 		FE9023532473B9C700CE6B3A /* Emporium */ = {
 			isa = PBXGroup;
 			children = (
+				EDA5990D2484D12000ADD228 /* Apis */,
 				ED61105724AD938600FFD408 /* DataManagers */,
 				ED57F79F24A076970013A133 /* Models */,
 				ACED1DE0249B2FC800094284 /* Views */,
@@ -1176,7 +1173,6 @@
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
-				EDD6582824C030C700201B30 /* QRViewController.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,

@@ -72,11 +72,13 @@ class QueueDataManager {
                 
                 guard let queueDocument = queueDocumentSnapshot else {
                     print("Error fetching document. (checkExistingQueue.queueRef): \(queueError!)")
+                    onComplete(nil)
                     return
                 }
                 
                 guard let data = queueDocument.data() else {
                     print("Document data was empty. (checkExistingQueue.queueRef)")
+                    onComplete(nil)
                     return
                 }
                 

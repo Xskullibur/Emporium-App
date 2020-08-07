@@ -252,7 +252,7 @@ class StoreDataManager {
      Firestore add store
      */
     // MARK: - Add Store
-    func addStore(id _id: String?, name _name: String, address _address: String, lat _lat: Double, long _long: Double, merchantId _merchantId: String, onComplete: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func addStore(id _id: String?, name _name: String, address _address: String, lat _lat: Double, long _long: Double, merchantId _merchantId: String, maxCapacity _maxCapacity: Int, onComplete: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         // Get Error Msg
         let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
@@ -281,7 +281,7 @@ class StoreDataManager {
                     "address": _address,
                     "coordinates": GeoPoint(latitude: _lat, longitude: _long),
                     "current_visitor_count": 0,
-                    "max_visitor_capacity": 40,
+                    "max_visitor_capacity": _maxCapacity,
                     "merchant": _merchantId
                 ]) { error in
                     if let error = error {
