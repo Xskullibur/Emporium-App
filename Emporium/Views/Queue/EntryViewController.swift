@@ -139,7 +139,7 @@ extension EntryViewController: CBCentralManagerDelegate {
         
         if central.state == .poweredOn {
             startScanning()
-            print("Advertising...")
+            print("Scanning...")
         }
         else if central.state == .poweredOff {
             centralManager!.stopScan()
@@ -151,9 +151,7 @@ extension EntryViewController: CBCentralManagerDelegate {
     }
     
     func startScanning() {
-        
         centralManager!.scanForPeripherals(withServices: nil, options: nil)
-        
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
