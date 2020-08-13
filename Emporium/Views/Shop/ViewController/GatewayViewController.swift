@@ -29,6 +29,8 @@ class GatewayViewController: UIViewController {
     var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
     
+    var address: Address? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,10 +104,13 @@ class GatewayViewController: UIViewController {
         paymentInfo.order.orderByUserID = ""
         
         paymentInfo.order.deliveryAddress = DeliveryAddress()
-        paymentInfo.order.deliveryAddress.longitude = 0.0
-        paymentInfo.order.deliveryAddress.latitude = 0.0
-        paymentInfo.order.deliveryAddress.postal = ""
-        paymentInfo.order.deliveryAddress.address = ""
+       
+        if let address = address {
+            paymentInfo.order.deliveryAddress.longitude = Float(address.location.longitude)
+            paymentInfo.order.deliveryAddress.latitude = Float(address.location.latitude)
+            paymentInfo.order.deliveryAddress.postal = address.postal
+            paymentInfo.order.deliveryAddress.address = address.address
+        }
         
         paymentInfo.order.cartItems = []
         

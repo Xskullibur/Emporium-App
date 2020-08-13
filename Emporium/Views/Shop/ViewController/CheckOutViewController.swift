@@ -139,7 +139,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                showActionSheet(sender as! UIView)
+                //showActionSheet(sender as! UIView)
+                self.performSegue(withIdentifier: "toAddress", sender: nil)
             }
         }
     }
@@ -168,6 +169,9 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             destVC.cartData = self.cartData
         }else if segue.identifier == "toCard" {
             let destVC = segue.destination as! DisplayCardViewController
+            destVC.cartData = self.cartData
+        }else if segue.identifier == "toAddress" {
+            let destVC = segue.destination as! SelectAddressViewController
             destVC.cartData = self.cartData
         }
     }

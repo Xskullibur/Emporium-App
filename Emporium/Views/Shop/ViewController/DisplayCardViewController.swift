@@ -12,8 +12,10 @@ import Firebase
 class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, displayCardDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
     var cardList: [Card] = []
     var cartData: [Cart] = []
+    var address: Address? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +120,17 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         
         var paymentInfo = PaymentInfo()
         paymentInfo.order = Order()
+        paymentInfo.order.orderByUserID = ""
+        
+        paymentInfo.order.deliveryAddress = DeliveryAddress()
+        
+        if let address = address {
+            paymentInfo.order.deliveryAddress.longitude = Float(address.location.longitude)
+            paymentInfo.order.deliveryAddress.latitude = Float(address.location.latitude)
+            paymentInfo.order.deliveryAddress.postal = address.postal
+            paymentInfo.order.deliveryAddress.address = address.address
+        }
+        
         paymentInfo.order.cartItems = []
         
         var message = ""
