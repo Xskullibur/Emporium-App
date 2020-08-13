@@ -99,6 +99,14 @@ class GatewayViewController: UIViewController {
         var paymentInfo = PaymentInfo()
         
         paymentInfo.order = Order()
+        paymentInfo.order.orderByUserID = ""
+        
+        paymentInfo.order.deliveryAddress = DeliveryAddress()
+        paymentInfo.order.deliveryAddress.longitude = 0.0
+        paymentInfo.order.deliveryAddress.latitude = 0.0
+        paymentInfo.order.deliveryAddress.postal = ""
+        paymentInfo.order.deliveryAddress.address = ""
+        
         paymentInfo.order.cartItems = []
         
         let number = numberInput.text
@@ -118,6 +126,7 @@ class GatewayViewController: UIViewController {
                 paymentInfo.cvc = cvc!
                 paymentInfo.bank = ""
                 paymentInfo.name = ""
+            
                 
                 for cart in cartData {
                     var cartItemAdd = CartItem()
