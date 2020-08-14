@@ -117,6 +117,11 @@ class QueueViewController: UIViewController {
         // Values
         queueNumberLbl.text = QueueItem.hash_id(str: queueId!)
         
+        if currentlyServing != nil && queueLength != nil {
+            currentlyServingLbl.text = String(currentlyServing!)
+            queueLengthLbl.text = String(queueLength!)
+        }
+        
         // Setup
         if justJoinedQueue {
             showVolunteerAlert()
