@@ -12,6 +12,7 @@ import Combine
 import Firebase
 import FirebaseUI
 import Stripe
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -54,6 +55,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
+        //Request orders
+        BGTaskScheduler.shared.register(
+          forTaskWithIdentifier: "com.emporium.requestOrder",
+          using: nil) { (task) in
+            let bgtask = task as! BGAppRefreshTask
+            bgtask.expirationHandler = {
+                bgtask.setTaskCompleted(success: false)
+                URLSession.shared.invalidateAndCancel()
+            }
+            
+            let storeId = UserDefaults.standard.string(forKey: "com.emporium.requestOrder:storeId")
+            
+            if let storeId = storeId {
+                DeliveryDataManager.checkVolunteerRequest(storeId: storeId, receiveOrder: {
+                    order in
+                    if let order = order {
+                        let content = LocalNotificationHelper.createNotificationContent(title: "New Order", body: "You have a new order", subtitle: "", others: nil)
+                        LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                        print("Recieved order: \(order.orderID)")
+                    }else{
+                        self.scheduleFetchOrder()
+                    }
+                })
+                self.scheduleFetchOrder()
+            }
+            
+        }
+        
         //Listen for rewards
         let earnedRewardsDataManager = EarnedRewardsDataManager.shared
         earnedRewardsDataManager.getEarnedRewards()
@@ -84,6 +113,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.cancellables = nil
     }
 
+    //MARK: Background Scheduler
+    func scheduleFetchOrder(){
+        let requestOrderTask = BGAppRefreshTaskRequest(identifier: "com.emporium.requestOrder")
+        requestOrderTask.earliestBeginDate = Date(timeIntervalSinceNow: 30)
+        do {
+            try BGTaskScheduler.shared.submit(requestOrderTask)
+        }catch {
+            print("Unable to submit task: \(error.localizedDescription)")
+        }
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

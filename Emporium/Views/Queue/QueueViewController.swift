@@ -227,6 +227,19 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
+            //Send delivery request to server
+            DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
+                order in
+                if let order = order {
+                    let content = LocalNotificationHelper.createNotificationContent(title: "New Order", body: "You have a new order", subtitle: "", others: nil)
+                    LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    print("Recieved order: \(order.orderID)")
+                }
+            })
+            //Start Background fetch
+//            UserDefaults.standard.set(self.store!.id, forKey: "com.emporium.requestOrder:storeId")
+//            (UIApplication.shared.delegate as! AppDelegate).scheduleFetchOrder()
+            
             let thanksAlert = UIAlertController(
                 title: "Thank you!",
                 message: "You will be notified when there is a request.",
