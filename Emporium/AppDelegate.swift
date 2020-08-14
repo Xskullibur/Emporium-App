@@ -45,6 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationHandler = NotificationHandler.shared
         notificationHandler.create()
         notificationHandler.start()
+        notificationHandler.getNotifications()?.sink(receiveCompletion: { (completion) in
+            print(completion)
+        }, receiveValue: { (notifications) in
+            
+            for notification in notifications {
+                let content = LocalNotificationHelper.createNotificationContent(
+                    title: notification.title,
+                    body: notification.message,
+                    subtitle: notification.sender,
+                    others: nil
+                )
+                LocalNotificationHelper.addNotification(identifier: notification.date.toBasicDateString() + ".notification", content: content)
+            }
+            
+        })
         
         // Local Notification
         UNUserNotificationCenter.current().delegate = self

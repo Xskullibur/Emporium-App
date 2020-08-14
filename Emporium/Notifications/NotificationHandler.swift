@@ -29,6 +29,10 @@ class NotificationHandler {
     private var notificationRef: CollectionReference?
     private var globalNotificationRef: CollectionReference?
     
+    // Array for listeners
+    var globalListener: ListenerRegistration? = nil
+    var userListener: ListenerRegistration? = nil
+    
     //Create a global reference
     public static let shared = NotificationHandler()
     
@@ -80,7 +84,10 @@ class NotificationHandler {
      */
     func start(){
         //user notifications
-        self.notificationRef?.addSnapshotListener{
+        if let userListener = userListener {
+            userListener.remove()
+        }
+        userListener = self.notificationRef?.addSnapshotListener{
             (querySnapshot, error) in
             
             if let error = error {
@@ -91,59 +98,47 @@ class NotificationHandler {
             
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
+                    let data = document.data()
                     
-                    let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                    if source == "Server" {
-                        let data = document.data()
-                        
-                        // Check Read
-                        if let read = data["read"] {
-                            if !(read as! Bool) {
-                                datas.append(data)
-                                
-                                self.notificationRef!.document(document.documentID)
-                                    .updateData(["read": true]) { (error) in
-                                    
-                                        if let error = error {
-                                            print("Error Updating Notificaiton (User): \(error.localizedDescription)")
-                                        }
-                                    
-                                }
-                            }
-                        }
-                        else {
+                    // Check Read
+                    if let read = data["read"] {
+                        if !(read as! Bool) {
                             datas.append(data)
                             
                             self.notificationRef!.document(document.documentID)
                                 .updateData(["read": true]) { (error) in
-                                    
+                                
                                     if let error = error {
                                         print("Error Updating Notificaiton (User): \(error.localizedDescription)")
                                     }
-                                    
+                                
                             }
                         }
                     }
-                    
+                    else {
+                        datas.append(data)
+                        
+                        self.notificationRef!.document(document.documentID)
+                            .updateData(["read": true]) { (error) in
+                                
+                                if let error = error {
+                                    print("Error Updating Notificaiton (User): \(error.localizedDescription)")
+                                }
+                                
+                        }
+                    }
                 }
             }
             
             self.userNotificationPublisher?.send(datas)
             
-            // local notifications
-            for data in datas {
-                let content = LocalNotificationHelper.createNotificationContent(
-                    title: data["title"] as! String,
-                    body: data["message"] as! String,
-                    subtitle: data["sender"] as? String,
-                    others: nil
-                )
-                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".user", content: content)
-            }
-            
         }
         //global notifications
-        self.globalNotificationRef?.addSnapshotListener{
+        if let globalListener = globalListener {
+            globalListener.remove()
+        }
+        
+        globalListener = self.globalNotificationRef?.addSnapshotListener{
             (querySnapshot, error) in
 
             if let error = error {
@@ -155,34 +150,20 @@ class NotificationHandler {
             if let querySnapshot = querySnapshot {
                 
                 for document in querySnapshot.documents {
+                    let data = document.data()
                     
-                    let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                    if source == "Server" {
+                    // Check Logged in
+                    if let userId = Auth.auth().currentUser?.uid {
                         
-                        let data = document.data()
-                        
-                        // Check Logged in
-                        if let userId = Auth.auth().currentUser?.uid {
-                            
-                            // Check Read
-                            if let read = data["read"] {
-                                var readArray = read as! [String]
-                                if !readArray.contains(userId) {
-                                    datas.append(data)
-                                    readArray.append(userId)
-                                    
-                                    self.globalNotificationRef!.document(document.documentID)
-                                        .updateData(["read": readArray]) { (error) in
-                                            if let error = error {
-                                                print("Error Updating Notification (Global.\(userId): \(error.localizedDescription)")
-                                            }
-                                    }
-                                }
-                            }
-                            else {
+                        // Check Read
+                        if let read = data["read"] {
+                            var readArray = read as! [String]
+                            if !readArray.contains(userId) {
                                 datas.append(data)
+                                readArray.append(userId)
+                                
                                 self.globalNotificationRef!.document(document.documentID)
-                                    .updateData(["read": [userId]]) { (error) in
+                                    .updateData(["read": readArray]) { (error) in
                                         if let error = error {
                                             print("Error Updating Notification (Global.\(userId): \(error.localizedDescription)")
                                         }
@@ -191,24 +172,22 @@ class NotificationHandler {
                         }
                         else {
                             datas.append(data)
+                            self.globalNotificationRef!.document(document.documentID)
+                                .updateData(["read": [userId]]) { (error) in
+                                    if let error = error {
+                                        print("Error Updating Notification (Global.\(userId): \(error.localizedDescription)")
+                                    }
+                            }
                         }
+                    }
+                    else {
+                        datas.append(data)
                     }
                 }
             }
             
             //This is to make sure global notification get receive
             self.globalNotificationPublisher?.send(datas)
-            
-            // local notifications
-            for data in datas {
-                let content = LocalNotificationHelper.createNotificationContent(
-                    title: data["title"] as! String,
-                    body: data["message"] as! String,
-                    subtitle: data["sender"] as? String,
-                    others: nil
-                )
-                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".global", content: content)
-            }
         }
     }
     
