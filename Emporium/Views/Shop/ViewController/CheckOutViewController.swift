@@ -44,11 +44,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             loadProducts()
             toPaymentBtn.isHidden = true
             self.title = self.listName
-            self.addItemBtn.isHidden = false
+            self.addItemBtn.setTitle("Add Item", for: .normal)
         }else{
             toPaymentBtn.isHidden = false
             self.title = "Order"
-            self.addItemBtn.isHidden = true
+            self.addItemBtn.setTitle("Use Voucher", for: .normal)
         }
     }
     
@@ -156,11 +156,15 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func addItemBtnPressed(_ sender: Any) {
-        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-        let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
-        vc.listName = self.listName
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        if(!fromShop()) {
+            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+            let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
+            vc.listName = self.listName
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            //voucher
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
