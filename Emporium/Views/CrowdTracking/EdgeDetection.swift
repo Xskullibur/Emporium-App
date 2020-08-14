@@ -37,7 +37,7 @@ class EdgeDetection: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     //MARK: - Detectors
     private static let UNDETECTED_COLOR = UIColor.blue
     private static let DETECTED_COLOR = UIColor.red
-    private static let DETECTION_MARGIN: CGFloat = 70.0
+    private static let DETECTION_MARGIN: CGFloat =	 70.0
     
     private var leftShapeLayer: CALayer?
     private var rightShapeLayer: CALayer?
