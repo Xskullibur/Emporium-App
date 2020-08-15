@@ -42,8 +42,6 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
         //Data Managers
         self.pointsDataManager = PointDataManager()
         self.loginManager = LoginManager(viewController: self)
@@ -155,16 +153,23 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 self.performSegue(withIdentifier: "ShowNearby", sender: self)
                                 
                             case .InQueue:
-                                // Navigate to QueueVC
-                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-                                let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
-                                
-                                queueVC.justJoinedQueue = false
-                                queueVC.store = store
-                                queueVC.queueId = queueItem.id
-                                
-                                let rootVC = self.navigationController?.viewControllers.first
-                                self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
+                                // Get QueueInfo
+                                queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
+                                    
+                                    // Navigate to QueueVC
+                                    let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                    let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
+                                    
+                                    queueVC.justJoinedQueue = false
+                                    queueVC.store = store
+                                    queueVC.queueId = queueItem.id
+                                    queueVC.currentlyServing = currentlyServing
+                                    queueVC.queueLength = queueLength
+                                    
+                                    let rootVC = self.navigationController?.viewControllers.first
+                                    self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
+                                    
+                                }
                                 
                             case .OnTheWay:
                                 // Navigate to Entry
