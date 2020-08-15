@@ -35,6 +35,7 @@ class QueueViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
+    @IBOutlet weak var requestItemBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
     @IBOutlet weak var currentlyServingLbl: UILabel!
     @IBOutlet weak var queueLengthLbl: UILabel!
@@ -106,6 +107,13 @@ class QueueViewController: UIViewController {
         
         leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
         leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
+        
+        requestItemBtn.minimumSize = CGSize(width: 64, height: 48)
+        requestItemBtn.applyOutlinedTheme(withScheme: containerScheme)
+        
+        if let _ = _order {
+            requestItemBtn.isHidden = false
+        }
         
         /// CardView
         cardView.cornerRadius = 13
@@ -232,6 +240,7 @@ class QueueViewController: UIViewController {
                     let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
                     LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
                     self._order = order
+                    self.requestItemBtn.isHidden = false
                     print("Recieved order: \(order.orderID)")
                 }
             })
@@ -252,8 +261,16 @@ class QueueViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-//    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showRequestorItem" {
+            let requestorListVC = segue.destination as! RequestorsListViewController
+            requestorListVC.store = store!
+            requestorListVC.queueId = queueId!
+            requestorListVC.order = _order!
+        }
+        
+    }
 
 }

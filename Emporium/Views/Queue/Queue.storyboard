@@ -94,6 +94,17 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ehd-gZ-byT">
                                         <rect key="frame" x="0.0" y="264" width="324" height="48"/>
                                         <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-Qy-Li2" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="PAu-da-uFn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Requested Items"/>
+                                                <connections>
+                                                    <action selector="enterStoreButtonPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="jpE-hs-97R"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="324" height="48"/>
                                                 <constraints>
@@ -126,6 +137,8 @@
                         <outlet property="leaveQueueBtn" destination="KUf-YG-Iko" id="jtR-OA-Xyi"/>
                         <outlet property="queueLengthLbl" destination="eBR-lx-fKW" id="BHb-Tr-ACP"/>
                         <outlet property="queueNumberLbl" destination="fJ7-g3-kPE" id="LrZ-dH-gPP"/>
+                        <outlet property="requestItemBtn" destination="ZpS-Qy-Li2" id="l9v-0V-ZRh"/>
+                        <segue destination="p6F-T7-R2l" kind="show" identifier="showRequestorItem" id="3kE-48-eAJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdb-vv-x7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -195,7 +208,6 @@ Grocery Store</string>
                                                 <state key="normal" title="Directions"/>
                                                 <connections>
                                                     <action selector="directionBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="7Ww-Ht-mfS"/>
-                                                    <action selector="directionBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="Iku-SQ-x6O"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -296,7 +308,7 @@ Grocery Store</string>
                                                     <constraint firstAttribute="height" constant="48" id="STi-Uv-ZxQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <state key="normal" title="Requestor's List"/>
+                                                <state key="normal" title="Requested Items"/>
                                                 <connections>
                                                     <action selector="requestorListBtnPressed:" destination="Fwo-OH-8q4" eventType="touchUpInside" id="qoV-QA-tlk"/>
                                                 </connections>
@@ -484,4 +496,7 @@ Grocery Store</string>
             <point key="canvasLocation" x="1880" y="919"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3kE-48-eAJ"/>
+    </inferredMetricsTieBreakers>
 </document>
