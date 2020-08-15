@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             
-        })
+            }).store(in: &cancellables!)
         
         // Local Notification
         UNUserNotificationCenter.current().delegate = self
