@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVw-P5-kfn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVw-P5-kfn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,6 +94,18 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ehd-gZ-byT">
                                         <rect key="frame" x="0.0" y="264" width="324" height="48"/>
                                         <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-Qy-Li2" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="PAu-da-uFn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Requested Items"/>
+                                                <connections>
+                                                    <action selector="enterStoreButtonPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="jpE-hs-97R"/>
+                                                    <action selector="requestItemBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="zrh-M7-qYb"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="324" height="48"/>
                                                 <constraints>
@@ -126,6 +138,8 @@
                         <outlet property="leaveQueueBtn" destination="KUf-YG-Iko" id="jtR-OA-Xyi"/>
                         <outlet property="queueLengthLbl" destination="eBR-lx-fKW" id="BHb-Tr-ACP"/>
                         <outlet property="queueNumberLbl" destination="fJ7-g3-kPE" id="LrZ-dH-gPP"/>
+                        <outlet property="requestItemBtn" destination="ZpS-Qy-Li2" id="l9v-0V-ZRh"/>
+                        <segue destination="p6F-T7-R2l" kind="show" identifier="showRequestorItem" id="3kE-48-eAJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdb-vv-x7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -175,20 +189,8 @@ Grocery Store</string>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-Ym-VAK">
                                         <rect key="frame" x="0.0" y="540" width="364" height="116"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUk-ha-Dlv" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="364" height="48"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="gQg-pD-40L"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <state key="normal" title="Directions"/>
-                                                <connections>
-                                                    <action selector="directionBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="7Ww-Ht-mfS"/>
-                                                    <action selector="directionBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="Iku-SQ-x6O"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDA-50-lM2" customClass="MDCButton">
-                                                <rect key="frame" x="0.0" y="68" width="364" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="acy-h7-PNR"/>
                                                 </constraints>
@@ -196,6 +198,17 @@ Grocery Store</string>
                                                 <state key="normal" title="Enter Grocery Store"/>
                                                 <connections>
                                                     <action selector="enterStoreButtonPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="9tQ-yN-vmH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUk-ha-Dlv" customClass="MDCButton">
+                                                <rect key="frame" x="0.0" y="68" width="364" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="gQg-pD-40L"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Directions"/>
+                                                <connections>
+                                                    <action selector="directionBtnPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="7Ww-Ht-mfS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -295,8 +308,8 @@ Grocery Store</string>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="STi-Uv-ZxQ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
-                                                <state key="normal" title="Requestor's List"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Requested Items"/>
                                                 <connections>
                                                     <action selector="requestorListBtnPressed:" destination="Fwo-OH-8q4" eventType="touchUpInside" id="qoV-QA-tlk"/>
                                                 </connections>
@@ -484,4 +497,7 @@ Grocery Store</string>
             <point key="canvasLocation" x="1880" y="919"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3kE-48-eAJ"/>
+    </inferredMetricsTieBreakers>
 </document>

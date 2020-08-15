@@ -29,6 +29,10 @@ class NotificationHandler {
     private var notificationRef: CollectionReference?
     private var globalNotificationRef: CollectionReference?
     
+    // Array for listeners
+    var globalListener: ListenerRegistration? = nil
+    var userListener: ListenerRegistration? = nil
+    
     //Create a global reference
     public static let shared = NotificationHandler()
     
@@ -79,10 +83,13 @@ class NotificationHandler {
      Start listening for current and new notifications
      */
     func start(){
-        //user notifications
-        self.notificationRef?.addSnapshotListener{
+        // MARK: - User Notifications
+        if let userListener = userListener {
+            userListener.remove()
+        }
+        userListener = self.notificationRef?.addSnapshotListener{
             (querySnapshot, error) in
-
+            
             if let error = error {
                 self.userNotificationPublisher?.send(completion: .failure(.firebaseError(error)))
             }
@@ -93,25 +100,40 @@ class NotificationHandler {
                 for document in querySnapshot.documents {
                     let data = document.data()
                     datas.append(data)
+                    
+                    if let read = data["read"] {
+                        if !(read as! Bool) {
+                            self.notificationRef?.document(document.documentID).updateData(["read": true], completion: { (error) in
+                                
+                                if let error = error {
+                                    print("Error updating notification (Read.User): \(error.localizedDescription)")
+                                }
+                                
+                            })
+                        }
+                    }
+                    else {
+                        self.notificationRef?.document(document.documentID).updateData(["read": true], completion: { (error) in
+                            
+                            if let error = error {
+                                print("Error updating notification (Read.User): \(error.localizedDescription)")
+                            }
+                            
+                        })
+                    }
+                    
                 }
             }
             
             self.userNotificationPublisher?.send(datas)
             
-            // local notifications
-            for data in datas {
-                let content = LocalNotificationHelper.createNotificationContent(
-                    title: data["title"] as! String,
-                    body: data["message"] as! String,
-                    subtitle: data["sender"] as? String,
-                    others: nil
-                )
-                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".user", content: content)
-            }
-            
         }
-        //global notifications
-        self.globalNotificationRef?.addSnapshotListener{
+        // MARK: - Global Notifications
+        if let globalListener = globalListener {
+            globalListener.remove()
+        }
+        
+        globalListener = self.globalNotificationRef?.addSnapshotListener{
             (querySnapshot, error) in
 
             if let error = error {
@@ -121,6 +143,7 @@ class NotificationHandler {
             var datas: [[String: Any]] = []
             
             if let querySnapshot = querySnapshot {
+                
                 for document in querySnapshot.documents {
                     let data = document.data()
                     datas.append(data)
@@ -129,17 +152,6 @@ class NotificationHandler {
             
             //This is to make sure global notification get receive
             self.globalNotificationPublisher?.send(datas)
-            
-            // local notifications
-            for data in datas {
-                let content = LocalNotificationHelper.createNotificationContent(
-                    title: data["title"] as! String,
-                    body: data["message"] as! String,
-                    subtitle: data["sender"] as? String,
-                    others: nil
-                )
-                LocalNotificationHelper.addNotification(identifier: data["title"] as! String + ".global", content: content)
-            }
         }
     }
     
@@ -152,12 +164,13 @@ class NotificationHandler {
         let title = data["title"] as? String ?? ""
         let message = data["message"] as? String ?? ""
         let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
+        let read = data["read"] as? Bool ?? false
         
         // Local Notification
         let content = LocalNotificationHelper.createNotificationContent(title: title, body: message, subtitle: sender, others: nil)
         LocalNotificationHelper.addNotification(identifier: "\(sender).notification", content: content)
         
-        return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1)
+        return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1, read: read)
     }
     
 }

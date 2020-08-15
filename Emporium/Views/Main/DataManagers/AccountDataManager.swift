@@ -140,6 +140,37 @@ class AccountDataManager
         addressRef.delete()
     }
     
+    /**
+     Set the delivery option in Firebase
+     */
+    static func setDeliveryOption(user: User, option deliveryOption: DeliveryOption){
+        let database = Firestore.firestore()
+        
+        let optionRef = database.document("users/\(user.uid)")
+        optionRef.updateData(["delivery_option":deliveryOption.toData()])
+    }
+    /**
+     Get the delivery option from Firebase
+     */
+    static func getDeliveryOption(user: User, completion: @escaping (DeliveryOption?, EmporiumError?) -> Void){
+        let database = Firestore.firestore()
+        
+        let optionRef = database.document("users/\(user.uid)")
+        optionRef.getDocument{
+            (querySnapshot, error) in
+            if let error = error {
+                completion(nil, .firebaseError(error))
+                return
+            }
+            
+            let data = querySnapshot!.data()!
+            let deliveryOptionData = data["delivery_option"]! as! [String: Any]
+            
+            completion(DeliveryOption(deliveryOptionData), nil)
+        }
+        
+    }
+    
     private static func getUserStorageReference(_ user: User) -> StorageReference {
         let storage = Storage.storage()
         let storageRef = storage.reference().child("users/\(user.uid)")

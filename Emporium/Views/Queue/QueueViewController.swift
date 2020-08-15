@@ -28,18 +28,24 @@ class QueueViewController: UIViewController {
     var queueId: String?
     var queueLength: String?
     var currentlyServing: String?
+    var _order: Order?
     var listenerManager: ListenerManager = ListenerManager()
     
     var functions = Functions.functions()
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
+    @IBOutlet weak var requestItemBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
     @IBOutlet weak var currentlyServingLbl: UILabel!
     @IBOutlet weak var queueLengthLbl: UILabel!
     @IBOutlet weak var queueNumberLbl: UILabel!
     
     // MARK: - IBAction
+    @IBAction func requestItemBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "showRequestorItem", sender: self)
+    }
+    
     @IBAction func leaveBtnPressed(_ sender: Any) {
         
         // Confirm Alert
@@ -106,6 +112,13 @@ class QueueViewController: UIViewController {
         leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
         leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
         
+        requestItemBtn.minimumSize = CGSize(width: 64, height: 48)
+        requestItemBtn.applyOutlinedTheme(withScheme: containerScheme)
+        
+        if let _ = _order {
+            requestItemBtn.isHidden = false
+        }
+        
         /// CardView
         cardView.cornerRadius = 13
         cardView.clipsToBounds = true
@@ -116,6 +129,11 @@ class QueueViewController: UIViewController {
         
         // Values
         queueNumberLbl.text = QueueItem.hash_id(str: queueId!)
+        
+        if currentlyServing != nil && queueLength != nil {
+            currentlyServingLbl.text = String(currentlyServing!)
+            queueLengthLbl.text = String(queueLength!)
+        }
         
         // Setup
         if justJoinedQueue {
@@ -173,21 +191,13 @@ class QueueViewController: UIViewController {
                         // Clear Listeners
                         self.listenerManager.clear()
                         
-                        // Add Local Notification
-                        let notificationContent = LocalNotificationHelper.createNotificationContent(
-                            title: "Welcome",
-                            body: "Please enjoy your time at \(self.store!.name)!",
-                            subtitle: nil,
-                            others: nil
-                        )
-                        LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
-                        
                         // Navigate to Entry
                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                         
                         let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
                         entryVC.store = self.store
                         entryVC.queueId = self.queueId!
+                        entryVC.order = self._order
                         
                         let rootVC = self.navigationController?.viewControllers.first
                         self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
@@ -227,9 +237,24 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
+            //Send delivery request to server
+            DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
+                order in
+                if let order = order {
+                    let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
+                    LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    self._order = order
+                    self.requestItemBtn.isHidden = false
+                    print("Recieved order: \(order.orderID)")
+                }
+            })
+            //Start Background fetch
+//            UserDefaults.standard.set(self.store!.id, forKey: "com.emporium.requestOrder:storeId")
+//            (UIApplication.shared.delegate as! AppDelegate).scheduleFetchOrder()
+            
             let thanksAlert = UIAlertController(
                 title: "Thank you!",
-                message: "You will be notified when there is a request.",
+                message: "We will notify you when there is a request.",
                 preferredStyle: .alert
             )
             thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -240,8 +265,16 @@ class QueueViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-//    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showRequestorItem" {
+            let requestorListVC = segue.destination as! RequestorsListViewController
+            requestorListVC.store = store!
+            requestorListVC.queueId = queueId!
+            requestorListVC.order = _order!
+        }
+        
+    }
 
 }
