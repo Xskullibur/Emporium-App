@@ -103,6 +103,7 @@
                                                 <state key="normal" title="Requested Items"/>
                                                 <connections>
                                                     <action selector="enterStoreButtonPressed:" destination="mxv-pB-aiD" eventType="touchUpInside" id="jpE-hs-97R"/>
+                                                    <action selector="requestItemBtnPressed:" destination="a0P-iU-G4O" eventType="touchUpInside" id="zrh-M7-qYb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUf-YG-Iko" customClass="MDCButton">

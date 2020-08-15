@@ -42,6 +42,10 @@ class QueueViewController: UIViewController {
     @IBOutlet weak var queueNumberLbl: UILabel!
     
     // MARK: - IBAction
+    @IBAction func requestItemBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "showRequestorItem", sender: self)
+    }
+    
     @IBAction func leaveBtnPressed(_ sender: Any) {
         
         // Confirm Alert

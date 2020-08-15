@@ -15,11 +15,5 @@ struct EmporiumNotification {
     let date: Date
     let priority: Int
     
-    let type: NotificationType
-    
-}
-
-enum NotificationType {
-    case global
-    case user
+    let read: Bool
 }
