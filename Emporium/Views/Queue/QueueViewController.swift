@@ -240,7 +240,20 @@ class QueueViewController: UIViewController {
                     let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
                     LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
                     self._order = order
-                    self.requestItemBtn.isHidden = false
+                    DispatchQueue.main.async {
+                        self.requestItemBtn.isHidden = false
+                    }
+                    
+                    //TEST
+                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+                        order1 in
+                        print("Recieved delivery order: \(order1!.orderID)")
+                        
+                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+                        
+                    })
+                    //TEST
+                    
                     print("Recieved order: \(order.orderID)")
                 }
             })

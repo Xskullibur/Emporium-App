@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if let order = order {
                         let content = LocalNotificationHelper.createNotificationContent(title: "New Order", body: "You have a new order", subtitle: "", others: nil)
                         LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
-                        print("Recieved order: \(order.orderID)")
+                        print("Received order: \(order.orderID)")
                     }else{
                         self.scheduleFetchOrder()
                     }
@@ -120,6 +120,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 }
             }).store(in: &cancellables!)
+        
+        //Listen for delivery status
+        let deliveryDataManager = DeliveryDataManager.shared
+        deliveryDataManager.getDeliveryStatusUpdate()
+            .sink(receiveCompletion: {
+                completion in
+            }, receiveValue: {
+                listOfOrderDeliveryStatus in
+                
+                for orderDeliveryStatus in listOfOrderDeliveryStatus {
+                    
+                    let content = LocalNotificationHelper.createNotificationContent(title: "Order udpate", body: orderDeliveryStatus.status.rawValue, subtitle: "", others: nil)
+                    LocalNotificationHelper.addNotification(identifier: "DeliveryStatus.notification", content: content)
+                    print("Received update: \(orderDeliveryStatus.status.rawValue)")
+                    
+                    deliveryDataManager.markRequestOrderAsRead(orderDeliveryStatus)
+                }
+            }).store(in: &cancellables!)
+        
         
         return true
     }

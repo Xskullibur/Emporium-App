@@ -66,8 +66,8 @@ class NotificationHandler {
         self.notificationPublisher = Publishers.CombineLatest(self.userNotificationPublisher!, self.globalNotificationPublisher!)
             .tryMap{
             (userDatas, globalDatas) -> [EmporiumNotification] in
-                return userDatas.map(self.toEmporiumNotification(data:)) +
-                    globalDatas.map(self.toEmporiumNotification(data:))
+                return userDatas.map{self.toEmporiumNotification(data:$0, type:.user)} +
+                    globalDatas.map{self.toEmporiumNotification(data:$0, type:.global)}
         }.mapError{
             error -> EmporiumError in
             return error as! EmporiumError
@@ -195,7 +195,7 @@ class NotificationHandler {
         return self.notificationPublisher
     }
     
-    private func toEmporiumNotification(data: [String: Any]) -> EmporiumNotification {
+    private func toEmporiumNotification(data: [String: Any], type: NotificationType) -> EmporiumNotification {
         let sender = data["sender"] as? String ?? ""
         let title = data["title"] as? String ?? ""
         let message = data["message"] as? String ?? ""
@@ -205,7 +205,7 @@ class NotificationHandler {
         let content = LocalNotificationHelper.createNotificationContent(title: title, body: message, subtitle: sender, others: nil)
         LocalNotificationHelper.addNotification(identifier: "\(sender).notification", content: content)
         
-        return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1)
+        return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1, type: type)
     }
     
 }
