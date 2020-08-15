@@ -1314,17 +1314,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="Oy0-2A-1Y3"/>
-    </inferredMetricsTieBreakers>
-    <resources>
-=======
         <segue reference="ywE-Wp-iPX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Coupon" width="512" height="512"/>
         <image name="Home" width="512" height="512"/>
->>>>>>> hsienxiang
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="trash" catalog="system" width="121" height="128"/>
