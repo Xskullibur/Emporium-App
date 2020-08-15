@@ -67,6 +67,15 @@ class EntryViewController: UIViewController {
                 
                 let rootVC = self.navigationController?.viewControllers.first
                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                
+                // Add Local Notification
+                let notificationContent = LocalNotificationHelper.createNotificationContent(
+                    title: "Welcome to \(self.store!.name)!",
+                    body: "Wish you have a nice day.",
+                    subtitle: nil,
+                    others: nil
+                )
+                LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
             }
             
         }

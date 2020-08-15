@@ -35,15 +35,8 @@ class InStoreViewController: UIViewController {
             self.removeSpinner()
             
             if success {
-                // Add Local Notification
-                let notificationContent = LocalNotificationHelper.createNotificationContent(
-                    title: "Thank you for shopping at \(self.store!.name)!",
-                    body: "Have a nice day.",
-                    subtitle: nil,
-                    others: nil
-                )
-                LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
                 self.navigationController?.popToRootViewController(animated: true)
+                Alert.showAlert(title: "Have a nice day", message: "Thank you for shopping with us.", viewController: (self.navigationController?.topViewController)!, onComplete: nil)
             }
             else {
                 // Alert
@@ -63,15 +56,6 @@ class InStoreViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Add Local Notification
-        let notificationContent = LocalNotificationHelper.createNotificationContent(
-            title: "Welcome to \(self.store!.name)!",
-            body: "Have a nice shopping experience.",
-            subtitle: nil,
-            others: nil
-        )
-        LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
         
         // Animation
         animationView.animation = Animation.named("shopping-bag")
