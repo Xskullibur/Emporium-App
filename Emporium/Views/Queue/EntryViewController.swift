@@ -19,8 +19,7 @@ class EntryViewController: UIViewController {
     // MARK: - Variable
     var store: GroceryStore?
     var queueId: String?
-    var centralManager: CBCentralManager?
-    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
+    var order: Order?
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -64,6 +63,7 @@ class EntryViewController: UIViewController {
                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
                 inStoreVC.queueId = self.queueId
                 inStoreVC.store = self.store
+                inStoreVC.order = self.order
                 
                 let rootVC = self.navigationController?.viewControllers.first
                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
@@ -102,10 +102,6 @@ class EntryViewController: UIViewController {
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
-        // BLE
-        centralManager = CBCentralManager(delegate: self, queue: nil)
-        startScanning()
-        
         // onResume
         NotificationCenter.default.addObserver(self,
             selector: #selector(playAnimation),
@@ -132,46 +128,4 @@ class EntryViewController: UIViewController {
         )
     }
 
-}
-
-extension EntryViewController: CBCentralManagerDelegate {
-    
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
-        if central.state == .poweredOn {
-            startScanning()
-            print("Scanning...")
-        }
-        else if central.state == .poweredOff {
-            centralManager!.stopScan()
-        }
-        else if central.state == .unsupported {
-            self.showAlert(title: "Error", message: "This device is not supported for Scanning")
-        }
-        
-    }
-    
-    func startScanning() {
-        let cbUUID = CBUUID(string: UUID)
-        centralManager!.scanForPeripherals(withServices: [cbUUID], options: nil)
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
-        // Enter Store
-        guard let data = advertisementData["storeId"] as? String else { return }
-        
-        if data == store!.id {
-            
-            // Show Local Notification
-            let content = LocalNotificationHelper.createNotificationContent(title: "Welcome to \(store!.name)", body: "Please enjoy your time here.", subtitle: nil, others: nil)
-            LocalNotificationHelper.addNotification(identifier: "StoreEntry.notification", content: content)
-            
-            // Update Firestore
-            enterStoreButtonPressed(self)
-            
-        }
-        
-    }
-    
 }

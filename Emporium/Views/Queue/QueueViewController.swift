@@ -28,6 +28,7 @@ class QueueViewController: UIViewController {
     var queueId: String?
     var queueLength: String?
     var currentlyServing: String?
+    var _order: Order?
     var listenerManager: ListenerManager = ListenerManager()
     
     var functions = Functions.functions()
@@ -178,21 +179,13 @@ class QueueViewController: UIViewController {
                         // Clear Listeners
                         self.listenerManager.clear()
                         
-                        // Add Local Notification
-                        let notificationContent = LocalNotificationHelper.createNotificationContent(
-                            title: "Welcome",
-                            body: "Please enjoy your time at \(self.store!.name)!",
-                            subtitle: nil,
-                            others: nil
-                        )
-                        LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
-                        
                         // Navigate to Entry
                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                         
                         let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
                         entryVC.store = self.store
                         entryVC.queueId = self.queueId!
+                        entryVC.order = self._order
                         
                         let rootVC = self.navigationController?.viewControllers.first
                         self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
@@ -238,6 +231,7 @@ class QueueViewController: UIViewController {
                 if let order = order {
                     let content = LocalNotificationHelper.createNotificationContent(title: "New Order", body: "You have a new order", subtitle: "", others: nil)
                     LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    self._order = order
                     print("Recieved order: \(order.orderID)")
                 }
             })

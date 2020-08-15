@@ -18,8 +18,10 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     // MARK: - Variables
-    var queueId: String?
-    var store: GroceryStore?
+    var queueId: String!
+    var store: GroceryStore!
+    var order: Order!
+    
     var itemList: [RequestedItem] = []
     
     var defaultCategoryList: [String] = []
@@ -31,9 +33,6 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        #warning("TODO: Remove test data")
-        itemList = RequestedItem.getDebug()
         
         // CategoryView
         let layout = MDCChipCollectionViewFlowLayout()
@@ -51,17 +50,26 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         
-        // Get Categories
-        let categories = itemList.map { $0.cart.product.category }
-        categoryList = Array(Set(categories))
-        defaultCategoryList = Array(Set(categories))
-        
-        // Split by Category
-        for category in categoryList {
-            let items = itemList.filter{ $0.cart.product.category == category }
-            data.append(items)
-            defaultData.append(items)
-        }
+        // Get Orders and Categories
+        self.showSpinner(onView: self.view)
+        ShopDataManager.getOrders(order: order, onComplete: { (carts) in
+            self.itemList = RequestedItem.getItems(carts: carts)
+            
+            let categories = self.itemList.map { $0.cart.product.category }
+            self.categoryList = Array(Set(categories))
+            self.defaultCategoryList = Array(Set(categories))
+            
+            // Split by Category
+            for category in self.categoryList {
+                let items = self.itemList.filter{ $0.cart.product.category == category }
+                self.data.append(items)
+                self.defaultData.append(items)
+            }
+            
+            self.itemTableView.reloadData()
+            self.categoryCollectionView.reloadData()
+            self.removeSpinner()
+        })
         
     }
     
