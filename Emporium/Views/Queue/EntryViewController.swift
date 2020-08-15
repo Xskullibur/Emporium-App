@@ -106,7 +106,7 @@ class EntryViewController: UIViewController {
         containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
         
         directionBtn.minimumSize = CGSize(width: 64, height: 48)
-        directionBtn.applyContainedTheme(withScheme: containerScheme)
+        directionBtn.applyOutlinedTheme(withScheme: containerScheme)
         
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)

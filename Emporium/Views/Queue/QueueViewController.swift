@@ -229,7 +229,7 @@ class QueueViewController: UIViewController {
             DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
                 order in
                 if let order = order {
-                    let content = LocalNotificationHelper.createNotificationContent(title: "Hey", body: "Someone has requested for your help getting groceries!", subtitle: "", others: nil)
+                    let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
                     LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
                     self._order = order
                     print("Recieved order: \(order.orderID)")
