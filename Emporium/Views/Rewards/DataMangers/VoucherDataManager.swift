@@ -169,7 +169,8 @@ class VoucherDataManager {
         let description = data["description"] as? String ?? ""
         let cost = data["cost"] as? Int ?? 0
         let formula = data["formula"] as? String ?? ""
-        return Voucher(id: id, name: name, description: description, cost: cost, formula: formula)
+        let used = data["used"] as? Bool ?? false
+        return Voucher(id: id, name: name, description: description, cost: cost, formula: formula, used: used)
     }
     
 }
