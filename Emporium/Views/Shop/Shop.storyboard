@@ -594,7 +594,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kGz-D7-8gN"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IPM-vN-oyO">
+                    <navigationItem key="navigationItem" title="History" id="IPM-vN-oyO">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="mfX-rA-chw">
                             <connections>
                                 <action selector="filterBtnPressed:" destination="vvm-9f-VrL" id="9n5-k4-NQ3"/>
@@ -765,7 +765,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d1v-2j-1dQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="e6J-Zx-feI">
+                    <navigationItem key="navigationItem" title="History Detail" id="e6J-Zx-feI">
                         <barButtonItem key="rightBarButtonItem" title="Receipt" id="iaL-Ey-ebj">
                             <connections>
                                 <action selector="showBtnPressed:" destination="yek-o6-igP" id="F2F-cJ-5RQ"/>
@@ -824,6 +824,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5u-Jj-tJn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="819" y="-655"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3rr-KN-dhf">
+            <objects>
+                <navigationController id="cRM-Bg-vHu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cde-uX-mRU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VTp-fN-o3k" kind="relationship" relationship="rootViewController" id="ZYx-Ka-pFF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EBR-lX-IwT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-861" y="893"/>
+        </scene>
+        <!--Bank Detail-->
+        <scene sceneID="5ed-PI-OBo">
+            <objects>
+                <viewController storyboardIdentifier="bankVC" title="Bank Detail" id="VTp-fN-o3k" customClass="BankDetailViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JTm-YF-ZAg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-uf-JM3">
+                                <rect key="frame" x="55" y="206" width="305" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOO-6v-kR1">
+                                <rect key="frame" x="184" y="308" width="50" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Qh-RI-tmV"/>
+                                    <constraint firstAttribute="width" constant="50" id="GRG-J9-sWb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" name="Primary"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveBtnPressed:" destination="VTp-fN-o3k" eventType="touchUpInside" id="6Ym-Q0-tzb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kOO-6v-kR1" firstAttribute="top" secondItem="ad6-uf-JM3" secondAttribute="bottom" constant="68" id="Bt6-3t-f7l"/>
+                            <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="kOO-6v-kR1" secondAttribute="trailing" constant="180" id="DVZ-j6-ZiL"/>
+                            <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="ad6-uf-JM3" secondAttribute="trailing" constant="54" id="QfC-Hd-4H2"/>
+                            <constraint firstItem="ad6-uf-JM3" firstAttribute="top" secondItem="231-32-eVB" secondAttribute="top" constant="118" id="bjd-mx-sBH"/>
+                            <constraint firstItem="kOO-6v-kR1" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="184" id="mgd-lN-OaP"/>
+                            <constraint firstItem="ad6-uf-JM3" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="55" id="z9G-Zo-fea"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="231-32-eVB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bank Details" id="aua-Vb-e2y"/>
+                    <connections>
+                        <outlet property="bankInput" destination="ad6-uf-JM3" id="era-q3-eo7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PrQ-Z3-W2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3" y="893"/>
         </scene>
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">
@@ -1326,7 +1390,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.49803921568627452" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Text Color">
             <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
