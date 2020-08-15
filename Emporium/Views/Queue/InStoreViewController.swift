@@ -17,8 +17,7 @@ class InStoreViewController: UIViewController {
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
-    var centralManager: CBCentralManager?
-    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
+    var order: Order?
     
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
@@ -37,6 +36,7 @@ class InStoreViewController: UIViewController {
             
             if success {
                 self.navigationController?.popToRootViewController(animated: true)
+                Alert.showAlert(title: "Have a nice day", message: "Thank you for shopping with us.", viewController: (self.navigationController?.topViewController)!, onComplete: nil)
             }
             else {
                 // Alert
@@ -69,11 +69,13 @@ class InStoreViewController: UIViewController {
         exitStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         exitStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
-        requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
-        requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
-        
-        // BLE
-        centralManager = CBCentralManager()
+        if let _ = order {
+            requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
+            requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
+        }
+        else {
+            requestorListBtn.isHidden = true
+        }
         
     }
     
@@ -88,48 +90,9 @@ class InStoreViewController: UIViewController {
             let requestorListVC = segue.destination as! RequestorsListViewController
             requestorListVC.store = store!
             requestorListVC.queueId = queueId!
+            requestorListVC.order = order!
         }
         
     }
 
-}
-
-extension InStoreViewController: CBCentralManagerDelegate {
-    
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
-        if central.state == .poweredOn {
-            startScanning()
-            print("Scanning...")
-        }
-        else if central.state == .poweredOff {
-            centralManager!.stopScan()
-        }
-        else if central.state == .unsupported {
-            self.showAlert(title: "Error", message: "This device is not supported for Scanning")
-        }
-        
-    }
-    
-    func startScanning() {
-        let cbUUID = CBUUID(string: UUID)
-        centralManager!.scanForPeripherals(withServices: [cbUUID], options: nil)
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
-        // Enter Store
-        if advertisementData["storeId"] as! String == store!.id {
-            
-            // Show Local Notification
-            let content = LocalNotificationHelper.createNotificationContent(title: "Goodbye", body: "Thank you for shopping with us", subtitle: nil, others: nil)
-            LocalNotificationHelper.addNotification(identifier: "StoreEntry.notification", content: content)
-            
-            // Update Firestore
-            exitBtnPressed(self)
-            
-        }
-        
-    }
-    
 }

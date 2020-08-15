@@ -296,4 +296,39 @@ class ShopDataManager
         }
     }
     
+    static func getOrders(order: Order, onComplete: @escaping ([Cart2]) -> Void) {
+        
+        var itemList: [Cart2] = []
+        db.collection("emporium").document("globals").collection("products").getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                print("Error retrieving documents (getProducts): \(error.localizedDescription)")
+            }
+            else {
+                let productIds = order.cartItems.map {$0.productID}
+                for document in querySnapshot!.documents {
+                    if productIds.contains(document.documentID) {
+                        let data = document.data()
+                        let product = Product(
+                            document.documentID,
+                            data["name"] as! String,
+                            data["price"] as! Double,
+                            data["image"] as! String,
+                            data["category"] as! String
+                        )
+                        let cart = Cart2(
+                            product: product,
+                            quantity: Int(order.cartItems.first(where: {$0.productID == product.id})!.quantity)
+                        )
+                        
+                        itemList.append(cart)
+                    }
+                }
+                onComplete(itemList)
+            }
+            
+        }
+        
+    }
+    
 }

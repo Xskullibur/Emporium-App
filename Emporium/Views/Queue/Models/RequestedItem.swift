@@ -24,6 +24,16 @@ class RequestedItem {
         status = _status
     }
     
+    static func getItems(carts: [Cart2]) -> [RequestedItem] {
+        
+        var requestedItems: [RequestedItem] = []
+        for cart in carts {
+            requestedItems.append(RequestedItem(cart: cart))
+        }
+        return requestedItems
+        
+    }
+    
     static func getDebug() -> [RequestedItem] {
         
         return [
