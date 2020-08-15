@@ -153,7 +153,8 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
                     self.showAlert(title: "Success", message: "") {
                         
                         // Navigate
-                        let completeVC = CompletedViewController()
+                        let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
+                        
                         let rootVC = self.navigationController?.viewControllers.first
                         self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
                         

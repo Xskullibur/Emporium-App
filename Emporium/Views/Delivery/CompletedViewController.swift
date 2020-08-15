@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Lottie
 
 class CompletedViewController: UIViewController {
 
+    @IBOutlet weak var animationView: AnimationView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        animationView.play()
+        
     }
     
 

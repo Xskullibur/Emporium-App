@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSg-bj-D98">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -355,7 +355,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJH-ka-gk8">
-                                <rect key="frame" x="35" y="641" width="345" height="56"/>
+                                <rect key="frame" x="35" y="636" width="345" height="56"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="8tB-wb-Cte"/>
@@ -374,17 +374,17 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tjc-Ky-5zw">
-                                <rect key="frame" x="20" y="456" width="374" height="159"/>
+                                <rect key="frame" x="20" y="451" width="374" height="159"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="159" id="ddJ-qx-Mbz"/>
                                 </constraints>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tI5-a9-Fcm" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="35" y="63" width="345" height="261"/>
+                                <rect key="frame" x="35" y="63" width="345" height="256"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click to Scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dr-Md-Bw5">
-                                        <rect key="frame" x="97.5" y="219.5" width="150" height="27"/>
+                                        <rect key="frame" x="97.5" y="214.5" width="150" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="0Ru-P5-U0b"/>
                                         </constraints>
@@ -395,13 +395,14 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="tI5-a9-Fcm" secondAttribute="height" multiplier="115:87" id="BEl-9I-ofb"/>
                                     <constraint firstItem="3dr-Md-Bw5" firstAttribute="centerX" secondItem="tI5-a9-Fcm" secondAttribute="centerX" id="QQ3-p5-FmJ"/>
+                                    <constraint firstAttribute="height" constant="256" id="VLB-cB-32r"/>
                                     <constraint firstAttribute="bottom" secondItem="3dr-Md-Bw5" secondAttribute="bottom" constant="14.5" id="qbM-gR-bMT"/>
+                                    <constraint firstAttribute="width" constant="345" id="s6G-YW-sv9"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ze-xr-TKz">
-                                <rect key="frame" x="19" y="347.5" width="185" height="34"/>
+                                <rect key="frame" x="19" y="342.5" width="185" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="185" id="gCu-Jg-kfe"/>
                                 </constraints>
@@ -409,12 +410,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yg-Jn-mFM">
-                                <rect key="frame" x="209" y="347.5" width="185" height="34"/>
+                                <rect key="frame" x="209" y="342.5" width="185" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M4H-KA-EBx">
-                                <rect key="frame" x="20" y="399" width="270" height="34"/>
+                                <rect key="frame" x="20" y="394" width="270" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="OGc-UG-vBy"/>
                                 </constraints>
@@ -422,7 +423,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="krT-qp-DQ0">
-                                <rect key="frame" x="298" y="399" width="96" height="34"/>
+                                <rect key="frame" x="298" y="394" width="96" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -889,9 +890,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="AX5-Ns-Bb4" secondAttribute="bottom" constant="15" id="0gJ-V1-Nwr"/>
-                                    <constraint firstAttribute="width" secondItem="yXV-FC-cK2" secondAttribute="height" multiplier="345:256" id="YNe-wr-Rjr"/>
+                                    <constraint firstAttribute="height" constant="256" id="IxT-FX-NlI"/>
                                     <constraint firstAttribute="trailing" secondItem="AX5-Ns-Bb4" secondAttribute="trailing" constant="65" id="eUQ-fU-GWo"/>
                                     <constraint firstItem="AX5-Ns-Bb4" firstAttribute="leading" secondItem="yXV-FC-cK2" secondAttribute="leading" constant="65" id="l19-k7-8qA"/>
+                                    <constraint firstAttribute="width" constant="345" id="ysZ-iZ-4Re"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-N3-8aU">

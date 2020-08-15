@@ -67,7 +67,10 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         
         /// Setup edge detection
         self.edgeDetection = EdgeDetection()
-        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+        let ableToSetupEdgeDetection = self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+        if !ableToSetupEdgeDetection {
+            self.showAlert(title: "Error", message: "No Camera detected!")
+        }
         
         ///Setup data manager
         self.setupDataManager()

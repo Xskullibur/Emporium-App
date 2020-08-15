@@ -118,6 +118,10 @@
 		FE16498D24C0894B00328F50 /* RewardSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */; };
 		FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32168F24A98875003D1196 /* DisplayCardViewController.swift */; };
 		FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32169124A98B19003D1196 /* AddCardViewController.swift */; };
+		FE432CE024E62C1300880D76 /* DeliveryOptionHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE432CDF24E62C1300880D76 /* DeliveryOptionHostingController.swift */; };
+		FE432CE324E651F100880D76 /* FirebaseLoadAndSaveDeliveryOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE432CE224E651F100880D76 /* FirebaseLoadAndSaveDeliveryOption.swift */; };
+		FE432CE524E6521400880D76 /* DeliveryOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE432CE424E6521400880D76 /* DeliveryOption.swift */; };
+		FE432CE724E6521E00880D76 /* LoadAndSaveDeliveryOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE432CE624E6521E00880D76 /* LoadAndSaveDeliveryOption.swift */; };
 		FE56492524C54C890001CA4F /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56492424C54C890001CA4F /* Direction.swift */; };
 		FE56B17224B58A71000274A1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B17124B58A71000274A1 /* Alert.swift */; };
 		FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE56B18624B81A9D000274A1 /* EdgeDetection.swift */; };
@@ -278,6 +282,10 @@
 		FE16498C24C0894B00328F50 /* RewardSegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardSegmentedViewController.swift; sourceTree = "<group>"; };
 		FE32168F24A98875003D1196 /* DisplayCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCardViewController.swift; sourceTree = "<group>"; };
 		FE32169124A98B19003D1196 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		FE432CDF24E62C1300880D76 /* DeliveryOptionHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryOptionHostingController.swift; sourceTree = "<group>"; };
+		FE432CE224E651F100880D76 /* FirebaseLoadAndSaveDeliveryOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLoadAndSaveDeliveryOption.swift; sourceTree = "<group>"; };
+		FE432CE424E6521400880D76 /* DeliveryOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryOption.swift; sourceTree = "<group>"; };
+		FE432CE624E6521E00880D76 /* LoadAndSaveDeliveryOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAndSaveDeliveryOption.swift; sourceTree = "<group>"; };
 		FE56492424C54C890001CA4F /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		FE56B17124B58A71000274A1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FE56B18624B81A9D000274A1 /* EdgeDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeDetection.swift; sourceTree = "<group>"; };
@@ -557,11 +565,11 @@
 		ACED1DE0249B2FC800094284 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ACED1DE9249B72BF00094284 /* Rewards */,
 				34A7BEB824C5415D00FEF0BA /* StoreCreator */,
 				EDD6581A24BFFEC000201B30 /* Delivery */,
 				ACAEE67224A22AFF00C286BF /* CrowdTracking */,
 				ED57F794249C98F10013A133 /* Queue */,
-				ACED1DE9249B72BF00094284 /* Rewards */,
 				ACED1DE1249B2FDE00094284 /* Main */,
 				AC21B9C8249767630058EE50 /* Shop */,
 				EDB4683224948BDF000DE5F0 /* Nearby */,
@@ -573,7 +581,9 @@
 		ACED1DE1249B2FDE00094284 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FE432CE124E651D500880D76 /* DeliveryOption */,
 				ACED1DE5249B41AA00094284 /* DataManagers */,
+				FE432CDF24E62C1300880D76 /* DeliveryOptionHostingController.swift */,
 				FE9023582473B9C700CE6B3A /* MainViewController.swift */,
 				FE90235A2473B9C700CE6B3A /* Main.storyboard */,
 				ACD286372498F2D100497BD9 /* MyAccountViewController.swift */,
@@ -742,6 +752,16 @@
 				34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */,
 			);
 			path = Delivery;
+			sourceTree = "<group>";
+		};
+		FE432CE124E651D500880D76 /* DeliveryOption */ = {
+			isa = PBXGroup;
+			children = (
+				FE432CE224E651F100880D76 /* FirebaseLoadAndSaveDeliveryOption.swift */,
+				FE432CE424E6521400880D76 /* DeliveryOption.swift */,
+				FE432CE624E6521E00880D76 /* LoadAndSaveDeliveryOption.swift */,
+			);
+			path = DeliveryOption;
 			sourceTree = "<group>";
 		};
 		FE6303D024AD953A00BF7976 /* EmptyTableView */ = {
@@ -1144,6 +1164,7 @@
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
 				AC0A18F8249336F3009FFD93 /* EmporiumError.swift in Sources */,
 				AC21B9D7249767630058EE50 /* ProductViewCell.swift in Sources */,
+				FE432CE524E6521400880D76 /* DeliveryOption.swift in Sources */,
 				FEE5538224D4143200472C57 /* AddressTableViewCell.swift in Sources */,
 				FEE5538424D41A6A00472C57 /* AddOrEditAddressViewController.swift in Sources */,
 				FE32169224A98B19003D1196 /* AddCardViewController.swift in Sources */,
@@ -1177,6 +1198,7 @@
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
 				34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */,
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
+				FE432CE024E62C1300880D76 /* DeliveryOptionHostingController.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
@@ -1213,6 +1235,7 @@
 				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,
+				FE432CE724E6521E00880D76 /* LoadAndSaveDeliveryOption.swift in Sources */,
 				7F0B387824A26CBA0003B9D9 /* HistoryViewController.swift in Sources */,
 				FEB741BF24CE762800512C73 /* AddressTableViewController.swift in Sources */,
 				AC18C2EA249CFF270033F4C4 /* VoucherStatus.swift in Sources */,
@@ -1221,6 +1244,7 @@
 				ACDA8EC8249DE97F009887A7 /* MyVoucherBottomSheetViewController.swift in Sources */,
 				ACD286362498950700497BD9 /* EmporiumCardButton.swift in Sources */,
 				ACB27A9824A5D34700DE966B /* ChangeVisitorCountStatus.swift in Sources */,
+				FE432CE324E651F100880D76 /* FirebaseLoadAndSaveDeliveryOption.swift in Sources */,
 				34A7BEBE24C5566800FEF0BA /* AddStoreViewController.swift in Sources */,
 				ACDA8ED2249F3000009887A7 /* EarnedReward.swift in Sources */,
 				ACDA8ED4249F560D009887A7 /* EarnedRewardStatus.swift in Sources */,
