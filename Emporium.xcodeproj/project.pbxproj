@@ -39,6 +39,7 @@
 		7F37654C24E576B600CC27F3 /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */; };
 		7F52B05324E67CA300DEEAF8 /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */; };
 		7F52B05524E7DF2000DEEAF8 /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */; };
+		7F52B05724E8006100DEEAF8 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05624E8006100DEEAF8 /* Payment.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
@@ -198,6 +199,7 @@
 		7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherTableViewController.swift; sourceTree = "<group>"; };
 		7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewController.swift; sourceTree = "<group>"; };
+		7F52B05624E8006100DEEAF8 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				EDD6581F24C0042D00201B30 /* QRManager.swift */,
 				FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */,
 				343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */,
+				7F52B05624E8006100DEEAF8 /* Payment.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1218,6 +1221,7 @@
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				7F0B387C24A3BB0B0003B9D9 /* HistoryDetailViewController.swift in Sources */,
 				34A7BEBC24C5430A00FEF0BA /* StoreListViewController.swift in Sources */,
+				7F52B05724E8006100DEEAF8 /* Payment.swift in Sources */,
 				7F52B05524E7DF2000DEEAF8 /* BankDetailViewController.swift in Sources */,
 				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,

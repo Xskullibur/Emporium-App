@@ -855,10 +855,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOO-6v-kR1">
-                                <rect key="frame" x="184" y="308" width="50" height="40"/>
+                                <rect key="frame" x="136" y="299" width="142" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="0Qh-RI-tmV"/>
-                                    <constraint firstAttribute="width" constant="50" id="GRG-J9-sWb"/>
+                                    <constraint firstAttribute="height" constant="40" id="8zL-QX-K7v"/>
+                                    <constraint firstAttribute="width" constant="142" id="k7R-Zn-HIE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Save">
@@ -868,26 +868,48 @@
                                     <action selector="saveBtnPressed:" destination="VTp-fN-o3k" eventType="touchUpInside" id="6Ym-Q0-tzb"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaA-ig-CGW">
+                                <rect key="frame" x="55" y="173" width="121" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="1Fp-9y-KEG"/>
+                                    <constraint firstAttribute="height" constant="21" id="NdS-xS-gZs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="Primary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="kOO-6v-kR1" firstAttribute="top" secondItem="ad6-uf-JM3" secondAttribute="bottom" constant="68" id="Bt6-3t-f7l"/>
-                            <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="kOO-6v-kR1" secondAttribute="trailing" constant="180" id="DVZ-j6-ZiL"/>
+                            <constraint firstItem="ad6-uf-JM3" firstAttribute="top" secondItem="FaA-ig-CGW" secondAttribute="bottom" constant="12" id="A8a-6t-nxs"/>
+                            <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="FaA-ig-CGW" secondAttribute="trailing" constant="238" id="Ayb-du-dJb"/>
+                            <constraint firstItem="231-32-eVB" firstAttribute="bottom" secondItem="kOO-6v-kR1" secondAttribute="bottom" constant="523" id="CGp-2b-vN4"/>
+                            <constraint firstItem="kOO-6v-kR1" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="136" id="LTl-mu-TVc"/>
                             <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="ad6-uf-JM3" secondAttribute="trailing" constant="54" id="QfC-Hd-4H2"/>
+                            <constraint firstItem="FaA-ig-CGW" firstAttribute="top" secondItem="231-32-eVB" secondAttribute="top" constant="85" id="TDl-fe-zzu"/>
+                            <constraint firstItem="231-32-eVB" firstAttribute="trailing" secondItem="kOO-6v-kR1" secondAttribute="trailing" constant="136" id="XtP-Rf-0nE"/>
                             <constraint firstItem="ad6-uf-JM3" firstAttribute="top" secondItem="231-32-eVB" secondAttribute="top" constant="118" id="bjd-mx-sBH"/>
-                            <constraint firstItem="kOO-6v-kR1" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="184" id="mgd-lN-OaP"/>
+                            <constraint firstItem="kOO-6v-kR1" firstAttribute="top" secondItem="ad6-uf-JM3" secondAttribute="bottom" constant="59" id="k8q-7J-xy9"/>
+                            <constraint firstItem="FaA-ig-CGW" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="55" id="oRL-pe-KkK"/>
                             <constraint firstItem="ad6-uf-JM3" firstAttribute="leading" secondItem="231-32-eVB" secondAttribute="leading" constant="55" id="z9G-Zo-fea"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="231-32-eVB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bank Details" id="aua-Vb-e2y"/>
+                    <navigationItem key="navigationItem" title="Bank Details" id="aua-Vb-e2y">
+                        <barButtonItem key="rightBarButtonItem" title="test" id="umt-yL-tE9">
+                            <connections>
+                                <action selector="testBtnPressed:" destination="VTp-fN-o3k" id="Rev-q2-YXz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bankInput" destination="ad6-uf-JM3" id="era-q3-eo7"/>
+                        <outlet property="saveBtn" destination="kOO-6v-kR1" id="Fxr-p2-CWN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PrQ-Z3-W2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3" y="893"/>
+            <point key="canvasLocation" x="2.8985507246376816" y="892.63392857142856"/>
         </scene>
         <!--Payment-->
         <scene sceneID="lLB-T3-3ae">
