@@ -113,6 +113,10 @@ class GatewayViewController: UIViewController {
             paymentInfo.order.deliveryAddress.address = address.address
         }
         
+        if let voucher = voucher {
+            paymentInfo.voucherID = voucher.id
+        }
+        
         paymentInfo.order.cartItems = []
         
         let number = numberInput.text

@@ -143,6 +143,10 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         paymentInfo.bank = ""
         paymentInfo.name = ""
         
+        if let voucher = voucher {
+            paymentInfo.voucherID = voucher.id
+        }
+        
         for cart in cartData {
             var cartItemAdd = CartItem()
             cartItemAdd.productID = cart.productID
