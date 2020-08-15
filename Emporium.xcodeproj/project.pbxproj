@@ -398,8 +398,8 @@
 			isa = PBXGroup;
 			children = (
 				AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */,
-				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
 				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
+				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
 				7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */,
 				7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */,
 				FE32168F24A98875003D1196 /* DisplayCardViewController.swift */,

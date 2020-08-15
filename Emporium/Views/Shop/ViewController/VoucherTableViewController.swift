@@ -19,6 +19,8 @@ class VoucherTableViewController: UITableViewController {
     private var myVouchers: [Voucher] = []
     private var voucherDataManager: VoucherDataManager? = nil
     
+    var delegate: VoucherDelegate?
+    
     private var user: User!
     
     // MARK: - Lifecycle
@@ -97,6 +99,8 @@ class VoucherTableViewController: UITableViewController {
         let screenRect = UIScreen.main.bounds
         
         bottomSheet.preferredContentSize = CGSize(width: screenRect.size.width, height: screenRect.size.height / 3)
+        
+        self.delegate?.setVoucher(voucher: myVouchers[indexPath.row])
         
         viewController.setVoucher(voucher: myVouchers[indexPath.row])
         self.present(bottomSheet, animated: true, completion: nil)

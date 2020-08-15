@@ -28,6 +28,7 @@ class GatewayViewController: UIViewController {
     var banks: [String] = []
     var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
+    var voucher: Voucher? = nil
     
     var address: Address? = nil
     

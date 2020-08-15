@@ -16,6 +16,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     var cardList: [Card] = []
     var cartData: [Cart] = []
     var address: Address? = nil
+    var voucher: Voucher? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
