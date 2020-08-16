@@ -15,6 +15,7 @@ class SelectAddressViewController: UITableViewController {
     
     var cartData: [Cart] = []
     var address: Address? = nil
+    var voucher: Voucher? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,10 +105,12 @@ class SelectAddressViewController: UITableViewController {
                let destVC = segue.destination as! GatewayViewController
                destVC.cartData = self.cartData
                destVC.address = self.address
+               destVC.voucher = self.voucher
            }else if segue.identifier == "toCard" {
                let destVC = segue.destination as! DisplayCardViewController
                destVC.cartData = self.cartData
                destVC.address = self.address
+               destVC.voucher = self.voucher
            }
        }
 

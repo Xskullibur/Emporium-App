@@ -647,6 +647,16 @@
             </objects>
             <point key="canvasLocation" x="-359" y="63"/>
         </scene>
+        <!--bankVC-->
+        <scene sceneID="Wzw-vJ-dcH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shop" referencedIdentifier="bankVC" id="o9t-OR-AFa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="il0-dt-eTb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wPY-an-YwK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="543"/>
+        </scene>
         <!--Address Table View Controller-->
         <scene sceneID="OSy-XJ-Yav">
             <objects>
@@ -852,7 +862,7 @@
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.49803921568627452" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Text Color">
             <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -51,6 +51,8 @@ struct PaymentInfo {
 
   var name: String = String()
 
+  var voucherID: String = String()
+
   var order: Order {
     get {return _order ?? Order()}
     set {_order = newValue}
@@ -158,7 +160,8 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     4: .same(proto: "cvc"),
     5: .same(proto: "bank"),
     6: .same(proto: "name"),
-    7: .same(proto: "order"),
+    7: .standard(proto: "voucher_id"),
+    8: .same(proto: "order"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -170,7 +173,8 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
       case 4: try decoder.decodeSingularStringField(value: &self.cvc)
       case 5: try decoder.decodeSingularStringField(value: &self.bank)
       case 6: try decoder.decodeSingularStringField(value: &self.name)
-      case 7: try decoder.decodeSingularMessageField(value: &self._order)
+      case 7: try decoder.decodeSingularStringField(value: &self.voucherID)
+      case 8: try decoder.decodeSingularMessageField(value: &self._order)
       default: break
       }
     }
@@ -195,8 +199,11 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 6)
     }
+    if !self.voucherID.isEmpty {
+      try visitor.visitSingularStringField(value: self.voucherID, fieldNumber: 7)
+    }
     if let v = self._order {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -208,6 +215,7 @@ extension PaymentInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     if lhs.cvc != rhs.cvc {return false}
     if lhs.bank != rhs.bank {return false}
     if lhs.name != rhs.name {return false}
+    if lhs.voucherID != rhs.voucherID {return false}
     if lhs._order != rhs._order {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

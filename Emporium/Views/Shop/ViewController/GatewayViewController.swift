@@ -28,6 +28,7 @@ class GatewayViewController: UIViewController {
     var banks: [String] = []
     var labelData: [String] = ["Exp Month", "Exp Year", "Bank"]
     var cartData: [Cart] = []
+    var voucher: Voucher? = nil
     
     var address: Address? = nil
     
@@ -110,6 +111,10 @@ class GatewayViewController: UIViewController {
             paymentInfo.order.deliveryAddress.latitude = Float(address.location.latitude)
             paymentInfo.order.deliveryAddress.postal = address.postal
             paymentInfo.order.deliveryAddress.address = address.address
+        }
+        
+        if let voucher = voucher {
+            paymentInfo.voucherID = voucher.id
         }
         
         paymentInfo.order.cartItems = []
