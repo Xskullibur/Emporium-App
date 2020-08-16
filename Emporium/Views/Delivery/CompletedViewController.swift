@@ -16,8 +16,9 @@ class CompletedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
         animationView.play()
-        
     }
     
 

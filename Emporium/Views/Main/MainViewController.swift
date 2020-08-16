@@ -26,6 +26,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Variables
     private var pointsDataManager: PointDataManager!
+    private var deliveryDataManager: DeliveryDataManager!
     
     private var loginManager: LoginManager!
     private var login = false
@@ -45,6 +46,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
         //Data Managers
         self.pointsDataManager = PointDataManager()
         self.loginManager = LoginManager(viewController: self)
+        self.deliveryDataManager = DeliveryDataManager()
         
         //Setup card shadow
         buttonsCard.setShadowElevation(ShadowElevation(6), for: .normal)
@@ -156,53 +158,92 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 // Get QueueInfo
                                 queueDataManager.getQueueInfo(storeId: store.id) { (currentlyServing, queueLength) in
                                     
-                                    // Navigate to QueueVC
-                                    let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-                                    let queueVC = queueStoryboard.instantiateViewController(identifier: "queueVC") as QueueViewController
-                                    
-                                    queueVC.justJoinedQueue = false
-                                    queueVC.store = store
-                                    queueVC.queueId = queueItem.id
-                                    queueVC.currentlyServing = currentlyServing
-                                    queueVC.queueLength = queueLength
-                                    
-                                    let rootVC = self.navigationController?.viewControllers.first
-                                    self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
+                                    // Check for orders
+                                    self.deliveryDataManager.getDeliveryOrder { (order) in
+                                        
+                                        // Navigate to QueueVC
+                                        DispatchQueue.main.async {
+                                            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                            let queueVC = queueStoryboard
+                                                .instantiateViewController(identifier: "queueVC") as QueueViewController
+                                            
+                                            queueVC.justJoinedQueue = false
+                                            queueVC.store = store
+                                            queueVC.queueId = queueItem.id
+                                            queueVC.currentlyServing = currentlyServing
+                                            queueVC.queueLength = queueLength
+                                            queueVC._order = order
+                                            
+                                            let rootVC = self.navigationController?.viewControllers.first
+                                            self.navigationController?.setViewControllers([rootVC!, queueVC], animated: true)
+                                        }
+
+                                    }
                                     
                                 }
                                 
                             case .OnTheWay:
-                                // Navigate to Entry
-                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                 
-                                let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-                                entryVC.store = store
-                                entryVC.queueId = queueItem.id
-                                
-                                let rootVC = self.navigationController?.viewControllers.first
-                                self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                                // Check for Order
+                                self.deliveryDataManager.getDeliveryOrder { (order) in
+                                    // Navigate to Entry
+                                    DispatchQueue.main.async {
+                                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                        
+                                        let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                                        entryVC.store = store
+                                        entryVC.queueId = queueItem.id
+                                        entryVC.order = order
+                                        
+                                        let rootVC = self.navigationController?.viewControllers.first
+                                        self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                                    }
+                                }
                                 
                             case .InStore:
-                                // Navigate to InStore
-                                let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                 
-                                let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
-                                    inStoreVC.queueId = queueItem.id
-                                    inStoreVC.store = store
-                                
-                                let rootVC = self.navigationController?.viewControllers.first
-                                self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                                // Check for Order
+                                self.deliveryDataManager.getDeliveryOrder { (order) in
+                                    // Navigate to InStore
+                                    DispatchQueue.main.async {
+                                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                                        let inStoreVC = queueStoryboard
+                                            .instantiateViewController(identifier: "inStoreVC") as InStoreViewController
+                                        inStoreVC.queueId = queueItem.id
+                                        inStoreVC.store = store
+                                        inStoreVC.order = order
+                                        
+                                        let rootVC = self.navigationController?.viewControllers.first
+                                        self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                                    }
+                                }
                                 
                             case .Delivery:
-                                // Navigate to Delivery
-                                let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
                                 
-                                let confirmVC = queueStoryboard.instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
-                                confirmVC.queueId = queueItem.id
-                                confirmVC.store = store
-                                
-                                let rootVC = self.navigationController?.viewControllers.first
-                                self.navigationController?.setViewControllers([rootVC!, confirmVC], animated: true)
+                                // Check for order
+                                self.deliveryDataManager.getDeliveryOrder { (order) in
+                                    
+                                    if let order = order {
+                                        // Navigate to Delivery
+                                        DispatchQueue.main.async {
+                                            let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                                            let deliveryVC = queueStoryboard
+                                                .instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
+                                            deliveryVC.order = order
+                                            
+                                            let rootVC = self.navigationController?.viewControllers.first
+                                            self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
+                                        }
+                                    }
+                                    else {
+                                        // Error Alert
+                                        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                                        let data = Plist.readPlist(url!)!
+                                        let infoDescription = data["Error Alert"] as! String
+                                        self.showAlert(title: "Oops", message: infoDescription)
+                                    }
+                                    
+                                }
                                 
                             case .Completed:
                                 // Navigate to NearbyMart
@@ -214,11 +255,11 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                     
                 }) { (error) in
                     // Error Alert
-                    let errorAlert = UIAlertController(title: "Oops", message: "Something went wrong. Please try again later.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    errorAlert.addAction(okAction)
-                    
-                    self.present(errorAlert, animated: true, completion: nil)
+                    // Error Alert
+                    let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                    let data = Plist.readPlist(url!)!
+                    let infoDescription = data["Error Alert"] as! String
+                    self.showAlert(title: "Oops", message: infoDescription)
                 }
                 
             }

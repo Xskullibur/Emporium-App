@@ -22,6 +22,7 @@ class QueueViewController: UIViewController {
     // MARK: - Variable
     var queueDataManager = QueueDataManager()
     var storeDataManager = StoreDataManager()
+    var deliveryDataManager = DeliveryDataManager()
     
     var justJoinedQueue = false
     var store: GroceryStore?
@@ -94,12 +95,7 @@ class QueueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        #if DEBUG
-        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
-        if let functionsHost = functionsHost {
-            functions.useFunctionsEmulator(origin: functionsHost)
-        }
-        #endif
+        functions.useFunctionsEmulator(origin: Global.FIREBASE_HOST)
         
         // User Interface
         /// Title
@@ -227,6 +223,7 @@ class QueueViewController: UIViewController {
         }
     }
     
+    // MARK: - Volunteer Alert
     func showVolunteerAlert() {
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
@@ -241,22 +238,36 @@ class QueueViewController: UIViewController {
             DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
                 order in
                 if let order = order {
-                    let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
-                    LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    
+                    // Update Delivery to In Queue
+                    DeliveryDataManager.shared.updateDeliveryStatus(status: .in_queue)
+                    
+                    // Show Local Notification
+                    let content = LocalNotificationHelper.createNotificationContent(
+                        title: "Volunteer Alert",
+                        body: "Someone has requested you to help get groceries!",
+                        subtitle: "", others: nil
+                    )
+                    LocalNotificationHelper.addNotification(
+                        identifier: "Order.notification",
+                        content: content
+                    )
+                    
+                    // Update Values
                     self._order = order
                     DispatchQueue.main.async {
                         self.requestItemBtn.isHidden = false
                     }
                     
-                    //TEST
-                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
-                        order1 in
-                        print("Recieved delivery order: \(order1!.orderID)")
-                        
-                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
-                        
-                    })
-                    //TEST
+//                    //TEST
+//                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+//                        order1 in
+//                        print("Recieved delivery order: \(order1!.orderID)")
+//                        
+//                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+//                        
+//                    })
+//                    //TEST
                     
                     print("Recieved order: \(order.orderID)")
                 }
