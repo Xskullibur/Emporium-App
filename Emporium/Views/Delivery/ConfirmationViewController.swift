@@ -131,8 +131,12 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
                 
                 if success {
+                    
+                    // Update Delivery to Completed
+                    DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+                    
                     // Show alert and navigate
-                    self.showAlert(title: "Success", message: "") {
+                    self.showAlert(title: "Success", message: "Successfully completed delivery.") {
                         
                         // Navigate
                         let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController

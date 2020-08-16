@@ -359,6 +359,10 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                 self.removeSpinner()
                 
                 if success {
+                    
+                    // Update Delivery to Delivery
+                    DeliveryDataManager.shared.updateDeliveryStatus(status: .delivery)
+                    
                     // Navigate
                     let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
                     let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController

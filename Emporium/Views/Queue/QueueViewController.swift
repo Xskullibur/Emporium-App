@@ -22,6 +22,7 @@ class QueueViewController: UIViewController {
     // MARK: - Variable
     var queueDataManager = QueueDataManager()
     var storeDataManager = StoreDataManager()
+    var deliveryDataManager = DeliveryDataManager()
     
     var justJoinedQueue = false
     var store: GroceryStore?
@@ -227,6 +228,7 @@ class QueueViewController: UIViewController {
         }
     }
     
+    // MARK: - Volunteer Alert
     func showVolunteerAlert() {
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
@@ -241,8 +243,22 @@ class QueueViewController: UIViewController {
             DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
                 order in
                 if let order = order {
-                    let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
-                    LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    
+                    // Update Delivery to In Queue
+                    DeliveryDataManager.shared.updateDeliveryStatus(status: .in_queue)
+                    
+                    // Show Local Notification
+                    let content = LocalNotificationHelper.createNotificationContent(
+                        title: "Volunteer Alert",
+                        body: "Someone has requested you to help get groceries!",
+                        subtitle: "", others: nil
+                    )
+                    LocalNotificationHelper.addNotification(
+                        identifier: "Order.notification",
+                        content: content
+                    )
+                    
+                    // Update Values
                     self._order = order
                     DispatchQueue.main.async {
                         self.requestItemBtn.isHidden = false
