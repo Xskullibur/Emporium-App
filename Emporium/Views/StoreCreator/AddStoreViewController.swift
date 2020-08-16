@@ -32,8 +32,8 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var nameTxt: MDCTextField!
     @IBOutlet weak var addressTxt: MDCTextField!
-    @IBOutlet weak var latitudeTxt: MDCTextField!
-    @IBOutlet weak var longitudeTxt: MDCTextField!
+    @IBOutlet weak var postalTxt: MDCTextField!
+    @IBOutlet weak var maxCapacityTxt: MDCTextField!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -46,8 +46,13 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
         if let store = store {
             nameTxt.text = store.name
             addressTxt.text = store.address
-            longitudeTxt.text = String(store.location.longitude)
-            latitudeTxt.text = String(store.location.latitude)
+            
+            if let postal = store.postal {
+                postalTxt.text = postal
+            }
+            
+            postalTxt.isEnabled = false
+            
         }
         
     }
@@ -56,45 +61,92 @@ class AddStoreViewController: UIViewController, UITextFieldDelegate {
     @IBAction func addButtonPressed(_ sender: Any) {
         
         let uid = Auth.auth().currentUser!.uid
-        var storeId: String? = nil
         
-        // Guard missing values
+        // Guard Values
         guard let name = nameTxt.text else {
+            self.showAlert(title: "Missing", message: "Name Not Found")
             return
         }
         guard let address = addressTxt.text else {
+            self.showAlert(title: "Missing", message: "Address Not Found")
             return
         }
-        guard let latitude = latitudeTxt.text?.doubleValue else {
+        guard let capacityTxt = maxCapacityTxt.text else {
+            self.showAlert(title: "Missing", message: "Max Capacity Not Found")
             return
         }
-        guard let longitude = longitudeTxt.text?.doubleValue else {
+        guard let maxCapacity: Int = Int(capacityTxt) else {
+            self.showAlert(title: "Missing", message: "Invalid Capacity")
             return
-        }
-        if let store = store {
-            storeId = store.id
         }
         
-        // Add to FireStore
-        self.showSpinner(onView: self.view)
-        let storeDataManager = StoreDataManager()
-        storeDataManager.addStore(id: storeId, name: name, address: address, lat: latitude, long: longitude, merchantId: uid, onComplete:
-        {
-            self.removeSpinner()
+        if let store = store {
+        
+            // From Map
             
-            let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                let VCs = self.navigationController!.viewControllers
-                self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
-            }))
+            /// Add to FireStore
+            self.showSpinner(onView: self.view)
+            let storeDataManager = StoreDataManager()
+            storeDataManager.addStore(id: store.id, name: name, address: address, lat: store.location.latitude, long: store.location.longitude, merchantId: uid, maxCapacity: maxCapacity, onComplete:
+            {
+                self.removeSpinner()
+                
+                let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                    let VCs = self.navigationController!.viewControllers
+                    self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
+                }))
+                
+                self.present(alert, animated: true)
+                
+            }) { (errorMsg) in
+                
+                self.removeSpinner()
+                self.showAlert(title: "Error", message: errorMsg)
+                
+            }
             
-            self.present(alert, animated: true)
+        }
+        else {
+            // From Manual
+            guard let postal = postalTxt.text else {
+                self.showAlert(title: "Missing", message: "Postal Code Not Found")
+                return
+            }
             
-        }) { (errorMsg) in
-            
-            self.removeSpinner()
-            self.showAlert(title: "Error", message: errorMsg)
-            
+            // GeoCode Postal Code
+            GeocoderHelper.geocodePostal(postalCode: postal) { (coordinates) in
+                guard let coords = coordinates else {
+                    self.showAlert(title: "Error", message: "Invalid Postal Code")
+                    return
+                }
+                
+                let latitude = coords.latitude
+                let longitude = coords.longitude
+                
+                // Add to FireStore
+                self.showSpinner(onView: self.view)
+                let storeDataManager = StoreDataManager()
+                storeDataManager.addStore(id: nil, name: name, address: address, lat: latitude, long: longitude, merchantId: uid, maxCapacity: maxCapacity, onComplete:
+                {
+                    self.removeSpinner()
+                    
+                    let alert = UIAlertController(title: "Success", message: "Successfully added store!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                        let VCs = self.navigationController!.viewControllers
+                        self.navigationController?.popToViewController(VCs[VCs.count - 3], animated: true)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                    
+                }) { (errorMsg) in
+                    
+                    self.removeSpinner()
+                    self.showAlert(title: "Error", message: errorMsg)
+                    
+                }
+                
+            }
         }
         
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bgN-xe-d23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bgN-xe-d23">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MAu-SD-coa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="348"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="434"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EFL-qm-r9E">
                                         <rect key="frame" x="30" y="30" width="354" height="66"/>
@@ -181,40 +181,46 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C9O-OW-lx1">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cfG-ow-ZYZ">
                                         <rect key="frame" x="30" y="202" width="354" height="66"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xu-qp-w9V">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT3-ti-HCJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3my-AZ-4b7">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="320072" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3jo-Wf-xT7" userLabel="addressTxt" customClass="MDCTextField">
                                                 <rect key="frame" x="0.0" y="32" width="354" height="34"/>
-                                                <subviews>
-                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-LI-VlM" userLabel="latTxt" customClass="MDCTextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="continue"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="apZ-Gj-Igd" id="BhY-n5-8Ve"/>
-                                                        </connections>
-                                                    </textField>
-                                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cj0-3F-RaA" userLabel="longTxt" customClass="MDCTextField">
-                                                        <rect key="frame" x="182" y="0.0" width="172" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="apZ-Gj-Igd" id="xQk-DR-uK3"/>
-                                                        </connections>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" textContentType="postal-code"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="apZ-Gj-Igd" id="5pi-5Q-uHC"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5T3-Ie-AMZ">
+                                        <rect key="frame" x="30" y="288" width="354" height="66"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nog-1F-mow" userLabel="Max Capacity">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="40" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YxX-N5-cEG" userLabel="capacityTxt" customClass="MDCTextField">
+                                                <rect key="frame" x="0.0" y="32" width="354" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="apZ-Gj-Igd" id="BPH-8A-c2D"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yy-rs-9Gd" customClass="MDCButton">
-                                        <rect key="frame" x="30" y="288" width="354" height="30"/>
+                                        <rect key="frame" x="30" y="374" width="354" height="30"/>
                                         <color key="backgroundColor" name="Primary"/>
                                         <state key="normal" title="Add">
                                             <color key="titleColor" name="Background Text Color"/>
@@ -238,9 +244,9 @@
                     <navigationItem key="navigationItem" title="Add New Store" id="b2Q-MH-G0Y"/>
                     <connections>
                         <outlet property="addressTxt" destination="VH7-kK-mft" id="A7f-IZ-7aD"/>
-                        <outlet property="latitudeTxt" destination="fMJ-LI-VlM" id="F2W-AI-Ihc"/>
-                        <outlet property="longitudeTxt" destination="cj0-3F-RaA" id="HWw-Ky-wy4"/>
+                        <outlet property="maxCapacityTxt" destination="YxX-N5-cEG" id="Jyl-Il-tdH"/>
                         <outlet property="nameTxt" destination="Odz-Sd-Szf" id="keC-t9-oS4"/>
+                        <outlet property="postalTxt" destination="3jo-Wf-xT7" id="6yZ-U5-CbQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9f8-9R-CzY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -266,9 +272,6 @@
             <point key="canvasLocation" x="366.66666666666669" y="132.58928571428572"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="9UO-QK-XdZ"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="Background Text Color">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -277,4 +280,7 @@
             <color red="0.96100002527236938" green="0.49799999594688416" blue="0.090000003576278687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9UO-QK-XdZ"/>
+    </inferredMetricsTieBreakers>
 </document>

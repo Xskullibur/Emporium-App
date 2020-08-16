@@ -10,12 +10,14 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
 import Lottie
+import CoreBluetooth
 
 class InStoreViewController: UIViewController {
 
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
+    var order: Order?
     
     // MARK: - Outlets
     @IBOutlet weak var exitStoreBtn: MDCButton!
@@ -34,6 +36,7 @@ class InStoreViewController: UIViewController {
             
             if success {
                 self.navigationController?.popToRootViewController(animated: true)
+                Alert.showAlert(title: "Have a nice day", message: "Thank you for shopping with us.", viewController: (self.navigationController?.topViewController)!, onComplete: nil)
             }
             else {
                 // Alert
@@ -66,8 +69,13 @@ class InStoreViewController: UIViewController {
         exitStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         exitStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
-        requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
-        requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
+        if let _ = order {
+            requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
+            requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
+        }
+        else {
+            requestorListBtn.isHidden = true
+        }
         
     }
     
@@ -82,6 +90,7 @@ class InStoreViewController: UIViewController {
             let requestorListVC = segue.destination as! RequestorsListViewController
             requestorListVC.store = store!
             requestorListVC.queueId = queueId!
+            requestorListVC.order = order!
         }
         
     }

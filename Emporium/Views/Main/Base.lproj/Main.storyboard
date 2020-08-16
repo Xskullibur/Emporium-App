@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmG-jC-8e8">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -588,9 +588,9 @@
                         <viewLayoutGuide key="safeArea" id="Xw6-67-ry3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="uec-45-ZsD">
-                        <barButtonItem key="rightBarButtonItem" title="Bank Detail" id="AgB-g8-jSK">
+                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="4dU-Yg-v9H">
                             <connections>
-                                <segue destination="o9t-OR-AFa" kind="show" id="NXf-Yb-nhL"/>
+                                <segue destination="cPu-cE-TSk" kind="show" id="aTD-X6-z6K"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -731,7 +731,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="onAddAddressPressed:" destination="RJW-qa-pgu" eventType="touchUpInside" id="HsT-fx-S1o"/>
-                                                <segue destination="vZ1-eg-u8A" kind="show" id="qRh-3y-bhw"/>
+                                                <segue destination="vZ1-eg-u8A" kind="show" identifier="ShowAddOrEditAddress" id="599-iP-au3"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -769,41 +769,43 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Yeb-en-0Sr">
-                                <rect key="frame" x="15" y="163" width="384" height="234"/>
+                                <rect key="frame" x="15" y="163" width="384" height="245"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5B-DE-qEe">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="My new address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80w-Z5-FVh">
-                                        <rect key="frame" x="0.0" y="25.333333333333343" width="384" height="34"/>
+                                        <rect key="frame" x="0.0" y="29" width="384" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MB-cC-9pj">
-                                        <rect key="frame" x="0.0" y="64.333333333333343" width="384" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="68" width="384" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nia-rp-p1w">
-                                        <rect key="frame" x="0.0" y="89.666666666666657" width="384" height="80"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PNj-da-CPt">
+                                        <rect key="frame" x="0.0" y="97" width="384" height="80"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="yco-kb-0ib"/>
+                                            <constraint firstAttribute="height" constant="80" id="btq-Z8-vBL"/>
                                         </constraints>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96Q-0d-e3Q">
-                                        <rect key="frame" x="0.0" y="174.66666666666669" width="384" height="20.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="182" width="384" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CSe-F0-F8G">
-                                        <rect key="frame" x="0.0" y="200" width="384" height="34"/>
+                                        <rect key="frame" x="0.0" y="211" width="384" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -823,13 +825,23 @@
                     <navigationItem key="navigationItem" id="qRF-VK-QFi"/>
                     <connections>
                         <outlet property="addressNameTextField" destination="80w-Z5-FVh" id="OSf-EI-Hny"/>
-                        <outlet property="addressTextField" destination="nia-rp-p1w" id="5eF-pH-gI9"/>
+                        <outlet property="addressTextView" destination="PNj-da-CPt" id="UCE-tO-n8i"/>
                         <outlet property="postalTextField" destination="CSe-F0-F8G" id="RhL-nc-vsm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9km-PC-ls7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3263.7681159420295" y="891.96428571428567"/>
+        </scene>
+        <!--Delivery Option Hosting Controller-->
+        <scene sceneID="jeP-eR-lDr">
+            <objects>
+                <hostingController id="cPu-cE-TSk" customClass="DeliveryOptionHostingController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jhp-UG-Vyr"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8O-gp-7d1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2558" y="350"/>
         </scene>
     </scenes>
     <resources>
@@ -840,6 +852,7 @@
         <image name="Order" width="512" height="512"/>
         <image name="Queue" width="512" height="512"/>
         <image name="Voucher" width="512" height="512"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="no-profile" width="512" height="512"/>
         <image name="shop-location" width="512" height="512"/>
         <namedColor name="Background">

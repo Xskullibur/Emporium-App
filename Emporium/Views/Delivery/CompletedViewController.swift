@@ -1,22 +1,22 @@
 //
-//  QRViewController.swift
+//  CompletedViewController.swift
 //  Emporium
 //
-//  Created by Xskullibur on 16/7/20.
+//  Created by ITP312Grp1 on 7/8/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
 import UIKit
+import Lottie
 
-class QRViewController: UIViewController {
+class CompletedViewController: UIViewController {
 
-    @IBOutlet weak var qrImageView: UIImageView!
-    var image: UIImage?
+    @IBOutlet weak var animationView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        qrImageView.image = image!
+        
+        animationView.play()
         
     }
     

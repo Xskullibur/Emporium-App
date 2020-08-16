@@ -12,6 +12,7 @@ import Combine
 import Firebase
 import FirebaseUI
 import Stripe
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -45,6 +46,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationHandler = NotificationHandler.shared
         notificationHandler.create()
         notificationHandler.start()
+        let _ = notificationHandler.getNotifications()?.sink(receiveCompletion: { (completion) in
+            print(completion)
+        }, receiveValue: { (notifications) in
+            
+            for notification in notifications {
+                if !notification.read {
+                    let content = LocalNotificationHelper.createNotificationContent(
+                        title: notification.title,
+                        body: notification.message,
+                        subtitle: notification.sender,
+                        others: nil
+                    )
+                    LocalNotificationHelper.addNotification(identifier: notification.date.toBasicDateString() + ".notification", content: content)
+                }
+            }
+            
+            }).store(in: &cancellables!)
         
         // Local Notification
         UNUserNotificationCenter.current().delegate = self
@@ -52,6 +70,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if !didAllow {
                 print("User has declined notifications")
             }
+        }
+        
+        //Request orders
+        BGTaskScheduler.shared.register(
+          forTaskWithIdentifier: "com.emporium.requestOrder",
+          using: nil) { (task) in
+            let bgtask = task as! BGAppRefreshTask
+            bgtask.expirationHandler = {
+                bgtask.setTaskCompleted(success: false)
+                URLSession.shared.invalidateAndCancel()
+            }
+            
+            let storeId = UserDefaults.standard.string(forKey: "com.emporium.requestOrder:storeId")
+            
+            if let storeId = storeId {
+                DeliveryDataManager.checkVolunteerRequest(storeId: storeId, receiveOrder: {
+                    order in
+                    if let order = order {
+                        let content = LocalNotificationHelper.createNotificationContent(title: "New Order", body: "You have a new order", subtitle: "", others: nil)
+                        LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                        print("Received order: \(order.orderID)")
+                    }else{
+                        self.scheduleFetchOrder()
+                    }
+                })
+                self.scheduleFetchOrder()
+            }
+            
         }
         
         //Listen for rewards
@@ -77,6 +123,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }).store(in: &cancellables!)
         
+        //Listen for delivery status
+        let deliveryDataManager = DeliveryDataManager.shared
+        deliveryDataManager.getDeliveryStatusUpdate()
+            .sink(receiveCompletion: {
+                completion in
+            }, receiveValue: {
+                listOfOrderDeliveryStatus in
+                
+                for orderDeliveryStatus in listOfOrderDeliveryStatus {
+                    
+                    let content = LocalNotificationHelper.createNotificationContent(title: "Order udpate", body: orderDeliveryStatus.status.rawValue, subtitle: "", others: nil)
+                    LocalNotificationHelper.addNotification(identifier: "DeliveryStatus.notification", content: content)
+                    print("Received update: \(orderDeliveryStatus.status.rawValue)")
+                    
+                    deliveryDataManager.markRequestOrderAsRead(orderDeliveryStatus)
+                }
+            }).store(in: &cancellables!)
+        
+        
         return true
     }
     
@@ -84,6 +149,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.cancellables = nil
     }
 
+    //MARK: Background Scheduler
+    func scheduleFetchOrder(){
+        let requestOrderTask = BGAppRefreshTaskRequest(identifier: "com.emporium.requestOrder")
+        requestOrderTask.earliestBeginDate = Date(timeIntervalSinceNow: 30)
+        do {
+            try BGTaskScheduler.shared.submit(requestOrderTask)
+        }catch {
+            print("Unable to submit task: \(error.localizedDescription)")
+        }
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

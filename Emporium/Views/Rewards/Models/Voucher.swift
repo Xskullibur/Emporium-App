@@ -15,5 +15,6 @@ struct Voucher {
     let description: String
     let cost: Int
     let formula: String
+    let used: Bool
     
 }

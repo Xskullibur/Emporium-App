@@ -29,6 +29,14 @@ class MyVoucherTableViewCell: UITableViewCell {
         self.voucher = voucher
         self.voucherNameLabel.text = voucher.name
         self.voucherDescriptionLabel.text = voucher.description
+        if voucher.used {
+            self.disableView()
+        }
+    }
+    
+    private func disableView(){
+        self.alpha = 0.5
+        self.voucherNameLabel.textColor = .gray
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

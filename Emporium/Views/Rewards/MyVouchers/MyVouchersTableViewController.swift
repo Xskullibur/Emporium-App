@@ -32,9 +32,7 @@ class MyVouchersTableViewController: UITableViewController {
             self.user = user
             self.setupClaimedVouchers()
         }
-        
-        
-        
+
     }
     
 
@@ -83,7 +81,6 @@ class MyVouchersTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VoucherCell", for: indexPath) as! MyVoucherTableViewCell
-        
         cell.setVoucher(voucher: myVouchers[indexPath.row])
         
         return cell

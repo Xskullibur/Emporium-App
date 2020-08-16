@@ -28,18 +28,24 @@ class QueueViewController: UIViewController {
     var queueId: String?
     var queueLength: String?
     var currentlyServing: String?
+    var _order: Order?
     var listenerManager: ListenerManager = ListenerManager()
     
     var functions = Functions.functions()
 
     // MARK: - Outlets
     @IBOutlet weak var leaveQueueBtn: MDCButton!
+    @IBOutlet weak var requestItemBtn: MDCButton!
     @IBOutlet weak var cardView: MDCCard!
     @IBOutlet weak var currentlyServingLbl: UILabel!
     @IBOutlet weak var queueLengthLbl: UILabel!
     @IBOutlet weak var queueNumberLbl: UILabel!
     
     // MARK: - IBAction
+    @IBAction func requestItemBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "showRequestorItem", sender: self)
+    }
+    
     @IBAction func leaveBtnPressed(_ sender: Any) {
         
         // Confirm Alert
@@ -52,7 +58,7 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
-            // Remove Queue
+            // MARK: [Leave Queue]
             let userId = Auth.auth().currentUser!.uid
             self.showSpinner(onView: self.view)
             self.queueDataManager.leaveQueue(storeId: self.store!.id, queueId: self.queueId!, userId: userId) { (success) in
@@ -61,17 +67,9 @@ class QueueViewController: UIViewController {
                 if success {
 
                     // Show Success Alert and Navigate
-                    let successAlert = UIAlertController(
-                        title: "Alert",
-                        message: "Successfully Left Queue!",
-                        preferredStyle: .alert
-                    )
-                    successAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                        
+                    self.showAlert(title: "Success", message: "Successfully Left Queue") {
                         self.navigationController?.popToRootViewController(animated: true)
-                        
-                    }))
-                    self.present(successAlert, animated: true)
+                    }
                     
                 }
                 else {
@@ -114,6 +112,13 @@ class QueueViewController: UIViewController {
         leaveQueueBtn.minimumSize = CGSize(width: 64, height: 48)
         leaveQueueBtn.applyContainedTheme(withScheme: containerScheme)
         
+        requestItemBtn.minimumSize = CGSize(width: 64, height: 48)
+        requestItemBtn.applyOutlinedTheme(withScheme: containerScheme)
+        
+        if let _ = _order {
+            requestItemBtn.isHidden = false
+        }
+        
         /// CardView
         cardView.cornerRadius = 13
         cardView.clipsToBounds = true
@@ -124,6 +129,11 @@ class QueueViewController: UIViewController {
         
         // Values
         queueNumberLbl.text = QueueItem.hash_id(str: queueId!)
+        
+        if currentlyServing != nil && queueLength != nil {
+            currentlyServingLbl.text = String(currentlyServing!)
+            queueLengthLbl.text = String(queueLength!)
+        }
         
         // Setup
         if justJoinedQueue {
@@ -152,6 +162,7 @@ class QueueViewController: UIViewController {
         let data = Plist.readPlist(url!)!
         let infoDescription = data["Error Alert"] as! String
         
+        // MARK: [Store Listener]
         return storeDataManager.storeListener(store!) { (data) in
             
             // Guard Data
@@ -186,6 +197,7 @@ class QueueViewController: UIViewController {
                         let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
                         entryVC.store = self.store
                         entryVC.queueId = self.queueId!
+                        entryVC.order = self._order
                         
                         let rootVC = self.navigationController?.viewControllers.first
                         self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
@@ -225,9 +237,37 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
+            //Send delivery request to server
+            DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
+                order in
+                if let order = order {
+                    let content = LocalNotificationHelper.createNotificationContent(title: "Volunteer Alert", body: "Someone has requested you to help get groceries!", subtitle: "", others: nil)
+                    LocalNotificationHelper.addNotification(identifier: "Order.notification", content: content)
+                    self._order = order
+                    DispatchQueue.main.async {
+                        self.requestItemBtn.isHidden = false
+                    }
+                    
+                    //TEST
+                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+                        order1 in
+                        print("Recieved delivery order: \(order1!.orderID)")
+                        
+                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+                        
+                    })
+                    //TEST
+                    
+                    print("Recieved order: \(order.orderID)")
+                }
+            })
+            //Start Background fetch
+//            UserDefaults.standard.set(self.store!.id, forKey: "com.emporium.requestOrder:storeId")
+//            (UIApplication.shared.delegate as! AppDelegate).scheduleFetchOrder()
+            
             let thanksAlert = UIAlertController(
                 title: "Thank you!",
-                message: "You will be notified when there is a request.",
+                message: "We will notify you when there is a request.",
                 preferredStyle: .alert
             )
             thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -238,8 +278,16 @@ class QueueViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-//    // MARK: - Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showRequestorItem" {
+            let requestorListVC = segue.destination as! RequestorsListViewController
+            requestorListVC.store = store!
+            requestorListVC.queueId = queueId!
+            requestorListVC.order = _order!
+        }
+        
+    }
 
 }

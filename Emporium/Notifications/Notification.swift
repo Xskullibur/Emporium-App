@@ -14,4 +14,6 @@ struct EmporiumNotification {
     let message: String
     let date: Date
     let priority: Int
+    
+    let read: Bool
 }

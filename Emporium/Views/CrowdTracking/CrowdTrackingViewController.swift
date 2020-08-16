@@ -11,6 +11,8 @@ import Vision
 import UIKit
 import Combine
 import MaterialComponents.MaterialCards
+import CoreBluetooth
+import CoreLocation
 
 class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     
@@ -20,6 +22,7 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var noOfShopperLabel: UILabel!
+    @IBOutlet weak var directionBtn: UIButton!
     
     @IBOutlet weak var previewViewHeightConstraint: NSLayoutConstraint!
     // MARK: - Variables
@@ -32,16 +35,24 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     private var currentEdgeDetectionVisitorCount = 0
     private var direction: Direction = .leftToRight
     
+    private var peripheralManager: CBPeripheralManager?
+    private var beaconPeripheralData: [String: Any]?
+    
     // MARK: - Firebase
     private var crowdTrackingDataManager: CrowdTrackingDataManager!
     
     var groceryStoreId: String? = nil
+    let UUID = "5a6ff9cd-6e2d-4a2e-bd08-738ece7dfd05"
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // BLE
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        startAdvertisingDevice(nameKey: "EntryBeacon", uuid: groceryStoreId!)
         
         // User Interface
         /// CardView
@@ -56,7 +67,10 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
         
         /// Setup edge detection
         self.edgeDetection = EdgeDetection()
-        self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+        let ableToSetupEdgeDetection = self.edgeDetection.setup(previewView: self.previewView, delegate: self)
+        if !ableToSetupEdgeDetection {
+            self.showAlert(title: "Error", message: "No Camera detected!")
+        }
         
         ///Setup data manager
         self.setupDataManager()
@@ -69,6 +83,12 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
             self.diffVisitorValue = 0
         }.store(in: &cancellables!)
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.global(qos: .background).async {
+            self.stopAdvertising()
+        }
     }
     
     private func setupDataManager(){
@@ -157,20 +177,28 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     }
     
     
-    @IBAction func chooseDirectionPressed(_ sender: Any) {
+    @IBAction func chooseDirectionPressed(_ sender: UIView) {
         let actionSheet = UIAlertController.init(title: "Direction", message: nil, preferredStyle: .actionSheet)
         
         let leftToRightButton = UIAlertAction.init(title: "Left to Right", style: .default, handler: {
             _ in
             self.direction = .leftToRight
+            self.directionBtn.setTitle("Left to Right", for: .normal)
+            
         })
         let rightToLeftButton = UIAlertAction.init(title: "Right to Left", style: .default, handler: {
             _ in
             self.direction = .rightToLeft
+             self.directionBtn.setTitle("Right to Left", for: .normal)
         })
         
         actionSheet.addAction(leftToRightButton)
         actionSheet.addAction(rightToLeftButton)
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
         
         self.present(actionSheet, animated: true, completion: nil)
     }
@@ -186,4 +214,40 @@ class CrowdTrackingViewController: UIViewController, EdgeDetectionDelegate {
     }
     */
 
+}
+
+// MARK: - CBPeripheral
+extension CrowdTrackingViewController: CBPeripheralManagerDelegate {
+    
+    // MARK: -- Advertise
+    func startAdvertisingDevice(nameKey: String, uuid: String) {
+        peripheralManager!.startAdvertising([
+            CBAdvertisementDataLocalNameKey : nameKey,
+            CBAdvertisementDataServiceUUIDsKey : UUID,
+            "storeId": uuid
+        ])
+        print("Advertising...")
+    }
+    
+    // MARK: -- Stop Advertising
+    func stopAdvertising() {
+        peripheralManager!.stopAdvertising()
+    }
+    
+    // MARK: -- Listener
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        
+        if peripheral.state == .poweredOn {
+            peripheralManager!.startAdvertising(beaconPeripheralData)
+            print("Advertising...")
+        }
+        else if peripheral.state == .poweredOff {
+            peripheralManager!.stopAdvertising()
+        }
+        else if peripheral.state == .unsupported {
+            self.showAlert(title: "Error", message: "This device is not supported for Advertising")
+        }
+        
+    }
+    
 }

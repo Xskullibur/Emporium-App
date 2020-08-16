@@ -12,12 +12,14 @@ import CoreLocation
 import Lottie
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
+import CoreBluetooth
 
 class EntryViewController: UIViewController {
 
     // MARK: - Variable
     var store: GroceryStore?
     var queueId: String?
+    var order: Order?
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -61,9 +63,19 @@ class EntryViewController: UIViewController {
                 let inStoreVC = queueStoryboard.instantiateViewController(identifier: "inStoreVC") as InStoreViewController
                 inStoreVC.queueId = self.queueId
                 inStoreVC.store = self.store
+                inStoreVC.order = self.order
                 
                 let rootVC = self.navigationController?.viewControllers.first
                 self.navigationController?.setViewControllers([rootVC!, inStoreVC], animated: true)
+                
+                // Add Local Notification
+                let notificationContent = LocalNotificationHelper.createNotificationContent(
+                    title: "Welcome to \(self.store!.name)!",
+                    body: "Wish you have a nice day.",
+                    subtitle: nil,
+                    others: nil
+                )
+                LocalNotificationHelper.addNotification(identifier: "InStore.Notification", content: notificationContent)
             }
             
         }
@@ -71,7 +83,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    // MARK: - Lifecycle
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +106,7 @@ class EntryViewController: UIViewController {
         containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
         
         directionBtn.minimumSize = CGSize(width: 64, height: 48)
-        directionBtn.applyContainedTheme(withScheme: containerScheme)
+        directionBtn.applyOutlinedTheme(withScheme: containerScheme)
         
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
@@ -108,6 +120,7 @@ class EntryViewController: UIViewController {
         
     }
     
+    // MARK: - ViewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         animationView.play()
     }
