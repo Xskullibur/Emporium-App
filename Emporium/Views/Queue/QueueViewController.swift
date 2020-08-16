@@ -94,12 +94,7 @@ class QueueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        #if DEBUG
-        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
-        if let functionsHost = functionsHost {
-            functions.useFunctionsEmulator(origin: functionsHost)
-        }
-        #endif
+        functions.useFunctionsEmulator(origin: Global.FIREBASE_HOST)
         
         // User Interface
         /// Title

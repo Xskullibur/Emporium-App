@@ -467,23 +467,23 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PurchaseHistoryCell" id="lvH-ED-xbU" customClass="MDCCardCollectionCell">
-                                                        <rect key="frame" x="0.0" y="27.666666666666668" width="136" height="100"/>
+                                                        <rect key="frame" x="0.0" y="27.666666666666668" width="141" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XWy-3t-BDZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="100"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l7b-2s-QSr">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="136" height="100"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="141" height="100"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Order" translatesAutoresizingMaskIntoConstraints="NO" id="Ll3-9H-cyD">
-                                                                            <rect key="frame" x="0.0" y="8" width="136" height="59"/>
+                                                                            <rect key="frame" x="0.0" y="8" width="141" height="59"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="100" id="eD9-I1-Xtc"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMQ-Ju-Rb5">
-                                                                            <rect key="frame" x="0.0" y="72" width="136" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="72" width="141" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="lPM-V3-FZC"/>
                                                                             </constraints>
@@ -503,13 +503,13 @@
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <color key="backgroundColor" name="Surface"/>
-                                                        <size key="customSize" width="136" height="100"/>
+                                                        <size key="customSize" width="141" height="100"/>
                                                         <connections>
                                                             <segue destination="kxl-nx-nVf" kind="show" id="0Fp-dZ-9ty"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SignOutCell" id="MQl-S8-kFv" customClass="MDCCardCollectionCell">
-                                                        <rect key="frame" x="146" y="27.666666666666668" width="150" height="100"/>
+                                                        <rect key="frame" x="151" y="27.666666666666668" width="150" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4Sp-2d-7N6">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
