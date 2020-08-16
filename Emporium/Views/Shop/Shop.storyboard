@@ -896,7 +896,7 @@
                         <viewLayoutGuide key="safeArea" id="231-32-eVB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bank Details" id="aua-Vb-e2y">
-                        <barButtonItem key="rightBarButtonItem" title="test" id="umt-yL-tE9">
+                        <barButtonItem key="rightBarButtonItem" title="Verification" id="umt-yL-tE9">
                             <connections>
                                 <action selector="testBtnPressed:" destination="VTp-fN-o3k" id="Rev-q2-YXz"/>
                             </connections>

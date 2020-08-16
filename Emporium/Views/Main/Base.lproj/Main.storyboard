@@ -406,6 +406,16 @@
             </objects>
             <point key="canvasLocation" x="805" y="641"/>
         </scene>
+        <!--bankVC-->
+        <scene sceneID="x0a-ai-pTP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shop" referencedIdentifier="bankVC" id="osU-ME-6No" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Zd6-NP-TfA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6lc-wF-hbR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624" y="820"/>
+        </scene>
         <!--HistoryViewController-->
         <scene sceneID="I6o-pS-z05">
             <objects>
@@ -508,8 +518,50 @@
                                                             <segue destination="kxl-nx-nVf" kind="show" id="0Fp-dZ-9ty"/>
                                                         </connections>
                                                     </collectionViewCell>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SignOutCell" id="MQl-S8-kFv" customClass="MDCCardCollectionCell">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BankCell" id="gsY-n6-jeX" customClass="MDCCardCollectionCell">
                                                         <rect key="frame" x="146" y="27.666666666666668" width="150" height="100"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hbO-ff-I3l">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-Zg-WmD">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-PJ-vaG">
+                                                                            <rect key="frame" x="0.0" y="10.333333333333336" width="150" height="54.666666666666671"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="100" id="bRL-qL-YyR"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTq-vY-Ibj">
+                                                                            <rect key="frame" x="0.0" y="72" width="150" height="20"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="20" id="Nd8-NY-OEI"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <color key="textColor" name="Primary"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="e4A-Zg-WmD" firstAttribute="top" secondItem="hbO-ff-I3l" secondAttribute="top" id="I5M-cG-9Cc"/>
+                                                                <constraint firstItem="e4A-Zg-WmD" firstAttribute="leading" secondItem="hbO-ff-I3l" secondAttribute="leading" id="PqY-pq-OE1"/>
+                                                                <constraint firstAttribute="trailing" secondItem="e4A-Zg-WmD" secondAttribute="trailing" id="Rr0-Dc-OlC"/>
+                                                                <constraint firstAttribute="bottom" secondItem="e4A-Zg-WmD" secondAttribute="bottom" id="lU5-nf-zPT"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <color key="backgroundColor" name="Surface"/>
+                                                        <size key="customSize" width="150" height="100"/>
+                                                        <connections>
+                                                            <segue destination="osU-ME-6No" kind="show" id="cbq-0c-gnU"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SignOutCell" id="MQl-S8-kFv" customClass="MDCCardCollectionCell">
+                                                        <rect key="frame" x="306" y="27.666666666666668" width="150" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4Sp-2d-7N6">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
@@ -875,6 +927,7 @@
         <image name="Order" width="512" height="512"/>
         <image name="Queue" width="512" height="512"/>
         <image name="Voucher" width="512" height="512"/>
+        <image name="creditcard" catalog="system" width="128" height="91"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="no-profile" width="512" height="512"/>
         <image name="shop-location" width="512" height="512"/>
