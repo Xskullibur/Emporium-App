@@ -38,7 +38,9 @@ class BankDetailViewController: UIViewController {
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         if bankInput.text == "" {
-            
+            alertMessage(message: "Bank Number cannot be empty")
+        }else if (String(bankInput.text!.filter { !" \n\t\r".contains($0) }).count != 9 || Int(bankInput.text!) == nil) {
+            alertMessage(message: "Bank Number must be 9 digit")
         }else{
             if self.update == false {
                 addBankDetails(bankNumber: bankInput.text!)
@@ -50,7 +52,14 @@ class BankDetailViewController: UIViewController {
     
     
     @IBAction func testBtnPressed(_ sender: Any) {
-        test()
+        updateVerify()
+    }
+    
+    func alertMessage(message: String) {
+        let showAlert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "OK", style: .cancel)
+        showAlert.addAction(cancel)
+        self.present(showAlert, animated: true, completion: nil)
     }
     
     
@@ -80,7 +89,7 @@ class BankDetailViewController: UIViewController {
                         DispatchQueue.main.async
                             {
                                 //self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Verfication Required", preferredStyle: .alert)
+                                let showAlert = UIAlertController(title: "Result", message: "Redirecting to verification", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
                                     
@@ -157,13 +166,13 @@ class BankDetailViewController: UIViewController {
         })
     }
     
-    func test() {
+    func updateVerify() {
         var message = ""
         
         Auth.auth().currentUser?.getIDToken(completion: {
             token, error in
             let session  = URLSession.shared
-            let url = URL(string: Global.BACKEND_SERVER_HOST + "/transferVolunteer")
+            let url = URL(string: Global.BACKEND_SERVER_HOST + "/updateVerify")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
@@ -182,10 +191,14 @@ class BankDetailViewController: UIViewController {
                         DispatchQueue.main.async
                             {
                                 //self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Verfication Required", preferredStyle: .alert)
+                                let showAlert = UIAlertController(title: "Result", message: "Redirecting to verification", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
                                     
+                                    let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+                                    self.view.addSubview(webView)
+                                    let url = URL(string: message)
+                                    webView.load(URLRequest(url: url!))
                                     
                                 }
                                 showAlert.addAction(back)
