@@ -133,8 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 for orderDeliveryStatus in listOfOrderDeliveryStatus {
                     
-                    let content = LocalNotificationHelper.createNotificationContent(title: "Order udpate", body: orderDeliveryStatus.status.rawValue, subtitle: "", others: nil)
-                    LocalNotificationHelper.addNotification(identifier: "DeliveryStatus.notification", content: content)
                     print("Received update: \(orderDeliveryStatus.status.rawValue)")
                     
                     deliveryDataManager.markRequestOrderAsRead(orderDeliveryStatus)
