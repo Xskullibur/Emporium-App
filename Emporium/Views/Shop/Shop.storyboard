@@ -1223,7 +1223,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="onAddAddressPressed:" destination="1eH-Tm-ELO" eventType="touchUpInside" id="DDX-V4-dbq"/>
-                                                <segue destination="3KT-XA-sF7" kind="show" id="jyO-9R-MpL"/>
+                                                <segue destination="3KT-XA-sF7" kind="show" id="lOk-GK-Rp2"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1320,7 +1320,6 @@
                     <navigationItem key="navigationItem" id="PQq-Rb-m12"/>
                     <connections>
                         <outlet property="addressNameTextField" destination="VTF-MM-Zgo" id="m1f-Ka-PVo"/>
-                        <outlet property="addressTextField" destination="jhG-ZY-N7C" id="6yO-X5-ews"/>
                         <outlet property="postalTextField" destination="3Wr-nx-N2l" id="8mg-WD-4KR"/>
                     </connections>
                 </viewController>
