@@ -16,6 +16,7 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
+    var order: Order!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
