@@ -57,6 +57,9 @@ class EntryViewController: UIViewController {
             self.removeSpinner()
             
             if success {
+                // Updating Delivery to Purchasing
+                DeliveryDataManager.shared.updateDeliveryStatus(status: .purchasing)
+                
                 // Navigate to InStore
                 let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                 

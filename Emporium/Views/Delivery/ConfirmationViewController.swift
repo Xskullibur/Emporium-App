@@ -16,6 +16,7 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
+    var order: Order!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -28,25 +29,6 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         let infoDescription = data["Confirm Delivery Description"] as! String
         self.showAlert(title: "Info", message: infoDescription)
         
-    }
-    
-    @IBAction func directionBtnPressed(_ sender: Any) {
-        let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(
-                latitude: store!.location.latitude,
-                longitude: store!.location.longitude
-            ),
-            store: store!
-        )
-        annotation.title = store!.name
-        annotation.subtitle = store!.address
-        
-        // Show Directions
-        let launchOptions = [
-            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
-        ]
-        
-        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
     // MARK: - Lifecycle
@@ -144,29 +126,20 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             // Play Vibration to alert user
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
-            // Verify and update server
-            let deliveryDataManager = DeliveryDataManager()
-            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
+            if stringVal == order.orderID {
+                // Update Delivery to Completed
+                DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
                 
-                if success {
-                    // Show alert and navigate
-                    self.showAlert(title: "Success", message: "") {
-                        
-                        // Navigate
-                        let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
-                        
-                        let rootVC = self.navigationController?.viewControllers.first
-                        self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
-                        
-                    }
+                // Show alert and navigate
+                self.showAlert(title: "Success", message: "Successfully completed delivery.") {
+                    
+                    // Navigate
+                    let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
+                    
+                    let rootVC = self.navigationController?.viewControllers.first
+                    self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
+                    
                 }
-                else {
-                    self.showNotSupportedAlert()
-                }
-                
-            }) { (error) in
-                print("\(error)")
-                self.showErrorAlert()
             }
             
         }
