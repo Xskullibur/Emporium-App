@@ -104,13 +104,8 @@ class MyVouchersTableViewController: UITableViewController {
     //MARK: TESTING ONLY
     @IBAction func testAddPoints(_ sender: Any) {
         let functions = Functions.functions()
-        //Debugging
-        #if DEBUG
-        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
-        if let functionsHost = functionsHost {
-            functions.useFunctionsEmulator(origin: functionsHost)
-        }
-        #endif
+        functions.useFunctionsEmulator(origin: Global.FIREBASE_HOST)
+
         functions.httpsCallable("testAddPoints").call{
             _, _ in
         }

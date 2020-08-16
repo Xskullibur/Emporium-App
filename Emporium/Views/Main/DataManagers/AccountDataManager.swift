@@ -164,7 +164,7 @@ class AccountDataManager
             }
             
             let data = querySnapshot!.data()!
-            let deliveryOptionData = data["delivery_option"]! as! [String: Any]
+            let deliveryOptionData = data["delivery_option"] as? [String: Any]
             
             completion(DeliveryOption(deliveryOptionData), nil)
         }

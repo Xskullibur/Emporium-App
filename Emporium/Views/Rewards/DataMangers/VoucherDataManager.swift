@@ -89,13 +89,8 @@ class VoucherDataManager {
             }
         }
         
-        //Debugging
-        #if DEBUG
-        let functionsHost = ProcessInfo.processInfo.environment["functions_host"]
-        if let functionsHost = functionsHost {
-            functions.useFunctionsEmulator(origin: functionsHost)
-        }
-        #endif
+        functions.useFunctionsEmulator(origin: Global.FIREBASE_HOST)
+
     }
     
     /**
