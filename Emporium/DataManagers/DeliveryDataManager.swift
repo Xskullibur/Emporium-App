@@ -210,7 +210,7 @@ class DeliveryDataManager {
         })
     }
     
-    func updateDeliveryData(amount:  Double, notAvailableItem: NotAvailableItems, onComplete: @escaping () -> Void) {
+    func updateDeliveryData(amount:  Double, notAvailableItem: NotAvailableItems, accountId: String, onComplete: @escaping () -> Void) {
         
         self.user!.getIDToken(completion: {
             token, error in
