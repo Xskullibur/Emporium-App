@@ -114,6 +114,18 @@ struct Order {
   fileprivate var _deliveryAddress: DeliveryAddress? = nil
 }
 
+struct NotAvailableItems {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var cartItems: [CartItem] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension CartItem: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -310,6 +322,35 @@ extension Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
     if lhs.orderID != rhs.orderID {return false}
     if lhs.orderByUserID != rhs.orderByUserID {return false}
     if lhs._deliveryAddress != rhs._deliveryAddress {return false}
+    if lhs.cartItems != rhs.cartItems {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension NotAvailableItems: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "NotAvailableItems"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "cartItems"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.cartItems.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: NotAvailableItems, rhs: NotAvailableItems) -> Bool {
     if lhs.cartItems != rhs.cartItems {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
