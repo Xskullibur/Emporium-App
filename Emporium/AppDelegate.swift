@@ -133,6 +133,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 for orderDeliveryStatus in listOfOrderDeliveryStatus {
                     
+                    ShopDataManager.getCurrentOrder() {
+                        data in
+                        
+                        let chargeID = data["chargeID"] as! String
+                        let initialAmount = data["amount"] as! Double
+                        let refundAmt = orderDeliveryStatus.confirmedAmount //amount to refund
+                        
+                        let transferAmt = initialAmount - refundAmt //amount to volunteer
+                        
+                        Payment.refund(amount: refundAmt, chargeID: chargeID) //send to server to refund
+                        
+                        Payment.transferVolunteer(amount: transferAmt, accountID: "")  //send to serve to transfer
+                    }
+                    
                     print("Received update: \(orderDeliveryStatus.status.rawValue)")
                     
                     deliveryDataManager.markRequestOrderAsRead(orderDeliveryStatus)
