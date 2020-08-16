@@ -76,43 +76,4 @@ class Payment: NSObject {
                 }.resume()
             })
     }
-    
-    static func getDiscount(amount: String, formula: String) {
-        var message = ""
-            
-            Auth.auth().currentUser?.getIDToken(completion: {
-                token, error in
-                let session  = URLSession.shared
-                let url = URL(string: Global.BACKEND_SERVER_HOST + "/getDiscountAccount")
-                var request = URLRequest(url: url!)
-                request.httpMethod = "POST"
-                request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                let JSON = ["amount": amount, "formula": formula]
-                let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
-                
-                session.uploadTask(with: request, from: JSONDATA) {
-                    data, response, error in
-                    if let httpResponse = response as? HTTPURLResponse {
-                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
-                            message = datastring
-                        }
-                        
-                        if httpResponse.statusCode == 200 {
-                            DispatchQueue.main.async
-                            {
-                                print(message)
-                            }
-                        }
-                        else
-                        {
-                            DispatchQueue.main.async
-                            {
-                                print(message)
-                            }
-                        }
-                    }
-                }.resume()
-            })
-    }
 }

@@ -87,6 +87,15 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     func setVoucher(voucher: Voucher) {
         self.voucher = voucher
         print("voucher added")
+        
+        var total = 0.0
+        for item in cartData {
+            total = total + (item.price * Double(item.quantity))
+        }
+        priceLabel.text = "Total: $" + String(format: "%.02f", total)
+        
+        self.getDiscount(amount: String(format: "%.02f", total), formula: voucher.formula)
+        
     }
     
     func setListCartData(newCartData: Cart) {
@@ -137,8 +146,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         priceLabel.text = "Total: $" + String(format: "%.02f", total)
         
         if let voucher = voucher {
-            //Payment.getDiscount(amount: String(format: "%.02f", total), formula: voucher.formula)
-            //print(voucher.formula)
+            self.getDiscount(amount: String(format: "%.02f", total), formula: voucher.formula)
         }
         
         tableView.reloadData()
@@ -274,6 +282,45 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         return true
+    }
+    
+    func getDiscount(amount: String, formula: String) {
+        var message = ""
+            
+            Auth.auth().currentUser?.getIDToken(completion: {
+                token, error in
+                let session  = URLSession.shared
+                let url = URL(string: Global.BACKEND_SERVER_HOST + "/getDiscountAccount")
+                var request = URLRequest(url: url!)
+                request.httpMethod = "POST"
+                request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                let JSON = ["amount": amount, "formula": formula]
+                let JSONDATA = try! JSONSerialization.data(withJSONObject: JSON, options: [])
+                
+                session.uploadTask(with: request, from: JSONDATA) {
+                    data, response, error in
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if let data = data, let datastring = String(data:data,encoding: .utf8) {
+                            message = datastring
+                        }
+                        
+                        if httpResponse.statusCode == 200 {
+                            DispatchQueue.main.async
+                            {
+                                self.priceLabel.text = "Total: $" + message
+                            }
+                        }
+                        else
+                        {
+                            DispatchQueue.main.async
+                            {
+                                
+                            }
+                        }
+                    }
+                }.resume()
+            })
     }
     
 }
