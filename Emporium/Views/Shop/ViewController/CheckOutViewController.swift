@@ -183,10 +183,12 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-            let vc = baseSB.instantiateViewController(identifier: "voucherVC") as! VoucherTableViewController
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
+            if cartData.count > 0 {
+                let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+                let vc = baseSB.instantiateViewController(identifier: "voucherVC") as! VoucherTableViewController
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
