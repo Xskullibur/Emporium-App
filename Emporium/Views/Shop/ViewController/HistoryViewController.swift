@@ -19,6 +19,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let filter: [String] = ["yes", "no"]
     var selected: [String] = []
     var docID: String = ""
+    var totalAmt: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         docID = purchaseHistory[indexPath.row].id
+        totalAmt = "$" + String(format: "%.02f", Double(purchaseHistory[indexPath.row].amount)/100)
         self.performSegue(withIdentifier: "showDetail", sender: nil)
         //showActionSheet()
 
@@ -82,6 +84,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! HistoryDetailViewController
         destVC.docID = self.docID
+        destVC.totalAmt = self.totalAmt
     }
     
     

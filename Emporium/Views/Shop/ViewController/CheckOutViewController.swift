@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ShopListDelegate{
+class CheckOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ShopListDelegate, VoucherDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
@@ -18,6 +18,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var addItemBtn: UIButton!
     
     var cartData: [Cart] = []
+    var voucher: Voucher? = nil
     var listName: String = ""
     
     //from shoplist
@@ -44,11 +45,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             loadProducts()
             toPaymentBtn.isHidden = true
             self.title = self.listName
-            self.addItemBtn.isHidden = false
+            self.addItemBtn.setTitle("Add Item", for: .normal)
         }else{
             toPaymentBtn.isHidden = false
             self.title = "Order"
-            self.addItemBtn.isHidden = true
+            self.addItemBtn.setTitle("Use Voucher", for: .normal)
         }
     }
     
@@ -81,6 +82,11 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.layer.borderColor = UIColor.gray.cgColor
         
         return cell
+    }
+    
+    func setVoucher(voucher: Voucher) {
+        self.voucher = voucher
+        print("voucher added")
     }
     
     func setListCartData(newCartData: Cart) {
@@ -139,7 +145,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             if Auth.auth().currentUser?.uid == nil {
                 Toast.showToast("You need to log in to make purchase!")
             }else{
-                showActionSheet(sender as! UIView)
+                //showActionSheet(sender as! UIView)
+                self.performSegue(withIdentifier: "toAddress", sender: nil)
             }
         }
     }
@@ -155,11 +162,18 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func addItemBtnPressed(_ sender: Any) {
-        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-        let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
-        vc.listName = self.listName
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        if(!fromShop()) {
+            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+            let vc = baseSB.instantiateViewController(identifier: "ShopVC") as! ShopViewController
+            vc.listName = self.listName
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+            let vc = baseSB.instantiateViewController(identifier: "voucherVC") as! VoucherTableViewController
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,6 +183,10 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
         }else if segue.identifier == "toCard" {
             let destVC = segue.destination as! DisplayCardViewController
             destVC.cartData = self.cartData
+        }else if segue.identifier == "toAddress" {
+            let destVC = segue.destination as! SelectAddressViewController
+            destVC.cartData = self.cartData
+            destVC.voucher = self.voucher
         }
     }
     
@@ -264,4 +282,7 @@ protocol ShopListDelegate {
     func setListCartData(newCartData: Cart)
 }
 
+protocol VoucherDelegate {
+    func setVoucher(voucher: Voucher)
+}
 

@@ -145,8 +145,40 @@ class NotificationHandler {
             if let querySnapshot = querySnapshot {
                 
                 for document in querySnapshot.documents {
-                    let data = document.data()
+                    var data = document.data()
+                    var read = false
+                    
+                    if let userId = Auth.auth().currentUser?.uid {
+                        if let _read = data["read"] {
+                            
+                            var readUsers = _read as! [String]
+                            if readUsers.contains(userId) {
+                                read = true
+                            }
+                            else {
+                                readUsers.append(userId)
+                                self.globalNotificationRef?.document(document.documentID).updateData(["read" : readUsers], completion: { (error) in
+                                    
+                                    if let error = error {
+                                        print("Error updating notification (Read.Global): \(error.localizedDescription)")
+                                    }
+                                })
+                            }
+                            
+                        }
+                        else {
+                            self.globalNotificationRef?.document(document.documentID).updateData(["read" : [userId]], completion: { (error) in
+                                
+                                if let error = error {
+                                    print("Error updating notification (Read.Global): \(error.localizedDescription)")
+                                }
+                            })
+                        }
+                    }
+                    
+                    data["read"] = read
                     datas.append(data)
+                    
                 }
             }
             
@@ -165,11 +197,6 @@ class NotificationHandler {
         let message = data["message"] as? String ?? ""
         let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
         let read = data["read"] as? Bool ?? false
-        
-        // Local Notification
-        let content = LocalNotificationHelper.createNotificationContent(title: title, body: message, subtitle: sender, others: nil)
-        LocalNotificationHelper.addNotification(identifier: "\(sender).notification", content: content)
-        
         return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1, read: read)
     }
     

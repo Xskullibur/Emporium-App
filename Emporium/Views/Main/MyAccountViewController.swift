@@ -10,7 +10,8 @@ import UIKit
 import FirebaseUI
 import MaterialComponents.MaterialCards
 
-class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate
+{
 
     // MARK: - Outlets
     @IBOutlet weak var buttonsContainer: MDCCard!
@@ -19,15 +20,25 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    @IBOutlet weak var accountButtonsCollectionView: UICollectionView!
     // MARK: - Variables
     private var authUI: FUIAuth? = nil
     private var user: User?
+    
+    //Account Reuseable Cell Ids
+    private let accountCells = ["PurchaseHistoryCell", "SignOutCell"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //Margin for the collection cell
+        accountButtonsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        accountButtonsCollectionView.dataSource = self
+        accountButtonsCollectionView.delegate = self
         
         //Set shadow for the buttons container
         buttonsContainer.setShadowElevation(ShadowElevation(8), for: .normal)
@@ -84,9 +95,9 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
     }
 
     /**
-     When the user taps on 'Sign out'
+        Sign out from the current Firebase account
      */
-    @IBAction func signOut(_ sender: Any) {
+    func signOut() {
         do{
             try authUI?.signOut()
             
@@ -133,6 +144,43 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
      */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+    
+    ///Change the collections cells base on user type.
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return accountCells.count
+    }
+    
+    ///Change the style of the cells
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        //Get cell from reuseable id
+        let cell = accountButtonsCollectionView.dequeueReusableCell(withReuseIdentifier: accountCells[indexPath.item], for: indexPath) as! MDCCardCollectionCell
+
+        //Update the UI
+        cell.cornerRadius = 13
+        cell.contentView.layer.masksToBounds = true
+        cell.clipsToBounds = true
+        cell.setBorderWidth(1, for: .normal)
+        cell.setBorderColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
+        
+        return cell
+    }
+    
+    /// Collection View Selected (Join Queue)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //Get reuseable id
+        let id = accountCells[indexPath.item]
+        
+        switch id {
+        case "SignOutCell":
+            //When the user taps on 'Sign out'
+            self.signOut()
+            break
+        default:
+            break
+        }
+        
     }
     
     /*

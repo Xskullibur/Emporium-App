@@ -11,8 +11,10 @@ import Foundation
 class DeliveryOption: ObservableObject {
     @Published var distanceInKm = "2"
     
-    init(_ data: [String: Any]){
-        self.distanceInKm = String(((data["distanceInKm"] as? Double) ?? 2))
+    init(_ data: [String: Any]?){
+        if let data = data {
+            self.distanceInKm = String(((data["distanceInKm"] as? Double) ?? 2))
+        }
     }
     
     init(){}
