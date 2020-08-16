@@ -259,15 +259,15 @@ class QueueViewController: UIViewController {
                         self.requestItemBtn.isHidden = false
                     }
                     
-                    //TEST
-                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
-                        order1 in
-                        print("Recieved delivery order: \(order1!.orderID)")
-                        
-                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
-                        
-                    })
-                    //TEST
+//                    //TEST
+//                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+//                        order1 in
+//                        print("Recieved delivery order: \(order1!.orderID)")
+//                        
+//                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+//                        
+//                    })
+//                    //TEST
                     
                     print("Recieved order: \(order.orderID)")
                 }

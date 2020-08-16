@@ -126,33 +126,20 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             // Play Vibration to alert user
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
-            // Verify and update server
-            let deliveryDataManager = DeliveryDataManager()
-            deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
+            if stringVal == order.orderID {
+                // Update Delivery to Completed
+                DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
                 
-                if success {
+                // Show alert and navigate
+                self.showAlert(title: "Success", message: "Successfully completed delivery.") {
                     
-                    // Update Delivery to Completed
-                    DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+                    // Navigate
+                    let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
                     
-                    // Show alert and navigate
-                    self.showAlert(title: "Success", message: "Successfully completed delivery.") {
-                        
-                        // Navigate
-                        let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
-                        
-                        let rootVC = self.navigationController?.viewControllers.first
-                        self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
-                        
-                    }
+                    let rootVC = self.navigationController?.viewControllers.first
+                    self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
+                    
                 }
-                else {
-                    self.showNotSupportedAlert()
-                }
-                
-            }) { (error) in
-                print("\(error)")
-                self.showErrorAlert()
             }
             
         }
