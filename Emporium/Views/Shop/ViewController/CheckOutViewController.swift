@@ -135,6 +135,12 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
             total = total + (item.price * Double(item.quantity))
         }
         priceLabel.text = "Total: $" + String(format: "%.02f", total)
+        
+        if let voucher = voucher {
+            //Payment.getDiscount(amount: String(format: "%.02f", total), formula: voucher.formula)
+            //print(voucher.formula)
+        }
+        
         tableView.reloadData()
     }
     

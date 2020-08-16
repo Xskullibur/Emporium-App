@@ -163,7 +163,7 @@ class BankDetailViewController: UIViewController {
         Auth.auth().currentUser?.getIDToken(completion: {
             token, error in
             let session  = URLSession.shared
-            let url = URL(string: Global.BACKEND_SERVER_HOST + "/transferVolunteer")
+            let url = URL(string: Global.BACKEND_SERVER_HOST + "/updateVerify")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
