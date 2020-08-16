@@ -352,12 +352,11 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         else {
             
             var total: Double = 0
-            let pickedUpItems = itemList.filter({ $0.status == .PickedUp })
-            for item in pickedUpItems {
-                total += item.cart.product.price * Double(item.cart.quantity)
-            }
             
             let notAvailableItems = itemList.filter({ $0.status == .NotAvailable })
+            for item in notAvailableItems {
+                total += item.cart.product.price * Double(item.cart.quantity)
+            }
             
             var cartItems: [CartItem] = []
             for item in notAvailableItems {
