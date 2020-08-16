@@ -22,6 +22,8 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var docID: String = ""
     var cartData: [HistoryItem] = []
     var receipt: String = ""
+    
+    var totalAmt: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.layer.cornerRadius = 10
 
         loadHistoryDetail()
+        self.totalLabel.text = totalAmt
     }
     
     
@@ -51,7 +54,7 @@ class HistoryDetailViewController: UIViewController, UITableViewDelegate, UITabl
             for history in histories {
                 total = total + history.price * Double(history.quantity)
             }
-            self.totalLabel.text = "$" + String(format: "%.02f", total)
+            //self.totalLabel.text = "$" + String(format: "%.02f", total)
             
             ShopDataManager.loadHistoryPaymentDetail(docID: self.docID) {
                 Detail in

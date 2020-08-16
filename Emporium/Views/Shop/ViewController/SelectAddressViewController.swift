@@ -81,21 +81,25 @@ class SelectAddressViewController: UITableViewController {
             
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "addressCell", for: indexPath) as! AddressTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addressCell", for: indexPath) as! AddressCell
 
             cell.setAddress(self.addresses[indexPath.row])
+            cell.editBtn.tag = indexPath.row
+            cell.editBtn.addTarget(self, action:  #selector(editClick(sender:)), for: .touchUpInside)
             return cell
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let selectedAddress = self.addresses[indexPath.row]
-        
-        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //let addOrEditAddressViewController = storyBoard.instantiateViewController(withIdentifier: "AddOrEditAddressViewController") as! AddOrEditAddressViewController
+    @objc func editClick(sender: UIButton) {
+        let selectedAddress = self.addresses[sender.tag]
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let addOrEditAddressViewController = storyBoard.instantiateViewController(withIdentifier: "AddOrEditAddressViewController") as! AddOrEditAddressViewController
                 
-        //addOrEditAddressViewController.setAddress(selectedAddress)
-        //self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
+        addOrEditAddressViewController.setAddress(selectedAddress)
+        self.navigationController?.pushViewController(addOrEditAddressViewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.address = self.addresses[indexPath.row]
         showActionSheet()
     }

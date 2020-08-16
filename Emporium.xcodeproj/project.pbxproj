@@ -41,6 +41,7 @@
 		7F52B05524E7DF2000DEEAF8 /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */; };
 		7F52B05724E8006100DEEAF8 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05624E8006100DEEAF8 /* Payment.swift */; };
 		7F52B05924E8308200DEEAF8 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05824E8308200DEEAF8 /* CartItem.pb.swift */; };
+		7F52B05B24E90B7D00DEEAF8 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
@@ -205,6 +206,7 @@
 		7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewController.swift; sourceTree = "<group>"; };
 		7F52B05624E8006100DEEAF8 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		7F52B05824E8308200DEEAF8 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
+		7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				7F0B387924A35FA60003B9D9 /* HistoryCell.swift */,
 				7F0B388024A486830003B9D9 /* HistoryCartCell.swift */,
 				7F0B388724ADE06B0003B9D9 /* CardCell.swift */,
+				7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1228,6 +1231,7 @@
 				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
 				7F0B388124A486830003B9D9 /* HistoryCartCell.swift in Sources */,
 				ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */,
+				7F52B05B24E90B7D00DEEAF8 /* AddressCell.swift in Sources */,
 				7F0B387F24A3C38C0003B9D9 /* HistoryItem.swift in Sources */,
 				ED57F7A124A076C10013A133 /* StoreAnnotation.swift in Sources */,
 				ED61104F24A34D8800FFD408 /* RequestorsListViewController.swift in Sources */,
