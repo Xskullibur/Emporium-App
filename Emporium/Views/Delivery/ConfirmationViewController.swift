@@ -16,6 +16,7 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     // MARK: - Variables
     var queueId: String?
     var store: GroceryStore?
+    var order: Order!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -28,25 +29,6 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         let infoDescription = data["Confirm Delivery Description"] as! String
         self.showAlert(title: "Info", message: infoDescription)
         
-    }
-    
-    @IBAction func directionBtnPressed(_ sender: Any) {
-        let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(
-                latitude: store!.location.latitude,
-                longitude: store!.location.longitude
-            ),
-            store: store!
-        )
-        annotation.title = store!.name
-        annotation.subtitle = store!.address
-        
-        // Show Directions
-        let launchOptions = [
-            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
-        ]
-        
-        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
     // MARK: - Lifecycle
@@ -149,8 +131,12 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             deliveryDataManager.verifyAndCompleteDelivery(deliveryId: stringVal, onComplete:{ (success) in
                 
                 if success {
+                    
+                    // Update Delivery to Completed
+                    DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+                    
                     // Show alert and navigate
-                    self.showAlert(title: "Success", message: "") {
+                    self.showAlert(title: "Success", message: "Successfully completed delivery.") {
                         
                         // Navigate
                         let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController

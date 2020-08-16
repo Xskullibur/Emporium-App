@@ -35,10 +35,13 @@
 		7F37653824BEF52700CC27F3 /* HistoryPaymentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653724BEF52700CC27F3 /* HistoryPaymentDetail.swift */; };
 		7F37654024D3FDED00CC27F3 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */; };
 		7F37654224D3FEF300CC27F3 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654124D3FEF300CC27F3 /* ShoppingList.swift */; };
-		7F37654924E569CF00CC27F3 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654724E569CF00CC27F3 /* CartItem.pb.swift */; };
 		7F37654A24E569CF00CC27F3 /* DeliveryOrder.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */; };
 		7F37654C24E576B600CC27F3 /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */; };
 		7F52B05324E67CA300DEEAF8 /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */; };
+		7F52B05524E7DF2000DEEAF8 /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */; };
+		7F52B05724E8006100DEEAF8 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05624E8006100DEEAF8 /* Payment.swift */; };
+		7F52B05924E8308200DEEAF8 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05824E8308200DEEAF8 /* CartItem.pb.swift */; };
+		7F52B05B24E90B7D00DEEAF8 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
@@ -83,6 +86,7 @@
 		ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E00249C64BF00094284 /* VoucherDataManager.swift */; };
 		ACED1E03249CA19700094284 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E02249CA19700094284 /* LoginManager.swift */; };
 		ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACED1E46249CB64800094284 /* PointDataManager.swift */; };
+		ED14ECF224E8F4FD00D36B09 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED14ECF124E8F4FA00D36B09 /* DeliveryViewController.swift */; };
 		ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */; };
 		ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */; };
 		ED57F78924989E8C0013A133 /* NearbyMart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED57F78824989E8C0013A133 /* NearbyMart.storyboard */; };
@@ -106,6 +110,8 @@
 		ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105824AD93A500FFD408 /* QueueDataManager.swift */; };
 		ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105A24B6EBB800FFD408 /* QueueItem.swift */; };
 		ED818D2A24C04B040033F1ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED818D2924C04B040033F1ED /* MapKit.framework */; };
+		ED94A9D824E8FB0C00549752 /* DeliveryAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94A9D724E8FB0B00549752 /* DeliveryAnnotation.swift */; };
+		ED94A9DA24E9029900549752 /* delivery-in-progress.json in Resources */ = {isa = PBXBuildFile; fileRef = ED94A9D924E9029900549752 /* delivery-in-progress.json */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
 		EDB4682C248DD57D000DE5F0 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB4682B248DD57D000DE5F0 /* Data.plist */; };
 		EDB4682F248DEAA6000DE5F0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */; };
@@ -197,10 +203,13 @@
 		7F37653724BEF52700CC27F3 /* HistoryPaymentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentDetail.swift; sourceTree = "<group>"; };
 		7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		7F37654124D3FEF300CC27F3 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
-		7F37654724E569CF00CC27F3 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
 		7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryOrder.pb.swift; sourceTree = "<group>"; };
 		7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherTableViewController.swift; sourceTree = "<group>"; };
+		7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailViewController.swift; sourceTree = "<group>"; };
+		7F52B05624E8006100DEEAF8 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		7F52B05824E8308200DEEAF8 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
+		7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +258,7 @@
 		ACED1E02249CA19700094284 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		ACED1E46249CB64800094284 /* PointDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDataManager.swift; sourceTree = "<group>"; };
 		B9D0F497670E64545D59F2DA /* Pods-Emporium-EmporiumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.debug.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED14ECF124E8F4FA00D36B09 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueStatus.swift; sourceTree = "<group>"; };
 		ED1F17C724BEADFF007CF9C5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		ED57F78824989E8C0013A133 /* NearbyMart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NearbyMart.storyboard; sourceTree = "<group>"; };
@@ -272,6 +282,8 @@
 		ED61105824AD93A500FFD408 /* QueueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDataManager.swift; sourceTree = "<group>"; };
 		ED61105A24B6EBB800FFD408 /* QueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItem.swift; sourceTree = "<group>"; };
 		ED818D2924C04B040033F1ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		ED94A9D724E8FB0B00549752 /* DeliveryAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAnnotation.swift; sourceTree = "<group>"; };
+		ED94A9D924E9029900549752 /* delivery-in-progress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "delivery-in-progress.json"; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
 		EDB4682B248DD57D000DE5F0 /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		EDB4682E248DEAA6000DE5F0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -351,6 +363,7 @@
 		343CA41024CE698300BF7F95 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				ED94A9D924E9029900549752 /* delivery-in-progress.json */,
 				343CA41124CE69A400BF7F95 /* delivery-complete.json */,
 			);
 			path = Animation;
@@ -402,8 +415,8 @@
 			isa = PBXGroup;
 			children = (
 				AC13E90E249CE84C00DA2A7F /* CheckOutViewController.swift */,
-				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
 				7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */,
+				AC13E90C249CE84400DA2A7F /* ShopViewController.swift */,
 				7F0B387724A26CBA0003B9D9 /* HistoryViewController.swift */,
 				7F0B387B24A3BB0B0003B9D9 /* HistoryDetailViewController.swift */,
 				FE32168F24A98875003D1196 /* DisplayCardViewController.swift */,
@@ -411,6 +424,7 @@
 				7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */,
 				7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */,
 				7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */,
+				7F52B05424E7DF2000DEEAF8 /* BankDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -461,6 +475,7 @@
 				7F0B387924A35FA60003B9D9 /* HistoryCell.swift */,
 				7F0B388024A486830003B9D9 /* HistoryCartCell.swift */,
 				7F0B388724ADE06B0003B9D9 /* CardCell.swift */,
+				7F52B05A24E90B7D00DEEAF8 /* AddressCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -669,11 +684,12 @@
 				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
 				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
 				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
-				7F37654724E569CF00CC27F3 /* CartItem.pb.swift */,
 				7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */,
+				7F52B05824E8308200DEEAF8 /* CartItem.pb.swift */,
 				ED61105A24B6EBB800FFD408 /* QueueItem.swift */,
 				ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */,
 				FEB741C024CE770000512C73 /* Address.swift */,
+				ED94A9D724E8FB0B00549752 /* DeliveryAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -732,6 +748,7 @@
 				EDD6581F24C0042D00201B30 /* QRManager.swift */,
 				FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */,
 				343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */,
+				7F52B05624E8006100DEEAF8 /* Payment.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -753,6 +770,7 @@
 				EDD6581B24BFFEE300201B30 /* Delivery.storyboard */,
 				EDD6581D24BFFF8700201B30 /* ConfirmationViewController.swift */,
 				34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */,
+				ED14ECF124E8F4FA00D36B09 /* DeliveryViewController.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -987,6 +1005,7 @@
 				ACD28634249894E200497BD9 /* EmporiumCardButton.xib in Resources */,
 				FE5AAE582484AE5B0018DA42 /* GoogleService-Info.plist in Resources */,
 				ACED1DEB249B72DF00094284 /* Rewards.storyboard in Resources */,
+				ED94A9DA24E9029900549752 /* delivery-in-progress.json in Resources */,
 				FE9023612473B9C900CE6B3A /* Assets.xcassets in Resources */,
 				ED57F7A624A08B6C0013A133 /* social-distancing.json in Resources */,
 				343CA41224CE69A400BF7F95 /* delivery-complete.json in Resources */,
@@ -1157,12 +1176,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
-				7F37654924E569CF00CC27F3 /* CartItem.pb.swift in Sources */,
 				7F37653624BDD10E00CC27F3 /* History.swift in Sources */,
 				7F37654024D3FDED00CC27F3 /* ShoppingListViewController.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
 				34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */,
 				ED61104D24A34A3F00FFD408 /* Cart2.swift in Sources */,
+				ED94A9D824E8FB0C00549752 /* DeliveryAnnotation.swift in Sources */,
 				ACDA8EC2249DE191009887A7 /* MyVouchersTableViewController.swift in Sources */,
 				7F37652E24BDAE8300CC27F3 /* ServerLocation.swift in Sources */,
 				EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */,
@@ -1179,6 +1198,7 @@
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
+				7F52B05924E8308200DEEAF8 /* CartItem.pb.swift in Sources */,
 				343CA41424CE87C400BF7F95 /* LocalNotificationHelper.swift in Sources */,
 				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
@@ -1208,6 +1228,7 @@
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
+				ED14ECF224E8F4FD00D36B09 /* DeliveryViewController.swift in Sources */,
 				FE16498D24C0894B00328F50 /* RewardSegmentedViewController.swift in Sources */,
 				7F0B388824ADE06B0003B9D9 /* CardCell.swift in Sources */,
 				ACB27A9524A5D19C00DE966B /* CrowdTrackingDataManager.swift in Sources */,
@@ -1222,6 +1243,7 @@
 				ACD286382498F2D100497BD9 /* MyAccountViewController.swift in Sources */,
 				7F0B388124A486830003B9D9 /* HistoryCartCell.swift in Sources */,
 				ACED1DE7249B41BF00094284 /* AccountDataManager.swift in Sources */,
+				7F52B05B24E90B7D00DEEAF8 /* AddressCell.swift in Sources */,
 				7F0B387F24A3C38C0003B9D9 /* HistoryItem.swift in Sources */,
 				ED57F7A124A076C10013A133 /* StoreAnnotation.swift in Sources */,
 				ED61104F24A34D8800FFD408 /* RequestorsListViewController.swift in Sources */,
@@ -1237,6 +1259,8 @@
 				AC0A18FE2495F2C5009FFD93 /* EmporiumNotificationViewController.swift in Sources */,
 				7F0B387C24A3BB0B0003B9D9 /* HistoryDetailViewController.swift in Sources */,
 				34A7BEBC24C5430A00FEF0BA /* StoreListViewController.swift in Sources */,
+				7F52B05724E8006100DEEAF8 /* Payment.swift in Sources */,
+				7F52B05524E7DF2000DEEAF8 /* BankDetailViewController.swift in Sources */,
 				ACED1E47249CB64800094284 /* PointDataManager.swift in Sources */,
 				ED57F78F2498AAD60013A133 /* NearbyListViewController.swift in Sources */,
 				7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */,

@@ -16,6 +16,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     var cardList: [Card] = []
     var cartData: [Cart] = []
     var address: Address? = nil
+    var voucher: Voucher? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,6 +142,10 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
         paymentInfo.year = 0
         paymentInfo.bank = ""
         paymentInfo.name = ""
+        
+        if let voucher = voucher {
+            paymentInfo.voucherID = voucher.id
+        }
         
         for cart in cartData {
             var cartItemAdd = CartItem()
