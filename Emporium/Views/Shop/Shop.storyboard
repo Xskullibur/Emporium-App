@@ -1253,7 +1253,7 @@
         <!--New Delivery Address-->
         <scene sceneID="vzE-4w-0X9">
             <objects>
-                <viewController storyboardIdentifier="AddOrEditAddressViewController" title="New Delivery Address" id="3KT-XA-sF7" customClass="AddOrEditAddressViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddOrEditAddressViewController" title="New Delivery Address" id="3KT-XA-sF7" customClass="editAddressViewController" customModule="Emporium" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dL1-n5-UEa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1319,13 +1319,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="PQq-Rb-m12"/>
                     <connections>
-                        <outlet property="addressNameTextField" destination="VTF-MM-Zgo" id="m1f-Ka-PVo"/>
-                        <outlet property="postalTextField" destination="3Wr-nx-N2l" id="8mg-WD-4KR"/>
+                        <outlet property="addressNameTextField" destination="VTF-MM-Zgo" id="gvA-rq-77E"/>
+                        <outlet property="addressTextView" destination="jhG-ZY-N7C" id="kPA-hF-1pD"/>
+                        <outlet property="postalTextField" destination="3Wr-nx-N2l" id="ea1-TX-MmA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UxD-Qx-bIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2519" y="-656"/>
+            <point key="canvasLocation" x="2559" y="-656"/>
         </scene>
         <!--My Vouchers-->
         <scene sceneID="gn2-uv-mhg">
