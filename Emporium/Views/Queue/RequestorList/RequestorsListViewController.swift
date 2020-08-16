@@ -370,39 +370,45 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             var notAvailable = NotAvailableItems()
             notAvailable.cartItems = cartItems
             
-            // Update Queue Status
             showSpinner(onView: self.view)
-            let queueDataManager = QueueDataManager()
-            queueDataManager.updateQueue(queueId!, withStatus: .Delivery, forStoreId: store!.id) { (success) in
+            AccountDataManager.getAccountId { (accountId) in
                 
-                self.removeSpinner()
+                notAvailable.accountID = accountId
                 
-                if success {
+                // Update Queue Status
+                let queueDataManager = QueueDataManager()
+                queueDataManager.updateQueue(self.queueId!, withStatus: .Delivery, forStoreId: self.store!.id) { (success) in
                     
-                    // Update Delivery to Delivery
-                    DeliveryDataManager.shared.updateDeliveryData(amount: total, notAvailableItem: notAvailable) {
-                        DeliveryDataManager.shared.updateDeliveryStatus(status: .delivery)
+                    self.removeSpinner()
+                    
+                    if success {
                         
-                        // Navigate
-                        DispatchQueue.main.async {
-                            let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
-                            let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
+                        // Update Delivery to Delivery
+                        DeliveryDataManager.shared.updateDeliveryData(amount: total, notAvailableItem: notAvailable) {
+                            DeliveryDataManager.shared.updateDeliveryStatus(status: .delivery)
                             
-                            deliveryVC.order = self.order
-                            
-                            let rootVC = self.navigationController?.viewControllers.first
-                            self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
-                        }
+                            // Navigate
+                            DispatchQueue.main.async {
+                                let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                                let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
+                                
+                                deliveryVC.order = self.order
+                                
+                                let rootVC = self.navigationController?.viewControllers.first
+                                self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
+                            }
 
+                        }
+                        
+                    }
+                    else {
+                        // Alert
+                        let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
+                        let data = Plist.readPlist(url!)!
+                        let infoDescription = data["Error Alert"] as! String
+                        self.showAlert(title: "Oops!", message: infoDescription)
                     }
                     
-                }
-                else {
-                    // Alert
-                    let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
-                    let data = Plist.readPlist(url!)!
-                    let infoDescription = data["Error Alert"] as! String
-                    self.showAlert(title: "Oops!", message: infoDescription)
                 }
                 
             }

@@ -119,6 +119,8 @@ struct NotAvailableItems {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var accountID: String = String()
+
   var cartItems: [CartItem] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -331,26 +333,32 @@ extension Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
 extension NotAvailableItems: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = "NotAvailableItems"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "cartItems"),
+    1: .standard(proto: "account_id"),
+    2: .same(proto: "cartItems"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
+      case 1: try decoder.decodeSingularStringField(value: &self.accountID)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.accountID.isEmpty {
+      try visitor.visitSingularStringField(value: self.accountID, fieldNumber: 1)
+    }
     if !self.cartItems.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 1)
+      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: NotAvailableItems, rhs: NotAvailableItems) -> Bool {
+    if lhs.accountID != rhs.accountID {return false}
     if lhs.cartItems != rhs.cartItems {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
