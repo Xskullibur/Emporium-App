@@ -351,6 +351,12 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
         }
         else {
             
+            var total: Double = 0
+            let pickedUpItems = itemList.filter({ $0.status == .PickedUp })
+            for item in pickedUpItems {
+                total += item.cart.product.price * Double(item.cart.quantity)
+            }
+            
             // Update Queue Status
             showSpinner(onView: self.view)
             let queueDataManager = QueueDataManager()
@@ -361,16 +367,19 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                 if success {
                     
                     // Update Delivery to Delivery
-                    DeliveryDataManager.shared.updateDeliveryStatus(status: .delivery)
+                    DeliveryDataManager.shared.updateDeliveryAmount(order: self.order, amount: total) {
+                        DeliveryDataManager.shared.updateDeliveryStatus(status: .delivery)
+                        
+                        // Navigate
+                        let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
+                        let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
+                        
+                        deliveryVC.order = self.order
+                        
+                        let rootVC = self.navigationController?.viewControllers.first
+                        self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
+                    }
                     
-                    // Navigate
-                    let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
-                    let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
-                    
-                    deliveryVC.order = self.order
-                    
-                    let rootVC = self.navigationController?.viewControllers.first
-                    self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
                 }
                 else {
                     // Alert

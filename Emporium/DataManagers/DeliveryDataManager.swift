@@ -44,14 +44,6 @@ class DeliveryDataManager {
         
     }
     
-    
-    func verifyAndCompleteDelivery(deliveryId: String, onComplete: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        
-        let errorMsg = "Invalid Delivery Number, please try again."
-        onComplete(true)
-    
-    }
-    
     /**
      Check for orders
      */
@@ -217,7 +209,21 @@ class DeliveryDataManager {
          })
     }
     
-    
+    func updateDeliveryAmount(order: Order, amount:  Double, onComplete: @escaping () -> Void) {
+        
+        db.document("users/\(order.orderByUserID)/requested_orders/\(order.orderID)")
+            .updateData(["confirm_amount": amount]) { (error) in
+                
+                if let error = error {
+                    print("Error updating amount (completeDeliveryOrder): \(error.localizedDescription)")
+                }
+                else {
+                    onComplete()
+                }
+                
+        }
+        
+    }
     
     
 }

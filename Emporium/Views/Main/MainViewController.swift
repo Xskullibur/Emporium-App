@@ -227,14 +227,12 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                         // Navigate to Delivery
                                         DispatchQueue.main.async {
                                             let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
-                                            let confirmVC = queueStoryboard
-                                                .instantiateViewController(identifier: "confirmationVC") as ConfirmationViewController
-                                            confirmVC.queueId = queueItem.id
-                                            confirmVC.store = store
-                                            confirmVC.order = order
+                                            let deliveryVC = queueStoryboard
+                                                .instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
+                                            deliveryVC.order = order
                                             
                                             let rootVC = self.navigationController?.viewControllers.first
-                                            self.navigationController?.setViewControllers([rootVC!, confirmVC], animated: true)
+                                            self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)
                                         }
                                     }
                                     else {
