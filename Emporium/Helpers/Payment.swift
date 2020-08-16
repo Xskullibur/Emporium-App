@@ -38,6 +38,40 @@ class Payment: NSObject {
         }
     }
     
+    static func checkBank(onComplete: ((Bool) -> Void)?) {
+        db.collection("users").document(Auth.auth().currentUser?.uid as! String).getDocument
+        {
+            (doc, err) in
+            
+            var exist = false
+            
+            if let err = err
+            {
+                print("Error getting documents: \(err)")
+                onComplete?(exist)
+            }
+            else
+            {
+                if let data = doc?.data() {
+                    if data["accountID"] != nil && data["bankID"] != nil {
+                        exist = true
+                        onComplete?(exist)
+                    }
+                }
+            }
+            onComplete?(exist)
+        }
+    }
+    
+    static func checkBankExist() -> Bool{
+        var exist = false
+        checkBank(){
+            isExist in
+            return isExist
+        }
+        return exist
+    }
+    
     static func refund(amount: Double, chargeID: String) {
             var message = ""
         

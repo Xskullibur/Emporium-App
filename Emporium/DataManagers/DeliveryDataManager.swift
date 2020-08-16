@@ -20,7 +20,7 @@ enum DeliveryStatus: String
     case completed = "Completed"
 }
 
-typealias OrderDeliveryStatus = (status: DeliveryStatus, order: Order, read: Bool, confirmedAmount: Double, notAvailableItems: NotAvailableItems)
+typealias OrderDeliveryStatus = (status: DeliveryStatus, order: Order, read: Bool, confirmedAmount: Double?, notAvailableItems: NotAvailableItems?)
 
 class DeliveryDataManager {
     
@@ -145,11 +145,15 @@ class DeliveryDataManager {
         
         let read = data["read"] as! Bool
         
-        let confirmedAmount = data["confirmed_amount"] as! Double
-        let notAvailableItemsStr = data["not_available_items_data"] as! String
-        let notAvailableItemsData = Data(base64Encoded: notAvailableItemsStr, options: .ignoreUnknownCharacters)
-        let notAvailableItems = try! NotAvailableItems(serializedData: notAvailableItemsData!)
+        let confirmedAmount = data["confirmed_amount"] as? Double
+        var notAvailableItems: NotAvailableItems? = nil
         
+        if let notAvailableItemsStr = data["not_available_items_data"] as? String {
+            let notAvailableItemsData = Data(base64Encoded: notAvailableItemsStr, options: .ignoreUnknownCharacters)
+            notAvailableItems = try? NotAvailableItems(serializedData: notAvailableItemsData!)
+        }
+        
+       
         let orderDeliveryStatus : OrderDeliveryStatus = (status: status, order: order, read: read, confirmedAmount: confirmedAmount, notAvailableItems: notAvailableItems)
         return orderDeliveryStatus
     }
