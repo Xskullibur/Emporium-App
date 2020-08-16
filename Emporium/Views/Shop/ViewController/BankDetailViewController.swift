@@ -38,7 +38,9 @@ class BankDetailViewController: UIViewController {
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         if bankInput.text == "" {
-            
+            alertMessage(message: "Bank Number cannot be empty")
+        }else if (String(bankInput.text!.filter { !" \n\t\r".contains($0) }).count != 9 || Int(bankInput.text!) == nil) {
+            alertMessage(message: "Bank Number must be 9 digit")
         }else{
             if self.update == false {
                 addBankDetails(bankNumber: bankInput.text!)
@@ -51,6 +53,13 @@ class BankDetailViewController: UIViewController {
     
     @IBAction func testBtnPressed(_ sender: Any) {
         updateVerify()
+    }
+    
+    func alertMessage(message: String) {
+        let showAlert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "OK", style: .cancel)
+        showAlert.addAction(cancel)
+        self.present(showAlert, animated: true, completion: nil)
     }
     
     
@@ -182,7 +191,7 @@ class BankDetailViewController: UIViewController {
                         DispatchQueue.main.async
                             {
                                 //self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Verfication Required", preferredStyle: .alert)
+                                let showAlert = UIAlertController(title: "Result", message: "Redirecting to verification", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
                                     
