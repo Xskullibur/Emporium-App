@@ -16,8 +16,6 @@
 		34AFE46324DD0A1100A4AA01 /* CompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */; };
 		34B0519A24CA791400C90A33 /* StoreSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0519924CA791400C90A33 /* StoreSelectViewController.swift */; };
 		34B31A8C24BBECF100459A57 /* ListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B31A8B24BBECF100459A57 /* ListenerManager.swift */; };
-		34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */; };
-		34B3D15324C53CB400D32FE3 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */; };
 		34C6E02724A9924400F864B2 /* GroceryStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */; };
 		5D59676246AEA03FEF51ED38 /* Pods_Emporium_EmporiumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70BED74BBB422086FC29546B /* Pods_Emporium_EmporiumUITests.framework */; };
 		6F2E387E8C9ACC3F611FB0F9 /* Pods_Emporium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC51AAC1D5003B687446ECE /* Pods_Emporium.framework */; };
@@ -33,11 +31,14 @@
 		7F37652624B9A72F00CC27F3 /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652524B9A72F00CC27F3 /* Scan.swift */; };
 		7F37652824B9AF5E00CC27F3 /* ScanDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */; };
 		7F37652E24BDAE8300CC27F3 /* ServerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37652D24BDAE8300CC27F3 /* ServerLocation.swift */; };
-		7F37653424BDB8ED00CC27F3 /* CartItem.proto in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653324BDB8ED00CC27F3 /* CartItem.proto */; };
 		7F37653624BDD10E00CC27F3 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653524BDD10E00CC27F3 /* History.swift */; };
 		7F37653824BEF52700CC27F3 /* HistoryPaymentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653724BEF52700CC27F3 /* HistoryPaymentDetail.swift */; };
 		7F37654024D3FDED00CC27F3 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */; };
 		7F37654224D3FEF300CC27F3 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654124D3FEF300CC27F3 /* ShoppingList.swift */; };
+		7F37654924E569CF00CC27F3 /* CartItem.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654724E569CF00CC27F3 /* CartItem.pb.swift */; };
+		7F37654A24E569CF00CC27F3 /* DeliveryOrder.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */; };
+		7F37654C24E576B600CC27F3 /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */; };
+		7F52B05324E67CA300DEEAF8 /* VoucherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */; };
 		7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD0263824976FA200BAA2F1 /* Cart.swift */; };
 		7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */; };
 		7FD3CD1C249F5E7000C1CD80 /* GatewayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */; };
@@ -176,8 +177,6 @@
 		34AFE46224DD0A1100A4AA01 /* CompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedViewController.swift; sourceTree = "<group>"; };
 		34B0519924CA791400C90A33 /* StoreSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSelectViewController.swift; sourceTree = "<group>"; };
 		34B31A8B24BBECF100459A57 /* ListenerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
-		34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryOrder.pb.swift; sourceTree = "<group>"; };
-		34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
 		34C6E02624A9924400F864B2 /* GroceryStoresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoresTableViewController.swift; sourceTree = "<group>"; };
 		40427A950A4BD24653498EAF /* Pods-Emporium-EmporiumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium-EmporiumUITests.release.xcconfig"; path = "Target Support Files/Pods-Emporium-EmporiumUITests/Pods-Emporium-EmporiumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		46DB19238A4DD518573ED7C6 /* Pods-Emporium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emporium.debug.xcconfig"; path = "Target Support Files/Pods-Emporium/Pods-Emporium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,11 +193,14 @@
 		7F37652524B9A72F00CC27F3 /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDetail.swift; sourceTree = "<group>"; };
 		7F37652D24BDAE8300CC27F3 /* ServerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerLocation.swift; sourceTree = "<group>"; };
-		7F37653324BDB8ED00CC27F3 /* CartItem.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; name = CartItem.proto; path = ../../../../../../Downloads/CartItem.proto; sourceTree = "<group>"; };
 		7F37653524BDD10E00CC27F3 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		7F37653724BEF52700CC27F3 /* HistoryPaymentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentDetail.swift; sourceTree = "<group>"; };
 		7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		7F37654124D3FEF300CC27F3 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
+		7F37654724E569CF00CC27F3 /* CartItem.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartItem.pb.swift; sourceTree = "<group>"; };
+		7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryOrder.pb.swift; sourceTree = "<group>"; };
+		7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherTableViewController.swift; sourceTree = "<group>"; };
 		7FD0263824976FA200BAA2F1 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		7FD026412498EE0300BAA2F1 /* ShopDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataManager.swift; sourceTree = "<group>"; };
 		7FD3CD1B249F5E7000C1CD80 /* GatewayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +409,8 @@
 				FE32168F24A98875003D1196 /* DisplayCardViewController.swift */,
 				FE32169124A98B19003D1196 /* AddCardViewController.swift */,
 				7F37653F24D3FDED00CC27F3 /* ShoppingListViewController.swift */,
+				7F37654B24E576B600CC27F3 /* SelectAddressViewController.swift */,
+				7F52B05224E67CA300DEEAF8 /* VoucherTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -466,10 +470,7 @@
 			children = (
 				AC21B9D0249767630058EE50 /* Product.swift */,
 				7FD0263824976FA200BAA2F1 /* Cart.swift */,
-				34B3D15124C53CB300D32FE3 /* CartItem.pb.swift */,
-				34B3D15024C53CB300D32FE3 /* DeliveryOrder.pb.swift */,
 				7F0B387E24A3C38C0003B9D9 /* HistoryItem.swift */,
-				7F37653324BDB8ED00CC27F3 /* CartItem.proto */,
 				7F0B388524ADDA830003B9D9 /* Card.swift */,
 				7F37652724B9AF5E00CC27F3 /* ScanDetail.swift */,
 				7F37653524BDD10E00CC27F3 /* History.swift */,
@@ -668,6 +669,8 @@
 				EDB46830248DEAF7000DE5F0 /* GroceryStore.swift */,
 				ED57F7A024A076C10013A133 /* StoreAnnotation.swift */,
 				ED61104C24A34A3F00FFD408 /* Cart2.swift */,
+				7F37654724E569CF00CC27F3 /* CartItem.pb.swift */,
+				7F37654824E569CF00CC27F3 /* DeliveryOrder.pb.swift */,
 				ED61105A24B6EBB800FFD408 /* QueueItem.swift */,
 				ED1F17C024BD6BA3007CF9C5 /* QueueStatus.swift */,
 				FEB741C024CE770000512C73 /* Address.swift */,
@@ -1154,6 +1157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC13E90F249CE84D00DA2A7F /* CheckOutViewController.swift in Sources */,
+				7F37654924E569CF00CC27F3 /* CartItem.pb.swift in Sources */,
 				7F37653624BDD10E00CC27F3 /* History.swift in Sources */,
 				7F37654024D3FDED00CC27F3 /* ShoppingListViewController.swift in Sources */,
 				ED57F79C249CA2380013A133 /* Toast.swift in Sources */,
@@ -1174,12 +1178,11 @@
 				ACDA8ECA249DEF63009887A7 /* GiftPointsViewController.swift in Sources */,
 				ACED1E01249C64BF00094284 /* VoucherDataManager.swift in Sources */,
 				AC21B9D8249767630058EE50 /* Product.swift in Sources */,
-				34B3D15224C53CB300D32FE3 /* DeliveryOrder.pb.swift in Sources */,
 				7FD026422498EE0300BAA2F1 /* ShopDataManager.swift in Sources */,
 				343CA41424CE87C400BF7F95 /* LocalNotificationHelper.swift in Sources */,
 				ED57F798249C9DD90013A133 /* QueueViewController.swift in Sources */,
 				ACED1DF2249B8D2E00094284 /* Voucher.swift in Sources */,
-				34B3D15324C53CB400D32FE3 /* CartItem.pb.swift in Sources */,
+				7F52B05324E67CA300DEEAF8 /* VoucherTableViewController.swift in Sources */,
 				7FD0263924976FA200BAA2F1 /* Cart.swift in Sources */,
 				ACED1DED249B8BA200094284 /* VouchersViewController.swift in Sources */,
 				ACED1DE4249B307600094284 /* CartCell.swift in Sources */,
@@ -1192,6 +1195,7 @@
 				FE56B18724B81A9D000274A1 /* EdgeDetection.swift in Sources */,
 				34AFE46324DD0A1100A4AA01 /* CompletedViewController.swift in Sources */,
 				ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */,
+				7F37654A24E569CF00CC27F3 /* DeliveryOrder.pb.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
 				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
@@ -1200,6 +1204,7 @@
 				ED57F7A824A1CBE70013A133 /* EntryViewController.swift in Sources */,
 				FE432CE024E62C1300880D76 /* DeliveryOptionHostingController.swift in Sources */,
 				ACDA8EC6249DE318009887A7 /* MyVoucherTableViewCell.swift in Sources */,
+				7F37654C24E576B600CC27F3 /* SelectAddressViewController.swift in Sources */,
 				ED1F17C824BEADFF007CF9C5 /* ItemTableViewCell.swift in Sources */,
 				AC0A18F424932494009FFD93 /* Notification.swift in Sources */,
 				AC13E90D249CE84400DA2A7F /* ShopViewController.swift in Sources */,
@@ -1256,7 +1261,6 @@
 				EDB46831248DEAF7000DE5F0 /* GroceryStore.swift in Sources */,
 				FE56492524C54C890001CA4F /* Direction.swift in Sources */,
 				FE32169024A98875003D1196 /* DisplayCardViewController.swift in Sources */,
-				7F37653424BDB8ED00CC27F3 /* CartItem.proto in Sources */,
 				FE90235F2473B9C700CE6B3A /* Emporium.xcdatamodeld in Sources */,
 				7F0B387A24A35FA60003B9D9 /* HistoryCell.swift in Sources */,
 			);

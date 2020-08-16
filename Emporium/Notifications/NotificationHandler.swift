@@ -197,11 +197,6 @@ class NotificationHandler {
         let message = data["message"] as? String ?? ""
         let date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
         let read = data["read"] as? Bool ?? false
-        
-        // Local Notification
-        let content = LocalNotificationHelper.createNotificationContent(title: title, body: message, subtitle: sender, others: nil)
-        LocalNotificationHelper.addNotification(identifier: "\(sender).notification", content: content)
-        
         return EmporiumNotification(sender: sender, title: title, message: message, date: date, priority: 1, read: read)
     }
     

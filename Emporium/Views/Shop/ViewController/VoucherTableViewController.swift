@@ -1,8 +1,8 @@
 //
-//  MyVouchersViewController.swift
+//  VoucherTableViewController.swift
 //  Emporium
 //
-//  Created by Peh Zi Heng on 19/6/20.
+//  Created by user1 on 14/8/20.
 //  Copyright © 2020 NYP. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Firebase
 import Combine
 import MaterialComponents.MaterialBottomSheet
 
-class MyVouchersTableViewController: UITableViewController {
+class VoucherTableViewController: UITableViewController {
 
     // MARK: - Variables
     private var cancellables = Set<AnyCancellable>()
@@ -32,7 +32,7 @@ class MyVouchersTableViewController: UITableViewController {
             self.user = user
             self.setupClaimedVouchers()
         }
-
+        
     }
     
 
@@ -81,6 +81,7 @@ class MyVouchersTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VoucherCell", for: indexPath) as! MyVoucherTableViewCell
+        
         cell.setVoucher(voucher: myVouchers[indexPath.row])
         
         return cell
@@ -115,15 +116,5 @@ class MyVouchersTableViewController: UITableViewController {
             _, _ in
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
