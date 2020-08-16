@@ -10,7 +10,6 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import MaterialComponents.MaterialButtons_Theming
 import Lottie
-import CoreBluetooth
 
 class InStoreViewController: UIViewController {
 
@@ -70,8 +69,9 @@ class InStoreViewController: UIViewController {
         exitStoreBtn.applyContainedTheme(withScheme: containerScheme)
         
         if let _ = order {
+            exitStoreBtn.isHidden = true
             requestorListBtn.minimumSize = CGSize(width: 64, height: 48)
-            requestorListBtn.applyOutlinedTheme(withScheme: containerScheme)
+            requestorListBtn.applyContainedTheme(withScheme: containerScheme)
         }
         else {
             requestorListBtn.isHidden = true

@@ -31,25 +31,6 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         
     }
     
-    @IBAction func directionBtnPressed(_ sender: Any) {
-        let annotation = StoreAnnotation(
-            coords: CLLocationCoordinate2D(
-                latitude: store!.location.latitude,
-                longitude: store!.location.longitude
-            ),
-            store: store!
-        )
-        annotation.title = store!.name
-        annotation.subtitle = store!.address
-        
-        // Show Directions
-        let launchOptions = [
-            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault
-        ]
-        
-        annotation.mapItem?.openInMaps(launchOptions: launchOptions)
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
