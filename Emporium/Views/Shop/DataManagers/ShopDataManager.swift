@@ -331,4 +331,19 @@ class ShopDataManager
         
     }
     
+    static func getCurrentOrder(onComplete: @escaping ([String: Any]) -> Void) {
+        let uid = Auth.auth().currentUser!.uid
+        db.collection("users/\(uid)/order").whereField("received", isEqualTo: "no").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("\(error)")
+            }
+            else {
+                if let document = querySnapshot?.documents[0] {
+                    onComplete(document.data())
+                }
+            }
+            
+        }
+    }
+    
 }

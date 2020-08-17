@@ -177,5 +177,31 @@ class AccountDataManager
         return storageRef
     }
     
+    static func getAccountId(onComplete: @escaping (String) ->  Void) {
+        
+        let userId = Auth.auth().currentUser!.uid
+        let db = Firestore.firestore()
+        db.document("users/\(userId)").getDocument { (document, error) in
+            
+            if let error = error {
+                print("Error Getting Account ID \(error.localizedDescription)")
+            }
+            else {
+                
+                if let data = document?.data() {
+                    
+                    if let accountId = data["accountID"] {
+                        onComplete(accountId as! String)
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        
+    }
+    
     
 }

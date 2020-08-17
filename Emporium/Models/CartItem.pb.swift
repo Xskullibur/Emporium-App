@@ -288,8 +288,8 @@ extension Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "order_id"),
     2: .standard(proto: "order_by_user_id"),
-    3: .standard(proto: "delivery_address"),
-    4: .same(proto: "cartItems"),
+    4: .standard(proto: "delivery_address"),
+    5: .same(proto: "cartItems"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -297,8 +297,8 @@ extension Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.orderID)
       case 2: try decoder.decodeSingularStringField(value: &self.orderByUserID)
-      case 3: try decoder.decodeSingularMessageField(value: &self._deliveryAddress)
-      case 4: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
+      case 4: try decoder.decodeSingularMessageField(value: &self._deliveryAddress)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.cartItems)
       default: break
       }
     }
@@ -312,10 +312,10 @@ extension Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
       try visitor.visitSingularStringField(value: self.orderByUserID, fieldNumber: 2)
     }
     if let v = self._deliveryAddress {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
     if !self.cartItems.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 4)
+      try visitor.visitRepeatedMessageField(value: self.cartItems, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
