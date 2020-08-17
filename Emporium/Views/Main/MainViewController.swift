@@ -146,12 +146,11 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                     let storeDataManager = StoreDataManager()
                     storeDataManager.getStore(storeId: queueItem.storeId) { (store) in
                         
-                        self.removeSpinner()
-                        
                         switch (queueItem.status) {
                             
                             case .None:
                                 // Navigate to NearbyMart
+                                self.removeSpinner()
                                 self.performSegue(withIdentifier: "ShowNearby", sender: self)
                                 
                             case .InQueue:
@@ -163,11 +162,12 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                         
                                         // Navigate to QueueVC
                                         DispatchQueue.main.async {
+                                            self.removeSpinner()
                                             let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                             let queueVC = queueStoryboard
                                                 .instantiateViewController(identifier: "queueVC") as QueueViewController
                                             
-                                            queueVC.justJoinedQueue = false
+                                            queueVC.requested = true
                                             queueVC.store = store
                                             queueVC.queueId = queueItem.id
                                             queueVC.currentlyServing = currentlyServing
@@ -188,12 +188,14 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 self.deliveryDataManager.getDeliveryOrder { (order) in
                                     // Navigate to Entry
                                     DispatchQueue.main.async {
+                                        self.removeSpinner()
                                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                         
                                         let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
                                         entryVC.store = store
                                         entryVC.queueId = queueItem.id
                                         entryVC.order = order
+                                        entryVC.requested = true
                                         
                                         let rootVC = self.navigationController?.viewControllers.first
                                         self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
@@ -206,6 +208,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 self.deliveryDataManager.getDeliveryOrder { (order) in
                                     // Navigate to InStore
                                     DispatchQueue.main.async {
+                                        self.removeSpinner()
                                         let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
                                         let inStoreVC = queueStoryboard
                                             .instantiateViewController(identifier: "inStoreVC") as InStoreViewController
@@ -226,6 +229,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                     if let order = order {
                                         // Navigate to Delivery
                                         DispatchQueue.main.async {
+                                            self.removeSpinner()
                                             let queueStoryboard = UIStoryboard(name: "Delivery", bundle: nil)
                                             let deliveryVC = queueStoryboard
                                                 .instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
@@ -237,6 +241,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                     }
                                     else {
                                         // Error Alert
+                                        self.removeSpinner()
                                         let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
                                         let data = Plist.readPlist(url!)!
                                         let infoDescription = data["Error Alert"] as! String
@@ -247,6 +252,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                 
                             case .Completed:
                                 // Navigate to NearbyMart
+                                self.removeSpinner()
                                 self.performSegue(withIdentifier: "ShowNearby", sender: self)
                             
                         }
@@ -255,7 +261,7 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                     
                 }) { (error) in
                     // Error Alert
-                    // Error Alert
+                    self.removeSpinner()
                     let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
                     let data = Plist.readPlist(url!)!
                     let infoDescription = data["Error Alert"] as! String

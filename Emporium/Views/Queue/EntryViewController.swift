@@ -20,6 +20,7 @@ class EntryViewController: UIViewController {
     var store: GroceryStore?
     var queueId: String?
     var order: Order?
+    var requested: Bool = false
     
     // MARK: - Outlet
     @IBOutlet weak var animationView: AnimationView!
@@ -113,6 +114,13 @@ class EntryViewController: UIViewController {
         
         enterStoreBtn.minimumSize = CGSize(width: 64, height: 48)
         enterStoreBtn.applyContainedTheme(withScheme: containerScheme)
+        
+        // Show Volunteer Alert
+        if !requested {
+            showVolunteerAlert(store: store!) { (order) in
+                self.order = order
+            }
+        }
         
         // onResume
         NotificationCenter.default.addObserver(self,
