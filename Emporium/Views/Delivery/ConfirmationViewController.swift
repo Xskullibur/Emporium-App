@@ -34,6 +34,11 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //DEBUG CONFIRMATION
+        #if DEBUG
+        self.showDebugConfirmationButton()
+        #endif
 
         // Setup Capture Session / Device
         self.view.backgroundColor = .black
@@ -85,12 +90,6 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         
         captureSession.startRunning()
         
-        
-        //DEBUG CONFIRMATION
-        #if DEBUG
-        self.showDebugConfirmationButton()
-        #endif
-        
     }
     
     @IBOutlet weak var _debugConfirmationButton: UIButton!
@@ -99,7 +98,8 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     }
     
     @IBAction func _debugConfirmDelivery(_ sender: Any) {
-        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+        self.completeDelivery()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         if captureSession.isRunning == false {
@@ -119,6 +119,22 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     }
     
     // AVCapture
+    fileprivate func completeDelivery() {
+        // Update Delivery to Completed
+        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+        
+        // Show alert and navigate
+        self.showAlert(title: "Success", message: "Successfully completed delivery.") {
+            
+            // Navigate
+            let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
+            
+            let rootVC = self.navigationController?.viewControllers.first
+            self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
+            
+        }
+    }
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         captureSession.stopRunning()
@@ -141,19 +157,7 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
             if stringVal == order.orderID {
-                // Update Delivery to Completed
-                DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
-                
-                // Show alert and navigate
-                self.showAlert(title: "Success", message: "Successfully completed delivery.") {
-                    
-                    // Navigate
-                    let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
-                    
-                    let rootVC = self.navigationController?.viewControllers.first
-                    self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)
-                    
-                }
+                completeDelivery()
             }
             
         }
