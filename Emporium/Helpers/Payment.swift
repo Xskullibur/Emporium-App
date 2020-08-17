@@ -63,14 +63,24 @@ class Payment: NSObject {
         }
     }
     
-    static func checkBankExist() -> Bool{
+    static func getOrderExist(onComplete: ((Bool) -> Void)?) {
+        let uid = Auth.auth().currentUser!.uid
         var exist = false
-        checkBank(){
-            isExist in
-            return isExist
+        
+        db.collection("users/\(uid)/order").whereField("received", isEqualTo: "no").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("\(error)")
+                onComplete?(exist)
+            }
+            else {
+                exist = true
+                onComplete?(exist)
+            }
+            onComplete?(exist)
         }
-        return exist
     }
+    
+    
     
     static func refund(amount: Double, chargeID: String) {
             var message = ""
