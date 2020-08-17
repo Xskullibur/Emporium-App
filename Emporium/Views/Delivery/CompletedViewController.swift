@@ -16,11 +16,16 @@ class CompletedViewController: UIViewController {
     @IBOutlet weak var backToMainBtn: MDCButton!
     @IBOutlet weak var animationView: AnimationView!
     
+    var queueId: String!
+    var storeId: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Update Delivery to Completed
         DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+        let queueDataManager = QueueDataManager()
+        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: storeId!) { (success) in }
         
         // AnimationView
         animationView.contentMode = .scaleAspectFit

@@ -14,8 +14,8 @@ import MaterialComponents.MaterialBottomSheet
 class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - Variables
-    var queueId: String?
-    var store: GroceryStore?
+    var queueId: String!
+    var store: GroceryStore!
     var order: Order!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -126,6 +126,8 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
             
             // Navigate
             let completeVC = self.storyboard!.instantiateViewController(identifier: "completedVC") as CompletedViewController
+            completeVC.queueId = self.queueId
+            completeVC.storeId = self.store.id
             
             let rootVC = self.navigationController?.viewControllers.first
             self.navigationController?.setViewControllers([rootVC!, completeVC], animated: true)

@@ -393,6 +393,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
                                 let deliveryVC = queueStoryboard.instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
                                 
                                 deliveryVC.order = self.order
+                                deliveryVC.store = self.store
+                                deliveryVC.queueId = self.queueId
                                 
                                 let rootVC = self.navigationController?.viewControllers.first
                                 self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)

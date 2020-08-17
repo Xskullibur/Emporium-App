@@ -21,6 +21,8 @@ class DeliveryViewController: UIViewController {
     @IBOutlet weak var animationView: AnimationView!
     
     var order: Order!
+    var store: GroceryStore!
+    var queueId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,10 @@ class DeliveryViewController: UIViewController {
         
     }
     
+    @IBAction func completeDeliveryPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "confirmVC", sender: self)
+    }
+    
     @IBAction func directionBtnPressed(_ sender: Any) {
         let annotation = DeliveryAnnotation(address: order.deliveryAddress)
         annotation.title = "Destination"
@@ -54,14 +60,17 @@ class DeliveryViewController: UIViewController {
         annotation.mapItem?.openInMaps(launchOptions: launchOptions)
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "confirmVC" {
+            let vc = segue.destination as! ConfirmationViewController
+            vc.store = store
+            vc.queueId = queueId
+        }
+        
     }
-    */
 
 }

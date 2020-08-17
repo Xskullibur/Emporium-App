@@ -234,6 +234,8 @@ UICollectionViewDataSource, UICollectionViewDelegate {
                                             let deliveryVC = queueStoryboard
                                                 .instantiateViewController(identifier: "deliveryVC") as DeliveryViewController
                                             deliveryVC.order = order
+                                            deliveryVC.store = store
+                                            deliveryVC.queueId = queueItem.id
                                             
                                             let rootVC = self.navigationController?.viewControllers.first
                                             self.navigationController?.setViewControllers([rootVC!, deliveryVC], animated: true)

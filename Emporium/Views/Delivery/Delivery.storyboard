@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -95,7 +95,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Complete Delivery"/>
                                                 <connections>
-                                                    <segue destination="D0M-yV-G8E" kind="show" id="aTm-Wr-Ffr"/>
+                                                    <action selector="completeDeliveryPressed:" destination="HCH-dC-Pgx" eventType="touchUpInside" id="gsU-VS-jeU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYe-HZ-def" customClass="MDCButton">
@@ -128,6 +128,7 @@
                         <outlet property="animationView" destination="SCf-1d-HTc" id="k4w-k6-ppi"/>
                         <outlet property="completeBtn" destination="g1V-et-57A" id="yeb-Iu-aXS"/>
                         <outlet property="directionBtn" destination="VYe-HZ-def" id="b1F-vG-pNa"/>
+                        <segue destination="D0M-yV-G8E" kind="show" identifier="confirmVC" id="xKO-03-z1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBd-Xw-dh0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -158,7 +159,7 @@
                                             <constraint firstAttribute="height" constant="48" id="Z8m-de-R1m"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Complete Delivery"/>
+                                        <state key="normal" title="Back To Menu"/>
                                         <connections>
                                             <action selector="bckToMainPressed:" destination="iLm-1c-6BL" eventType="touchUpInside" id="oi4-IX-f9h"/>
                                         </connections>
