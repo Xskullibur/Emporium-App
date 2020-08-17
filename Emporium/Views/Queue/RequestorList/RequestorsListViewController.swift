@@ -22,6 +22,8 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
     var store: GroceryStore!
     var order: Order!
     
+    var viewing: Bool = false
+    
     var itemList: [RequestedItem] = []
     
     var defaultCategoryList: [String] = []
@@ -70,6 +72,11 @@ class RequestorsListViewController: UIViewController, UITableViewDelegate, UITab
             self.categoryCollectionView.reloadData()
             self.removeSpinner()
         })
+        
+        // Check Editing
+        if viewing {
+            self.navigationItem.rightBarButtonItem = nil
+        }
         
     }
     

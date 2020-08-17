@@ -257,7 +257,7 @@ class QueueViewController: UIViewController {
             requestorListVC.store = store!
             requestorListVC.queueId = queueId!
             requestorListVC.order = _order!
-            requestorListVC.itemTableView.isUserInteractionEnabled = false
+            requestorListVC.viewing = true
         }
         
     }
