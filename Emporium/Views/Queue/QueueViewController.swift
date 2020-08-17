@@ -24,7 +24,7 @@ class QueueViewController: UIViewController {
     var storeDataManager = StoreDataManager()
     var deliveryDataManager = DeliveryDataManager()
     
-    var justJoinedQueue = false
+    var requested = false
     var store: GroceryStore?
     var queueId: String?
     var queueLength: String?
@@ -131,11 +131,6 @@ class QueueViewController: UIViewController {
             queueLengthLbl.text = String(queueLength!)
         }
         
-        // Setup
-        if justJoinedQueue {
-            showVolunteerAlert()
-        }
-        
         // Visitor Count Listener
         let listener = createListener()
         listenerManager.add(listener)
@@ -151,7 +146,7 @@ class QueueViewController: UIViewController {
         listenerManager.add(listener)
     }
     
-    // MARK: - Custom Functions
+    // MARK: - Create Listener
     func createListener() -> ListenerRegistration {
         // Error Alert
         let url = Bundle.main.url(forResource: "Data", withExtension: "plist")
@@ -194,6 +189,7 @@ class QueueViewController: UIViewController {
                         entryVC.store = self.store
                         entryVC.queueId = self.queueId!
                         entryVC.order = self._order
+                        entryVC.requested = self.requested
                         
                         let rootVC = self.navigationController?.viewControllers.first
                         self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
@@ -203,11 +199,12 @@ class QueueViewController: UIViewController {
                         // Update cards
                         self.queueLengthLbl.text = queueLength
                         self.currentlyServingLbl.text = QueueItem.hash_id(str: currentQueueId)
+                        
                     }
                     
                 }) { (error) in
                     // Error
-                    self.showAlert(title: "Oops!", message: infoDescription)
+                    print("Error: \(error)")
                 }
 
             }
@@ -218,87 +215,112 @@ class QueueViewController: UIViewController {
                     self.currentlyServingLbl.text = QueueItem.hash_id(str: currentlyServing)
                     self.queueLengthLbl.text = queueLength
                 }
+                
+                // MARK: - Volunteer Alert
+                if !self.requested {
+                    DispatchQueue.main.async {
+                        self.showVolunteerAlert(store: self.store!) { (order) in
+                            
+                            // Update Values
+                            self.requested = true
+                            self._order = order
+                            self.requestItemBtn.isHidden = false
+                        
+            //                //TEST
+            //                DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+            //                    order1 in
+            //                    print("Recieved delivery order: \(order1!.orderID)")
+            //
+            //                    DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+            //
+            //                })
+            //                //TEST
+                            
+                            print("Recieved order: \(order.orderID)")
+                        }
+                    }
+                }
 
             }
         }
     }
     
     // MARK: - Volunteer Alert
-    func showVolunteerAlert() {
-        let alert = UIAlertController(
-            title: "Would you like to volunteer?",
-            message: "Volunteer to help your fellow neighbours get groceries",
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-            
-            
-            
-            //Send delivery request to server
-            DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
-                order in
-                if let order = order {
-                    
-                    // Update Delivery to In Queue
-                    DeliveryDataManager.shared.updateDeliveryStatus(status: .in_queue)
-                    
-                    // Show Local Notification
-                    let content = LocalNotificationHelper.createNotificationContent(
-                        title: "Volunteer Alert",
-                        body: "Someone has requested you to help get groceries!",
-                        subtitle: "", others: nil
-                    )
-                    LocalNotificationHelper.addNotification(
-                        identifier: "Order.notification",
-                        content: content
-                    )
-                    
-                    // Update Values
-                    self._order = order
-                    DispatchQueue.main.async {
-                        self.requestItemBtn.isHidden = false
-                    }
-                    
-//                    //TEST
-//                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
-//                        order1 in
-//                        print("Recieved delivery order: \(order1!.orderID)")
-//                        
-//                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
-//                        
-//                    })
-//                    //TEST
-                    
-                    print("Recieved order: \(order.orderID)")
-                }
-            })
-            //Start Background fetch
-//            UserDefaults.standard.set(self.store!.id, forKey: "com.emporium.requestOrder:storeId")
-//            (UIApplication.shared.delegate as! AppDelegate).scheduleFetchOrder()
-            
-            let thanksAlert = UIAlertController(
-                title: "Thank you!",
-                message: "We will notify you when there is a request.",
-                preferredStyle: .alert
-            )
-            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-                action in
-                Payment.checkBank(onComplete: { (exist) in
-                    if(!exist){
-                        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-                        let vc = baseSB.instantiateViewController(identifier: "bankVC") as! BankDetailViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                })
-            }))
-            self.present(thanksAlert, animated: true)
-            
-        }))
-        
-        self.present(alert, animated: true)
-    }
+//    func showVolunteerAlert() {
+//        let alert = UIAlertController(
+//            title: "Would you like to volunteer?",
+//            message: "Volunteer to help your fellow neighbours get groceries",
+//            preferredStyle: .alert
+//        )
+//
+//        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+//
+//
+//
+//            //Send delivery request to server
+//            DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
+//                order in
+//                if let order = order {
+//
+//                    // Update Delivery to In Queue
+//                    DeliveryDataManager.shared.updateDeliveryStatus(status: .in_queue)
+//
+//                    // Show Local Notification
+//                    let content = LocalNotificationHelper.createNotificationContent(
+//                        title: "Volunteer Alert",
+//                        body: "Someone has requested you to help get groceries!",
+//                        subtitle: "", others: nil
+//                    )
+//                    LocalNotificationHelper.addNotification(
+//                        identifier: "Order.notification",
+//                        content: content
+//                    )
+//
+//                    // Update Values
+//                    self._order = order
+//                    DispatchQueue.main.async {
+//                        self.requestItemBtn.isHidden = false
+//                    }
+//
+////                    //TEST
+////                    DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
+////                        order1 in
+////                        print("Recieved delivery order: \(order1!.orderID)")
+////
+////                        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+////
+////                    })
+////                    //TEST
+//
+//                    print("Recieved order: \(order.orderID)")
+//                }
+//            })
+//            //Start Background fetch
+////            UserDefaults.standard.set(self.store!.id, forKey: "com.emporium.requestOrder:storeId")
+////            (UIApplication.shared.delegate as! AppDelegate).scheduleFetchOrder()
+//
+//            let thanksAlert = UIAlertController(
+//                title: "Thank you!",
+//                message: "We will notify you when there is a request.",
+//                preferredStyle: .alert
+//            )
+//            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+//                action in
+//                Payment.checkBank(onComplete: { (exist) in
+//                    if(!exist){
+//                        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+//                        let vc = baseSB.instantiateViewController(identifier: "bankVC") as! BankDetailViewController
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    }
+//                })
+//            }))
+//            self.present(thanksAlert, animated: true)
+//
+//        }))
+//
+//        self.present(alert, animated: true)
+//    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

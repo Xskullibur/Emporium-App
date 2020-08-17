@@ -111,6 +111,7 @@
 		ED61105924AD93A500FFD408 /* QueueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105824AD93A500FFD408 /* QueueDataManager.swift */; };
 		ED61105B24B6EBB800FFD408 /* QueueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61105A24B6EBB800FFD408 /* QueueItem.swift */; };
 		ED818D2A24C04B040033F1ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED818D2924C04B040033F1ED /* MapKit.framework */; };
+		ED90102F24EA36EE0070D89D /* VolunteerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90102E24EA36EE0070D89D /* VolunteerHelper.swift */; };
 		ED94A9D824E8FB0C00549752 /* DeliveryAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94A9D724E8FB0B00549752 /* DeliveryAnnotation.swift */; };
 		ED94A9DA24E9029900549752 /* delivery-in-progress.json in Resources */ = {isa = PBXBuildFile; fileRef = ED94A9D924E9029900549752 /* delivery-in-progress.json */; };
 		EDB46828248DD4B3000DE5F0 /* PlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */; };
@@ -284,6 +285,7 @@
 		ED61105824AD93A500FFD408 /* QueueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueDataManager.swift; sourceTree = "<group>"; };
 		ED61105A24B6EBB800FFD408 /* QueueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItem.swift; sourceTree = "<group>"; };
 		ED818D2924C04B040033F1ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		ED90102E24EA36EE0070D89D /* VolunteerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerHelper.swift; sourceTree = "<group>"; };
 		ED94A9D724E8FB0B00549752 /* DeliveryAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAnnotation.swift; sourceTree = "<group>"; };
 		ED94A9D924E9029900549752 /* delivery-in-progress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "delivery-in-progress.json"; sourceTree = "<group>"; };
 		EDB46827248DD4B3000DE5F0 /* PlacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPI.swift; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				FEB741C224CE7CD900512C73 /* GeocoderHelper.swift */,
 				343CA41324CE87C400BF7F95 /* LocalNotificationHelper.swift */,
 				7F52B05624E8006100DEEAF8 /* Payment.swift */,
+				ED90102E24EA36EE0070D89D /* VolunteerHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1220,6 +1223,7 @@
 				ED1F17C124BD6BA3007CF9C5 /* QueueStatus.swift in Sources */,
 				7F37654A24E569CF00CC27F3 /* DeliveryOrder.pb.swift in Sources */,
 				AC0A18F624932628009FFD93 /* NotificationHandler.swift in Sources */,
+				ED90102F24EA36EE0070D89D /* VolunteerHelper.swift in Sources */,
 				FE6303D224AD964600BF7976 /* EmptyTableView.swift in Sources */,
 				FE9023552473B9C700CE6B3A /* AppDelegate.swift in Sources */,
 				ACED1DF8249B949F00094284 /* VoucherBottomSheetViewController.swift in Sources */,
