@@ -92,7 +92,7 @@ class VoucherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 
         self.delegate?.setVoucher(voucher: myVouchers[indexPath.row])
-        self.showAlert(title: "Result", message: "Voucher Added") {
+        self.showAlert(title: "Success", message: "Voucher Added") {
             self.navigationController?.popViewController(animated: true)
         }
     }

@@ -114,7 +114,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         let addList = UIAlertAction(title: "Add To Cart", style: .default) {
             action in
             self.addListToCart(name: self.listName[row])
-            self.showAlert(title: "Result", message: "Successfully Added", onComplete: nil)
+            self.showAlert(title: "Success", message: "Successfully Added", onComplete: nil)
         }
         
         let editList = UIAlertAction(title: "View/Edit", style: .default) {

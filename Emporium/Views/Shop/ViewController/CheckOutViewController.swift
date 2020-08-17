@@ -170,7 +170,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func saveBtnPressed(_ sender: Any) {
         if(!fromShop()) {
             self.editShoppingList(name: listName)
-            self.showAlert(title: "Result", message: "Successfully Saved", onComplete: nil)
+            self.showAlert(title: "Success", message: "Successfully Saved", onComplete: nil)
         }else{
             saveActionSheet()
         }

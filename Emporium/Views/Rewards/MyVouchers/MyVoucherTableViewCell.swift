@@ -38,7 +38,7 @@ class MyVoucherTableViewCell: UITableViewCell {
         self.alpha = 0.5
         self.voucherDescriptionLabel.textColor = .gray
         self.voucherNameLabel.textColor = .gray
-        self.voucherNameLabel.text = self.voucherNameLabel.text ?? "" + " (Used)"
+        self.voucherNameLabel.text = self.voucherNameLabel.text! + " (Used)"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

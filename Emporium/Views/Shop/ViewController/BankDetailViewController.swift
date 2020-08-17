@@ -89,18 +89,10 @@ class BankDetailViewController: UIViewController {
                         DispatchQueue.main.async
                             {
                                 self.removeSpinner()
-                                let showAlert = UIAlertController(title: "Result", message: "Redirecting to verification", preferredStyle: .alert)
-                                let back = UIAlertAction(title: "OK", style: .default) {
-                                    action in
-                                    
-                                    let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-                                    self.view.addSubview(webView)
-                                    let url = URL(string: message)
-                                    webView.load(URLRequest(url: url!))
-                                    
-                                }
-                                showAlert.addAction(back)
-                                self.present(showAlert, animated: true, completion: nil)
+                                let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+                                self.view.addSubview(webView)
+                                let url = URL(string: message)
+                                webView.load(URLRequest(url: url!))
                         }
                     }
                     else
