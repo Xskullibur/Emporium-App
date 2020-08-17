@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -15,7 +15,23 @@
                     <view key="view" contentMode="scaleToFill" id="vgI-Rt-Xz1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usM-RO-PEQ">
+                                <rect key="frame" x="279" y="103" width="115" height="30"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Confirm Delivery">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="_debugConfirmDelivery:" destination="D0M-yV-G8E" eventType="touchUpInside" id="eRG-Sz-rwq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yOm-i4-yb8" firstAttribute="trailing" secondItem="usM-RO-PEQ" secondAttribute="trailing" constant="20" id="BWs-iL-csb"/>
+                            <constraint firstItem="usM-RO-PEQ" firstAttribute="top" secondItem="yOm-i4-yb8" secondAttribute="top" constant="15" id="n13-jS-d5G"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yOm-i4-yb8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Confirm Delivery" id="rd7-v2-9OV">
@@ -26,12 +42,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="_debugConfirmationButton" destination="usM-RO-PEQ" id="JWK-Pc-6bK"/>
                         <segue destination="iLm-1c-6BL" kind="show" identifier="" id="JqO-He-ufR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egr-6Q-3nK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2126" y="-48"/>
+            <point key="canvasLocation" x="2124.6376811594205" y="-48.214285714285715"/>
         </scene>
         <!--Delivery View Controller-->
         <scene sceneID="wGD-v5-KRv">
@@ -171,6 +188,7 @@
         <!--Navigation Controller-->
         <scene sceneID="C4j-VN-f6l">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSK-pi-mk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f04-zQ-Bcy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eaj-do-Kte">
@@ -182,7 +200,6 @@
                         <segue destination="HCH-dC-Pgx" kind="relationship" relationship="rootViewController" id="1Uj-DW-tCa"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aSK-pi-mk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="367" y="-48"/>
         </scene>

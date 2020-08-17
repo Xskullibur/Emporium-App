@@ -85,8 +85,22 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
         
         captureSession.startRunning()
         
+        
+        //DEBUG CONFIRMATION
+        #if DEBUG
+        self.showDebugConfirmationButton()
+        #endif
+        
     }
     
+    @IBOutlet weak var _debugConfirmationButton: UIButton!
+    private func showDebugConfirmationButton(){
+        _debugConfirmationButton.isHidden = false
+    }
+    
+    @IBAction func _debugConfirmDelivery(_ sender: Any) {
+        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+    }
     override func viewWillAppear(_ animated: Bool) {
         if captureSession.isRunning == false {
             captureSession.startRunning()
