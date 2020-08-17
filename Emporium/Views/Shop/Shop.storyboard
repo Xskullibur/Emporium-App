@@ -1133,7 +1133,7 @@
                     <navigationItem key="navigationItem" title="Shop" id="ezN-2W-PIf">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="cart" catalog="system" id="bsy-2x-gad">
                             <connections>
-                                <segue destination="Eti-EX-wKZ" kind="show" identifier="toCheckOut" id="Oy0-2A-1Y3"/>
+                                <segue destination="Eti-EX-wKZ" kind="show" identifier="toCheckOut" id="lyy-Fd-zDq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1413,7 +1413,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oy0-2A-1Y3"/>
+        <segue reference="lyy-Fd-zDq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Coupon" width="512" height="512"/>
