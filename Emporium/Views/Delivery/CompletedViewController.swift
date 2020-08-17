@@ -8,9 +8,12 @@
 
 import UIKit
 import Lottie
+import MaterialComponents.MaterialButtons
+import MaterialComponents.MaterialButtons_Theming
 
 class CompletedViewController: UIViewController {
 
+    @IBOutlet weak var backToMainBtn: MDCButton!
     @IBOutlet weak var animationView: AnimationView!
     
     override func viewDidLoad() {
@@ -23,9 +26,19 @@ class CompletedViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()
+        
+        // Button
+        let containerScheme = MDCContainerScheme()
+        containerScheme.colorScheme.primaryColor = UIColor(named: "Primary")!
+        
+        backToMainBtn.minimumSize = CGSize(width: 64, height: 48)
+        backToMainBtn.applyOutlinedTheme(withScheme: containerScheme)
     }
     
-
+    @IBAction func bckToMainPressed(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
