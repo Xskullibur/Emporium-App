@@ -45,23 +45,7 @@ class ShopViewController: UIViewController, DataDelegate {
         
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
         
-        Payment.getOrderExist(onComplete: { (exist) in
-            if(exist){
-                //if order exist
-                let showAlert = UIAlertController(title: "Alert", message: "You have already have a exising order", preferredStyle: .alert)
-                let back = UIAlertAction(title: "OK", style: .default) {
-                    action in
-                    let baseSB = UIStoryboard(name: "Shop", bundle: nil)
-                    let vc = baseSB.instantiateViewController(identifier: "HistoryViewController") as! HistoryViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                showAlert.addAction(back)
-                self.present(showAlert, animated: true, completion: nil)
-            }else{
-                //if there is no current order
-                
-            }
-        })
+        
         
         if(self.fromShopList()) {
             self.cartBtn.isEnabled = false
@@ -236,6 +220,28 @@ class ShopViewController: UIViewController, DataDelegate {
     
     @IBAction func filterBtnPressed(_ sender: Any) {
         showFilter()
+    }
+    
+    
+    @IBAction func cartBtnPressed(_ sender: Any) {
+        Payment.getOrderExist(onComplete: { (exist) in
+            if(exist){
+                //if order exist
+                let showAlert = UIAlertController(title: "Alert", message: "You have already have a exising order", preferredStyle: .alert)
+                let back = UIAlertAction(title: "OK", style: .default) {
+                    action in
+                    let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+                    let vc = baseSB.instantiateViewController(identifier: "HistoryViewController") as! HistoryViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                showAlert.addAction(back)
+                self.present(showAlert, animated: true, completion: nil)
+            }else{
+                self.performSegue(withIdentifier: "toCheckOut", sender: nil)
+                
+            }
+        })
+        
     }
     
     

@@ -65,18 +65,15 @@ class Payment: NSObject {
     
     static func getOrderExist(onComplete: ((Bool) -> Void)?) {
         let uid = Auth.auth().currentUser!.uid
-        var exist = false
         
         db.collection("users/\(uid)/order").whereField("received", isEqualTo: "no").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("\(error)")
-                onComplete?(exist)
+                onComplete?(false)
+                return
             }
-            else {
-                exist = true
-                onComplete?(exist)
-            }
-            onComplete?(exist)
+            onComplete?(querySnapshot?.isEmpty ?? false)
+            
         }
     }
     
