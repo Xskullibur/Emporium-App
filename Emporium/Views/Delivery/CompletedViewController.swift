@@ -16,6 +16,10 @@ class CompletedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Update Delivery to Completed
+        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
+        
+        // AnimationView
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()

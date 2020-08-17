@@ -120,8 +120,6 @@ class ConfirmationViewController: UIViewController, AVCaptureMetadataOutputObjec
     
     // AVCapture
     fileprivate func completeDelivery() {
-        // Update Delivery to Completed
-        DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
         
         // Show alert and navigate
         self.showAlert(title: "Success", message: "Successfully completed delivery.") {
