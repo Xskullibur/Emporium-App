@@ -25,11 +25,12 @@ class Global{
     
     
     //MARK: HARDCODED IP
-    
-//    //Emporium backend server host
-//    public static let BACKEND_SERVER_HOST: String = "http://192.168.1.184:5001"
-//    //Emporium firebase host
-//    public static let FIREBASE_HOST = "http://192.168.1.184:5000"
+
+    //Emporium backend server host
+    //public static let BACKEND_SERVER_HOST: String = "http://192.168.86.1:5001"
+    //Emporium firebase host
+    //public static let FIREBASE_HOST = "http://192.168.86.1:5000"
+
      
     
     //MARK: END OF HARDCODED IP

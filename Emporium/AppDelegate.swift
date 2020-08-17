@@ -133,10 +133,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 for orderDeliveryStatus in listOfOrderDeliveryStatus {
                     
-//                    let content = LocalNotificationHelper.createNotificationContent(title: "Order udpate", body: orderDeliveryStatus.status.rawValue, subtitle: "", others: nil)
-//                    LocalNotificationHelper.addNotification(identifier: "DeliveryStatus.notification", content: content)
-//                    print("Received update: \(orderDeliveryStatus.status.rawValue)")
+                    if orderDeliveryStatus.status == .completed {
+                        ShopDataManager.getCurrentOrder() {
+                            data in
+                            
+                            let chargeID = data["chargeID"] as! String
+                            let initialAmount = data["amount"] as! Double
+                            let refundAmt = orderDeliveryStatus.confirmedAmount //amount to refund
+                            let transferAmt = initialAmount - refundAmt! //amount to volunteer
+                            let accountID = orderDeliveryStatus.notAvailableItems!.accountID
+                            
+                            Payment.refund(amount: refundAmt!, chargeID: chargeID) //send to server to refund
+                            
+                            Payment.transferVolunteer(amount: transferAmt, accountID: accountID)  //send to serve to transfer
+                        }
+                    }
                     
+                    print("Received update: \(orderDeliveryStatus.status.rawValue)")
+   
                     deliveryDataManager.markRequestOrderAsRead(orderDeliveryStatus)
                 }
             }).store(in: &cancellables!)

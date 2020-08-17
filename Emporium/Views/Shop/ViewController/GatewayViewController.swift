@@ -153,7 +153,10 @@ class GatewayViewController: UIViewController {
             for err in error {
                 totalError = totalError + err
             }
-            Toast.showToast(totalError)
+            let showAlert = UIAlertController(title: "Card not added", message: totalError, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "OK", style: .cancel)
+            showAlert.addAction(cancel)
+            self.present(showAlert, animated: true, completion: nil)
         }
     }
     

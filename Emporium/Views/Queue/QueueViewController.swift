@@ -234,6 +234,8 @@ class QueueViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
+            
+            
             //Send delivery request to server
             DeliveryDataManager.checkVolunteerRequest(storeId: self.store!.id, receiveOrder: {
                 order in
@@ -281,7 +283,16 @@ class QueueViewController: UIViewController {
                 message: "We will notify you when there is a request.",
                 preferredStyle: .alert
             )
-            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            thanksAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                action in
+                Payment.checkBank(onComplete: { (exist) in
+                    if(!exist){
+                        let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+                        let vc = baseSB.instantiateViewController(identifier: "bankVC") as! BankDetailViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                })
+            }))
             self.present(thanksAlert, animated: true)
             
         }))

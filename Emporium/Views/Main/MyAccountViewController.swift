@@ -26,7 +26,7 @@ class MyAccountViewController: UIViewController, UIImagePickerControllerDelegate
     private var user: User?
     
     //Account Reuseable Cell Ids
-    private let accountCells = ["PurchaseHistoryCell", "SignOutCell"]
+    private let accountCells = ["PurchaseHistoryCell", "BankCell", "SignOutCell"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
