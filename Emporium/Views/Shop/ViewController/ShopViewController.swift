@@ -45,14 +45,32 @@ class ShopViewController: UIViewController, DataDelegate {
         
         self.collectionView.register(UINib(nibName: "ProductViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductViewCell")
         
-        if(fromShopList()) {
-            cartBtn.isEnabled = false
+        Payment.getOrderExist(onComplete: { (exist) in
+            if(exist){
+                //if order exist
+                let showAlert = UIAlertController(title: "Alert", message: "You have already have a exising order", preferredStyle: .alert)
+                let back = UIAlertAction(title: "OK", style: .default) {
+                    action in
+                    let baseSB = UIStoryboard(name: "Shop", bundle: nil)
+                    let vc = baseSB.instantiateViewController(identifier: "HistoryViewController") as! HistoryViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                showAlert.addAction(back)
+                self.present(showAlert, animated: true, completion: nil)
+            }else{
+                //if there is no current order
+                
+            }
+        })
+        
+        if(self.fromShopList()) {
+            self.cartBtn.isEnabled = false
             self.shopListBtn.isHidden = true
-            self.title = "Add Item (\(listName))"
-            self.ProductCateLabel.text = "You are adding items to (\(listName))"
+            self.title = "Add Item (\(self.listName))"
+            self.ProductCateLabel.text = "You are adding items to (\(self.listName))"
             self.ProductCateLabel.textColor = .systemBlue
         }else{
-            cartBtn.isEnabled = true
+            self.cartBtn.isEnabled = true
             self.shopListBtn.isHidden = false
             self.ProductCateLabel.text = "Product: tap to add"
         }
