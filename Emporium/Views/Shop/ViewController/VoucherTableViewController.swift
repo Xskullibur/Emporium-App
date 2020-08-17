@@ -62,7 +62,7 @@ class VoucherTableViewController: UITableViewController {
                    }
                }, receiveValue: {
                    claimedVouchers in
-                   self.myVouchers = claimedVouchers
+                self.myVouchers = claimedVouchers.filter{!$0.used}
                    self.tableView.reloadData()
                }).store(in: &cancellables)
        }

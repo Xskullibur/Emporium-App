@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             let chargeID = data["chargeID"] as! String
                             let initialAmount = data["amount"] as! Double
                             let refundAmt = orderDeliveryStatus.confirmedAmount //amount to refund
-                            let transferAmt = initialAmount - refundAmt! //amount to volunteer
+                            let transferAmt = (initialAmount/100) - refundAmt! //amount to volunteer
                             let accountID = orderDeliveryStatus.notAvailableItems!.accountID
                             
                             Payment.refund(amount: refundAmt!, chargeID: chargeID) //send to server to refund

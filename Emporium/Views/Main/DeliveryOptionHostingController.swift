@@ -24,10 +24,11 @@ struct RequestOrderOptionView: View {
         NavigationView {
             VStack{
                 HStack(alignment: .firstTextBaseline, spacing: 5.0){
-                    Text("Distance (KM)")
-                        .padding(.horizontal, 15)
-                    TextField("", text:$deliveryOption.distanceInKm)
-                    .keyboardType(.decimalPad)
+                    LabelTextField(label:"Distance (KM)", placeHolder: $deliveryOption.distanceInKm)
+//                    Text()
+//                        .padding(.horizontal, 15)
+//                    TextField("", text:)
+//                    .keyboardType(.decimalPad)
                     
                 }.frame(width: nil, height: 25, alignment: .center)
                 Spacer()
@@ -48,6 +49,24 @@ struct RequestOrderOptionView: View {
     }
     
 }
+
+struct LabelTextField : View {
+    var label: String
+    var placeHolder: Binding<String>
+ 
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(label)
+                .font(.headline)
+            TextField("", text: placeHolder)
+                .padding(.all)
+                .background(Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0))
+                .cornerRadius(5.0)
+            }
+            .padding(.horizontal, 15)
+    }
+}
+
 class DeliveryOptionHostingController: UIHostingController<RequestOrderOptionView> {
     
     private var firebaseLoadAndSaveDeliveryOption: FirebaseLoadAndSaveDeliveryOption

@@ -183,7 +183,7 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
                         DispatchQueue.main.async
                         {
                             self.removeSpinner()
-                            let showAlert = UIAlertController(title: "Result", message: "Payment Successful", preferredStyle: .alert)
+                            let showAlert = UIAlertController(title: "Success", message: "Payment Successful", preferredStyle: .alert)
                             let back = UIAlertAction(title: "OK", style: .default) {
                                 action in
                                 self.navigationController?.popToRootViewController(animated: true)
