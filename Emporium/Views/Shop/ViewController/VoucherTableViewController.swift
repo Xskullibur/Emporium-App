@@ -90,20 +90,11 @@ class VoucherTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //Show bottom sheet
-        let storyboard = UIStoryboard.init(name: "Rewards", bundle: Bundle.init(for: VoucherBottomSheetViewController.self))
-        let viewController = storyboard.instantiateViewController(identifier: "MyVoucherBottomSheetViewControllerID") as MyVoucherBottomSheetViewController
-        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: viewController)
-        
-        let screenRect = UIScreen.main.bounds
-        
-        bottomSheet.preferredContentSize = CGSize(width: screenRect.size.width, height: screenRect.size.height / 3)
-        
+                
         self.delegate?.setVoucher(voucher: myVouchers[indexPath.row])
-        
-        viewController.setVoucher(voucher: myVouchers[indexPath.row])
-        self.present(bottomSheet, animated: true, completion: nil)
+        self.showAlert(title: "Result", message: "Voucher Added") {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK: TESTING ONLY

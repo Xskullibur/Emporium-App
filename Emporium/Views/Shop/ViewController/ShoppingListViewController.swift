@@ -49,6 +49,11 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if listName.count == 0 {
+            tableView.setEmptyMessage("No Shopping List...")
+        }else{
+            tableView.restore()
+        }
         return listName.count
     }
     
@@ -109,6 +114,7 @@ class ShoppingListViewController: UIViewController, UITableViewDelegate, UITable
         let addList = UIAlertAction(title: "Add To Cart", style: .default) {
             action in
             self.addListToCart(name: self.listName[row])
+            self.showAlert(title: "Result", message: "Successfully Added", onComplete: nil)
         }
         
         let editList = UIAlertAction(title: "View/Edit", style: .default) {

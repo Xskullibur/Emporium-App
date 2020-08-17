@@ -45,7 +45,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if purchaseHistory.count == 0 {
+            tableView.setEmptyMessage("No Puchase Yet...")
+        }else{
+            tableView.restore()
+        }
         return purchaseHistory.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -34,6 +34,11 @@ class DisplayCardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if cardList.count == 0 {
+            tableView.setEmptyMessage("No Card Found")
+        }else{
+            tableView.restore()
+        }
         return cardList.count
     }
     

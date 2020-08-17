@@ -64,7 +64,7 @@ class BankDetailViewController: UIViewController {
     
     
     func addBankDetails(bankNumber: String) {
-        
+        self.showSpinner(onView: self.view)
         var message = ""
         
         Auth.auth().currentUser?.getIDToken(completion: {
@@ -88,7 +88,7 @@ class BankDetailViewController: UIViewController {
                     if httpResponse.statusCode == 200 {
                         DispatchQueue.main.async
                             {
-                                //self.removeSpinner()
+                                self.removeSpinner()
                                 let showAlert = UIAlertController(title: "Result", message: "Redirecting to verification", preferredStyle: .alert)
                                 let back = UIAlertAction(title: "OK", style: .default) {
                                     action in
@@ -120,7 +120,7 @@ class BankDetailViewController: UIViewController {
     }
     
     func updateBankDetails(bankNumber: String) {
-        
+        self.showSpinner(onView: self.view)
         var message = ""
         
         Auth.auth().currentUser?.getIDToken(completion: {
@@ -144,7 +144,7 @@ class BankDetailViewController: UIViewController {
                     if httpResponse.statusCode == 200 {
                         DispatchQueue.main.async
                             {
-                                //self.removeSpinner()
+                                self.removeSpinner()
                                 let showAlert = UIAlertController(title: "Result", message: "Updated Successfully", preferredStyle: .alert)
                                 let cancel = UIAlertAction(title: "OK", style: .cancel)
                                 showAlert.addAction(cancel)
@@ -155,6 +155,7 @@ class BankDetailViewController: UIViewController {
                     {
                         DispatchQueue.main.async
                             {
+                                self.removeSpinner()
                                 let showAlert = UIAlertController(title: "Failed", message: message, preferredStyle: .alert)
                                 let cancel = UIAlertAction(title: "OK", style: .cancel)
                                 showAlert.addAction(cancel)

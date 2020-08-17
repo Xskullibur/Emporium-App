@@ -14,6 +14,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var discountPriceLabel: UILabel!
     @IBOutlet weak var toPaymentBtn: UIButton!
     @IBOutlet weak var addItemBtn: UIButton!
     
@@ -169,6 +170,7 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func saveBtnPressed(_ sender: Any) {
         if(!fromShop()) {
             self.editShoppingList(name: listName)
+            self.showAlert(title: "Result", message: "Successfully Saved", onComplete: nil)
         }else{
             saveActionSheet()
         }
@@ -310,7 +312,8 @@ class CheckOutViewController: UIViewController, UITableViewDelegate, UITableView
                         if httpResponse.statusCode == 200 {
                             DispatchQueue.main.async
                             {
-                                self.priceLabel.text = "Total: $" + message
+                                self.discountPriceLabel.text = "-$" + message
+                                self.discountPriceLabel.isHidden = false
                             }
                         }
                         else
