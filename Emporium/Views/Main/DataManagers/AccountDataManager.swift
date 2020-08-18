@@ -203,5 +203,13 @@ class AccountDataManager
         
     }
     
+    static func removeExistingQueue() {
+        
+        let userId = Auth.auth().currentUser!.uid
+        let db = Firestore.firestore()
+        db.document("users/\(userId)").updateData(["queue": FieldValue.delete()])
+        
+    }
+    
     
 }

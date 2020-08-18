@@ -25,7 +25,11 @@ class CompletedViewController: UIViewController {
         // Update Delivery to Completed
         DeliveryDataManager.shared.updateDeliveryStatus(status: .completed)
         let queueDataManager = QueueDataManager()
-        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: storeId!) { (success) in }
+        queueDataManager.updateQueue(queueId!, withStatus: .Completed, forStoreId: storeId!) { (success) in
+            
+            AccountDataManager.removeExistingQueue()
+            
+        }
         
         // AnimationView
         animationView.contentMode = .scaleAspectFit
