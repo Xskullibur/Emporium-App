@@ -179,20 +179,22 @@ class QueueViewController: UIViewController {
                     // Navigate if currently serving user
                     if currentQueueId == self.queueId {
                         
-                        // Clear Listeners
-                        self.listenerManager.clear()
-                        
-                        // Navigate to Entry
-                        let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
-                        
-                        let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
-                        entryVC.store = self.store
-                        entryVC.queueId = self.queueId!
-                        entryVC.order = self._order
-                        entryVC.requested = self.requested
-                        
-                        let rootVC = self.navigationController?.viewControllers.first
-                        self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                        DispatchQueue.main.async {
+                            // Clear Listeners
+                            self.listenerManager.clear()
+                            
+                            // Navigate to Entry
+                            let queueStoryboard = UIStoryboard(name: "Queue", bundle: nil)
+                            
+                            let entryVC = queueStoryboard.instantiateViewController(identifier: "entryVC") as EntryViewController
+                            entryVC.store = self.store
+                            entryVC.queueId = self.queueId!
+                            entryVC.order = self._order
+                            entryVC.requested = self.requested
+                            
+                            let rootVC = self.navigationController?.viewControllers.first
+                            self.navigationController?.setViewControllers([rootVC!, entryVC], animated: true)
+                        }
                         
                     }
                     else {
@@ -225,10 +227,12 @@ class QueueViewController: UIViewController {
                             self.requested = true
                             self._order = order
                             
-                            DispatchQueue.main.async{
-                                self.requestItemBtn.isHidden = false
+                            if let order = order {
+                                print("Recieved order: \(order.orderID)")
+                                DispatchQueue.main.async{
+                                    self.requestItemBtn.isHidden = false
+                                }
                             }
-                            
                         
             //                //TEST
             //                DeliveryDataManager.shared.getDeliveryOrder(onComplete: {
@@ -240,7 +244,6 @@ class QueueViewController: UIViewController {
             //                })
             //                //TEST
                             
-                            print("Recieved order: \(order.orderID)")
                         }
                     }
                 }

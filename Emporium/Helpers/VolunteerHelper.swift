@@ -11,7 +11,7 @@ import UIKit
 
 class VolunteerHelper {
     
-    static func showVolunteerAlert(viewController: UIViewController, store: GroceryStore, onComplete: @escaping(Order) -> Void) {
+    static func showVolunteerAlert(viewController: UIViewController, store: GroceryStore, onComplete: @escaping(Order?) -> Void) {
         
         let alert = UIAlertController(
             title: "Would you like to volunteer?",
@@ -19,7 +19,9 @@ class VolunteerHelper {
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {_ in
+            onComplete(nil)
+        }))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             
             
@@ -77,7 +79,7 @@ class VolunteerHelper {
 }
 
 extension UIViewController {
-    func showVolunteerAlert(store: GroceryStore, onComplete: @escaping (Order) -> Void) {
+    func showVolunteerAlert(store: GroceryStore, onComplete: @escaping (Order?) -> Void) {
         VolunteerHelper.showVolunteerAlert(viewController: self, store: store, onComplete: onComplete)
     }
 }
