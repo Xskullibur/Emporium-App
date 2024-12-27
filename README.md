@@ -7,7 +7,7 @@ Emporium is a volunteer-powered app and is useful for helping each other purchas
 ## Firebase Functions
 Emporium uses serverless-functions for server logic.
 
-See https://gitlab.com/Riyfhx/emporium-firebase-functions
+See https://github.com/Xskullibur/Emporium-FirebaseFunctions
 
 ## Developers
 * Peh Zi Heng
